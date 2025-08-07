@@ -66,5 +66,5 @@
 </button>
 
 <style lang="scss">
-	@import './styles.scss';
+	@use './styles';
 </style>
