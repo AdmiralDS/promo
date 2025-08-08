@@ -1,0 +1,156 @@
+// _typography.scss
+
+/// Настройки типографики
+/// @group typography
+$typography-settings: (
+	base-font-size: 16px,
+	base-line-height: 1.5,
+	font-family: (
+		'system-ui',
+		'-apple-system',
+		'BlinkMacSystemFont',
+		'Segoe UI',
+		'Roboto',
+		'Helvetica Neue',
+		'Arial',
+		sans-serif
+	),
+	font-family-mono: (
+		'Menlo',
+		'Monaco',
+		'Consolas',
+		'Liberation Mono',
+		'Courier New',
+		monospace
+	),
+	scale: (
+		'display': 3rem,
+		'h1': 2.5rem,
+		'h2': 2rem,
+		'h3': 1.75rem,
+		'h4': 1.5rem,
+		'h5': 1.25rem,
+		'h6': 1rem,
+		'body': 1rem,
+		'small': 0.875rem,
+		'tiny': 0.75rem
+	),
+	weights: (
+		'light': 300,
+		'regular': 400,
+		'medium': 500,
+		'bold': 700
+	),
+	responsive-ratios: (
+		'sm': 0.9,
+		'md': 1,
+		'lg': 1.1,
+		'xl': 1.2
+	)
+) !default;
+
+/// Миксин для генерации типографических стилей
+/// @param {String} $variant - Вариант текста (h1, body и т.д.)
+/// @param {Boolean} $responsive [true] - Включить адаптивные размеры
+@mixin typography($variant: 'body', $responsive: true) {
+	// Базовые свойства
+	$scale: map-get($typography-settings, 'scale');
+	$weights: map-get($typography-settings, 'weights');
+
+	font-family: #{inspect(map-get($typography-settings, 'font-family'))};
+	font-size: map-get($scale, $variant);
+	line-height: $typography-settings['base-line-height'];
+	font-weight: map-get($weights, 'regular');
+	margin: 0;
+
+	// Динамические стили для заголовков
+	@if index(('h1', 'h2', 'h3', 'h4', 'h5', 'h6'), $variant) {
+		font-weight: map-get($weights, 'bold');
+		margin-bottom: 0.5em;
+		line-height: 1.2;
+	}
+
+	// Отзывчивые размеры
+	@if $responsive {
+		@each $breakpoint, $ratio in map-get($typography-settings, 'responsive-ratios') {
+			@media (max-width: map-get($breakpoints, $breakpoint)) {
+				font-size: calc(#{map-get($scale, $variant)} * #{$ratio});
+			}
+		}
+	}
+
+	// Специальные варианты
+	@if $variant == 'monospace' {
+		font-family: #{inspect(map-get($typography-settings, 'font-family-mono'))};
+	}
+
+	@if $variant == 'small' {
+		opacity: 0.8;
+	}
+}
+
+/// Генерация классов типографики
+@mixin generate-typography-classes {
+	// Семантические классы
+	.text-display {
+		@include typography('display');
+	}
+
+	.text-h1 {
+		@include typography('h1');
+	}
+
+	.text-h2 {
+		@include typography('h2');
+	}
+
+	// ... другие заголовки
+
+	.text-body {
+		@include typography('body');
+	}
+
+	.text-small {
+		@include typography('small');
+	}
+
+	// Утилитарные классы
+	.text-light {
+		font-weight: map-get($typography-settings[ 'weights'], 'light');
+	}
+
+	.text-bold {
+		font-weight: map-get($typography-settings[ 'weights'], 'bold');
+	}
+
+	.text-mono {
+		font-family: #{inspect(map-get($typography-settings, 'font-family-mono'))};
+	}
+
+	.text-uppercase {
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	// ... другие утилиты
+}
+
+/// Функция для получения типографических значений
+/// @param {String} $key - Ключ значения (например, 'scale.h1')
+@function typography($key) {
+	$keys: str-split($key, '.');
+	$value: $typography-settings;
+
+	@each $k in $keys {
+		$value: map-get($value, $k);
+	}
+
+	@return $value;
+}
+
+// Экспорт классов (опционально)
+@include generate-typography-classes;

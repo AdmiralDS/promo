@@ -1,12 +1,8 @@
-// import devtoolsJson from 'vite-plugin-devtools-json';
+import devtoolsJson from 'vite-plugin-devtools-json';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
-import svgr from 'vite-plugin-svelte-svgr';
+import svg from '@poppanator/sveltekit-svg';
 
 export default defineConfig({
-	plugins: [
-		sveltekit(),
-		// devtoolsJson(),
-		svgr()
-	]
+	plugins: [sveltekit(), devtoolsJson(), svg()]
 });
