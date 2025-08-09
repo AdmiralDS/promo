@@ -2,8 +2,6 @@
 
 /* Базовые стили */
 .btn {
-	width: 280px;
-	height: 80px;
 	box-sizing: border-box;
 	position: relative;
 	display: inline-flex;
@@ -18,15 +16,31 @@
 	border: none;
 	white-space: nowrap;
 
-	&:hover {
-		background: var(--color-primary, colors.$blueHover);
+	font-family: VTB Group UI;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 32px;
+	letter-spacing: 0%;
+	text-align: center;
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+	&:active {
+		transform: scale(0.98);
 	}
 }
 
 /* Варианты */
 .btn-primary {
-	background: var(--color-primary, colors.$primaryBlue);
+	background: var(--color-primary, colors.color('Primary_Blue'));
 	color: white;
+
+	&:hover {
+		background: var(--color-primary, colors.color('Blue_Hover'));
+	}
 }
 
 .btn-secondary {
@@ -46,34 +60,6 @@
 .btn-lg {
 	padding: 16px 24px;
 	font-size: 16px;
-}
-
-/* Состояния */
-.disabled {
-	opacity: 0.6;
-	cursor: not-allowed;
-}
-
-.pressed {
-	transform: scale(0.98);
-}
-
-.loading {
-	cursor: wait;
-}
-
-/* Спиннер */
-.spinner {
-	width: 16px;
-	height: 16px;
-	border: 2px solid transparent;
-	border-top-color: currentColor;
-	border-radius: 50%;
-	animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-	to {
-		transform: rotate(360deg);
-	}
+	width: 280px;
+	height: 80px;
 }

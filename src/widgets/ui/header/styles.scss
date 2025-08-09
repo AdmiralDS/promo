@@ -1,4 +1,6 @@
 /* Ellipse 369217 */
+@use '$shared/ui/typography/typography' as typo;
+
 .elipse1 {
 	/* Ellipse 369217 */
 
@@ -38,4 +40,85 @@
 		/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 	filter: blur(40px);
 	transform: rotate(-37.11deg);
+}
+
+.main-container {
+	z-index: 1;
+	width: 1200px;
+	height: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+.text-box {
+	padding-top: 160px;
+	padding-bottom: 80px;
+}
+
+.text {
+	@include typo.typography('H1 Accent');
+	position: relative;
+	width: fit-content;
+
+	@media (max-width: 1024px) {
+	}
+}
+
+.first-row {
+	left: 251px;
+	margin-bottom: 12px;
+}
+
+.second-row {
+	left: 167px;
+	margin-bottom: 12px;
+}
+
+.third-row {
+	left: 274px;
+}
+
+.logo {
+	top: 40px;
+}
+
+:global(.centered) {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.left-figure {
+	position: absolute;
+	width: 180px;
+	height: 160px;
+	top: 420px;
+	left: 60px;
+	z-index: -1;
+
+	&.element-to-animate {
+		animation-delay: 1500ms;
+	}
+}
+
+.right-figure {
+	position: absolute;
+	width: 180px;
+	height: 190px;
+	top: 250px;
+	left: 930px;
+}
+
+.element-to-animate {
+	animation: moveVertical 3s ease-in-out infinite alternate; /* Applies the animation */
+}
+
+@keyframes moveVertical {
+	0% {
+		transform: translateY(0); /* Starting position (no vertical translation) */
+	}
+	100% {
+		transform: translateY(-160px); /* Ending position (moves down 100px) */
+	}
 }

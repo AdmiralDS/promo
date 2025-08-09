@@ -8,63 +8,22 @@
 	let {
 		variant = 'primary' as ButtonVariant,
 		size = 'lg' as ButtonSize,
-		disabled = false,
-		loading = false,
 		type = 'button' as ButtonType,
+		disabled = false,
 		class: className = '',
+		children,
 		...restAttributes
 	} = $props();
 
-	// Состояние нажатия (используем $state)
-	let isPressed = $state(false);
-
 	// Генерируем классы динамически через $derived
-	const buttonClasses = $derived(
-		`btn btn-${variant} btn-${size} ${disabled ? 'disabled' : ''} ${
-			loading ? 'loading' : ''
-		} ${isPressed ? 'pressed' : ''} ${className}`
-	);
-
-	// Обработчик клика
-	function handleClick(event: MouseEvent) {
-		if (disabled || loading) return;
-		// $emit('click', event) // Испускаем событие
-	}
-
-	// Обработчики состояний нажатия
-	function press() {
-		isPressed = true;
-	}
-	function release() {
-		isPressed = false;
-	}
+	const buttonClasses = $derived(`btn btn-${variant} btn-${size} ${className}`);
 </script>
 
-<!-- 
-  Кнопка с новым синтаксисом событий (без двоеточия)
-  $$restProps передает все дополнительные атрибуты
--->
-<button
-	class={buttonClasses}
-	disabled={disabled || loading}
-	{type}
-	onclick={handleClick}
-	onmousedown={press}
-	onmouseup={release}
-	onmouseleave={release}
-	{...restAttributes}
->
+<button class={buttonClasses} {type} {...restAttributes}>
 	<!-- Слот по умолчанию -->
-	<slot>
-		{#if loading}
-			<span class="spinner" />
-			Loading...
-		{:else}
-			Click me
-		{/if}
-	</slot>
+	{@render children?.()}
 </button>
 
 <style lang="scss">
-	@use './styles';
+	@use 'styles';
 </style>
