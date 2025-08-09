@@ -1,0 +1,17 @@
+// _typography.scss
+@use '@admiral-ds/fonts/VTBGroupUI';
+$VTB-font-family: 'VTB Group UI';
+
+@mixin desktop-H1-Accent {
+	font-family: $VTB-font-family;
+	font-weight: 550;
+	font-size: 130px;
+	line-height: 120px;
+	letter-spacing: -5px;
+}
+
+@mixin typography($name) {
+	@if $name == 'H1 Accent' {
+		@include desktop-H1-Accent;
+	}
+}

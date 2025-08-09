@@ -24,7 +24,8 @@ const config = {
 			$features: path.resolve('./src/features'),
 			$widgets: path.resolve('./src/widgets'),
 			$shared: path.resolve('./src/shared'),
-			$entities: path.resolve('./src/entities')
+			$entities: path.resolve('./src/entities'),
+			'@admiral-fonts': path.resolve('./src/node_modules/@admiral-ds/fonts')
 		}
 	}
 };

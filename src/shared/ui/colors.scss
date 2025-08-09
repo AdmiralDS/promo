@@ -1,1 +1,56 @@
-$primaryBlue : #006FFF
+$colors: (
+	Primary_Blue: #006fff,
+	Blue_Hover: #0052be,
+	Dark_Blue: #01042e,
+	BG: #f7f8fa,
+	Lime_Green: #89ed55,
+	White: #ffffff,
+	Snow_Gray: #456b8d
+);
+
+@mixin Text_Gradient {
+	background: linear-gradient(#3091e5, #086cf5);
+}
+
+@mixin generate-color-classes($property: 'color') {
+	@each $name, $hex in $colors {
+		&--#{$name} {
+			#{$property}: $hex;
+		}
+	}
+}
+
+@function color($name) {
+	@return map-get($colors, $name);
+}
+
+$gradients: (
+	Card_Gradient: linear-gradient(180deg, #2991ff 0%, #91c0fc 100%),
+	Text_Gradient: linear-gradient(90deg, #3091e5 0%, #086cf5 100%),
+	Sandbox_Gradient: linear-gradient(180deg, #d8ebff 0%, #73b1ff 100%)
+);
+
+@mixin generate-gradient-classes() {
+	@each $name, $value in $gradients {
+		.#{$name} {
+			background: $value;
+		}
+	}
+}
+
+:global {
+  // Generates .text--primary, .text--secondary, etc.
+	.text {
+		@include generate-color-classes(); 
+	}
+
+  // Generates .background--primary, .background--secondary, etc.
+	.background {
+		@include generate-color-classes(
+			'background-color'
+		); 
+	}
+
+  // Generates gradients, etc.
+	@include generate-gradient-classes;
+}
