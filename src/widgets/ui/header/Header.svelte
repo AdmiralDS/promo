@@ -2,6 +2,7 @@
 	import Logo from '$shared/assets/svg/icon.svg?component';
 	import { Button } from '$shared/ui';
 	import Figure2 from './fig2.svg?component';
+	import logo from './assets/logo.png';
 	import leftFigure from './assets/left.png';
 	import rightFigure from './assets/right.png';
 
@@ -11,9 +12,7 @@
 </script>
 
 <div class="main-container">
-	<div class="logo centered">
-		<Logo />
-	</div>
+	<img src={logo} alt={'logo'} class="logo centered" />
 	<div class="text-box">
 		<div class="text first-row text--Dark_Blue">Создавайте</div>
 		<div class="text second-row text--Dark_Blue">IT-продукты</div>

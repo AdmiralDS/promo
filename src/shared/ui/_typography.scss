@@ -1,0 +1,59 @@
+// _typography.scss
+@use '@admiral-ds/fonts/VTBGroupUI';
+$VTB-font-family: 'VTB Group UI';
+
+/*#region DESKTOP*/
+
+@mixin desktop-H1-Accent {
+	font-family: $VTB-font-family;
+	font-weight: 550;
+	font-size: 130px;
+	line-height: 120px;
+	letter-spacing: -5px;
+}
+
+@mixin desktop-H2 {
+	font-family: VTB Group UI;
+	font-weight: 500;
+	font-size: 62px;
+	line-height: 74px;
+	letter-spacing: -4%;
+}
+
+/*#endregion*/
+
+/*#region TABLET*/
+
+@mixin tablet-H1 {
+	font-family: VTB Group UI;
+	font-weight: 550;
+	font-size: 90px;
+	line-height: 90px;
+	letter-spacing: -5px;
+}
+
+/*#endregion*/
+
+/*#region MOBILE*/
+
+@mixin mobile-H1-Accent {
+	font-family: VTB Group UI;
+	font-weight: 500;
+	font-size: 54px;
+	line-height: 48px;
+	letter-spacing: -3px;
+}
+
+/*#endregion*/
+
+@mixin typography($name) {
+	@if $name == 'H1 Accent' {
+		@include desktop-H1-Accent;
+	} @else if $name == 'H2' {
+		@include desktop-H2;
+	} @else if $name == 'Tablet/H1' {
+		@include tablet-H1;
+	} @else if $name == 'Mobile/H1 Accent' {
+		@include mobile-H1-Accent;
+	}
+}
