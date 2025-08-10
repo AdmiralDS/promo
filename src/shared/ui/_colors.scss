@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $colors: (
 	Primary_Blue: #006fff,
 	Blue_Hover: #0052be,
@@ -14,14 +16,14 @@ $colors: (
 
 @mixin generate-color-classes($property: 'color') {
 	@each $name, $hex in $colors {
-		&--#{$name} {
+		&--#{'' + $name} {
 			#{$property}: $hex;
 		}
 	}
 }
 
 @function color($name) {
-	@return map-get($colors, $name);
+	@return map.get($colors, $name);
 }
 
 $gradients: (
@@ -39,18 +41,16 @@ $gradients: (
 }
 
 :global {
-  // Generates .text--primary, .text--secondary, etc.
+	// Generates .text--primary, .text--secondary, etc.
 	.text {
-		@include generate-color-classes(); 
+		@include generate-color-classes();
 	}
 
-  // Generates .background--primary, .background--secondary, etc.
+	// Generates .background--primary, .background--secondary, etc.
 	.background {
-		@include generate-color-classes(
-			'background-color'
-		); 
+		@include generate-color-classes('background-color');
 	}
 
-  // Generates gradients, etc.
+	// Generates gradients, etc.
 	@include generate-gradient-classes;
 }

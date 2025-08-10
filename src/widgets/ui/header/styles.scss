@@ -1,5 +1,5 @@
 /* Ellipse 369217 */
-@use '$shared/ui/typography/typography' as typo;
+@use '$shared/ui/typography' as typo;
 
 .elipse1 {
 	/* Ellipse 369217 */
@@ -49,38 +49,107 @@
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
+
+	@media (max-width: 1024px) {
+		width: min(100%, 768px);
+		height: 720px;
+	}
+
+	@media (max-width: 767px) {
+		width: 335px;
+		height: 540px;
+	}
 }
 
 .text-box {
 	padding-top: 160px;
 	padding-bottom: 80px;
+
+	@media (max-width: 1024px) {
+		padding-top: 167px;
+	}
+
+	@media (max-width: 767px) {
+		padding-top: 134px;
+		padding-bottom: 48px;
+	}
 }
 
 .text {
+	transition: all 0.2s ease;
+
 	@include typo.typography('H1 Accent');
 	position: relative;
 	width: fit-content;
 
 	@media (max-width: 1024px) {
+		@include typo.typography('Tablet/H1');
+	}
+
+	@media (max-width: 767px) {
+		@include typo.typography('Mobile/H1 Accent');
 	}
 }
 
 .first-row {
 	left: 251px;
 	margin-bottom: 12px;
+	@media (max-width: 1024px) {
+		margin-bottom: 8px;
+		left: auto;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	@media (max-width: 767px) {
+		margin-bottom: 12px;
+	}
 }
 
 .second-row {
 	left: 167px;
 	margin-bottom: 12px;
+	@media (max-width: 1024px) {
+		margin-bottom: 8px;
+		left: auto;
+		margin-left: auto;
+		margin-right: auto;
+		padding-right: 67px;
+	}
+
+	@media (max-width: 767px) {
+		margin-bottom: 12px;
+		padding: unset;
+	}
 }
 
 .third-row {
 	left: 274px;
+	@media (max-width: 1024px) {
+		left: auto;
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 121px;
+	}
+	@media (max-width: 767px) {
+		padding: unset;
+	}
 }
 
 .logo {
 	top: 40px;
+	height: 40px;
+
+	transition: all 0.2s ease;
+
+	@media (max-width: 767px) {
+		top: 64px;
+	}
+
+	@media (max-width: 767px) {
+		// width: 138px;
+		height: 32px;
+	}
 }
 
 :global(.centered) {
@@ -96,9 +165,36 @@
 	top: 420px;
 	left: 60px;
 	z-index: -1;
+	transition: all 0.2s ease;
 
 	&.element-to-animate {
 		animation-delay: 1500ms;
+	}
+
+	@media (max-width: 1024px) {
+		width: 160px;
+		height: 140px;
+		left: 2px;
+	}
+
+	@media (max-width: 767px) {
+		width: 136px;
+		height: 109px;
+		left: 18px;
+		top: auto;
+		bottom: -13px;
+		&.element-to-animate {
+			animation: moveMobileleft 3s ease-in-out infinite alternate; /* Applies the animation */
+		}
+	}
+}
+
+@keyframes moveMobileRight {
+	0% {
+		transform: translateY(0) rotate(0); /* Starting position (no vertical translation) */
+	}
+	100% {
+		transform: translateY(-160px) rotate(360deg); /* Ending position (moves down 100px) */
 	}
 }
 
@@ -108,6 +204,27 @@
 	height: 190px;
 	top: 250px;
 	left: 930px;
+	z-index: -1;
+
+	transition: all 0.2s ease;
+
+	@media (max-width: 1024px) {
+		width: 160px;
+		height: 168px;
+		left: 621px;
+	}
+
+	@media (max-width: 767px) {
+		width: 115px;
+		height: 118px;
+		left: 201px;
+		bottom: 2px;
+		top: auto;
+
+		&.element-to-animate {
+			animation: moveMobileRight 3s ease-in-out infinite alternate; /* Applies the animation */
+		}
+	}
 }
 
 .element-to-animate {
@@ -120,5 +237,14 @@
 	}
 	100% {
 		transform: translateY(-160px); /* Ending position (moves down 100px) */
+	}
+}
+
+@keyframes moveMobileleft {
+	0% {
+		transform: translateY(0) rotate(27deg); /* Starting position (no vertical translation) */
+	}
+	100% {
+		transform: translateY(-160px) rotate(-27deg); /* Ending position (moves down 100px) */
 	}
 }
