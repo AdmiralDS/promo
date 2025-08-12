@@ -1,11 +1,11 @@
 // _typography.scss
 @use '@admiral-ds/fonts/VTBGroupUI';
-$VTB-font-family: 'VTB Group UI';
+$main-font-family: 'VTB Group UI';
 
 /*#region DESKTOP*/
 
 @mixin desktop-H1-Accent {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 550;
 	font-size: 130px;
 	line-height: 120px;
@@ -13,7 +13,7 @@ $VTB-font-family: 'VTB Group UI';
 }
 
 @mixin desktop-H2 {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 500;
 	font-size: 62px;
 	line-height: 74px;
@@ -21,7 +21,7 @@ $VTB-font-family: 'VTB Group UI';
 }
 
 @mixin desktop-Paragraph {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 400;
 	font-size: 26px;
 	line-height: 32px;
@@ -29,7 +29,7 @@ $VTB-font-family: 'VTB Group UI';
 }
 
 @mixin desktop-Text {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 400;
 	font-size: 20px;
 	line-height: 26px;
@@ -37,7 +37,7 @@ $VTB-font-family: 'VTB Group UI';
 }
 
 @mixin desktop-Accent {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 500;
 	font-size: 90px;
 	line-height: 100px;
@@ -45,7 +45,7 @@ $VTB-font-family: 'VTB Group UI';
 }
 
 @mixin desktop-H3 {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 500;
 	font-size: 42px;
 	line-height: 46px;
@@ -57,7 +57,7 @@ $VTB-font-family: 'VTB Group UI';
 /*#region TABLET*/
 
 @mixin tablet-H1 {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 550;
 	font-size: 90px;
 	line-height: 90px;
@@ -65,7 +65,7 @@ $VTB-font-family: 'VTB Group UI';
 }
 
 @mixin tablet-H2 {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 500;
 	font-size: 44px;
 	line-height: 52px;
@@ -73,7 +73,7 @@ $VTB-font-family: 'VTB Group UI';
 }
 
 @mixin tablet-H3 {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 500;
 	font-size: 36px;
 	line-height: 46px;
@@ -81,7 +81,7 @@ $VTB-font-family: 'VTB Group UI';
 }
 
 @mixin tablet-Accent {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 500;
 	font-size: 62px;
 	line-height: 74px;
@@ -93,7 +93,7 @@ $VTB-font-family: 'VTB Group UI';
 /*#region MOBILE*/
 
 @mixin mobile-H1-Accent {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 500;
 	font-size: 54px;
 	line-height: 48px;
@@ -101,7 +101,7 @@ $VTB-font-family: 'VTB Group UI';
 }
 
 @mixin mobile-H2 {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 500;
 	font-size: 26px;
 	line-height: 30px;
@@ -109,7 +109,7 @@ $VTB-font-family: 'VTB Group UI';
 }
 
 @mixin mobile-Paragraph {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 400;
 	font-size: 20px;
 	line-height: 26px;
@@ -117,7 +117,7 @@ $VTB-font-family: 'VTB Group UI';
 }
 
 @mixin mobile-Text {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 20px;
@@ -125,7 +125,7 @@ $VTB-font-family: 'VTB Group UI';
 }
 
 @mixin mobile-Accent {
-	font-family: VTB Group UI;
+	font-family: $main-font-family;
 	font-weight: 500;
 	font-size: 32px;
 	line-height: 110.00000000000001%;
