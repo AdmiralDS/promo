@@ -1,2 +1,2 @@
-export { default as Button } from './button/Button.svelte';
-export { default as Container } from './container/Container.svelte';
+export { default as Button } from './atoms/button/Button.svelte';
+export { default as Container } from './atoms/container/Container.svelte';
