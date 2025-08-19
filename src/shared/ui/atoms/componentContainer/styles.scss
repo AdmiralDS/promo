@@ -1,0 +1,55 @@
+@use '$shared/ui/shadow' as shadow;
+
+/* Базовые стили */
+.cntr {
+	box-sizing: border-box;
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+  padding: 40px;
+  border-radius: 32px;
+	border: none;
+
+  @include shadow.shadow;
+
+	@media (max-width: 1024px) {
+		padding: 24px;
+	}
+}
+
+/* Размеры */
+.cntr-sm {
+  width: 386px;
+
+	@media (max-width: 1024px) {
+		width: 293px;
+	}
+
+	@media (max-width: 767px) {
+		width: 335px;
+	}
+}
+.cntr-md {
+  width: 387px;
+
+	@media (max-width: 1024px) {
+		width: 350px;
+	}
+
+	@media (max-width: 767px) {
+		width: 335px;
+	}
+}
+.cntr-lg {
+  width: 793px;
+
+	@media (max-width: 1024px) {
+		width: 606px;
+	}
+
+	@media (max-width: 767px) {
+		width: 335px;
+	}
+}

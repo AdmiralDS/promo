@@ -1,0 +1,56 @@
+@use '$shared/ui/shadow' as shadow;
+
+/* Базовые стили */
+.card {
+	box-sizing: border-box;
+	position: relative;
+
+	@include shadow.shadow;
+	border-radius: 32px;
+	border: none;
+
+	display: inline-flex;
+	flex-direction: column;
+	align-items: flex-start;
+	overflow: hidden;
+}
+
+/* Appearance */
+.card-primary {
+	width: 387px;
+	height: 380px;
+	padding: 40px;
+	gap: 12px;
+
+	@media (max-width: 1024px) {
+		width: 975px;
+		height: 176px;
+		padding: 40px;
+	}
+
+	@media (max-width: 767px) {
+		width: 335px;
+		height: 320px;
+		padding: 32px;
+	}
+}
+.card-secondary {
+	width: 590px;
+	height: 340px;
+	padding: 48px;
+	gap: 16px;
+
+	@media (max-width: 1024px) {
+		width: 976px;
+		height: 296px;
+		padding: 48px;
+		gap: 12px;
+	}
+
+	@media (max-width: 767px) {
+		width: 335px;
+		height: 300px;
+		padding: 32px;
+		gap: 8px;
+	}
+}

@@ -1,0 +1,64 @@
+@use '$shared/ui/typography' as typo;
+@use '$shared/ui/colors' as colors;
+
+.card-title {
+	position: relative;
+	width: fit-content;
+  color: var(--color-primary, colors.color('Dark_Blue'));
+}
+
+.card-text {
+	position: relative;
+	width: fit-content;
+  color: var(--color-primary, colors.color('Snow_Gray'));
+}
+
+.card-title-primary {
+	@include typo.typography('Paragraph');
+
+	@media (max-width: 1024px) {
+		@include typo.typography('Paragraph');
+	}
+
+	@media (max-width: 767px) {
+		@include typo.typography('Mobile/Paragraph');
+	}
+}
+
+.card-title-secondary {
+	@include typo.typography('H3');
+
+	@media (max-width: 1024px) {
+		@include typo.typography('Tablet/H3');
+	}
+
+	@media (max-width: 767px) {
+		@include typo.typography('Mobile/Paragraph');
+	}
+}
+
+.card-text-primary {
+	@include typo.typography('Text');
+
+	@media (max-width: 1024px) {
+    width: 70%;
+		@include typo.typography('Text');
+	}
+
+	@media (max-width: 767px) {
+		@include typo.typography('Mobile/Text');
+	}
+}
+
+.card-text-secondary {
+	@include typo.typography('Text');
+
+	@media (max-width: 1024px) {
+    width: 70%;
+		@include typo.typography('Text');
+	}
+
+	@media (max-width: 767px) {
+		@include typo.typography('Mobile/Text');
+	}
+}
