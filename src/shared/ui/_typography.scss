@@ -139,6 +139,8 @@ $main-font-family: 'VTB Group UI';
 		@include desktop-H1-Accent;
 	} @else if $name == 'H2' {
 		@include desktop-H2;
+	} @else if $name == 'H3' {
+		@include desktop-H3;
 	} @else if $name == 'Paragraph' {
 		@include desktop-Paragraph;
 	} @else if $name == 'Text' {
