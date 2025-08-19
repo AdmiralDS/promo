@@ -1,6 +1,5 @@
 <script lang="ts">
-	// Определяем типы для пропсов
-	type CardContainerAppearance = 'primary' | 'secondary';
+	import type { CardContainerAppearance } from '$shared/ui/types';
 
 	// Получаем пропсы через $props()
 	let {
