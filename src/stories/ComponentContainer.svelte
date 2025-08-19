@@ -1,6 +1,5 @@
 <script lang="ts">
-	import './container.css';
-	import { Container } from '../shared/ui';
+	import { ComponentContainer } from '../shared/ui';
 
 	interface Props {
 		/** How large should the bucontainertton be? */
@@ -10,6 +9,6 @@
 	const { size, ...props }: Props = $props();
 </script>
 
-<Container {...props} {size}>
+<ComponentContainer {...props} {size}>
 	<div style='height: 50px; width: 50px; background-color: blue'></div>
-</Container>
+</ComponentContainer>
