@@ -1,0 +1,75 @@
+@use 'sass:map';
+
+// _breakpoints.scss
+$phone: 'phone';
+$tablet: 'tablet';
+
+/// Брейкпоинты (адаптивные точки перелома)
+/// @type Map
+$breakpoints: (
+	$phone: 767px,
+	// Extra large devices (large desktops)
+	$tablet: 1024px // Super large devices
+) !default;
+
+/// Миксин для медиа-запросов "min-width"
+/// @param {String} $breakpoint - Ключ из $breakpoints
+@mixin respond-from($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		$width: map.get($breakpoints, $breakpoint);
+		@media (min-width: $width) {
+			@content;
+		}
+	} @else {
+		@warn "Брейкпоинт '#{$breakpoint}' не найден в $breakpoints";
+	}
+}
+
+/// Миксин для медиа-запросов "max-width"
+/// @param {String} $breakpoint - Ключ из $breakpoints
+@mixin respond-until($breakpoint) {
+	@if map.has-key($breakpoints, $breakpoint) {
+		$width: map.get($breakpoints, $breakpoint) - 0.02px;
+		@media (max-width: $width) {
+			@content;
+		}
+	} @else {
+		@warn "Брейкпоинт '#{$breakpoint}' не найден в $breakpoints";
+	}
+}
+
+/// Миксин для медиа-запросов между брейкпоинтами
+/// @param {String} $from - Начальный брейкпоинт
+/// @param {String} $until - Конечный брейкпоинт
+@mixin respond-between($from, $until) {
+	@if map.has-key($breakpoints, $from) and map-has-key($breakpoints, $until) {
+		$min: map.get($breakpoints, $from);
+		$max: map.get($breakpoints, $until) - 0.02px;
+		@media (min-width: $min) and (max-width: $max) {
+			@content;
+		}
+	} @else {
+		@warn "Один из брейкпоинтов не найден: '#{$from}', '#{$until}'";
+	}
+}
+
+/// Миксин для ретина-дисплеев (2x и 3x)
+@mixin retina {
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		@content;
+	}
+}
+
+/// Миксин для вертикальной ориентации
+@mixin portrait {
+	@media (orientation: portrait) {
+		@content;
+	}
+}
+
+/// Миксин для горизонтальной ориентации
+@mixin landscape {
+	@media (orientation: landscape) {
+		@content;
+	}
+}

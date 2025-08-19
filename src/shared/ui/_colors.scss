@@ -1,13 +1,16 @@
 @use 'sass:map';
 
 $colors: (
+	Main_White: #ffffff,
 	Primary_Blue: #006fff,
 	Blue_Hover: #0052be,
 	Dark_Blue: #01042e,
 	BG: #f7f8fa,
 	Lime_Green: #89ed55,
-	White: #ffffff,
-	Snow_Gray: #456b8d
+	Snow_Gray: #456b8d,
+	Light_Grey: #f2f9ff,
+	Light_Grey_Hover: #e4f1ff,
+	Blue_Press: #003a87
 );
 
 @mixin Text_Gradient {
@@ -23,7 +26,12 @@ $colors: (
 }
 
 @function color($name) {
-	@return map.get($colors, $name);
+	$value: map.get($colors, $name);
+	@if $value {
+		@return $value;
+	} @else {
+		@warn 'Не найдено значение для цвета #{$name}';
+	}
 }
 
 $gradients: (
@@ -53,4 +61,11 @@ $gradients: (
 
 	// Generates gradients, etc.
 	@include generate-gradient-classes;
+}
+
+/// Генерация CSS-переменных для цветов
+:root {
+	@each $color, $value in $colors {
+		--color-#{'' + $color}: #{$value};
+	}
 }

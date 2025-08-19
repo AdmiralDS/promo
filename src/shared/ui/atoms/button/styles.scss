@@ -1,4 +1,6 @@
 @use '$shared/ui/colors' as colors;
+@use '$shared/ui/typography' as typography;
+@use '$shared/ui/breakpoints' as breakpoints;
 
 /* Базовые стили */
 .btn {
@@ -7,75 +9,92 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	border-radius: 24px;
+
 	cursor: pointer;
 	transition: all 0.2s ease;
 	font-weight: 500;
 	outline: none;
-	gap: 8px;
 	border: none;
 	white-space: nowrap;
+
+	transition: background-color 100ms linear;
 
 	&:disabled {
 		opacity: 0.6;
 		cursor: not-allowed;
 	}
-
-	&:active {
-		transform: scale(0.98);
-	}
-
-	@media (max-width: 767px) {
-		border-radius: 16px;
-	}
 }
 
 /* Варианты */
 .btn-primary {
-	background: var(--color-primary, colors.color('Primary_Blue'));
-	color: white;
+	background: var(--color-Primary_Blue, colors.color('Primary_Blue'));
+	color: var(--color-Main_White, colors.color('Main_White'));
 
 	&:hover {
-		background: var(--color-primary, colors.color('Blue_Hover'));
+		background: var(--color-Blue_Hover, colors.color('Blue_Hover'));
+	}
+
+	&:active {
+		background: var(--color-Blue_Press, colors.color('Blue_Press'));
 	}
 }
 
 .btn-secondary {
-	background: var(--color-secondary);
-	border: 1px solid var(--color-border);
+	background: var(--color-Light_Grey, colors.color('Light_Grey'));
+	color: var(--color-Snow_Gray, colors.color('Snow_Gray'));
+
+	&:hover {
+		background: var(--color-Light_Grey_Hover, colors.color('Light_Grey_Hover'));
+	}
+
+	&:active {
+		background: var(--color-Primary_Blue, colors.color('Primary_Blue'));
+		color: var(--color-White, colors.color('Main_White'));
+	}
 }
 
 /* Размеры */
-.btn-sm {
-	padding: 6px 12px;
-	font-size: 12px;
-}
-.btn-md {
-	padding: 8px 16px;
-	font-size: 14px;
-}
-.btn-lg {
-	padding: 16px 24px;
+.btn-small {
+	padding: 10px 12px;
+	border-radius: 16px;
 
-	font-family: VTB Group UI;
+	font-family: typography.$main-font-family;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 20px;
+	letter-spacing: 0;
+
+	width: 80px;
+	height: 56px;
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		padding: 10px;
+		border-radius: 12px;
+		width: 72px;
+		height: 40px;
+
+		font-size: 16px;
+		letter-spacing: -0.89px;
+	}
+}
+
+.btn-large {
+	padding: 16px 24px;
+	border-radius: 24px;
+
+	font-family: typography.$main-font-family;
 	font-weight: 500;
 	font-size: 24px;
 	line-height: 32px;
-	letter-spacing: 0%;
-	text-align: center;
+	letter-spacing: 0;
 
 	width: 280px;
 	height: 80px;
-
-	@media (max-width: 767px) {
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		border-radius: 16px;
 		height: 56px;
 		padding: 12px;
 
-		font-family: VTB Group UI;
-		font-weight: 500;
 		font-size: 16px;
-		line-height: 32px;
-		letter-spacing: 0;
-		text-align: center;
 	}
 }

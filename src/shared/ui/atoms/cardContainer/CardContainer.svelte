@@ -1,5 +1,11 @@
 <script lang="ts">
-	import type { CardContainerAppearance } from '$shared/ui/types';
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	type CardContainerAppearance = 'primary' | 'secondary';
+
+	export interface CardContainerProps extends HTMLAttributes<HTMLDivElement> {
+		appearance?: CardContainerAppearance;
+	}
 
 	// Получаем пропсы через $props()
 	let {
@@ -7,7 +13,7 @@
 		class: className = '',
 		children,
 		...restAttributes
-	} = $props();
+	}: CardContainerProps = $props();
 
 	// Генерируем классы динамически через $derived
 	const containerClasses = $derived(`card card-${appearance} ${className}`);
