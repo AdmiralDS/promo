@@ -1,4 +1,5 @@
 @use '$shared/ui/shadow' as shadow;
+@use '$shared/ui/breakpoints' as breakpoints;
 
 /* Базовые стили */
 .card {
@@ -22,13 +23,13 @@
 	padding: 40px;
 	gap: 12px;
 
-	@media (max-width: 1024px) {
+	@include breakpoints.respond-until(breakpoints.$tablet) {
 		width: 975px;
 		height: 176px;
 		padding: 40px;
 	}
 
-	@media (max-width: 767px) {
+	@include breakpoints.respond-until(breakpoints.$phone) {
 		width: 335px;
 		height: 320px;
 		padding: 32px;
@@ -40,14 +41,14 @@
 	padding: 48px;
 	gap: 16px;
 
-	@media (max-width: 1024px) {
+	@include breakpoints.respond-until(breakpoints.$tablet) {
 		width: 976px;
 		height: 296px;
 		padding: 48px;
 		gap: 12px;
 	}
 
-	@media (max-width: 767px) {
+	@include breakpoints.respond-until(breakpoints.$phone) {
 		width: 335px;
 		height: 300px;
 		padding: 32px;

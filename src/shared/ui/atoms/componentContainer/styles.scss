@@ -1,4 +1,5 @@
 @use '$shared/ui/shadow' as shadow;
+@use '$shared/ui/breakpoints' as breakpoints;
 
 /* Базовые стили */
 .cntr {
@@ -14,7 +15,7 @@
 
   @include shadow.shadow;
 
-	@media (max-width: 1024px) {
+	@include breakpoints.respond-until(breakpoints.$tablet) {
 		padding: 24px;
 	}
 }
@@ -23,33 +24,33 @@
 .cntr-sm {
   width: 386px;
 
-	@media (max-width: 1024px) {
+	@include breakpoints.respond-until(breakpoints.$tablet) {
 		width: 293px;
 	}
 
-	@media (max-width: 767px) {
+	@include breakpoints.respond-until(breakpoints.$phone) {
 		width: 335px;
 	}
 }
 .cntr-md {
   width: 387px;
 
-	@media (max-width: 1024px) {
+	@include breakpoints.respond-until(breakpoints.$tablet) {
 		width: 350px;
 	}
 
-	@media (max-width: 767px) {
+	@include breakpoints.respond-until(breakpoints.$phone) {
 		width: 335px;
 	}
 }
 .cntr-lg {
   width: 793px;
 
-	@media (max-width: 1024px) {
+	@include breakpoints.respond-until(breakpoints.$tablet) {
 		width: 606px;
 	}
 
-	@media (max-width: 767px) {
+	@include breakpoints.respond-until(breakpoints.$phone) {
 		width: 335px;
 	}
 }
