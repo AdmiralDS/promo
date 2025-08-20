@@ -5,13 +5,13 @@
 .card-title {
 	position: relative;
 	width: fit-content;
-  color: var(--color-primary, colors.color('Dark_Blue'));
+  color: var(--color-Dark_Blue, colors.color('Dark_Blue'));
 }
 
 .card-text {
 	position: relative;
 	width: fit-content;
-  color: var(--color-primary, colors.color('Snow_Gray'));
+  color: var(--color-Snow_Gray, colors.color('Snow_Gray'));
 }
 
 .card-title-primary {
