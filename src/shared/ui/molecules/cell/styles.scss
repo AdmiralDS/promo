@@ -1,0 +1,55 @@
+@use '$shared/ui/typography' as typo;
+@use '$shared/ui/colors' as colors;
+@use '$shared/ui/breakpoints' as breakpoints;
+
+.cell-title {
+	position: relative;
+	width: fit-content;
+	color: var(--color-Dark_Blue, colors.color('Dark_Blue'));
+
+	@include typo.typography('Paragraph');
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		@include typo.typography('Mobile/Paragraph');
+	}
+}
+
+.cell-text {
+	position: relative;
+	width: fit-content;
+	color: var(--color-Snow_Gray, colors.color('Snow_Gray'));
+
+	@include typo.typography('Text');
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		@include typo.typography('Mobile/Text');
+	}
+}
+
+.cell-img {
+	border-radius: 32px;
+	width: 100%;
+	height: 300px;
+  overflow: hidden;
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		height: 242px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		height: 250px;
+	}
+}
+
+.cell-info {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 24px;
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		gap: 8px;
+	}
+}
