@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	/**
 	 * Компонент Products - это начальный вариант раздела сайта
 	 * "Помогаем командам создавать лучшие продукты на рынке".
@@ -15,8 +15,8 @@
 	оптимизировать процессы и снижать<br/>затраты. Разработана холдингом<br/>Т1 — лидером ИТ-рынка`,
 			logo: {
 				component: SferaLogo,
-				height: { desktop: '112px', tablet: '72px' },
-				width: { desktop: '112px', tablet: '72px' }
+				height: { desktop: '112px', tablet: '72px', phone: '72px' },
+				width: { desktop: '112px', tablet: '72px', phone: '72px' }
 			}
 		},
 		{
@@ -25,8 +25,8 @@
 		и инструменты в одном<br/>месте, чтобы упростить работу<br/>и ускорить процессы`,
 			logo: {
 				component: StartLogo,
-				height: { desktop: '80px', tablet: '72px' },
-				width: { desktop: '234px', tablet: '208px' }
+				height: { desktop: '80px', tablet: '72px', phone: '72px' },
+				width: { desktop: '234px', tablet: '208px', phone: '208px' }
 			}
 		},
 		{
@@ -35,8 +35,8 @@
 		и электронной подписи`,
 			logo: {
 				component: AutographLogo,
-				height: { desktop: '51px', tablet: '47px' },
-				width: { desktop: '248px', tablet: '224px' }
+				height: { desktop: '51px', tablet: '47px', phone: '47px' },
+				width: { desktop: '248px', tablet: '224px', phone: '224px' }
 			}
 		},
 		{
@@ -46,8 +46,8 @@
 		цифровые<br/>проекты`,
 			logo: {
 				component: VTBCloudLogo,
-				height: { desktop: '108px', tablet: '80px' },
-				width: { desktop: '220px', tablet: '164px' }
+				height: { desktop: '108px', tablet: '80px', phone: '80px' },
+				width: { desktop: '220px', tablet: '164px', phone: '164px' }
 			}
 		}
 	];
@@ -55,8 +55,12 @@
 	let showModal = $state(false);
 	let productIndex = $state(0);
 
-	let product = $derived(products[productIndex]);
-	let ProductLogo = $derived(products[productIndex].logo.component);
+	let { title, description } = $derived(products[productIndex]);
+	let {
+		height: logoHeight,
+		width: logoWidth,
+		component: ProductLogo
+	} = $derived(products[productIndex].logo);
 </script>
 
 {#each products as product, index}
@@ -70,9 +74,9 @@
 	</button>
 {/each}
 
-<Modal bind:showModal title={product.title}>
+<Modal bind:showModal {title}>
 	{#snippet logo()}
-		<ProductLogo height={product.logo.height} width={product.logo.width}></ProductLogo>
+		<ProductLogo height={logoHeight} width={logoWidth}></ProductLogo>
 	{/snippet}
-	{@html product.description}
+	{@html description}
 </Modal>

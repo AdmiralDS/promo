@@ -1,22 +1,15 @@
 <script lang="ts">
-	type Props = {
-		/** Высота иконки, задается для двух разрешений экрана tablet и phone */
-		height: {
-			desktop: string;
-			tablet: string;
-		};
-		/** Ширина иконки, задается для двух разрешений экрана tablet и phone */
-		width: {
-			desktop: string;
-			tablet: string;
-		};
-	};
-	let { height, width }: Props = $props();
+	import type { LogoProps } from './types';
+	import { DEFAULT_SIZE } from './types';
+
+	let { height, width }: LogoProps = $props();
+	const { desktop: desktopH, tablet: tabletH, phone: phoneH } = $derived(height ?? DEFAULT_SIZE);
+	const { desktop: desktopW, tablet: tabletW, phone: phoneW } = $derived(width ?? DEFAULT_SIZE);
 </script>
 
 <svg
 	class="logo"
-	style="--desktop-height: {height.desktop}; --tablet-height: {height.tablet}; --desktop-width: {width.desktop}; --tablet-width: {width.tablet};"
+	style="--desktop-height: {desktopH}; --tablet-height: {tabletH}; --phone-height: {phoneH}; --desktop-width: {desktopW}; --tablet-width: {tabletW}; --phone-width: {phoneW};"
 	width="220"
 	height="108"
 	viewBox="0 0 220 108"
