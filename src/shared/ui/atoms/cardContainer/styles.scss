@@ -41,14 +41,14 @@
 	padding: 48px;
 	gap: 16px;
 
-	@media (max-width: 1024px) {
+	@include breakpoints.respond-until(breakpoints.$tablet) {
 		width: 976px;
 		height: 296px;
 		padding: 48px;
 		gap: 12px;
 	}
 
-	@media (max-width: 767px) {
+	@include breakpoints.respond-until(breakpoints.$phone) {
 		width: 335px;
 		height: 300px;
 		padding: 32px;
