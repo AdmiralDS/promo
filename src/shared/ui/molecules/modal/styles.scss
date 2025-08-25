@@ -1,0 +1,94 @@
+@use '$shared/ui/colors' as colors;
+@use '$shared/ui/typography' as typo;
+@use '$shared/ui/breakpoints' as breakpoints;
+
+/* Базовые стили */
+.modal {
+	border: none;
+	border-radius: 24px;
+	padding: 0;
+	background: var(--color-White, colors.color('Main_White'));
+
+	max-width: 480px;
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		max-width: 335px;
+	}
+
+	&::backdrop {
+		background: rgba(165, 196, 237, 0.4);
+		backdrop-filter: blur(30px);
+		// border-radius: 80px;
+	}
+}
+
+.modal-content {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 32px;
+	color: var(--color-Snow_Gray, colors.color('Snow_Gray'));
+	text-align: center;
+
+	@include typo.typography('Text');
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		@include typo.typography('Mobile/Text');
+	}
+}
+
+.modal-logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 260px;
+	height: 160px;
+	margin-bottom: 24px;
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		height: 120px;
+		margin-bottom: 16px;
+	}
+}
+
+.modal-title {
+	color: var(--color-Dark_Blue, colors.color('Dark_Blue'));
+	margin-bottom: 16px;
+	@include typo.typography('H3');
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		margin-bottom: 12px;
+		@include typo.typography('Mobile/H2');
+	}
+}
+
+.modal-close-btn {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	border: none;
+	background-color: transparent;
+	appearance: none;
+	flex: 0 0 auto;
+	width: 32px;
+	height: 32px;
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		width: 24px;
+		height: 24px;
+	}
+	& > svg {
+		height: 100%;
+		width: 100%;
+		*[fill^='#'] {
+			fill: var(--color-Snow_Gray, colors.color('Snow_Gray'));
+		}
+	}
+
+	cursor: pointer;
+	&:focus-visible {
+		outline: none;
+	}
+}

@@ -1,0 +1,10 @@
+@use '$shared/ui/breakpoints' as breakpoints;
+
+.logo {
+	width: var(--desktop-width);
+	height: var(--desktop-height);
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		width: var(--tablet-width);
+		height: var(--tablet-height);
+	}
+}
