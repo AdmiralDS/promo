@@ -1,0 +1,14 @@
+@use '$shared/ui/breakpoints' as breakpoints;
+
+.logo {
+	width: var(--desktop-width);
+	height: var(--desktop-height);
+	@include breakpoints.respond-between(breakpoints.$phone, breakpoints.$tablet) {
+		width: var(--tablet-width);
+		height: var(--tablet-height);
+	}
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		width: var(--phone-width);
+		height: var(--phone-height);
+	}
+}

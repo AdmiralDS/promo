@@ -6,3 +6,4 @@ export { default as Toggle } from './atoms/toggle/Toggle.svelte';
 
 export { default as Card } from './molecules/card/Card.svelte';
 export { default as Cell } from './molecules/cell/Cell.svelte';
+export { default as Modal } from './molecules/modal/Modal.svelte';
