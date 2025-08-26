@@ -1,26 +1,27 @@
 @use '$shared/ui/typography' as typo;
 @use '$shared/ui/colors' as colors;
+@use '$shared/ui/breakpoints' as breakpoints;
 
 .card-title {
 	position: relative;
 	width: fit-content;
-  color: var(--color-primary, colors.color('Dark_Blue'));
+  color: var(--color-Dark_Blue, colors.color('Dark_Blue'));
 }
 
 .card-text {
 	position: relative;
 	width: fit-content;
-  color: var(--color-primary, colors.color('Snow_Gray'));
+  color: var(--color-Snow_Gray, colors.color('Snow_Gray'));
 }
 
 .card-title-primary {
 	@include typo.typography('Paragraph');
 
-	@media (max-width: 1024px) {
+	@include breakpoints.respond-until(breakpoints.$tablet) {
 		@include typo.typography('Paragraph');
 	}
 
-	@media (max-width: 767px) {
+	@include breakpoints.respond-until(breakpoints.$phone) {
 		@include typo.typography('Mobile/Paragraph');
 	}
 }
@@ -28,11 +29,11 @@
 .card-title-secondary {
 	@include typo.typography('H3');
 
-	@media (max-width: 1024px) {
+	@include breakpoints.respond-until(breakpoints.$tablet) {
 		@include typo.typography('Tablet/H3');
 	}
 
-	@media (max-width: 767px) {
+	@include breakpoints.respond-until(breakpoints.$phone) {
 		@include typo.typography('Mobile/Paragraph');
 	}
 }
@@ -40,12 +41,12 @@
 .card-text-primary {
 	@include typo.typography('Text');
 
-	@media (max-width: 1024px) {
+	@include breakpoints.respond-until(breakpoints.$tablet) {
     width: 70%;
 		@include typo.typography('Text');
 	}
 
-	@media (max-width: 767px) {
+	@include breakpoints.respond-until(breakpoints.$phone) {
 		@include typo.typography('Mobile/Text');
 	}
 }
@@ -53,12 +54,12 @@
 .card-text-secondary {
 	@include typo.typography('Text');
 
-	@media (max-width: 1024px) {
+	@include breakpoints.respond-until(breakpoints.$tablet) {
     width: 70%;
 		@include typo.typography('Text');
 	}
 
-	@media (max-width: 767px) {
+	@include breakpoints.respond-until(breakpoints.$phone) {
 		@include typo.typography('Mobile/Text');
 	}
 }
