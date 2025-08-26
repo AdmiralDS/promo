@@ -4,3 +4,4 @@ export { default as CardContainer, type CardContainerProps } from './atoms/cardC
 export { default as CellContainer, type CellContainerProps } from './atoms/cellContainer/CellContainer.svelte';
 export { default as Card } from './molecules/card/Card.svelte';
 export { default as Cell } from './molecules/cell/Cell.svelte';
+export { default as Modal } from './molecules/modal/Modal.svelte';

@@ -2,4 +2,11 @@
 
 body {
 	margin: 0;
+
+	/* Добавляем паддинг для скроллбара */
+	scrollbar-gutter: stable;
+	/* Блокируем прокрутку при открытом модальном окне */
+	&:has(dialog[open]) {
+		overflow: hidden;
+	}
 }
