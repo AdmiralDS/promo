@@ -1,0 +1,77 @@
+@use '$shared/ui/colors' as colors;
+
+.toggle-container {
+  position: relative;
+	cursor: pointer;
+	box-sizing: border-box;
+	width: 92px;
+	height: 48px;
+	border-radius: 16px;
+  padding: 6px;
+  display: flex;
+  gap: 8px;
+
+	background: var(--color-Light_Grey, colors.color('Light_Grey'));
+}
+
+/* Скрываем нативный checkbox */
+.sr-only {
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.toggle-track {
+	position: relative;
+	display: inline-block;
+	width: var(--track-width);
+	height: var(--track-height);
+	background-color: var(--off-color);
+	border-radius: 9999px;
+	transition: all 0.3s ease;
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-track.on {
+	background-color: var(--on-color);
+}
+
+.toggle-track.off {
+	background-color: var(--off-color);
+}
+
+.toggle-track.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.toggle-thumb {
+	position: absolute;
+	top: 6px;
+	left: 6px;
+	width: 36px;
+	height: 36px;
+	background-color: var(--color-Primary_Blue, colors.color('Primary_Blue'));
+	border-radius: 10px;
+	transition: all 0.3s ease;
+}
+
+.toggle-thumb.on {
+	transform: translateX(50);
+}
+
+/* Состояния при фокусе */
+.toggle-label:focus-within .toggle-track {
+	box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+/* Анимация для плавного перехода */
+.toggle-track,
+.toggle-thumb {
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
