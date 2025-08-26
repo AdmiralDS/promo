@@ -19,17 +19,13 @@
 	}: ToggleProps = $props();
 </script>
 
-<label class="toggle-container">
-	<input
-		{...restAttributes}
-		type="checkbox"
-		bind:checked
-		{disabled}
-		class="sr-only"
-	/>
-
-	<SunIcon active={!checked} />
-	<MoonIcon active={checked} />
+<label class="toggle-label">
+	<input {...restAttributes} type="checkbox" bind:checked {disabled} class="sr-only" />
+  <div class="toggle-thumb" class:checked></div>
+	<div class="toggle-icons">
+		<SunIcon active={!checked} />
+		<MoonIcon active={checked} />
+	</div>
 </label>
 
 <style lang="scss">
