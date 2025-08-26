@@ -1,7 +1,7 @@
 @use '$shared/ui/colors' as colors;
 
 .toggle-label {
-  display: block;
+	display: block;
 	position: relative;
 	box-sizing: border-box;
 	width: 92px;
@@ -10,6 +10,10 @@
 
 	background: var(--color-Light_Grey, colors.color('Light_Grey'));
 	cursor: pointer;
+
+	&:hover .toggle-hover {
+		visibility: visible;
+	}
 }
 
 .toggle-icons {
@@ -18,23 +22,8 @@
 	position: absolute;
 	display: flex;
 	gap: 8px;
-  width: 100%;
-  height: 100%;
-}
-
-.toggle-thumb {
-	position: absolute;
-	top: 6px;
-	left: 6px;
-	width: 36px;
-	height: 36px;
-	background-color: var(--color-Primary_Blue, colors.color('Primary_Blue'));
-	border-radius: 10px;
-	transition: all 0.3s ease;
-}
-
-.toggle-thumb.checked {
-	transform: translateX(44px);
+	width: 100%;
+	height: 100%;
 }
 
 /* Скрываем нативный checkbox */
@@ -46,4 +35,34 @@
 	clip: rect(0, 0, 0, 0);
 	white-space: nowrap;
 	border: 0;
+}
+
+@mixin thumb-button-base() {
+	position: absolute;
+	top: 6px;
+	width: 36px;
+	height: 36px;
+	border-radius: 10px;
+}
+
+.toggle-thumb {
+	@include thumb-button-base();
+	left: 6px;
+	background-color: var(--color-Primary_Blue, colors.color('Primary_Blue'));
+	transition: all 0.3s ease;
+
+	&.checked {
+		transform: translateX(44px);
+	}
+}
+
+.toggle-hover {
+	@include thumb-button-base();
+	visibility: hidden;
+	left: 50px;
+	background-color: var(--color-Light_Grey_Hover, colors.color('Light_Grey_Hover'));
+
+	&.checked {
+		transform: translateX(-44px);
+	}
 }

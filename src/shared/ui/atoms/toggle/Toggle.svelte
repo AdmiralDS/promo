@@ -21,7 +21,8 @@
 
 <label class="toggle-label">
 	<input {...restAttributes} type="checkbox" bind:checked {disabled} class="sr-only" />
-  <div class="toggle-thumb" class:checked></div>
+	<div class="toggle-thumb" class:checked></div>
+	<div class="toggle-hover" class:checked></div>
 	<div class="toggle-icons">
 		<SunIcon active={!checked} />
 		<MoonIcon active={checked} />
