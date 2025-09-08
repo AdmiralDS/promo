@@ -80,6 +80,12 @@
 	}
 }
 
+.cards-box-img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 :global(.cards-box-item:nth-child(2n)) {
 	@media (min-width: 1240px) {
 		margin-bottom: 148px;
