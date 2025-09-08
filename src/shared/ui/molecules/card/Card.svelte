@@ -17,7 +17,7 @@
 	const textClass = $derived(`card-text card-text-${appearance}`);
 </script>
 
-<CardContainer {...restAttributes}>
+<CardContainer {...restAttributes} class={className}>
 	{@render children?.()}
 	<div class={titleClass}>
 		{title}
