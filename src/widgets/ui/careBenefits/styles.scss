@@ -46,7 +46,7 @@
 	transition: all 0.2s ease;
 	margin-left: auto;
 	margin-right: auto;
-  text-align: center;
+	text-align: center;
 
 	@include typo.typography('H2');
 	position: relative;
@@ -62,7 +62,34 @@
 }
 
 .cards-box {
-  display: flex;
+	display: flex;
+	gap: 20px;
+	margin-top: 64px;
+	margin-left: 24px;
+	margin-right: 24px;
+
+	@media (max-width: 1239px) {
+		flex-direction: column;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		gap: 8px;
+		margin-top: 40px;
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+}
+
+:global(.cards-box-item:nth-child(2n)) {
+	@media (min-width: 1240px) {
+		margin-bottom: 148px;
+	}
+}
+
+:global(.cards-box-item:nth-child(2n+1)) {
+	@media (min-width: 1240px) {
+		margin-top: 148px;
+	}
 }
 
 :global(.centered) {
