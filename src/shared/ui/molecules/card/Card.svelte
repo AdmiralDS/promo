@@ -4,7 +4,7 @@
 
 	// Получаем пропсы через $props()
 	let {
-		appearance = 'first' as CardContainerAppearance,
+		appearance = 'primary' as CardContainerAppearance,
 		title = '',
 		text = '',
 		children,
