@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { Card } from '$shared/ui';
-	import CardImg1 from './card_img_1.png';
-	import CardImg2 from './card_img_2.png';
-	import CardImg3 from './card_img_3.png';
+	import CardImg1 from './assets/card_img_1.png';
+	import CardImg2 from './assets/card_img_2.png';
+	import CardImg3 from './assets/card_img_3.png';
 
-	const images = [CardImg1, CardImg2, CardImg3];
 	const cards = $state([
 		{
 			id: 1,
@@ -35,11 +34,9 @@
 		</div>
 		<div class="cards-box">
 			{#each cards as card}
-				<Card class="cards-box-item" title={card.title} text={card.text} appearance="primary"
-					>
-          <img class="cards-box-img" src={card.img} alt="CellImg" />
-          </Card
-				>
+				<Card class="cards-box-item" title={card.title} text={card.text} appearance="primary">
+					<img class="cards-box-img" src={card.img} alt="CellImg" />
+				</Card>
 			{/each}
 		</div>
 	</div>

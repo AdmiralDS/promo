@@ -97,9 +97,3 @@
 		margin-top: 148px;
 	}
 }
-
-:global(.centered) {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-}
