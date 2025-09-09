@@ -1,0 +1,70 @@
+@use '$shared/ui/colors' as colors;
+@use '$shared/ui/typography' as typography;
+@use '$shared/ui/breakpoints' as breakpoints;
+
+.tab {
+	box-sizing: border-box;
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-weight: 400;
+	outline: none;
+	border: none;
+	white-space: nowrap;
+	background: none;
+
+	transition: background-color 100ms linear;
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+	color: var(--color-Snow_Gray, colors.color('Snow_Gray'));
+
+	&:hover {
+		color: var(--color-Blue_Hover, colors.color('Blue_Hover'));
+	}
+
+	&:focus {
+		background: var(--color-Primary_Blue, colors.color('Primary_Blue'));
+		color: var(--color-Main_White, colors.color('Main_White'));
+	}
+
+	&:active {
+		background: var(--color-Light_Grey, colors.color('Light_Grey'));
+		color: var(--color-Blue_Press, colors.color('Blue_Press'));
+	}
+
+	padding: 12px 20px;
+	border-radius: 100px;
+
+	font-family: typography.$main-font-family;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 26px;
+	letter-spacing: -0.8px;
+
+	min-width: 80px;
+	min-height: 44px;
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		font-size: 16px;
+		line-height: 20px;
+		letter-spacing: -0.89px;
+	}
+
+	@include breakpoints.respond-from(breakpoints.$tablet) {
+		padding: 12px 24px;
+		font-size: 26px;
+		line-height: 32px;
+		letter-spacing: 0;
+
+		min-width: 213px;
+		min-height: 32px;
+	}
+}
