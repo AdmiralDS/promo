@@ -21,7 +21,7 @@
 		<div class="text-box">
 			<div class="text first-row text--Dark_Blue">Создавайте</div>
 			<div class="text second-row text--Dark_Blue">IT-продукты</div>
-			<div class="text third-row text--Primary_Blue">с Адмиралом</div>
+			<div class="text third-row text--Text_Blue">с Адмиралом</div>
 		</div>
 		<div class="centered">
 			<Button onclick={handleButtonClick}>Сторибук</Button>
