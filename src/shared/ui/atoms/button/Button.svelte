@@ -7,30 +7,30 @@
 
 	export interface ButtonProps extends HTMLButtonAttributes {
 		/**
-   * Визуальный вариант кнопки, определяющий ее стиль и назначение.
-   * 
-   * Варианты:
-   * - `primary` - Основное действие, призыв к действию
-   * - `secondary` - Второстепенное действие
-   * 
-   * @default 'primary'
-   * @example
-   * <Button variant="primary">Сохранить</Button>
-   * <Button variant="danger">Удалить</Button>
-   */
+		 * Визуальный вариант кнопки, определяющий ее стиль и назначение.
+		 *
+		 * Варианты:
+		 * - `primary` - Основное действие, призыв к действию
+		 * - `secondary` - Второстепенное действие
+		 *
+		 * @default 'primary'
+		 * @example
+		 * <Button variant="primary">Сохранить</Button>
+		 * <Button variant="danger">Удалить</Button>
+		 */
 		variant?: ButtonVariant;
 		/**
-   * Размер кнопки, определяющий ее вертикальный ритм и визуальную значимость.
-   * 
-   * Размеры:
-   * - `sm` - Маленький (компактный, для плотных интерфейсов)
-   * - `lg` - Большой (акцентный, для главных действий)
-   * 
-   * @default 'lg'
-   * @example
-   * <Button size="sm">Компактная</Button>
-   * <Button size="lg">Важное действие</Button>
-   */
+		 * Размер кнопки, определяющий ее вертикальный ритм и визуальную значимость.
+		 *
+		 * Размеры:
+		 * - `sm` - Маленький (компактный, для плотных интерфейсов)
+		 * - `lg` - Большой (акцентный, для главных действий)
+		 *
+		 * @default 'lg'
+		 * @example
+		 * <Button size="sm">Компактная</Button>
+		 * <Button size="lg">Важное действие</Button>
+		 */
 		size?: ButtonSize;
 	}
 

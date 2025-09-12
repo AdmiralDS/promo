@@ -1,0 +1,31 @@
+@use '$shared/ui/breakpoints' as breakpoints;
+
+.button-switcher {
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: nowrap;
+	width: 100%;
+	max-width: 100%;
+	overflow-x: auto;
+	overflow-y: hidden;
+	gap: 8px;
+
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	@include breakpoints.respond-from(breakpoints.$phone) {
+		gap: 12px;
+	}
+}
+
+.button-switcher :global(.btn) {
+	flex: 0 0 auto;
+}
+
+.button-switcher :global(.btn[aria-selected='true']) {
+	background: var(--color-Primary_Blue);
+	color: var(--color-Main_White);
+}
