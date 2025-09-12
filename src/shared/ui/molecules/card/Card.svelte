@@ -4,7 +4,7 @@
 
 	// Получаем пропсы через $props()
 	let {
-		appearance = 'first' as CardContainerAppearance,
+		appearance = 'primary' as CardContainerAppearance,
 		title = '',
 		text = '',
 		children,
@@ -17,7 +17,7 @@
 	const textClass = $derived(`card-text card-text-${appearance}`);
 </script>
 
-<CardContainer {...restAttributes}>
+<CardContainer {...restAttributes} class={className}>
 	{@render children?.()}
 	<div class={titleClass}>
 		{title}

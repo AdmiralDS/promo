@@ -23,14 +23,19 @@
 	padding: 40px;
 	gap: 12px;
 
+	@media (max-width: 1239px) {
+		width: 976px;
+		height: 176px;
+	}
+
 	@include breakpoints.respond-until(breakpoints.$tablet) {
-		width: 975px;
+		width: 100%;
 		height: 176px;
 		padding: 40px;
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
-		width: 335px;
+		width: 100%;
 		height: 320px;
 		padding: 32px;
 	}
