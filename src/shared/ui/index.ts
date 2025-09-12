@@ -14,3 +14,4 @@ export { default as Cell } from './molecules/cell/Cell.svelte';
 export { default as Modal } from './molecules/modal/Modal.svelte';
 export { default as Tab } from './atoms/tab/Tab.svelte';
 export { default as TabGroup } from './molecules/tabGroup/TabGroup.svelte';
+export { default as ButtonSwitcher } from './molecules/buttonSwitcher/ButtonSwitcher.svelte';

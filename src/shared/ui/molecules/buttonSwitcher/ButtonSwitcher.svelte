@@ -2,51 +2,51 @@
 	import { onMount } from 'svelte';
 
 	let { class: className = '', children } = $props();
-	const groupClasses = $derived(`tab-group ${className}`);
+	const groupClasses = $derived(`button-switcher ${className}`);
 
 	let rootElement: HTMLDivElement | null = null;
 	let selectedIndex = 0;
 
 	function updateSelectionAttributes() {
 		if (!rootElement) return;
-		if (rootElement.querySelectorAll<HTMLButtonElement>('button.tab').length === 1)
+		if (rootElement.querySelectorAll<HTMLButtonElement>('button.btn').length === 1)
 			selectedIndex = -1;
-		const tabs = Array.from(rootElement.querySelectorAll<HTMLButtonElement>('button.tab'));
-		tabs.forEach((tab, index) => {
+		const buttons = Array.from(rootElement.querySelectorAll<HTMLButtonElement>('button.btn'));
+		buttons.forEach((button, index) => {
 			const isSelected = index === selectedIndex;
-			tab.setAttribute('role', 'tab');
-			tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
-			tab.setAttribute('tabindex', isSelected ? '0' : '-1');
+			button.setAttribute('role', 'tab');
+			button.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+			button.setAttribute('tabindex', isSelected ? '0' : '-1');
 		});
 	}
 
 	function handleClick(event: MouseEvent) {
-		if (!rootElement || rootElement.querySelectorAll<HTMLButtonElement>('button.tab').length === 1)
+		if (!rootElement || rootElement.querySelectorAll<HTMLButtonElement>('button.btn').length === 1)
 			return;
 		const target = event.target as HTMLElement | null;
 		if (!target) return;
-		const tab = target.closest('button.tab');
-		if (!tab) return;
-		const tabs = Array.from(rootElement.querySelectorAll<HTMLButtonElement>('button.tab'));
-		const newIndex = tabs.indexOf(tab as HTMLButtonElement);
+		const button = target.closest('button.btn');
+		if (!button) return;
+		const buttons = Array.from(rootElement.querySelectorAll<HTMLButtonElement>('button.btn'));
+		const newIndex = buttons.indexOf(button as HTMLButtonElement);
 		if (newIndex === -1 || newIndex === selectedIndex) return;
 		selectedIndex = newIndex;
 		updateSelectionAttributes();
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
-		if (!rootElement || rootElement.querySelectorAll<HTMLButtonElement>('button.tab').length === 1)
+		if (!rootElement || rootElement.querySelectorAll<HTMLButtonElement>('button.btn').length === 1)
 			return;
-		const tabs = Array.from(rootElement.querySelectorAll<HTMLButtonElement>('button.tab'));
-		if (tabs.length === 0) return;
+		const buttons = Array.from(rootElement.querySelectorAll<HTMLButtonElement>('button.btn'));
+		if (buttons.length === 0) return;
 
 		switch (event.key) {
 			case 'ArrowRight':
-				selectedIndex = (selectedIndex + 1) % tabs.length;
+				selectedIndex = (selectedIndex + 1) % buttons.length;
 				event.preventDefault();
 				break;
 			case 'ArrowLeft':
-				selectedIndex = (selectedIndex - 1 + tabs.length) % tabs.length;
+				selectedIndex = (selectedIndex - 1 + buttons.length) % buttons.length;
 				event.preventDefault();
 				break;
 			case 'Home':
@@ -54,15 +54,15 @@
 				event.preventDefault();
 				break;
 			case 'End':
-				selectedIndex = tabs.length - 1;
+				selectedIndex = buttons.length - 1;
 				event.preventDefault();
 				break;
 			case 'Enter':
-			case ' ':
+			case ' ': // Space
 				const active = document.activeElement as HTMLElement | null;
-				const focusedTab = active?.closest('button.tab');
-				if (focusedTab) {
-					const idx = tabs.indexOf(focusedTab as HTMLButtonElement);
+				const focusedBtn = active?.closest('button.btn');
+				if (focusedBtn) {
+					const idx = buttons.indexOf(focusedBtn as HTMLButtonElement);
 					if (idx !== -1) selectedIndex = idx;
 					event.preventDefault();
 				}
@@ -72,7 +72,7 @@
 		}
 
 		updateSelectionAttributes();
-		queueMicrotask(() => tabs[selectedIndex]?.focus());
+		queueMicrotask(() => buttons[selectedIndex]?.focus());
 	}
 
 	onMount(() => {
