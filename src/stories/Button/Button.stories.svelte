@@ -32,5 +32,5 @@
 <Story name="Small">
 	{#snippet template(args)}
 		<SmallTemplate />
-	{/snippet}	
+	{/snippet}
 </Story>
