@@ -6,6 +6,10 @@
 	height: 900px;
 	position: relative;
 	overflow: hidden;
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		height: fit-content;
+	}
 }
 
 .main-container {
@@ -30,15 +34,7 @@
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
 		width: 100%;
-		height: 540px;
-	}
-}
-
-.text-box {
-	@media (max-width: 1024px) {
-	}
-
-	@media (max-width: 767px) {
+		height: fit-content;
 	}
 }
 
