@@ -1,5 +1,6 @@
 @use '$shared/ui/shadow' as shadow;
 @use '$shared/ui/breakpoints' as breakpoints;
+@use '$shared/ui/colors' as colors;
 
 /* Базовые стили */
 .card {
@@ -46,15 +47,44 @@
 	padding: 48px;
 	gap: 16px;
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
+	@media (max-width: 1239px) {
 		width: 976px;
-		height: 296px;
-		padding: 48px;
+		height: 206px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		width: 100%;
+		height: 206px;
 		gap: 12px;
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
-		width: 335px;
+		width: 100%;
+		height: 300px;
+		padding: 32px;
+		gap: 8px;
+	}
+}
+.card-tertiary {
+  background: colors.gradient('Card_Gradient');
+	width: 590px;
+	height: 700px;
+	padding: 56px;
+	gap: 16px;
+
+	@media (max-width: 1239px) {
+		width: 976px;
+		height: 206px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		width: 100%;
+		height: 206px;
+		gap: 12px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		width: 100%;
 		height: 300px;
 		padding: 32px;
 		gap: 8px;
