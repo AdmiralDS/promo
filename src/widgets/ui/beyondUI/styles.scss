@@ -48,6 +48,10 @@
 	position: relative;
 	width: fit-content;
 
+	@media (max-width: 1239px) {
+		@include typo.typography('Tablet/H2');
+	}
+
 	@media (max-width: 1024px) {
 		@include typo.typography('Tablet/H2');
 	}
