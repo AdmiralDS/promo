@@ -22,7 +22,7 @@
 	@media (max-width: 1239px) {
 		width: 1024px;
 		height: 1438px;
-		padding: 24px 80px;
+		padding: 80px 24px;
 	}
 
 	@include breakpoints.respond-until(breakpoints.$tablet) {
