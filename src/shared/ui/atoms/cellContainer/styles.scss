@@ -17,13 +17,18 @@
 	justify-content: flex-start;
 	overflow: hidden;
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
+	@media (max-width: 1239px) {
 		width: 312px;
 		height: 356px;
 	}
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		width: 350px;
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		width: 100%;
 		height: 356px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		width: 323px;
+		height: 352px;
 	}
 }
