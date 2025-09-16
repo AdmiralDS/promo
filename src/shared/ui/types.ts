@@ -1,1 +1,1 @@
-export	type CardContainerAppearance = 'primary' | 'secondary';
+export	type CardContainerAppearance = 'primary' | 'secondary' | 'tertiary';
