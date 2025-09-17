@@ -170,17 +170,25 @@
 .cells-box-img {
 	position: absolute;
 	top: 0;
-	right: 0;
+	width: 100%;
+	height: 242px;
+	object-fit: cover;
 	display: none;
 
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
 		display: block;
 	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		height: 250px;
+	}
 }
 .cells-box-img-big {
 	position: absolute;
 	top: 0;
-	right: 0;
+	left: 0;
+	width: 100%;
+	height: 300px;
 	display: none;
 
 	@media (min-width: 1240px) {
