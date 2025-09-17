@@ -3,7 +3,6 @@
 	import CellImg1 from './assets/cell_img_1_sm.png';
 	import CellImg1Big from './assets/cell_img_1_big.png';
 	import CellImg2Big from './assets/cell_img_2_big.png';
-	import { useMedia } from './useMedia';
 
 	// const isMobile = useMedia('(max-width: 767px)');
 	let isMobile = $state(false);
