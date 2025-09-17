@@ -4,7 +4,6 @@
 	import CellImg1Big from './assets/cell_img_1_big.png';
 	import CellImg2Big from './assets/cell_img_2_big.png';
 
-	// const isMobile = useMedia('(max-width: 767px)');
 	let isMobile = $state(false);
 
 	$effect.pre(() => {
