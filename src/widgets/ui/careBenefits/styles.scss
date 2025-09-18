@@ -2,7 +2,7 @@
 @use '$shared/ui/breakpoints' as breakpoints;
 
 .carebenefits-container {
-	width: 100svi;
+	width: 100%;
 	height: 900px;
 	position: relative;
 	overflow: hidden;
@@ -81,9 +81,9 @@
 }
 
 .cards-box-img {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
 :global(.cards-box-item:nth-child(2n)) {
@@ -92,7 +92,7 @@
 	}
 }
 
-:global(.cards-box-item:nth-child(2n+1)) {
+:global(.cards-box-item:nth-child(2n + 1)) {
 	@media (min-width: 1240px) {
 		margin-top: 148px;
 	}

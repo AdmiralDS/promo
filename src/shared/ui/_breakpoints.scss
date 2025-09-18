@@ -7,7 +7,7 @@ $tablet: 'tablet';
 /// Брейкпоинты (адаптивные точки перелома)
 /// @type Map
 $breakpoints: (
-	$phone: 767px,
+	$phone: 700px,
 	// Extra large devices (large desktops)
 	$tablet: 1024px // Super large devices
 ) !default;
@@ -15,7 +15,7 @@ $breakpoints: (
 /// Миксин для медиа-запросов "min-width"
 /// @param {String} $breakpoint - Ключ из $breakpoints
 @mixin respond-from($breakpoint) {
-	@if map-has-key($breakpoints, $breakpoint) {
+	@if map.has-key($breakpoints, $breakpoint) {
 		$width: map.get($breakpoints, $breakpoint);
 		@media (min-width: $width) {
 			@content;
@@ -42,7 +42,7 @@ $breakpoints: (
 /// @param {String} $from - Начальный брейкпоинт
 /// @param {String} $until - Конечный брейкпоинт
 @mixin respond-between($from, $until) {
-	@if map.has-key($breakpoints, $from) and map-has-key($breakpoints, $until) {
+	@if map.has-key($breakpoints, $from) and map.has-key($breakpoints, $until) {
 		$min: map.get($breakpoints, $from);
 		$max: map.get($breakpoints, $until) - 0.02px;
 		@media (min-width: $min) and (max-width: $max) {

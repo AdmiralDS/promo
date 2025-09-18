@@ -26,7 +26,7 @@
 	]);
 </script>
 
-<div class="carebenefits-container">
+<div class="carebenefits-container even-container">
 	<div class="main-container">
 		<div class="text-box">
 			<div class="text first-row text--Dark_Blue">Заботимся не только о качестве,</div>

@@ -1,4 +1,5 @@
 @use 'typography';
+@use 'colors' as colors;
 
 body {
 	margin: 0;
@@ -9,4 +10,13 @@ body {
 	&:has(dialog[open]) {
 		overflow: hidden;
 	}
+}
+
+.even-container {
+	border-radius: 16px;
+	border: 1px solid blueviolet;
+	top: -16px;
+	position: relative;
+	background: var(--color-White, colors.color('Main_White'));
+	box-sizing: border-box;
 }

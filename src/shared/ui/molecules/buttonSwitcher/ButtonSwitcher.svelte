@@ -38,7 +38,7 @@
 			buttonContext = button.previousElementSibling || button;
 		}
 		if (!buttonContext) return;
-		buttonContext.scrollIntoView({ behavior: 'smooth' });
+		buttonContext.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
 
 		selectedIndex = newIndex;
 		updateSelectionAttributes();
@@ -92,7 +92,7 @@
 		}
 
 		if (!buttonContext) return;
-		buttonContext.scrollIntoView({ behavior: 'smooth' });
+		buttonContext.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
 
 		updateSelectionAttributes();
 		queueMicrotask(() => buttons[selectedIndex]?.focus());
