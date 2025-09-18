@@ -21,7 +21,7 @@
 	position: relative;
 	padding: 100px 0;
 
-	@media (max-width: 1239px) {
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
 		width: 1024px;
 		height: 896px;
 		padding: 80px 0;
@@ -48,11 +48,11 @@
 	position: relative;
 	width: fit-content;
 
-	@media (max-width: 1024px) {
+	@include breakpoints.respond-until(breakpoints.$tablet) {
 		@include typo.typography('Tablet/H2');
 	}
 
-	@media (max-width: 767px) {
+	@include breakpoints.respond-until(breakpoints.$phone) {
 		@include typo.typography('Mobile/H2');
 	}
 }
@@ -64,7 +64,7 @@
 	margin-left: 24px;
 	margin-right: 24px;
 
-	@media (max-width: 1239px) {
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
 		flex-direction: column;
 	}
 
