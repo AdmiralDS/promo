@@ -1,0 +1,203 @@
+@use '$shared/ui/typography' as typo;
+@use '$shared/ui/breakpoints' as breakpoints;
+
+.about-container {
+	box-sizing: border-box;
+	width: 100svi;
+	height: 1432px;
+	height: fit-content;
+	position: relative;
+	overflow: hidden;
+	padding: 100px 0;
+	border-radius: 80px;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		height: 1272px;
+		border-radius: 48px;
+		padding: 80px 0;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		height: 828px;
+		border-radius: 48px;
+		padding: 0;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		height: fit-content;
+		border-radius: 32px;
+		padding: 0;
+	}
+}
+
+.main-container {
+	box-sizing: border-box;
+	z-index: 1;
+	width: 1200px;
+	height: 1232px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	padding: 0;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		width: 1023px;
+		height: 1112px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		width: 100%;
+		height: fit-content;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		width: 100%;
+		height: fit-content;
+	}
+}
+
+.text-box {
+	box-sizing: border-box;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	position: relative;
+	width: 1200px;
+	height: 236px;
+
+	@include typo.typography('H2');
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		width: 975px;
+		height: 180px;
+
+		@include typo.typography('Tablet/H2');
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		margin-top: 80px;
+		padding: 0 24px;
+		width: 100%;
+
+		@include typo.typography('Tablet/H2');
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		margin-top: 56px;
+		padding: 0 20px;
+		width: 100%;
+		height: fit-content;
+
+		@include typo.typography('Mobile/H2');
+	}
+}
+
+.text {
+	box-sizing: border-box;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.third-row {
+	margin-top: 24px;
+	width: 830px;
+	@include typo.typography('Paragraph');
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		margin-top: 24px;
+		width: 640px;
+		@include typo.typography('Text');
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		margin-top: 24px;
+		width: 640px;
+		@include typo.typography('Text');
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		margin-top: 16px;
+		width: 100%;
+		max-width: 425px;
+		@include typo.typography('Mobile/Text');
+	}
+}
+
+.components-box {
+	box-sizing: border-box;
+	margin-top: 64px;
+	width: 1200px;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	grid-template-rows: repeat(4, auto);
+	gap: 20px;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		width: 975px;
+		grid-template-columns: 293px 37px 236px 37px 293px;
+		grid-template-rows: repeat(4, auto);
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		width: unset;
+		display: flex;
+		gap: 16px;
+		margin-top: 0;
+		padding: 64px 24px 78px 24px;
+		flex-direction: row;
+		overflow-x: auto;
+		overflow-y: visible;
+		-webkit-overflow-scrolling: touch; /* плавность на iOS */
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		gap: 8px;
+		padding: 48px 20px 56px 20px;
+	}
+}
+
+/* Скрываем скроллбар */
+.components-box::-webkit-scrollbar {
+	display: none;
+}
+
+:global(.component) {
+	flex-shrink: 0;
+}
+:global(.component-first),
+:global(.component-sixth) {
+	grid-row: span 2;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		grid-row: span 2;
+		grid-column: span 2;
+	}
+}
+:global(.component-second),
+:global(.component-fifth) {
+	grid-column: span 2;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		grid-row: span 1;
+		grid-column: span 3;
+	}
+}
+:global(.component-third),
+:global(.component-eighth) {
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		grid-column: span 2;
+	}
+}
+.components-box {
+	:global(.component-second),
+	:global(.component-third),
+	:global(.component-fifth),
+	:global(.component-eighth) {
+		@include breakpoints.respond-until(breakpoints.$tablet) {
+			display: none;
+		}
+	}
+}
