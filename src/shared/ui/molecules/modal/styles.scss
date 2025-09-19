@@ -9,15 +9,14 @@
 	padding: 0;
 	background: var(--color-White, colors.color('Main_White'));
 
-	max-width: 480px;
+	width: 480px;
 	@include breakpoints.respond-until(breakpoints.$tablet) {
-		max-width: 335px;
+		width: 335px;
 	}
 
 	&::backdrop {
 		background: rgba(165, 196, 237, 0.4);
 		backdrop-filter: blur(30px);
-		// border-radius: 80px;
 	}
 }
 
@@ -64,28 +63,30 @@
 
 .modal-close-btn {
 	position: absolute;
-	top: 20px;
-	right: 20px;
-	padding: 0;
+	top: 15px;
+	right: 15px;
+	padding: 5px;
 	margin: 0;
 	box-sizing: border-box;
 	border: none;
 	background-color: transparent;
 	appearance: none;
 	flex: 0 0 auto;
-	width: 32px;
-	height: 32px;
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		width: 24px;
-		height: 24px;
-	}
+	/** Минимальный размер для мобилок */
+	width: 42px;
+	height: 42px;
 	& > svg {
 		height: 100%;
 		width: 100%;
 	}
-
 	cursor: pointer;
 	&:focus-visible {
 		outline: none;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		top: 11px;
+		right: 11px;
+		padding: 9px;
 	}
 }
