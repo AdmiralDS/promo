@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ComponentContainer } from '$shared/ui';
 	import type { ContainerSize } from '$shared/ui/types';
+	import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
 
 	const components = $state([
 		{
@@ -70,7 +71,7 @@
 					size={component.size as ContainerSize}
 					class={`component ${component.class}`}
 				>
-					<div>{component.text}</div>
+					<ReactComponent component={component.text} isDarkTheme={false}></ReactComponent>
 				</ComponentContainer>
 			{/each}
 		</div>
