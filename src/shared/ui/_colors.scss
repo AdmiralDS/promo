@@ -2,6 +2,7 @@
 
 $colors: (
 	Main_White: #ffffff,
+	Main_Black: #000000,
 	Primary_Blue: #006fff,
 	Blue_Hover: #0052be,
 	Dark_Blue: #01042e,
@@ -16,7 +17,8 @@ $colors: (
 	Circle_Azure: #0072c3,
 	Circle_Purple: #a065fe,
 	Circle_Green: #009692,
-	Circle_Pink: #e84a8e
+	Circle_Pink: #e84a8e,
+	Badge_Grey: #a5c4ed
 );
 
 @mixin Text_Gradient {
