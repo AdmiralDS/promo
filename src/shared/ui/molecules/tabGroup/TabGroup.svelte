@@ -38,7 +38,7 @@
 			tabContext = tab.previousElementSibling || tab;
 		}
 		if (!tabContext) return;
-		tabContext.scrollIntoView({ behavior: 'smooth' });
+		tabContext.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 
 		selectedIndex = newIndex;
 		updateSelectionAttributes();
@@ -92,7 +92,7 @@
 		}
 
 		if (!tabContext) return;
-		tabContext.scrollIntoView({ behavior: 'smooth' });
+		tabContext.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 
 		updateSelectionAttributes();
 		queueMicrotask(() => tabs[selectedIndex]?.focus());

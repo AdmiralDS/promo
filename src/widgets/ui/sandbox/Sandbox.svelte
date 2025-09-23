@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { ButtonSwitcher, Button, TabGroup, Tab } from '$shared/ui';
+	import { Toggle } from '$shared/ui';
 </script>
 
 <div class="sandbox-container even-container">
@@ -14,9 +15,15 @@
 			</TabGroup>
 		</div>
 		<div class="sandbox Sandbox_Gradient">
-			<ButtonSwitcher>
-				<Button size="small"></Button>
-			</ButtonSwitcher>
+			<div class="control-container background--Main_White">
+				<div class="theme-toggle text--Dark_Blue">
+					Настройки
+					<Toggle />
+				</div>
+				<ButtonSwitcher>
+					<Button size="small"></Button>
+				</ButtonSwitcher>
+			</div>
 		</div>
 	</div>
 </div>
