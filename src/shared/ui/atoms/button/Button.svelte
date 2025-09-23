@@ -54,5 +54,5 @@
 </button>
 
 <style lang="scss">
-	@use 'styles';
+	@use 'styles.module';
 </style>
