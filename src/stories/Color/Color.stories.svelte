@@ -1,24 +1,29 @@
 <script lang="ts" module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import { Tab } from '../../shared/ui';
-	import SingleTemplate from './Single.template.svelte';
+	import { Color } from '../../shared/ui';
+	import DefaultTemplate from './Default.template.svelte';
 	import WithScrollTemplate from './WithScroll.template.svelte';
 	import { fn } from 'storybook/test';
 
 	const { Story } = defineMeta({
-		title: 'Example/Tab',
-		component: Tab,
+		title: 'Example/Color',
+		component: Color,
 		tags: ['autodocs'],
-		argTypes: {},
+		argTypes: {
+			color: {
+				control: { type: 'select' },
+				options: ['blue', 'azure', 'purple', 'green', 'pink']
+			}
+		},
 		args: {
 			onclick: fn()
 		}
 	});
 </script>
 
-<Story name="Single">
+<Story name="Default" args={{}}>
 	{#snippet template(args)}
-		<SingleTemplate />
+		<DefaultTemplate />
 	{/snippet}
 </Story>
 
