@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
-
-	type CardContainerAppearance = 'primary' | 'secondary';
+	import type { CardContainerAppearance } from '$shared/ui/types';
 
 	export interface CardContainerProps extends HTMLAttributes<HTMLDivElement> {
 		appearance?: CardContainerAppearance;
@@ -9,7 +8,7 @@
 
 	// Получаем пропсы через $props()
 	let {
-		appearance = 'primary' as CardContainerAppearance,
+		appearance = '' as CardContainerAppearance,
 		class: className = '',
 		children,
 		...restAttributes

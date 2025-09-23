@@ -1,21 +1,19 @@
 @use '$shared/ui/typography' as typo;
 @use '$shared/ui/breakpoints' as breakpoints;
 
-.carebenefits-container {
+.beyondui-container {
+	box-sizing: border-box;
 	width: 100svi;
-	height: 900px;
+	height: fit-content;
 	position: relative;
 	overflow: hidden;
-
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		height: fit-content;
-	}
 }
 
 .main-container {
+	box-sizing: border-box;
 	z-index: 1;
 	width: 1200px;
-	height: 940px;
+	height: 1472px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
@@ -23,18 +21,20 @@
 
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
 		width: 1024px;
-		height: 896px;
-		padding: 80px 0;
+		height: 1438px;
+		padding: 80px 24px;
 	}
 
 	@include breakpoints.respond-until(breakpoints.$tablet) {
 		width: 100%;
-		height: 896px;
+		height: 1410px;
+		padding: 80px 24px;
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
 		width: 100%;
-		height: fit-content;
+		height: 1774px;
+		padding: 56px 20px;
 	}
 }
 
@@ -48,6 +48,10 @@
 	position: relative;
 	width: fit-content;
 
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		@include typo.typography('Tablet/H2');
+	}
+
 	@include breakpoints.respond-until(breakpoints.$tablet) {
 		@include typo.typography('Tablet/H2');
 	}
@@ -58,38 +62,55 @@
 }
 
 .cards-box {
-	display: flex;
-	gap: 20px;
 	margin-top: 64px;
-	margin-left: 24px;
-	margin-right: 24px;
+	display: grid;
+	grid-template-columns: 1fr 1fr; /* 2 колонки одинаковой ширины */
+	grid-template-rows: auto auto auto; /* 3 ряда */
+	gap: 20px;
 
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		display: flex;
 		flex-direction: column;
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
 		gap: 8px;
-		margin-top: 40px;
-		margin-left: 20px;
-		margin-right: 20px;
+	}
+}
+
+:global(.cell-first) {
+	grid-row: span 2;
+}
+:global(.cell-forth) {
+	@media (min-width: 1240px) {
+		grid-column: 2;
+		grid-row: 3;
+	}
+}
+:global(.cell-fifth) {
+	@media (min-width: 1240px) {
+		grid-column: 1;
+		grid-row: 3;
 	}
 }
 
 .cards-box-img {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	display: none;
 
-:global(.cards-box-item:nth-child(2n)) {
-	@media (min-width: 1240px) {
-		margin-bottom: 148px;
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		display: block;
 	}
 }
+.cards-box-img-big {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	display: none;
 
-:global(.cards-box-item:nth-child(2n+1)) {
 	@media (min-width: 1240px) {
-		margin-top: 148px;
+		display: block;
 	}
 }

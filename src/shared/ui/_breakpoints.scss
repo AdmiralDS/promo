@@ -3,13 +3,15 @@
 // _breakpoints.scss
 $phone: 'phone';
 $tablet: 'tablet';
+$desktopS: 'desktopS';
 
 /// Брейкпоинты (адаптивные точки перелома)
 /// @type Map
 $breakpoints: (
 	$phone: 767px,
 	// Extra large devices (large desktops)
-	$tablet: 1024px // Super large devices
+	$tablet: 1024px, // Super large devices
+	$desktopS: 1240px // Desktop less then 1240
 ) !default;
 
 /// Миксин для медиа-запросов "min-width"

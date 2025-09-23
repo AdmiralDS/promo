@@ -46,6 +46,15 @@ $gradients: (
 	Sandbox_Gradient: linear-gradient(180deg, #d8ebff 0%, #73b1ff 100%)
 );
 
+@function gradient($name) {
+	$value: map.get($gradients, $name);
+	@if $value {
+		@return $value;
+	} @else {
+		@warn 'Не найдено значение для градиента #{$name}';
+	}
+}
+
 @mixin generate-gradient-classes() {
 	@each $name, $value in $gradients {
 		.#{$name} {
