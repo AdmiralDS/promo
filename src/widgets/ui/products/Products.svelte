@@ -6,7 +6,7 @@
 	 **/
 
 	import { Modal } from '$shared/ui';
-	import { SferaLogo, StartLogo, VTBCloudLogo, AutographLogo } from './icons/index';
+	import { SferaLogo, StartLogo, VTBCloudLogo, AutographLogo } from '$shared/ui';
 
 	const products = [
 		{
