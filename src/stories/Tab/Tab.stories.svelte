@@ -1,11 +1,10 @@
 <script lang="ts" module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import { Tab } from '../../shared/ui';
-	import GroupTemplate from './Group.template.svelte';
 	import SingleTemplate from './Single.template.svelte';
+	import WithScrollTemplate from './WithScroll.template.svelte';
 	import { fn } from 'storybook/test';
 
-	// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 	const { Story } = defineMeta({
 		title: 'Example/Tab',
 		component: Tab,
@@ -17,15 +16,14 @@
 	});
 </script>
 
-<!-- More on writing stories with args: https://storybook.js.org/docs/writing-stories/args -->
 <Story name="Single">
 	{#snippet template(args)}
 		<SingleTemplate />
 	{/snippet}
 </Story>
 
-<Story name="Group">
+<Story name="With Scroll" args={{}}>
 	{#snippet template(args)}
-		<GroupTemplate />
+		<WithScrollTemplate />
 	{/snippet}
 </Story>

@@ -9,11 +9,11 @@
 	align-items: center;
 	justify-content: center;
 
-  padding: 40px;
-  border-radius: 32px;
+	padding: 40px;
+	border-radius: 32px;
 	border: none;
 
-  @include shadow.shadow;
+	@include shadow.shadow;
 
 	@include breakpoints.respond-until(breakpoints.$tablet) {
 		padding: 24px;
@@ -22,35 +22,59 @@
 
 /* Размеры */
 .cntr-sm {
-  width: 386px;
+	width: 386px;
+	height: 256px;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		width: 293px;
+		height: 202px;
+	}
 
 	@include breakpoints.respond-until(breakpoints.$tablet) {
-		width: 293px;
+		width: 335px;
+		height: 424px;
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
 		width: 335px;
+		height: 424px;
 	}
 }
 .cntr-md {
-  width: 387px;
+	width: 386px;
+	height: 456px;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		width: 350px;
+		height: 424px;
+	}
 
 	@include breakpoints.respond-until(breakpoints.$tablet) {
-		width: 350px;
+		width: 335px;
+		height: 424px;
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
 		width: 335px;
+		height: 424px;
 	}
 }
 .cntr-lg {
-  width: 793px;
+	width: 793px;
+	height: 180px;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		width: 606px;
+		height: 202px;
+	}
 
 	@include breakpoints.respond-until(breakpoints.$tablet) {
 		width: 606px;
+		height: 424px;
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
 		width: 335px;
+		height: 424px;
 	}
 }

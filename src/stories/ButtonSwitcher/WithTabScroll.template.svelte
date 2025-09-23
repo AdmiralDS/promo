@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Tab, TabGroup } from '../../shared/ui';
+	import { Tab, ButtonSwitcher } from '../../shared/ui';
 </script>
 
 <div style="border: 2px solid #d9d9d9; width: 45%; padding: 8px 16px;">
-	<TabGroup>
+	<ButtonSwitcher>
 		<Tab>Таблица1</Tab>
 		<Tab>Модальное окно1</Tab>
 		<Tab>Дропдаун1</Tab>
@@ -13,5 +13,5 @@
 		<Tab>Таблица3</Tab>
 		<Tab>Модальное окно3</Tab>
 		<Tab>Дропдаун3</Tab>
-	</TabGroup>
+	</ButtonSwitcher>
 </div>

@@ -9,7 +9,7 @@
 		...restAttributes
 	}: HTMLButtonAttributes = $props();
 
-	const TabClasses = $derived(`tab ${className}`);
+	const TabClasses = $derived(`btn ${className}`);
 </script>
 
 <button class={TabClasses} {type} {...restAttributes}>
@@ -17,5 +17,5 @@
 </button>
 
 <style lang="scss">
-	@use 'styles';
+	@use 'styles.module';
 </style>

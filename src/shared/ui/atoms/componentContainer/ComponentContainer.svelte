@@ -1,6 +1,6 @@
 <script lang="ts">
-	// Определяем типы для пропсов
-	type ContainerSize = 'sm' | 'md' | 'lg';
+	import type { ContainerSize } from "$shared/ui/types";
+
 
 	// Получаем пропсы через $props()
 	let {
@@ -14,7 +14,7 @@
 	const containerClasses = $derived(`cntr cntr-${size} ${className}`);
 </script>
 
-<div class={containerClasses} {...restAttributes}>
+<div {...restAttributes} class={containerClasses}>
 	<!-- Слот по умолчанию -->
 	{@render children?.()}
 </div>

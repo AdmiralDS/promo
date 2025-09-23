@@ -2,7 +2,7 @@
 	import CellContainer from '$shared/ui/atoms/cellContainer/CellContainer.svelte';
 
 	// Получаем пропсы через $props()
-	let { title = '', text = '', children, class: className = '', ...restAttributes } = $props();
+	let { title = '', text = '', children, ...restAttributes } = $props();
 </script>
 
 <CellContainer {...restAttributes}>

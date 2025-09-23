@@ -25,7 +25,14 @@
 	flex: 0 0 auto;
 }
 
-.button-switcher :global(.btn[aria-selected='true']) {
+// Стили для выбранных элементов (исключая компонент Color)
+.button-switcher :global(.btn[aria-selected='true']:not([class*='btn-Circle_'])) {
 	background: var(--color-Primary_Blue);
 	color: var(--color-Main_White);
+}
+
+// Специальные стили для компонента Color при выборе
+.button-switcher :global([class*='btn-Circle_'][aria-selected='true']) {
+	opacity: 1;
+	transition: all 0.2s ease;
 }

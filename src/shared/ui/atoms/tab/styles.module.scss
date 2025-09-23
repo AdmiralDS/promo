@@ -2,7 +2,7 @@
 @use '$shared/ui/typography' as typography;
 @use '$shared/ui/breakpoints' as breakpoints;
 
-.tab {
+.btn {
 	box-sizing: border-box;
 	position: relative;
 	display: inline-flex;
@@ -38,6 +38,7 @@
 	&:active {
 		background: var(--color-Light_Grey, colors.color('Light_Grey'));
 		color: var(--color-Blue_Press, colors.color('Blue_Press'));
+		transition: all 0.2s ease;
 	}
 
 	padding: 12px 20px;
