@@ -186,3 +186,19 @@
 		gap: 8px;
 	}
 }
+
+.bubble-analyst {
+	position: absolute;
+	top: -10%;
+	left: 40px;
+}
+.bubble-developer {
+	position: absolute;
+	bottom: -10px;
+	left: 50px;
+}
+.bubble-designer {
+	position: absolute;
+	bottom: 10%;
+	right: 0px;
+}
