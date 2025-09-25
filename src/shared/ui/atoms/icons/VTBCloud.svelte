@@ -1,10 +1,12 @@
 <script lang="ts">
+	import { v4 as uuidv4 } from 'uuid';
 	import type { LogoProps } from './types';
 	import { DEFAULT_SIZE } from './types';
 
 	let { height, width }: LogoProps = $props();
 	const { desktop: desktopH, tablet: tabletH, phone: phoneH } = $derived(height ?? DEFAULT_SIZE);
 	const { desktop: desktopW, tablet: tabletW, phone: phoneW } = $derived(width ?? DEFAULT_SIZE);
+	const prefixId = uuidv4();
 </script>
 
 <svg
@@ -17,16 +19,24 @@
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 >
-	<path d="M220.452 0.154297H0.452148V107.693H220.452V0.154297Z" fill="url(#pattern0_1608_905)" />
+	<path
+		d="M220.452 0.154297H0.452148V107.693H220.452V0.154297Z"
+		fill="url(#{prefixId}-pattern0_1608_905)"
+	/>
 	<defs>
-		<pattern id="pattern0_1608_905" patternContentUnits="objectBoundingBox" width="1" height="1">
+		<pattern
+			id="{prefixId}-pattern0_1608_905"
+			patternContentUnits="objectBoundingBox"
+			width="1"
+			height="1"
+		>
 			<use
-				xlink:href="#image0_1608_905"
+				xlink:href="#{prefixId}-image0_1608_905"
 				transform="matrix(0.000937475 0 0 0.00191571 0.00735714 0)"
 			/>
 		</pattern>
 		<image
-			id="image0_1608_905"
+			id="{prefixId}-image0_1608_905"
 			width="1051"
 			height="522"
 			preserveAspectRatio="none"
