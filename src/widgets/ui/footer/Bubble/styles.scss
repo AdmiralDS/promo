@@ -1,0 +1,65 @@
+@use '$shared/ui/typography' as typo;
+@use '$shared/ui/breakpoints' as breakpoints;
+
+.bubble-wrapper {
+	padding: 20px 10px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		display: none;
+	}
+}
+
+.bubble {
+	box-sizing: border-box;
+	padding: 10px 20px;
+	border-radius: 24px;
+
+	font-family: VTB Group UI;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 31px;
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		padding: 8px 16px;
+
+		font-size: 16px;
+		line-height: 25px;
+	}
+}
+
+.bubble-primary {
+	background: linear-gradient(289.65deg, #c3ebff -29.91%, #0099ff 48.17%);
+}
+.bubble-secondary {
+	background: linear-gradient(244.01deg, #006fff 47.86%, #aad6ff 126.75%);
+}
+.bubble-tertiary {
+	background: linear-gradient(295.45deg, #aabaff -13.14%, #4000ff 49.08%);
+}
+
+.bubble-arrow {
+	position: absolute;
+}
+.bubble-arrow-top-right {
+	top: 5px;
+	right: -10px;
+}
+.bubble-arrow-bottom-right {
+	transform: rotate(90deg);
+	bottom: 0;
+	right: 0;
+}
+.bubble-arrow-bottom-left {
+	transform: rotate(180deg);
+	bottom: 0;
+	left: 0;
+}
+.bubble-arrow-top-left {
+	transform: rotate(270deg);
+	top: 0;
+	left: 0;
+}

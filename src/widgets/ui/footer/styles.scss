@@ -1,0 +1,204 @@
+@use '$shared/ui/typography' as typo;
+@use '$shared/ui/breakpoints' as breakpoints;
+
+.footer-container {
+	box-sizing: border-box;
+	width: 100%;
+	height: 662px;
+	position: relative;
+	overflow: hidden;
+	padding: 100px 0;
+	border-top-left-radius: 56px;
+	border-top-right-radius: 56px;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		height: 550px;
+		border-top-left-radius: 48px;
+		border-top-right-radius: 48px;
+		padding: 80px 0;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		height: 550px;
+		border-top-left-radius: 48px;
+		border-top-right-radius: 48px;
+		padding: 80px 0;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		height: 442px;
+		border-top-left-radius: 32px;
+		border-top-right-radius: 32px;
+		padding: 56px 0;
+	}
+}
+
+.main-container {
+	box-sizing: border-box;
+	z-index: 1;
+	width: 1200px;
+	height: 470px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		width: 976px;
+		height: 390px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		width: 100%;
+		height: 390;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		width: 100%;
+		height: 330px;
+	}
+}
+
+.info-box {
+	box-sizing: border-box;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	position: relative;
+	width: 1200px;
+	height: 364px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		width: 847px;
+		height: 304px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		padding: 0 24px;
+		width: 100%;
+		height: 304px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		padding: 0 20px;
+		width: 100%;
+		height: 240px;
+	}
+}
+
+.text-box {
+	box-sizing: border-box;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	position: relative;
+	width: 100%;
+	height: 236px;
+
+	@include typo.typography('H2');
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		width: 847px;
+		height: 176px;
+
+		@include typo.typography('Tablet/H2');
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		width: 100%;
+		height: 176px;
+
+		@include typo.typography('Tablet/H2');
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		width: 280px;
+		height: 136px;
+
+		@include typo.typography('Mobile/H2');
+	}
+}
+
+.text {
+	box-sizing: border-box;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.second-row {
+	margin-bottom: 24px;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		margin-bottom: 16px;
+	}
+}
+
+.third-row {
+	width: 830px;
+	@include typo.typography('Paragraph');
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		width: 640px;
+		@include typo.typography('Text');
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		width: 640px;
+		@include typo.typography('Text');
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		width: 100%;
+		max-width: 425px;
+		@include typo.typography('Mobile/Text');
+	}
+}
+
+.copyright-box {
+	box-sizing: border-box;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	font-family: VTB Group UI;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 140%;
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		width: 652px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		flex-direction: column;
+
+		font-size: 12px;
+		gap: 8px;
+	}
+}
+
+.bubble-analyst {
+	position: absolute;
+	top: -10%;
+	left: 40px;
+}
+.bubble-developer {
+	position: absolute;
+	bottom: -10px;
+	left: 50px;
+}
+.bubble-designer {
+	position: absolute;
+	bottom: 10%;
+	right: 0px;
+}
