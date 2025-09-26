@@ -17,7 +17,7 @@ $main-font-family: 'VTB Group UI';
 	font-weight: 500;
 	font-size: 62px;
 	line-height: 74px;
-	letter-spacing: -4%;
+	letter-spacing: -0.04em;
 }
 
 @mixin desktop-Paragraph {
@@ -25,7 +25,7 @@ $main-font-family: 'VTB Group UI';
 	font-weight: 400;
 	font-size: 26px;
 	line-height: 32px;
-	letter-spacing: 0%;
+	letter-spacing: 0;
 }
 
 @mixin desktop-Text {
@@ -41,7 +41,7 @@ $main-font-family: 'VTB Group UI';
 	font-weight: 500;
 	font-size: 90px;
 	line-height: 100px;
-	letter-spacing: -4%;
+	letter-spacing: -0.04em;
 }
 
 @mixin desktop-H3 {
@@ -69,7 +69,7 @@ $main-font-family: 'VTB Group UI';
 	font-weight: 500;
 	font-size: 44px;
 	line-height: 52px;
-	letter-spacing: -4%;
+	letter-spacing: -0.04em;
 }
 
 @mixin tablet-H3 {
@@ -85,7 +85,7 @@ $main-font-family: 'VTB Group UI';
 	font-weight: 500;
 	font-size: 62px;
 	line-height: 74px;
-	letter-spacing: -4%;
+	letter-spacing: -0.04em;
 }
 
 /*#endregion*/
@@ -105,7 +105,7 @@ $main-font-family: 'VTB Group UI';
 	font-weight: 500;
 	font-size: 26px;
 	line-height: 30px;
-	letter-spacing: -2%;
+	letter-spacing: -0.02em;
 }
 
 @mixin mobile-Paragraph {
@@ -129,7 +129,7 @@ $main-font-family: 'VTB Group UI';
 	font-weight: 500;
 	font-size: 32px;
 	line-height: 110.00000000000001%;
-	letter-spacing: -4%;
+	letter-spacing: -0.04em;
 }
 
 /*#endregion*/
@@ -157,13 +157,13 @@ $main-font-family: 'VTB Group UI';
 		@include mobile-Text;
 	} @else if $name == 'Mobile/Accent' {
 		@include mobile-Accent;
-  } @else if $name == 'Tablet/H1' {
+	} @else if $name == 'Tablet/H1' {
 		@include tablet-H1;
-  } @else if $name == 'Tablet/H2' {
+	} @else if $name == 'Tablet/H2' {
 		@include tablet-H2;
-  } @else if $name == 'Tablet/H3' {
+	} @else if $name == 'Tablet/H3' {
 		@include tablet-H3;
-  } @else if $name == 'Tablet/Accent' {
+	} @else if $name == 'Tablet/Accent' {
 		@include tablet-Accent;
 	}
 }

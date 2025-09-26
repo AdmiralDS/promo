@@ -17,7 +17,8 @@
 
 	--_border-width: 1px;
 	--_border-alpha: 35%;
-	--_blur: 20px;
+	// вручную подобранное значение, максимально схожее с макетами
+	--_blur: 8px;
 
 	backdrop-filter: blur(var(--_blur));
 	-webkit-backdrop-filter: blur(var(--_blur));

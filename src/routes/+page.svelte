@@ -4,15 +4,14 @@
 	import CareBenefits from '$widgets/ui/careBenefits/CareBenefits.svelte';
 	import BeyondUi from '$widgets/ui/beyondUI/BeyondUI.svelte';
 	import Team from '$widgets/ui/team/Team.svelte';
+	import Products from '$widgets/ui/products/Products.svelte';
 	import Footer from '$widgets/ui/footer/Footer.svelte';
-	// import Products from '$widgets/ui/products/Products.svelte';
 </script>
 
 <Header></Header>
 <About></About>
 <CareBenefits></CareBenefits>
+<Products></Products>
 <BeyondUi></BeyondUi>
 <Team></Team>
 <Footer></Footer>
-<!--Раздел Products для тестирования модалки-->
-<!-- <Products></Products> -->
