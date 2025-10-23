@@ -71,7 +71,7 @@
 			<div class="text text--Text_Blue">продукты на рынке</div>
 		</div>
 		<div class="image">
-			<img src={shadow} aria-hidden class="image-shadow" />
+			<img src={shadow} alt="" aria-hidden="true" class="image-shadow" />
 		</div>
 	</div>
 
