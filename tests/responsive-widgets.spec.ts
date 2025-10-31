@@ -15,9 +15,16 @@ const sections: SectionConfig[] = [
 	{ name: 'footer', selector: '.footer-container' }
 ];
 
+const VIEWPORT_HEIGHT = 2200;
+
 const viewports = [
-	{ label: 'tablet', width: 1023, height: 900 },
-	{ label: 'phone', width: 767, height: 900 }
+	{ label: '1240', width: 1240, height: VIEWPORT_HEIGHT },
+	{ label: '1239', width: 1239, height: VIEWPORT_HEIGHT },
+	{ label: '1024', width: 1024, height: VIEWPORT_HEIGHT },
+	{ label: '1023', width: 1023, height: VIEWPORT_HEIGHT },
+	{ label: '700', width: 700, height: VIEWPORT_HEIGHT },
+	{ label: '699', width: 699, height: VIEWPORT_HEIGHT },
+	{ label: '375', width: 375, height: VIEWPORT_HEIGHT }
 ];
 
 const widthTolerance = 1; // account for sub-pixel rounding
