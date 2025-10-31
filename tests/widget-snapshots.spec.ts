@@ -26,8 +26,53 @@ const viewports = [
 ];
 
 const VIEWPORT_HEIGHT = 2200;
+const SNAPSHOT_DATE_ISO = '2025-10-29T12:00:00Z';
 
 test.describe('UI widgets visual regression', () => {
+	test.beforeEach(async ({ page }) => {
+		await page.addInitScript(
+			({ isoString }) => {
+				const OriginalDate = Date;
+				const fixedDate = new OriginalDate(isoString);
+				const fixedTime = fixedDate.getTime();
+
+				function MockDate(this: Date, ...args: unknown[]) {
+					if (new.target) {
+						if (args.length === 0) {
+							return new OriginalDate(fixedTime);
+						}
+						return new OriginalDate(...(args as ConstructorParameters<typeof OriginalDate>));
+					}
+
+					if (args.length === 0) {
+						return new OriginalDate(fixedTime).toString();
+					}
+					return new OriginalDate(
+						...(args as ConstructorParameters<typeof OriginalDate>)
+					).toString();
+				}
+
+				MockDate.prototype = Object.create(OriginalDate.prototype);
+				Object.defineProperty(MockDate.prototype, 'constructor', {
+					value: MockDate,
+					writable: true,
+					configurable: true
+				});
+
+				const MockDateConstructor = MockDate as unknown as DateConstructor;
+
+				MockDateConstructor.now = () => fixedTime;
+				MockDateConstructor.UTC = OriginalDate.UTC;
+				MockDateConstructor.parse = OriginalDate.parse;
+				Object.setPrototypeOf(MockDateConstructor, OriginalDate);
+
+				window.Date = MockDateConstructor;
+				globalThis.Date = MockDateConstructor;
+			},
+			{ isoString: SNAPSHOT_DATE_ISO }
+		);
+	});
+
 	for (const viewport of viewports) {
 		test.describe(`${viewport.label}px`, () => {
 			test.use({ viewport: { width: viewport.width, height: VIEWPORT_HEIGHT } });
