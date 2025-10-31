@@ -127,6 +127,8 @@
 .components-box {
 	box-sizing: border-box;
 	margin-top: 64px;
+	margin-left: auto;
+	margin-right: auto;
 	width: 1200px;
 	display: grid;
 	grid-template-columns: repeat(3, auto);
