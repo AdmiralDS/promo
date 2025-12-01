@@ -12,9 +12,9 @@ const steps = [
 export const AdmiralStepper = () => {
 	return (
 		<Stepper activeStep={2} orientation="vertical">
-			{steps.map(({ content1, content2, ...step }) => {
+			{steps.map(({ content1, content2, key, ...step }) => {
 				return (
-					<Step {...step} style={{ width: '224px', height: '83px' }}>
+					<Step {...step} key={key} style={{ width: '224px', height: '83px' }}>
 						<StepContent>{content1 + ' ' + content2}</StepContent>
 					</Step>
 				);

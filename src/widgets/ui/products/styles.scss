@@ -1,0 +1,190 @@
+@use '$shared/ui/typography' as typo;
+@use '$shared/ui/breakpoints' as breakpoints;
+
+.products-container {
+	position: relative;
+	overflow: hidden;
+	width: 100svi;
+	height: 868px;
+	margin: 0 auto;
+	border-radius: 80px;
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		height: 814px;
+		border-radius: 48px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		height: 567px;
+		border-radius: 32px;
+	}
+}
+
+.main-container {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.text-box {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.text {
+	transition: all 0.2s ease;
+
+	@include typo.typography('Accent');
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		@include typo.typography('Tablet/Accent');
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		@include typo.typography('Mobile/Accent');
+	}
+}
+
+.image {
+	position: relative;
+	overflow: visible;
+	height: 327px;
+	width: 996px;
+	margin-block-start: 20px;
+	background-image: url('./assets/productDesktopL.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	transition: all 0.2s ease;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		height: 366px;
+		width: 976px;
+		margin-block-start: 19.75px;
+		background-image: url('./assets/productDesktopS.png');
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		margin-block-start: 17px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		height: 240px;
+		width: 375px;
+		margin-block-start: 92px;
+		background-image: url('./assets/productPhone.png');
+	}
+}
+
+.image-shadow {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 0;
+	z-index: -1;
+
+	width: 1160px;
+	height: 230px;
+	margin-block-end: -20px;
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		margin-block-end: -8px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		margin-block-end: -5px;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		width: 934px;
+		height: 187px;
+		margin-block-end: 0;
+	}
+}
+
+.badge-autograph {
+	position: absolute;
+	top: 100px;
+	right: 50%;
+	transform: translateX(50%);
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		top: 80px;
+		right: calc(50% + 40px);
+		transform: translateX(0);
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		top: 56px;
+		right: 50%;
+		transform: translateX(0);
+	}
+}
+.badge-start {
+	position: absolute;
+	top: 494px;
+	right: calc(50% + 316px);
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		top: 440px;
+		right: calc(50% + 144px);
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		top: 270px;
+		right: calc(50% + 20px);
+	}
+}
+.badge-vtbCloud {
+	position: absolute;
+	top: 295px;
+	left: calc(50% + 371px);
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		top: 96px;
+		left: calc(50% + 128px);
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		top: 67px;
+		left: calc(50% + 82px);
+	}
+}
+.badge-sfera {
+	position: absolute;
+	top: 540px;
+	left: calc(50% + 140px);
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		top: 480px;
+		left: calc(50% + 136px);
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		top: 250px;
+		left: calc(50% + 62px);
+	}
+}
+
+.badge-logo {
+	display: flex;
+	align-items: center;
+	position: relative;
+	box-sizing: border-box;
+}
+.badge-logo-start {
+	padding: 0 21px;
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		padding: 0;
+	}
+}
+.badge-logo-vtbCloud {
+	padding: 0 26px;
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		padding: 0;
+	}
+}
+.badge-logo-sfera {
+	padding: 0 35px;
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		padding: 0;
+	}
+}
