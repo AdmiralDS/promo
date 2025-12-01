@@ -1,11 +1,11 @@
 @use '$shared/ui/breakpoints' as breakpoints;
 
-.button-switcher {
+.toggle-group {
 	box-sizing: border-box;
 	display: flex;
 	flex-wrap: nowrap;
-	width: 100%;
-	max-width: 100%;
+	// width: 100%;
+	// max-width: 100%;
 	overflow-x: auto;
 	overflow-y: hidden;
 	gap: 8px;
@@ -21,18 +21,18 @@
 	}
 }
 
-.button-switcher :global(.btn) {
+.toggle-group :global(.btn) {
 	flex: 0 0 auto;
 }
 
 // Стили для выбранных элементов (исключая компонент Color)
-.button-switcher :global(.btn[aria-selected='true']:not([class*='btn-Circle_'])) {
+.toggle-group :global(.btn[aria-selected='true']:not([class*='btn-Circle_'])) {
 	background: var(--color-Primary_Blue);
 	color: var(--color-Main_White);
 }
 
 // Специальные стили для компонента Color при выборе
-.button-switcher :global([class*='btn-Circle_'][aria-selected='true']) {
+.toggle-group :global([class*='btn-Circle_'][aria-selected='true']) {
 	opacity: 1;
 	transition: all 0.2s ease;
 }

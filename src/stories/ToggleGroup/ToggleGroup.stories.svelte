@@ -10,7 +10,7 @@
 	import { fn } from 'storybook/test';
 
 	const { Story } = defineMeta({
-		title: 'Example/ButtonSwitcher',
+		title: 'Example/ToggleGroup',
 		component: Button,
 		tags: ['autodocs'],
 		argTypes: {},
@@ -20,42 +20,42 @@
 	});
 </script>
 
-<!-- Группировка Buttons в ButtonSwitcher -->
+<!-- Группировка Buttons в ToggleGroup -->
 <Story name="Secondary Button" args={{}}>
 	{#snippet template(args)}
 		<SecondaryBtnTemplate />
 	{/snippet}
 </Story>
 
-<!-- Группировка Tabs в ButtonSwitcher -->
+<!-- Группировка Tabs в ToggleGroup -->
 <Story name="Tabs" args={{}}>
 	{#snippet template(args)}
 		<TabsTemplate />
 	{/snippet}
 </Story>
 
-<!-- Группировка Colors в ButtonSwitcher -->
+<!-- Группировка Colors в ToggleGroup -->
 <Story name="Colors" args={{}}>
 	{#snippet template(args)}
 		<ColorsTemplate />
 	{/snippet}
 </Story>
 
-<!-- Группировка Buttons в ButtonSwitcher со скроллом -->
+<!-- Группировка Buttons в ToggleGroup со скроллом -->
 <Story name="With Button Scroll" args={{}}>
 	{#snippet template(args)}
 		<WithBtnScrollTemplate />
 	{/snippet}
 </Story>
 
-<!-- Группировка Tabs в ButtonSwitcher со скроллом-->
+<!-- Группировка Tabs в ToggleGroup со скроллом-->
 <Story name="With Tabs Scroll" args={{}}>
 	{#snippet template(args)}
 		<WithTabScrollTemplate />
 	{/snippet}
 </Story>
 
-<!-- Группировка Colors в ButtonSwitcher со скроллом-->
+<!-- Группировка Colors в ToggleGroup со скроллом-->
 <Story name="With Colors Scroll" args={{}}>
 	{#snippet template(args)}
 		<WithColorScrollTemplate />

@@ -69,3 +69,16 @@
 	vertical-align: middle;
 	margin-bottom: 32px;
 }
+
+.snadbox-field__title {
+	font-family: typo.$main-font-family;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 20px;
+	letter-spacing: 0;
+	margin-bottom: 12px;
+}
+
+.snadbox-field:not(:last-child) {
+	margin-bottom: 24px;
+}
