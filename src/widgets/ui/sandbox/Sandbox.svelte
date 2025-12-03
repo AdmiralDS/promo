@@ -18,7 +18,7 @@
 	};
 </script>
 
-<div class="sandbox-container even-container">
+<div class="sandbox-container background--Main_White">
 	<div class="main-container">
 		<div class="header">
 			<div class="text first-row text--Dark_Blue">Просто и доступно</div>

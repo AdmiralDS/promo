@@ -9,7 +9,7 @@
 	$effect.pre(() => {
 		if (typeof window === 'undefined') return;
 
-		const media = window.matchMedia('(max-width: 767px)');
+		const media = window.matchMedia('(max-width: 700px)');
 		const update = () => (isMobile = media.matches);
 
 		update();

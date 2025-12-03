@@ -7,13 +7,16 @@
 	import Team from '$widgets/ui/team/Team.svelte';
 	import Products from '$widgets/ui/products/Products.svelte';
 	import Footer from '$widgets/ui/footer/Footer.svelte';
+	import MainWrapper from '$widgets/ui/mainWrapper/MainWrapper.svelte';
 </script>
 
-<Header></Header>
-<About></About>
-<CareBenefits></CareBenefits>
-<Sandbox></Sandbox>
-<Products></Products>
-<BeyondUi></BeyondUi>
-<Team></Team>
-<Footer></Footer>
+<MainWrapper>
+	<Header></Header>
+	<About></About>
+	<CareBenefits></CareBenefits>
+	<Products></Products>
+	<BeyondUi></BeyondUi>
+	<Sandbox></Sandbox>
+	<Team></Team>
+	<Footer></Footer>
+</MainWrapper>

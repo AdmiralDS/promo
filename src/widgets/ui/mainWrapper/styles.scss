@@ -1,0 +1,7 @@
+@use '$shared/ui//colors' as colors;
+
+.wrapper-main {
+  width: 100%;
+	min-height: 100vh;
+	background: var(--color-BG, colors.color('BG'));
+}

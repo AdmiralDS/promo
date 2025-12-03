@@ -118,16 +118,16 @@
 		Настройки
 		<Toggle />
 	</div>
-	<div class="snadbox-field">
-		<div class="snadbox-field__title text--Dark_Blue">Размер</div>
+	<div class="sandbox-field">
+		<div class="sandbox-field__title text--Dark_Blue">Размер</div>
 		<ToggleGroup selected={appearanceSelected} onSelectedChange={handleAppearanceChange}>
 			<Button variant="secondary" size="small">S</Button>
 			<Button variant="secondary" size="small">M</Button>
 			<Button variant="secondary" size="small">L</Button>
 		</ToggleGroup>
 	</div>
-	<div class="snadbox-field">
-		<div class="snadbox-field__title text--Dark_Blue">Цвет</div>
+	<div class="sandbox-field">
+		<div class="sandbox-field__title text--Dark_Blue">Цвет</div>
 		<ToggleGroup selected={colorSelected} onSelectedChange={handleColorChange}>
 			<Color color="blue"></Color>
 			<Color color="azure"></Color>
@@ -136,8 +136,8 @@
 			<Color color="pink"></Color>
 		</ToggleGroup>
 	</div>
-	<div class="snadbox-field">
-		<div class="snadbox-field__title text--Dark_Blue">Количество полей</div>
+	<div class="sandbox-field">
+		<div class="sandbox-field__title text--Dark_Blue">Количество полей</div>
 		<ToggleGroup>
 			<Button variant="secondary" size="small">Одно</Button>
 			<Button variant="secondary" size="small">Два</Button>
