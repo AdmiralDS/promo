@@ -19,9 +19,10 @@ const Separator = styled.div`
 export interface AdmiralModalProps {
 	dimension?: Appearance;
 	fieldCount?: number;
+  container?: HTMLDivElement;
 }
 
-export const AdmiralModal = ({ fieldCount = 3 }: AdmiralModalProps) => {
+export const AdmiralModal = ({ fieldCount = 3,container }: AdmiralModalProps) => {
 	const inputsToRender = Math.min(Math.max(fieldCount, 1), 3);
 
 	return (
@@ -31,6 +32,7 @@ export const AdmiralModal = ({ fieldCount = 3 }: AdmiralModalProps) => {
 			// }}
 			aria-labelledby="modal-title"
 			//closeButtonPropsConfig={() => closeButtonProps}
+      container={container}
 		>
 			<ModalTitle id="modal-title">Получение доступа</ModalTitle>
 			<ModalContent>

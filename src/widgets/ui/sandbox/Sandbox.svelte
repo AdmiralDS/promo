@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { ToggleGroup, Tab } from '$shared/ui';
-import { MOBILE_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
+	import { MOBILE_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
 	import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
 	import ControlContainer from './ControlContainer.svelte';
 	import { type Appearance, type ThemeColor } from './types';
 
-  const isMobileStore = useMediaQuery(MOBILE_QUERY);
+	const isMobileStore = useMediaQuery(MOBILE_QUERY);
 	let isMobile = $state(false);
 
 	$effect(() => {
@@ -24,11 +24,11 @@ import { MOBILE_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
 	];
 
 	const components = $derived(isMobile ? componentsMobile : componentsFull);
-  let activeComponentIndex = $state(0);
+	let activeComponentIndex = $state(0);
 	const activeComponent = $derived(components[activeComponentIndex]?.eng);
 
-  const handleComponentChange = (currentComponentIndex: number) => {
-activeComponentIndex = currentComponentIndex;
+	const handleComponentChange = (currentComponentIndex: number) => {
+		activeComponentIndex = currentComponentIndex;
 	};
 
 	let dimension: Appearance = 'm';
@@ -58,27 +58,29 @@ activeComponentIndex = currentComponentIndex;
 		<div class="header">
 			<div class="text first-row text--Dark_Blue">Просто и доступно</div>
 			<div class="text second-row text--Text_Blue">попробуйте сами</div>
-			<ToggleGroup>
-				<Tab>Таблица</Tab>
-				<Tab>Модальное окно</Tab>
-				<Tab>Дропдаун</Tab>
+			<ToggleGroup selected={activeComponentIndex} onSelectedChange={handleComponentChange}>
+				{#each components as componentOption}
+					<Tab>{componentOption.rus}</Tab>
+				{/each}
 			</ToggleGroup>
 		</div>
 		<div class="sandbox Sandbox_Gradient">
 			<div class="component-wrapper">
-				<ReactComponent
-					component="Dropdown"
-					color={color}
-					dimension={dimension}
-					fieldCount={fieldCount}
-					isDarkTheme={isDarkTheme}
-				/>
+				{#key activeComponent}
+					<ReactComponent
+						component={activeComponent ?? 'Modal'}
+						{color}
+						appearance={dimension}
+						{fieldCount}
+						{isDarkTheme}
+					/>
+				{/key}
 			</div>
 			<ControlContainer
 				appearance={dimension}
-				color={color}
-				fieldCount={fieldCount}
-				isDarkTheme={isDarkTheme}
+				{color}
+				{fieldCount}
+				{isDarkTheme}
 				onChangeAppearance={handleAppearanceChange}
 				onChangeColor={handleColorChange}
 				onChangeFieldCount={handleFieldCountChange}

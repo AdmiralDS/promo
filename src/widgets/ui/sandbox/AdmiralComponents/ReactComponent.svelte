@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { renderer } from './Renderer';
-	import type { Props as RendererOptions } from './WrappedReactComponent';
+	import type { Props as BaseRendererOptions } from './WrappedReactComponent';
 	import type { Appearance } from '../types';
+
+	type RendererOptions = Omit<BaseRendererOptions, 'container'> & {
+		container?: HTMLDivElement;
+	};
 
 	export let component = 'Modal';
 	export let isDarkTheme: boolean;
@@ -10,34 +14,33 @@
 	export let appearance: Appearance = 'm';
 	export let color: string = 'blue';
 	export let fieldCount = 2;
-	let currentProps = {
+
+	let container: HTMLDivElement | undefined;
+	let root: ReturnType<typeof renderer> | null = null;
+
+	const getRendererOptions = (themeValue: 'light' | 'dark'): RendererOptions => ({
 		component,
-		theme,
+		theme: themeValue,
 		appearance,
 		color,
-		fieldCount
-	};
+		fieldCount,
+		container: component === 'Modal' ? container : undefined
+	});
 
-	let container: HTMLDivElement | null = null;
-		let root: ReturnType<typeof renderer> | null = null;
+	let currentProps: RendererOptions = getRendererOptions(theme);
 
 	const mountReactComponent = () => {
 		if (!container) return;
 
-		const options: RendererOptions = {
-			component,
-			theme,
-			appearance,
-			color,
-			fieldCount
-		};
-
-		root = renderer(container, options);
+		root = renderer(container, getRendererOptions(theme));
 	};
 
 	const unmountReactComponent = () => {
 		try {
-			if (root) root.unmount();
+			if (root) {
+				root.unmount();
+				root = null;
+			}
 		} catch (err) {
 			console.warn(`react-adapter failed to unmount.`, { err });
 		}
@@ -49,22 +52,18 @@
 
 	$: {
 		const newTheme = isDarkTheme ? 'dark' : 'light';
+		const nextProps = getRendererOptions(newTheme);
 		const shouldUpdate =
-			currentProps.component !== component ||
-			currentProps.theme !== newTheme ||
-			currentProps.appearance !== appearance ||
-			currentProps.color !== color ||
-			currentProps.fieldCount !== fieldCount;
+			currentProps.component !== nextProps.component ||
+			currentProps.theme !== nextProps.theme ||
+			currentProps.appearance !== nextProps.appearance ||
+			currentProps.color !== nextProps.color ||
+			currentProps.fieldCount !== nextProps.fieldCount ||
+			currentProps.container !== nextProps.container;
 
 		if (shouldUpdate) {
 			theme = newTheme;
-			currentProps = {
-				component,
-				theme: newTheme,
-				appearance,
-				color,
-				fieldCount
-			};
+			currentProps = nextProps;
 			if (root) {
 				unmountReactComponent();
 				mountReactComponent();

@@ -13,6 +13,7 @@ export interface Props {
 	appearance: Appearance;
 	color: string;
 	fieldCount?: number;
+  container?: HTMLDivElement;
 }
 
 const setMainLightThemeColors = (mainColor: string) => {
@@ -120,7 +121,8 @@ export const WrappedReactComponent = ({
 	theme,
 	appearance,
 	color,
-	fieldCount
+	fieldCount,
+  container,
 }: Props) => {
 	const colorTheme = setMainThemeColors(theme, color);
 	const getComponent = () => {
@@ -133,7 +135,7 @@ export const WrappedReactComponent = ({
 				return <AdmiralDropdown dimension={appearance} />;
 			case 'Modal':
 			default:
-				return <AdmiralModal dimension={appearance} fieldCount={fieldCount} />;
+				return <AdmiralModal dimension={appearance} fieldCount={fieldCount} container={container} />;
 		}
 	};
 
