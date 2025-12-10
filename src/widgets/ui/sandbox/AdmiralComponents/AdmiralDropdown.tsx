@@ -38,12 +38,12 @@ export const AdmiralDropdown = ({ dimension }: AdmiralDropdownProps) => {
 		setSelectValues(optionsWithoutDisabled);
 	};
 
-	const menuPanelContentDimension =
-		dimension === undefined || dimension === 'xl' ? 'l' : dimension;
+	const controlDimension = dimension === undefined || dimension === 'xl' ? 'l' : dimension;
 
 	return (
 		<Field label="Выберите города" id="propsId">
 			<Select
+				dimension={dimension}
 				id="propsId"
 				placeholder="Города"
 				value={selectValues}
@@ -55,12 +55,12 @@ export const AdmiralDropdown = ({ dimension }: AdmiralDropdownProps) => {
 				moveSelectedOnTop={true}
 				showCheckbox={true}
 				displayClearIcon={true}
-				renderBottomPanel={({ dimension = menuPanelContentDimension }) => {
+				renderBottomPanel={({ dimension = controlDimension }) => {
 					return (
 						<MenuActionsPanel dimension={dimension}>
 							<TextButton
 								onClick={handleChooseAll}
-								dimension={'m'}
+								dimension='m'
 								appearance={'primary'}
 								disabled={selectValues.length === optionsWithoutDisabled.length}
 								text="Выбрать все"

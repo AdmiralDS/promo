@@ -81,7 +81,7 @@
 		</div>
 		<div class="sandbox Sandbox_Gradient">
 			<div class="component-wrapper">
-				{#key activeComponent}
+				{#key `${activeComponent}-${config.appearance}`}
 					<ReactComponent
 						component={activeComponent ?? 'Modal'}
 						appearance={config.appearance}

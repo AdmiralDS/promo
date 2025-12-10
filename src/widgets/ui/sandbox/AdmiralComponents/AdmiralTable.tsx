@@ -11,16 +11,16 @@ const Wrapper = styled.div`
 `;
 
 export interface AdmiralTableProps {
-  dimension: Appearance;
+	dimension: Appearance;
 }
 
-export const AdmiralTable = ({dimension}: AdmiralTableProps) => {
+export const AdmiralTable = ({ dimension }: AdmiralTableProps) => {
 	return (
 		<Wrapper>
-			<Button dimension="xl" style={{ width: '230px' }}>
+			<Button dimension={dimension} style={{ width: '230px' }}>
 				Дать пять
 			</Button>
-			<Button dimension="xl" appearance="secondary" style={{ width: '230px' }}>
+			<Button dimension={dimension} appearance="secondary" style={{ width: '230px' }}>
 				Дать пять
 			</Button>
 		</Wrapper>
