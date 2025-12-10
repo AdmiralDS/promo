@@ -5,6 +5,13 @@
 	import ControlContainer from './ControlContainer.svelte';
 	import { type Appearance, type ThemeColor } from './types';
 
+	type SandboxConfig = {
+		appearance: Appearance;
+		color: ThemeColor;
+		fieldCount: number;
+		isDarkTheme: boolean;
+	};
+
 	const isMobileStore = useMediaQuery(MOBILE_QUERY);
 	let isMobile = $state(false);
 
@@ -31,26 +38,34 @@
 		activeComponentIndex = currentComponentIndex;
 	};
 
-	let dimension: Appearance = 'm';
-	let color: ThemeColor = 'blue';
-	let fieldCount = 3;
-	let isDarkTheme = false;
+	let config = $state<SandboxConfig>({
+		appearance: 'm',
+		color: 'blue',
+		fieldCount: 3,
+		isDarkTheme: false
+	});
 
-	const handleAppearanceChange = (newAppearance: Appearance) => {
-		dimension = newAppearance;
-	};
+	// Обновление через патч
+	function updateConfig(patch: Partial<SandboxConfig>) {
+		config = { ...config, ...patch };
+	}
 
-	const handleColorChange = (newColor: ThemeColor) => {
-		color = newColor;
-	};
+	// Хэндлеры, совместимые с API ControlContainer
+	function handleAppearanceChange(newAppearance: Appearance) {
+		updateConfig({ appearance: newAppearance });
+	}
 
-	const handleFieldCountChange = (newFieldCount: number) => {
-		fieldCount = newFieldCount;
-	};
+	function handleColorChange(newColor: ThemeColor) {
+		updateConfig({ color: newColor });
+	}
 
-	const handleThemeChange = (newThemeState: boolean) => {
-		isDarkTheme = newThemeState;
-	};
+	function handleFieldCountChange(newFieldCount: number) {
+		updateConfig({ fieldCount: newFieldCount });
+	}
+
+	function handleThemeChange(newThemeState: boolean) {
+		updateConfig({ isDarkTheme: newThemeState });
+	}
 </script>
 
 <div class="sandbox-container background--Main_White">
@@ -69,18 +84,18 @@
 				{#key activeComponent}
 					<ReactComponent
 						component={activeComponent ?? 'Modal'}
-						{color}
-						appearance={dimension}
-						{fieldCount}
-						{isDarkTheme}
+						appearance={config.appearance}
+						color={config.color}
+						fieldCount={config.fieldCount}
+						isDarkTheme={config.isDarkTheme}
 					/>
 				{/key}
 			</div>
 			<ControlContainer
-				appearance={dimension}
-				{color}
-				{fieldCount}
-				{isDarkTheme}
+				appearance={config.appearance}
+				color={config.color}
+				fieldCount={config.fieldCount}
+				isDarkTheme={config.isDarkTheme}
 				onChangeAppearance={handleAppearanceChange}
 				onChangeColor={handleColorChange}
 				onChangeFieldCount={handleFieldCountChange}
