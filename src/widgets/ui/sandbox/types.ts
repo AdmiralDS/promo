@@ -1,10 +1,10 @@
 import { AVAILABLE_COLORS } from '$shared/ui';
 
-export const ComponentAppearanceArray = ['s', 'm', 'l', 'xl'] as const;
+export const ComponentAppearanceArray = ['s', 'm', 'xl'] as const;
 /**
  * Тип внешнего вида компонента в песочнице. Определяет размер демонстрируемого компонента.
  *
- * @typedef {'s' | 'm' | 'l' | 'xl'} Appearance
+ * @typedef {'s' | 'm' | 'xl'} Appearance
  *
  * Значения:
  * - 's' - Маленький размер компонента

@@ -86,6 +86,16 @@
 		 * };
 		 */
 		onChangeFieldCount?: (value: number) => void;
+
+		/**
+		 * Флаг использования темной темы в песочнице.
+		 */
+		isDarkTheme?: boolean;
+
+		/**
+		 * Callback для переключения темы песочницы.
+		 */
+		onChangeTheme?: (value: boolean) => void;
 	}
 
 	// Получаем пропсы через $props()
@@ -93,14 +103,16 @@
 		appearance = 'l' as Appearance,
 		color = 'blue' as ButtonColor,
 		fieldCount = 3,
+		isDarkTheme = false,
 		onChangeAppearance,
 		onChangeColor,
-		onChangeFieldCount
+		onChangeFieldCount,
+		onChangeTheme
 	}: ControlContainerProps = $props();
 
 	const appearanceSelected = $derived(ComponentAppearanceArray.indexOf(appearance));
 	const colorSelected = $derived(ColorArray.indexOf(color));
-	const fieldCountSelected = $derived(ComponentAppearanceArray.indexOf(appearance));
+	const fieldCountSelected = $derived(Math.min(Math.max((fieldCount ?? 1) - 1, 0), 2));
 
 	const handleAppearanceChange = (newIndex: number) => {
 		if (newIndex > ComponentAppearanceArray.length - 1) return;
@@ -111,19 +123,31 @@
 		if (newIndex > ColorArray.length - 1) return;
 		onChangeColor(ColorArray[newIndex]);
 	};
+
+	const handleFieldCountChange = (newIndex: number) => {
+		if (!onChangeFieldCount) return;
+		const newCount = newIndex + 1;
+		if (newCount < 1 || newCount > 3) return;
+		onChangeFieldCount(newCount);
+	};
+
+	const handleThemeChange = (event: Event) => {
+		const target = event.target as HTMLInputElement;
+		onChangeTheme?.(target?.checked);
+	};
 </script>
 
 <div class="control-container background--Main_White">
 	<div class="theme-toggle text--Dark_Blue">
 		Настройки
-		<Toggle />
+		<Toggle checked={isDarkTheme} onchange={handleThemeChange} />
 	</div>
 	<div class="sandbox-field">
 		<div class="sandbox-field__title text--Dark_Blue">Размер</div>
 		<ToggleGroup selected={appearanceSelected} onSelectedChange={handleAppearanceChange}>
 			<Button variant="secondary" size="small">S</Button>
 			<Button variant="secondary" size="small">M</Button>
-			<Button variant="secondary" size="small">L</Button>
+			<Button variant="secondary" size="small">XL</Button>
 		</ToggleGroup>
 	</div>
 	<div class="sandbox-field">
@@ -138,7 +162,7 @@
 	</div>
 	<div class="sandbox-field">
 		<div class="sandbox-field__title text--Dark_Blue">Количество полей</div>
-		<ToggleGroup>
+		<ToggleGroup selected={fieldCountSelected} onSelectedChange={handleFieldCountChange}>
 			<Button variant="secondary" size="small">Одно</Button>
 			<Button variant="secondary" size="small">Два</Button>
 			<Button variant="secondary" size="small">Три</Button>

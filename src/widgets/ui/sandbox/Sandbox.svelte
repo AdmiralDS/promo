@@ -1,20 +1,33 @@
 <script lang="ts">
 	import { ToggleGroup, Tab } from '$shared/ui';
+	import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
 	import ControlContainer from './ControlContainer.svelte';
 	import { type Appearance, type ThemeColor } from './types';
 
-	const updateSandboxComponent = (value) => {
-		console.log(value);
-	};
+  const components = ['Accordion', 'Dropdown', 'Modal', 'Table'];
+  let activeComponent = 'Dropdown';
+  let prevActiveComponent = activeComponent;
+  const handleCLickOnActiveComponent = (currentComponent: string) => (activeComponent = currentComponent);
+
+	let dimension: Appearance = 'm';
+	let color: ThemeColor = 'blue';
+	let fieldCount = 3;
+	let isDarkTheme = false;
 
 	const handleAppearanceChange = (newAppearance: Appearance) => {
-		// Обновляет внешний вид компонента в песочнице
-		updateSandboxComponent({ appearance: newAppearance });
+		dimension = newAppearance;
 	};
 
 	const handleColorChange = (newColor: ThemeColor) => {
-		// Обновляет внешний вид компонента в песочнице
-		updateSandboxComponent({ color: newColor });
+		color = newColor;
+	};
+
+	const handleFieldCountChange = (newFieldCount: number) => {
+		fieldCount = newFieldCount;
+	};
+
+	const handleThemeChange = (newThemeState: boolean) => {
+		isDarkTheme = newThemeState;
 	};
 </script>
 
@@ -30,12 +43,24 @@
 			</ToggleGroup>
 		</div>
 		<div class="sandbox Sandbox_Gradient">
+			<div class="component-wrapper">
+				<ReactComponent
+					component="Dropdown"
+					color={color}
+					dimension={dimension}
+					fieldCount={fieldCount}
+					isDarkTheme={isDarkTheme}
+				/>
+			</div>
 			<ControlContainer
-				appearance={'m'}
-				color={'green'}
-				fieldCount={3}
+				appearance={dimension}
+				color={color}
+				fieldCount={fieldCount}
+				isDarkTheme={isDarkTheme}
 				onChangeAppearance={handleAppearanceChange}
 				onChangeColor={handleColorChange}
+				onChangeFieldCount={handleFieldCountChange}
+				onChangeTheme={handleThemeChange}
 			/>
 		</div>
 	</div>
