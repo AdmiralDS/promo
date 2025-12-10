@@ -8,7 +8,7 @@ $desktopS: 'desktopS';
 /// Брейкпоинты (адаптивные точки перелома)
 /// @type Map
 $breakpoints: (
-  // При изменении обязательно поменять число также и в файле Team.svelte
+  // При изменении обязательно поменять число также и в файле src/shared/ui/useMediaQuery.ts
 	$phone: 700px,
 	// Extra large devices (large desktops)
 	$tablet: 1024px, // Super large devices

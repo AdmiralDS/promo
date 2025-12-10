@@ -1,13 +1,35 @@
 <script lang="ts">
 	import { ToggleGroup, Tab } from '$shared/ui';
+import { MOBILE_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
 	import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
 	import ControlContainer from './ControlContainer.svelte';
 	import { type Appearance, type ThemeColor } from './types';
 
-  const components = ['Accordion', 'Dropdown', 'Modal', 'Table'];
-  let activeComponent = 'Dropdown';
-  let prevActiveComponent = activeComponent;
-  const handleCLickOnActiveComponent = (currentComponent: string) => (activeComponent = currentComponent);
+  const isMobileStore = useMediaQuery(MOBILE_QUERY);
+	let isMobile = $state(false);
+
+	$effect(() => {
+		isMobile = $isMobileStore;
+	});
+
+	const componentsFull: { eng: string; rus: string }[] = [
+		{ eng: 'Table', rus: 'Таблица' },
+		{ eng: 'Modal', rus: 'Модальное окно' },
+		{ eng: 'Dropdown', rus: 'Дропдаун' }
+	];
+	const componentsMobile: { eng: string; rus: string }[] = [
+		{ eng: 'Accordion', rus: 'Аккордион' },
+		{ eng: 'Modal', rus: 'Модальное окно' },
+		{ eng: 'Dropdown', rus: 'Дропдаун' }
+	];
+
+	const components = $derived(isMobile ? componentsMobile : componentsFull);
+  let activeComponentIndex = $state(0);
+	const activeComponent = $derived(components[activeComponentIndex]?.eng);
+
+  const handleComponentChange = (currentComponentIndex: number) => {
+activeComponentIndex = currentComponentIndex;
+	};
 
 	let dimension: Appearance = 'm';
 	let color: ThemeColor = 'blue';
