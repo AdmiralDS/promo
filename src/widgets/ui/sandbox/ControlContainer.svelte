@@ -171,5 +171,5 @@
 </div>
 
 <style lang="scss">
-	@use 'styles';
+	@use 'controlContainer';
 </style>

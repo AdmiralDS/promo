@@ -90,47 +90,11 @@
 }
 
 .component-wrapper {
-  width: 648px;
-  height: 474px;
-  align-self: center;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 25px;
-}
-
-.control-container {
-	box-sizing: border-box;
-	width: 385px;
-	height: 600px;
-	right: 0;
-	padding: 32px;
-	border-radius: 16px;
-	display: flex;
-	flex-direction: column;
-}
-
-.theme-toggle {
-	display: flex;
-	justify-content: space-between;
-	font-family: typo.$main-font-family;
-	font-weight: 400;
-	font-style: Book;
-	font-size: 36px;
-	line-height: 46.83px;
-	letter-spacing: -0.89px;
-	vertical-align: middle;
-	margin-bottom: 32px;
-}
-
-.sandbox-field__title {
-	font-family: typo.$main-font-family;
-	font-weight: 400;
-	font-size: 20px;
-	line-height: 20px;
-	letter-spacing: 0;
-	margin-bottom: 12px;
-}
-
-.sandbox-field:not(:last-child) {
-	margin-bottom: 24px;
+	width: 648px;
+	height: 474px;
+	align-self: center;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 25px;
+	transform: translate3d(0, 0, 0);
 }

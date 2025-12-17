@@ -1,0 +1,40 @@
+@use '$shared/ui/typography' as typo;
+@use '$shared/ui/breakpoints' as breakpoints;
+@use '$shared/ui/colors' as colors;
+
+.control-container {
+	box-sizing: border-box;
+	width: 385px;
+	height: 600px;
+	right: 0;
+	padding: 32px;
+	border-radius: 16px;
+	display: flex;
+	flex-direction: column;
+}
+
+.theme-toggle {
+	display: flex;
+	justify-content: space-between;
+	font-family: typo.$main-font-family;
+	font-weight: 400;
+	font-style: Book;
+	font-size: 36px;
+	line-height: 46.83px;
+	letter-spacing: -0.89px;
+	vertical-align: middle;
+	margin-bottom: 32px;
+}
+
+.sandbox-field__title {
+	font-family: typo.$main-font-family;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 20px;
+	letter-spacing: 0;
+	margin-bottom: 12px;
+}
+
+.sandbox-field:not(:last-child) {
+	margin-bottom: 24px;
+}

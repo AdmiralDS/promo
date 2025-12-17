@@ -106,5 +106,5 @@
 </div>
 
 <style lang="scss">
-	@use 'styles';
+	@use 'sandbox';
 </style>
