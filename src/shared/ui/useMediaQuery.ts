@@ -1,6 +1,8 @@
 import { readable } from 'svelte/store';
 
 export const MOBILE_QUERY = '(max-width: 700px)';
+export const TABLET_QUERY = '(max-width: 1024px)';
+export const DESKTOP_S_QUERY = '(max-width: 1240px)';
 
 export function useMediaQuery(query: string) {
 	return readable(false, (set) => {
