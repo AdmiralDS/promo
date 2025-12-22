@@ -16,6 +16,7 @@
 		border-radius: 48px;
 	}
 	@include breakpoints.respond-until(breakpoints.$tablet) {
+		height: 1065px;
 		padding: 0 24px;
 	}
 
@@ -81,12 +82,24 @@
 }
 
 .sandbox {
+	position: relative;
 	box-sizing: border-box;
 	width: 100%;
+	height: 616px;
 	padding: 8px;
 	border-radius: 16px;
 	display: flex;
 	justify-content: flex-end;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		height: 602px;
+	}
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		height: 602px;
+	}
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		height: 646px;
+	}
 }
 
 .component-wrapper {

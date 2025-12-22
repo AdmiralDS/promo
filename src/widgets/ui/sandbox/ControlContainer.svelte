@@ -8,6 +8,37 @@
 		type ButtonColor
 	} from '$shared/ui';
 	import { ColorArray, ComponentAppearanceArray, type Appearance, type ThemeColor } from './types';
+	import {
+		useMediaQuery,
+		MOBILE_QUERY,
+		TABLET_QUERY,
+		DESKTOP_S_QUERY
+	} from '$shared/ui/useMediaQuery';
+	import MenuButton from './MenuButton.svelte';
+	import SizeIcon from './Size.svelte';
+	import SettingsIcon from './Settings.svelte';
+	import ColorIcon from './Color.svelte';
+
+	const isMobileStore = useMediaQuery(MOBILE_QUERY);
+	let isMobile = $state(false);
+
+	$effect(() => {
+		isMobile = $isMobileStore;
+	});
+
+	const isTabletStore = useMediaQuery(TABLET_QUERY);
+	let isTablet = $state(false);
+
+	$effect(() => {
+		isTablet = $isTabletStore;
+	});
+
+	const isDesktopSStore = useMediaQuery(DESKTOP_S_QUERY);
+	let isDesktopS = $state(false);
+
+	$effect(() => {
+		isDesktopS = $isDesktopSStore;
+	});
 
 	export interface ControlContainerProps {
 		/**
@@ -138,36 +169,71 @@
 </script>
 
 <div class="control-container background--Main_White">
-	<div class="theme-toggle text--Dark_Blue">
-		Настройки
+	{#if isMobile}
+		<div class="button-block-wrapper">
+			<MenuButton>
+				<SettingsIcon slot="icon" />
+				<!-- <SettingsDropdown slot="dropdown" /> -->
+			</MenuButton>
+
+			<MenuButton>
+				<ColorIcon slot="icon" />
+				<!-- <AnotherDropdown slot="dropdown" /> -->
+			</MenuButton>
+		</div>
+		<div class="divider"></div>
 		<Toggle checked={isDarkTheme} onchange={handleThemeChange} />
-	</div>
-	<div class="sandbox-field">
-		<div class="sandbox-field__title text--Dark_Blue">Размер</div>
-		<ToggleGroup selected={appearanceSelected} onSelectedChange={handleAppearanceChange}>
-			<Button variant="secondary" size="small">S</Button>
-			<Button variant="secondary" size="small">M</Button>
-			<Button variant="secondary" size="small">XL</Button>
-		</ToggleGroup>
-	</div>
-	<div class="sandbox-field">
-		<div class="sandbox-field__title text--Dark_Blue">Цвет</div>
-		<ToggleGroup selected={colorSelected} onSelectedChange={handleColorChange}>
-			<Color color="blue"></Color>
-			<Color color="azure"></Color>
-			<Color color="purple"></Color>
-			<Color color="green"></Color>
-			<Color color="pink"></Color>
-		</ToggleGroup>
-	</div>
-	<div class="sandbox-field">
-		<div class="sandbox-field__title text--Dark_Blue">Количество полей</div>
-		<ToggleGroup selected={fieldCountSelected} onSelectedChange={handleFieldCountChange}>
-			<Button variant="secondary" size="small">Одно</Button>
-			<Button variant="secondary" size="small">Два</Button>
-			<Button variant="secondary" size="small">Три</Button>
-		</ToggleGroup>
-	</div>
+	{:else if isTablet || isDesktopS}
+		<div class="button-block-wrapper">
+			<MenuButton>
+				<SizeIcon slot="icon" />
+				<!-- <SizeDropdown slot="dropdown" /> -->
+			</MenuButton>
+
+			<MenuButton>
+				<SettingsIcon slot="icon" />
+				<!-- <SettingsDropdown slot="dropdown" /> -->
+			</MenuButton>
+
+			<MenuButton>
+				<ColorIcon slot="icon" />
+				<!-- <AnotherDropdown slot="dropdown" /> -->
+			</MenuButton>
+		</div>
+		<div class="divider"></div>
+		<Toggle checked={isDarkTheme} onchange={handleThemeChange} />
+	{:else}
+		<div class="theme-toggle text--Dark_Blue">
+			Настройки
+			<Toggle checked={isDarkTheme} onchange={handleThemeChange} />
+		</div>
+		<div class="sandbox-field">
+			<div class="sandbox-field__title text--Dark_Blue">Размер</div>
+			<ToggleGroup selected={appearanceSelected} onSelectedChange={handleAppearanceChange}>
+				<Button variant="secondary" size="small">S</Button>
+				<Button variant="secondary" size="small">M</Button>
+				<Button variant="secondary" size="small">XL</Button>
+			</ToggleGroup>
+		</div>
+		<div class="sandbox-field">
+			<div class="sandbox-field__title text--Dark_Blue">Цвет</div>
+			<ToggleGroup selected={colorSelected} onSelectedChange={handleColorChange}>
+				<Color color="blue"></Color>
+				<Color color="azure"></Color>
+				<Color color="purple"></Color>
+				<Color color="green"></Color>
+				<Color color="pink"></Color>
+			</ToggleGroup>
+		</div>
+		<div class="sandbox-field">
+			<div class="sandbox-field__title text--Dark_Blue">Количество полей</div>
+			<ToggleGroup selected={fieldCountSelected} onSelectedChange={handleFieldCountChange}>
+				<Button variant="secondary" size="small">Одно</Button>
+				<Button variant="secondary" size="small">Два</Button>
+				<Button variant="secondary" size="small">Три</Button>
+			</ToggleGroup>
+		</div>
+	{/if}
 </div>
 
 <style lang="scss">
