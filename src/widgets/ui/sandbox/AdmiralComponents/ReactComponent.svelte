@@ -72,7 +72,8 @@
 	}
 </script>
 
-<div class="component-wrapper" bind:this={container}></div>
+<div class="react-component-wrapper" bind:this={container}></div>
 
-<style>
+<style lang="scss">
+  @use 'reactComponent';
 </style>
