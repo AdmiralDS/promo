@@ -117,12 +117,13 @@
 
 	function setSelectedIndex(newIndex: number) {
 		if (isControlled) {
-			// В контролируемом режиме вызываем callback
+			// В контролируемом режиме вызываем только callback
 			onSelectedChange?.(newIndex);
 		} else {
 			// В неконтролируемом режиме обновляем внутреннее состояние
 			internalSelectedIndex = newIndex;
 			updateSelectionAttributes();
+			onSelectedChange?.(newIndex);
 		}
 	}
 
