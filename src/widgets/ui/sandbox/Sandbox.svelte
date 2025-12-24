@@ -45,12 +45,10 @@
 		isDarkTheme: false
 	});
 
-	// Обновление через патч
 	function updateConfig(patch: Partial<SandboxConfig>) {
 		config = { ...config, ...patch };
 	}
 
-	// Хэндлеры, совместимые с API ControlContainer
 	function handleAppearanceChange(newAppearance: Appearance) {
 		updateConfig({ appearance: newAppearance });
 	}
@@ -73,7 +71,7 @@
 		<div class="header">
 			<div class="text first-row text--Dark_Blue">Просто и доступно</div>
 			<div class="text second-row text--Text_Blue">попробуйте сами</div>
-			<ToggleGroup selected={activeComponentIndex} onSelectedChange={handleComponentChange}>
+			<ToggleGroup onSelectedChange={handleComponentChange}>
 				{#each components as componentOption}
 					<Tab>{componentOption.rus}</Tab>
 				{/each}
@@ -81,7 +79,7 @@
 		</div>
 		<div class="sandbox Sandbox_Gradient">
 			<div class="component-wrapper">
-				{#key `${activeComponent}-${config.appearance}`}
+				{#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}`}
 					<ReactComponent
 						component={activeComponent ?? 'Modal'}
 						appearance={config.appearance}

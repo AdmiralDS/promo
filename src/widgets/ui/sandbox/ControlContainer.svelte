@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Toggle } from '$shared/ui';
-	import { APPEARANCE_OPTIONS, SANDBOX_COLOR_OPTIONS, clampToRange, type Appearance, type ThemeColor } from './types';
+	import { APPEARANCE_OPTIONS, FIELD_COUNT_OPTIONS, SANDBOX_COLOR_OPTIONS, type Appearance, type ThemeColor } from './types';
 	import { useMediaQuery, MOBILE_QUERY, TABLET_QUERY, DESKTOP_S_QUERY } from '$shared/ui/useMediaQuery';
 	import MenuButton from './MenuButton.svelte';
 	import SizeIcon from './Size.svelte';
@@ -127,9 +127,10 @@
 
 	const appearanceSelected = $derived(toSelectedIndex(APPEARANCE_OPTIONS, appearance));
 	const colorSelected = $derived(toSelectedIndex(SANDBOX_COLOR_OPTIONS, color));
-	const fieldCountSelected = $derived(clampToRange((fieldCount ?? 1) - 1, 0, 2));
+	const fieldCountSelected = $derived(toSelectedIndex(FIELD_COUNT_OPTIONS, fieldCount ?? 1));
 
-	function handleSelection<T>(options: readonly T[], index: number, onChange: (value: T) => void) {
+	function handleSelection<T>(options: readonly T[], index: number, onChange?: (value: T) => void) {
+		if (!onChange) return;
 		const nextValue = options[index];
 		if (nextValue !== undefined) {
 			onChange(nextValue);
@@ -142,11 +143,8 @@
 	const handleColorChange = (newIndex: number) =>
 		handleSelection(SANDBOX_COLOR_OPTIONS, newIndex, onChangeColor);
 
-	const handleFieldCountChange = (newIndex: number) => {
-		if (!onChangeFieldCount) return;
-		const newCount = clampToRange(newIndex + 1, 1, 3);
-		onChangeFieldCount(newCount);
-	};
+	const handleFieldCountChange = (newIndex: number) =>
+		handleSelection(FIELD_COUNT_OPTIONS, newIndex, onChangeFieldCount);
 
 	const handleThemeChange = (event: Event) => {
 		const target = event.target as HTMLInputElement;

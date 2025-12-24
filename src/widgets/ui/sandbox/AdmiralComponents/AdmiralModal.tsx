@@ -23,7 +23,6 @@ export interface AdmiralModalProps {
 }
 
 export const AdmiralModal = ({ fieldCount = 3, container }: AdmiralModalProps) => {
-	const inputsToRender = Math.min(Math.max(fieldCount, 1), 3);
 	const modalContainer = container ?? document.body;
 
 	return (
@@ -39,19 +38,19 @@ export const AdmiralModal = ({ fieldCount = 3, container }: AdmiralModalProps) =
 			<ModalContent>
 				Заполните данные, чтобы мы могли открыть для вас доступ
 				<Separator />
-				{inputsToRender >= 1 && (
+				{fieldCount >= 1 && (
 					<>
 						<InputField label="Ваше имя" />
 						<Separator />
 					</>
 				)}
-				{inputsToRender >= 2 && (
+				{fieldCount >= 2 && (
 					<>
 						<InputField label="Ваша фамилия" />
 						<Separator />
 					</>
 				)}
-				{inputsToRender >= 3 && <InputField label="Отчество" />}
+				{fieldCount >= 3 && <InputField label="Отчество" />}
 				<CheckboxField>Разрешить использование личных данных</CheckboxField>
 			</ModalContent>
 			<ModalButtonPanel>
