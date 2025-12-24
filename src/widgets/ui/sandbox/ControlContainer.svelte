@@ -18,6 +18,9 @@
 	import SizeIcon from './Size.svelte';
 	import SettingsIcon from './Settings.svelte';
 	import ColorIcon from './Color.svelte';
+	import SizeField from './widgets/SizeField.svelte';
+	import SettingsField from './widgets/SettingsField.svelte';
+	import ColorField from './widgets/ColorField.svelte';
 
 	const isMobileStore = useMediaQuery(MOBILE_QUERY);
 	let isMobile = $state(false);
@@ -173,12 +176,16 @@
 		<div class="button-block-wrapper">
 			<MenuButton>
 				<SettingsIcon slot="icon" />
-				<!-- <SettingsDropdown slot="dropdown" /> -->
+				<SettingsField
+					slot="dropdown"
+					selected={fieldCountSelected}
+					onSelectedChange={handleFieldCountChange}
+				/>
 			</MenuButton>
 
 			<MenuButton>
 				<ColorIcon slot="icon" />
-				<!-- <AnotherDropdown slot="dropdown" /> -->
+				<ColorField slot="dropdown" selected={colorSelected} onSelectedChange={handleColorChange} />
 			</MenuButton>
 		</div>
 		<div class="divider"></div>
@@ -187,17 +194,25 @@
 		<div class="button-block-wrapper">
 			<MenuButton>
 				<SizeIcon slot="icon" />
-				<!-- <SizeDropdown slot="dropdown" /> -->
+				<SizeField
+					slot="dropdown"
+					selected={appearanceSelected}
+					onSelectedChange={handleAppearanceChange}
+				/>
 			</MenuButton>
 
 			<MenuButton>
 				<SettingsIcon slot="icon" />
-				<!-- <SettingsDropdown slot="dropdown" /> -->
+				<SettingsField
+					slot="dropdown"
+					selected={fieldCountSelected}
+					onSelectedChange={handleFieldCountChange}
+				/>
 			</MenuButton>
 
 			<MenuButton>
 				<ColorIcon slot="icon" />
-				<!-- <AnotherDropdown slot="dropdown" /> -->
+				<ColorField slot="dropdown" selected={colorSelected} onSelectedChange={handleColorChange} />
 			</MenuButton>
 		</div>
 		<div class="divider"></div>
@@ -207,32 +222,10 @@
 			Настройки
 			<Toggle checked={isDarkTheme} onchange={handleThemeChange} />
 		</div>
-		<div class="sandbox-field">
-			<div class="sandbox-field__title text--Dark_Blue">Размер</div>
-			<ToggleGroup selected={appearanceSelected} onSelectedChange={handleAppearanceChange}>
-				<Button variant="secondary" size="small">S</Button>
-				<Button variant="secondary" size="small">M</Button>
-				<Button variant="secondary" size="small">XL</Button>
-			</ToggleGroup>
-		</div>
-		<div class="sandbox-field">
-			<div class="sandbox-field__title text--Dark_Blue">Цвет</div>
-			<ToggleGroup selected={colorSelected} onSelectedChange={handleColorChange}>
-				<Color color="blue"></Color>
-				<Color color="azure"></Color>
-				<Color color="purple"></Color>
-				<Color color="green"></Color>
-				<Color color="pink"></Color>
-			</ToggleGroup>
-		</div>
-		<div class="sandbox-field">
-			<div class="sandbox-field__title text--Dark_Blue">Количество полей</div>
-			<ToggleGroup selected={fieldCountSelected} onSelectedChange={handleFieldCountChange}>
-				<Button variant="secondary" size="small">Одно</Button>
-				<Button variant="secondary" size="small">Два</Button>
-				<Button variant="secondary" size="small">Три</Button>
-			</ToggleGroup>
-		</div>
+
+		<SizeField selected={appearanceSelected} onSelectedChange={handleAppearanceChange} />
+		<ColorField selected={colorSelected} onSelectedChange={handleColorChange} />
+		<SettingsField selected={fieldCountSelected} onSelectedChange={handleFieldCountChange} />
 	{/if}
 </div>
 
