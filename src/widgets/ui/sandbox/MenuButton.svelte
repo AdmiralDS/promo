@@ -1,13 +1,24 @@
 <script lang="ts">
 	import Chevron from './Chevron.svelte';
+
 	let isOpen = false;
+	let menuRef: HTMLDivElement | null = null;
 
 	const toggleMenu = () => {
 		isOpen = !isOpen;
 	};
+
+	const handleDocumentClick = (event: MouseEvent) => {
+		if (!menuRef) return;
+		const target = event.target as Node | null;
+		if (target && !menuRef.contains(target)) {
+			isOpen = false;
+		}
+	};
 </script>
 
-<div class="menu-button">
+<svelte:window on:click={handleDocumentClick} />
+<div class="menu-button" bind:this={menuRef}>
 	<button type="button" aria-expanded={isOpen} on:click={toggleMenu}>
 		<div class="icon-wrapper">
 			<slot name="icon"></slot>
