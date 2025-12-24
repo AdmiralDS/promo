@@ -1,19 +1,7 @@
 <script lang="ts">
-	import {
-		ToggleGroup,
-		Button,
-		Color,
-		Toggle,
-		AVAILABLE_COLORS,
-		type ButtonColor
-	} from '$shared/ui';
-	import { ColorArray, ComponentAppearanceArray, type Appearance, type ThemeColor } from './types';
-	import {
-		useMediaQuery,
-		MOBILE_QUERY,
-		TABLET_QUERY,
-		DESKTOP_S_QUERY
-	} from '$shared/ui/useMediaQuery';
+	import { Toggle } from '$shared/ui';
+	import { APPEARANCE_OPTIONS, SANDBOX_COLOR_OPTIONS, clampToRange, type Appearance, type ThemeColor } from './types';
+	import { useMediaQuery, MOBILE_QUERY, TABLET_QUERY, DESKTOP_S_QUERY } from '$shared/ui/useMediaQuery';
 	import MenuButton from './MenuButton.svelte';
 	import SizeIcon from './Size.svelte';
 	import SettingsIcon from './Settings.svelte';
@@ -22,33 +10,12 @@
 	import SettingsField from './widgets/SettingsField.svelte';
 	import ColorField from './widgets/ColorField.svelte';
 
-	const isMobileStore = useMediaQuery(MOBILE_QUERY);
-	let isMobile = $state(false);
-
-	$effect(() => {
-		isMobile = $isMobileStore;
-	});
-
-	const isTabletStore = useMediaQuery(TABLET_QUERY);
-	let isTablet = $state(false);
-
-	$effect(() => {
-		isTablet = $isTabletStore;
-	});
-
-	const isDesktopSStore = useMediaQuery(DESKTOP_S_QUERY);
-	let isDesktopS = $state(false);
-
-	$effect(() => {
-		isDesktopS = $isDesktopSStore;
-	});
-
 	export interface ControlContainerProps {
 		/**
 		 * Внешний вид компонента, отображаемого в песочнице.
 		 * Определяет размер и стилизацию демонстрируемого компонента.
 		 *
-		 * @default 'l'
+		 * @default 'm'
 		 */
 		appearance: Appearance;
 
@@ -79,7 +46,7 @@
 		/**
 		 * Callback-функция, вызываемая при изменении цвета компонента в песочнице.
 		 *
-		 * @param {ButtonColor} value - Новое значение цвета для компонента в песочнице
+		 * @param {ThemeColor} value - Новое значение цвета для компонента в песочнице
 		 * @returns {void}
 		 * @example
 		 * const handleColorChange = (newColor) => {
@@ -134,8 +101,8 @@
 
 	// Получаем пропсы через $props()
 	let {
-		appearance = 'l' as Appearance,
-		color = 'blue' as ButtonColor,
+		appearance = 'm' as Appearance,
+		color = 'blue' as ThemeColor,
 		fieldCount = 3,
 		isDarkTheme = false,
 		onChangeAppearance,
@@ -144,24 +111,40 @@
 		onChangeTheme
 	}: ControlContainerProps = $props();
 
-	const appearanceSelected = $derived(ComponentAppearanceArray.indexOf(appearance));
-	const colorSelected = $derived(ColorArray.indexOf(color));
-	const fieldCountSelected = $derived(Math.min(Math.max((fieldCount ?? 1) - 1, 0), 2));
+	const mobileQuery = useMediaQuery(MOBILE_QUERY);
+	const tabletQuery = useMediaQuery(TABLET_QUERY);
+	const desktopSQuery = useMediaQuery(DESKTOP_S_QUERY);
 
-	const handleAppearanceChange = (newIndex: number) => {
-		if (newIndex > ComponentAppearanceArray.length - 1) return;
-		onChangeAppearance(ComponentAppearanceArray[newIndex]);
+	const isMobile = $derived($mobileQuery);
+	const isTablet = $derived($tabletQuery);
+	const isDesktopS = $derived($desktopSQuery);
+	const isCompact = $derived(isTablet || isDesktopS);
+
+	const toSelectedIndex = <T,>(options: readonly T[], value: T) => {
+		const index = options.indexOf(value);
+		return index === -1 ? 0 : index;
 	};
 
-	const handleColorChange = (newIndex: number) => {
-		if (newIndex > ColorArray.length - 1) return;
-		onChangeColor(ColorArray[newIndex]);
-	};
+	const appearanceSelected = $derived(toSelectedIndex(APPEARANCE_OPTIONS, appearance));
+	const colorSelected = $derived(toSelectedIndex(SANDBOX_COLOR_OPTIONS, color));
+	const fieldCountSelected = $derived(clampToRange((fieldCount ?? 1) - 1, 0, 2));
+
+	function handleSelection<T>(options: readonly T[], index: number, onChange: (value: T) => void) {
+		const nextValue = options[index];
+		if (nextValue !== undefined) {
+			onChange(nextValue);
+		}
+	}
+
+	const handleAppearanceChange = (newIndex: number) =>
+		handleSelection(APPEARANCE_OPTIONS, newIndex, onChangeAppearance);
+
+	const handleColorChange = (newIndex: number) =>
+		handleSelection(SANDBOX_COLOR_OPTIONS, newIndex, onChangeColor);
 
 	const handleFieldCountChange = (newIndex: number) => {
 		if (!onChangeFieldCount) return;
-		const newCount = newIndex + 1;
-		if (newCount < 1 || newCount > 3) return;
+		const newCount = clampToRange(newIndex + 1, 1, 3);
 		onChangeFieldCount(newCount);
 	};
 
@@ -190,7 +173,7 @@
 		</div>
 		<div class="divider"></div>
 		<Toggle checked={isDarkTheme} onchange={handleThemeChange} />
-	{:else if isTablet || isDesktopS}
+	{:else if isCompact}
 		<div class="button-block-wrapper">
 			<MenuButton>
 				<SizeIcon slot="icon" />

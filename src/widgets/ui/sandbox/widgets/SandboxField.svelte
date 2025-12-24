@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { ToggleGroup } from '$shared/ui';
 
-	export interface FieldProps extends Pick<SandboxFieldProps, 'selected' | 'onSelectedChange'> {}
-
-	export interface SandboxFieldProps {
-		fieldTitle: string;
+	export interface FieldProps {
 		selected?: number;
 		onSelectedChange?: (index: number) => void;
+	}
+
+	export interface SandboxFieldProps extends FieldProps {
+		fieldTitle: string;
 		children?: () => any;
 	}
 

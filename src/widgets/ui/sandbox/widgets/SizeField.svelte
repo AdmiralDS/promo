@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { Button } from '$shared/ui';
+	import { APPEARANCE_OPTIONS, type Appearance } from '../types';
 	import SandboxField, { type FieldProps } from './SandboxField.svelte';
+
+	const labels: Record<Appearance, string> = { s: 'S', m: 'M', xl: 'XL' };
+
 	let { selected = 0, onSelectedChange }: FieldProps = $props();
 </script>
 
 <SandboxField fieldTitle="Размер" selected={selected} onSelectedChange={onSelectedChange}>
-	<Button variant="secondary" size="small">S</Button>
-	<Button variant="secondary" size="small">M</Button>
-	<Button variant="secondary" size="small">XL</Button>
+	{#each APPEARANCE_OPTIONS as appearanceOption}
+		<Button variant="secondary" size="small">{labels[appearanceOption]}</Button>
+	{/each}
 </SandboxField>
-
-<style lang="scss">
-</style>

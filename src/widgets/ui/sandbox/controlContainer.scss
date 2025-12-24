@@ -3,6 +3,18 @@
 @use '$shared/ui/colors' as colors;
 @use '$shared/ui/shadow' as shadow;
 
+@mixin compact-layout {
+	flex-direction: row;
+	width: 392px;
+	height: 88px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	padding: 20px;
+	gap: 20px;
+	border-radius: 32px;
+}
+
 .control-container {
 	box-sizing: border-box;
 	width: 385px;
@@ -15,40 +27,15 @@
 	flex-direction: column;
 
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		flex-direction: row;
-		width: 392px;
-		height: 88px;
+		@include compact-layout;
 		bottom: -56px;
 		@include shadow.shadow;
-		left: 0;
-		right: 0;
-		margin-left: auto;
-		margin-right: auto;
-		padding: 20px;
-		gap: 20px;
-		border-radius: 32px;
-	}
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		flex-direction: row;
-		width: 392px;
-		height: 88px;
-		left: 0;
-		right: 0;
-		margin-left: auto;
-		margin-right: auto;
-		padding: 20px;
-		gap: 20px;
-		border-radius: 32px;
 	}
 	@include breakpoints.respond-until(breakpoints.$phone) {
-		flex-direction: row;
 		width: 100%;
 		height: 92px;
 		bottom: 0;
-		left: 0;
-		right: 0;
 		padding: 20px 40px;
-		gap: 20px;
 		border-radius: 32px;
 		justify-content: center;
 	}

@@ -1,23 +1,23 @@
 import { AVAILABLE_COLORS } from '$shared/ui';
 
-export const ComponentAppearanceArray = ['s', 'm', 'xl'] as const;
+export const APPEARANCE_OPTIONS = ['s', 'm', 'xl'] as const;
+
 /**
- * Тип внешнего вида компонента в песочнице. Определяет размер демонстрируемого компонента.
- *
- * @typedef {'s' | 'm' | 'xl'} Appearance
+ * Внешний вид компонента в песочнице.
  *
  * Значения:
- * - 's' - Маленький размер компонента
- * - 'm' - Средний размер компонента
- * - 'l' - Большой размер компонента (значение по умолчанию)
- * - 'xl' - Очень большой размер компонента
+ * - 's' — малый размер
+ * - 'm' — средний (значение по умолчанию)
+ * - 'xl' — большой размер
  */
-export type Appearance = (typeof ComponentAppearanceArray)[number];
+export type Appearance = (typeof APPEARANCE_OPTIONS)[number];
 
 export type ThemeColor = keyof typeof AVAILABLE_COLORS;
 
-function getKeys<T extends object>(obj: T): (keyof T)[] {
-	return Object.keys(obj) as (keyof T)[];
-}
+export const SANDBOX_COLOR_OPTIONS: ThemeColor[] = ['blue', 'azure', 'purple', 'green', 'pink'].filter(
+	(color): color is ThemeColor => color in AVAILABLE_COLORS
+);
 
-export const ColorArray: Array<ThemeColor> = getKeys(AVAILABLE_COLORS);
+export function clampToRange(value: number, min: number, max: number) {
+	return Math.min(Math.max(value, min), max);
+}
