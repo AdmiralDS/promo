@@ -9,7 +9,7 @@ import {
 	ModalContent,
 	ModalTitle
 } from '@admiral-ds/react-ui';
-import { styled } from 'storybook/internal/theming';
+import styled from 'styled-components';
 import type { Appearance } from '../types';
 
 const Separator = styled.div`
