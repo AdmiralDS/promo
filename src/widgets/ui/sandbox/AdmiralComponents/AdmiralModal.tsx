@@ -51,6 +51,7 @@ export const AdmiralModal = ({ fieldCount = 3, container }: AdmiralModalProps) =
 					</>
 				)}
 				{fieldCount >= 3 && <InputField label="Отчество" />}
+        <Separator />
 				<CheckboxField>Разрешить использование личных данных</CheckboxField>
 			</ModalContent>
 			<ModalButtonPanel>
