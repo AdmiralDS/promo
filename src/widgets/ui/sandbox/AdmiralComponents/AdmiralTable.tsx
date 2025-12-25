@@ -1,18 +1,24 @@
 import * as React from 'react';
 
 import {
-		GroupActionsPane,
-		PaginationOne,
-		PaneSeparator,
-		T,
-		Table,
-		TextButton,
-		type Column,
-		type TableRow
-	} from '@admiral-ds/react-ui';
+  Button,
+	GroupActionsPane,
+	PaginationOne,
+	PaneSeparator,
+	T,
+	Table,
+	TextButton,
+	typography,
+	type Column,
+	type PaneColumn,
+	type PaneMenuProps,
+	type TableRow
+} from '@admiral-ds/react-ui';
+import { SystemDeleteOutline, SystemEditOutline } from '@admiral-ds/icons';
 import styled from 'styled-components';
 import type { DefaultTheme } from 'styled-components';
 import type { Appearance } from '../types';
+import { useState } from 'react';
 
 export interface AdmiralTableProps {
 	dimension: Appearance;
@@ -34,6 +40,25 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
+  padding: 0 20px;
+	background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
+`;
+
+const SettingsMenu = styled.div`
+  width: 320px;
+  padding: 20px;
+  ${typography['Body/Body 2 Long']}
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  margin-top: 28px;
+  & > button:first-child {
+    margin-right: 8px;
+  }
 `;
 
 type RowData = TableRow & {
@@ -170,6 +195,13 @@ const columnList: Column[] = [
 	}
 ];
 
+const columns: PaneColumn[] = [
+  { id: 'transfer_type', title: 'Тип сделки', visible: true },
+  { id: 'transfer_date', title: 'Дата сделки', visible: true },
+  { id: 'transfer_amount', title: 'Сумма', visible: true },
+  { id: 'transfer_status', title: 'Статус', visible: true },
+];
+
 export const AdmiralTable = ({ dimension }: AdmiralTableProps) => {
 	const [cols, setCols] = React.useState(columnList);
 	const [rows, setRows] = React.useState(rowList);
@@ -210,14 +242,58 @@ export const AdmiralTable = ({ dimension }: AdmiralTableProps) => {
 	const leftButtonProps = { 'data-testid': 'pagination-left-button' };
 	const rightButtonProps = { 'data-testid': 'pagination-right-button' };
 
+  const [columnsVisibility, setColumnsVisibility] = useState(columns);
+  const [searchValue, setSearchValue] = useState<string>('');
+
+  const handleChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleSearchEnter = () => {
+    // eslint-disable-next-line no-console
+    console.log('Search input opened');
+  };
+
+  const handleSearchLeave = () => {
+    // eslint-disable-next-line no-console
+    console.log('Search input left');
+  };
+
+  const renderSettingsMenu = ({ closeMenu }: PaneMenuProps) => (
+    <SettingsMenu>
+      Здесь могут быть опции с настройками и кнопки для применения/сбрасывания настроек
+      <ButtonWrapper>
+        <Button dimension="s" onClick={closeMenu}>
+          Сохранить
+        </Button>
+        <Button dimension="s" onClick={closeMenu}>
+          Очистить
+        </Button>
+      </ButtonWrapper>
+    </SettingsMenu>
+  );
+
 	return (
 		<Wrapper>
-			<GroupActionsPane>
-				<TextButton text={'Action 1'} />
-				<TextButton text={'Action 2'} />
-				<TextButton text={'Action 3'} />
+			<GroupActionsPane
+				searchValue={searchValue}
+				onChangeSearchValue={handleChangeSearchValue}
+				columns={columnsVisibility}
+				onColumnsChange={setColumnsVisibility}
+				onSearchEnter={handleSearchEnter}
+				onSearchLeave={handleSearchLeave}
+				columnsButtonDropContainerStyle={{
+					dropContainerClassName: 'columnsButtonDropContainerClass'
+				}}
+				settingsButtonDropContainerStyle={{
+					dropContainerClassName: 'settingsButtonDropContainerClass'
+				}}
+				renderSettingsMenu={renderSettingsMenu}
+			>
+				<TextButton text={'Редактировать'} iconStart={<SystemEditOutline />} />
+				<TextButton text={'Удалить'} iconStart={<SystemDeleteOutline />} />
 				<PaneSeparator />
-				<TextButton text={'Action 4'} />
+				<TextButton text={'Отменить (2)'} />
 			</GroupActionsPane>
 			<Table
 				dimension={dimension}
