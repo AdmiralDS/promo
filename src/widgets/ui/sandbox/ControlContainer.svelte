@@ -1,7 +1,19 @@
 <script lang="ts">
 	import { Toggle } from '$shared/ui';
-	import { APPEARANCE_OPTIONS, FIELD_COUNT_OPTIONS, SANDBOX_COLOR_OPTIONS, type Appearance, type ThemeColor } from './types';
-	import { useMediaQuery, MOBILE_QUERY, TABLET_QUERY, DESKTOP_S_QUERY } from '$shared/ui/useMediaQuery';
+	import {
+		APPEARANCE_OPTIONS,
+		FIELD_COUNT_OPTIONS,
+		getCircleFill,
+		SANDBOX_COLOR_OPTIONS,
+		type Appearance,
+		type ThemeColor
+	} from './types';
+	import {
+		useMediaQuery,
+		MOBILE_QUERY,
+		TABLET_QUERY,
+		DESKTOP_S_QUERY
+	} from '$shared/ui/useMediaQuery';
 	import MenuButton from './MenuButton.svelte';
 	import SizeIcon from './Size.svelte';
 	import SettingsIcon from './Settings.svelte';
@@ -165,7 +177,7 @@
 			</MenuButton>
 
 			<MenuButton>
-				<ColorIcon slot="icon" />
+				<ColorIcon slot="icon" fill={getCircleFill(color)} />
 				<ColorField slot="dropdown" selected={colorSelected} onSelectedChange={handleColorChange} />
 			</MenuButton>
 		</div>
@@ -192,7 +204,7 @@
 			</MenuButton>
 
 			<MenuButton>
-				<ColorIcon slot="icon" />
+				<ColorIcon slot="icon" fill={getCircleFill(color)} />
 				<ColorField slot="dropdown" selected={colorSelected} onSelectedChange={handleColorChange} />
 			</MenuButton>
 		</div>
