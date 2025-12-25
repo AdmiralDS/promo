@@ -1,21 +1,28 @@
 import * as React from 'react';
 
 import {
-	GroupActionsPane,
-	PaginationOne,
-	PaneSeparator,
-	T,
-	Table,
-	TextButton,
-	type Column,
-	type TableRow
-} from '@admiral-ds/react-ui';
+		GroupActionsPane,
+		PaginationOne,
+		PaneSeparator,
+		T,
+		Table,
+		TextButton,
+		type Column,
+		type TableRow
+	} from '@admiral-ds/react-ui';
 import styled from 'styled-components';
+import type { DefaultTheme } from 'styled-components';
 import type { Appearance } from '../types';
 
 export interface AdmiralTableProps {
 	dimension: Appearance;
 }
+
+type AdmiralTheme = DefaultTheme & { color: Record<string, string> };
+
+const StyledPaginationOne = styled(PaginationOne)`
+	background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
+`;
 
 const AmountCell = styled.div`
 	text-overflow: ellipsis;
@@ -223,7 +230,7 @@ export const AdmiralTable = ({ dimension }: AdmiralTableProps) => {
 				displayRowSelectionColumn
 				onRowSelectionChange={handleSelectionChange}
 			/>
-			<PaginationOne
+			<StyledPaginationOne
 				onChange={({ page, pageSize }) => {
 					setPage(page);
 					setPageSize(pageSize);

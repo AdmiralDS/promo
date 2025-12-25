@@ -1,12 +1,8 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { renderer } from './Renderer';
-	import type { Props as BaseRendererOptions } from './WrappedReactComponent';
+	import type { Props as RendererOptions } from './WrappedReactComponent';
 	import type { Appearance } from '../types';
-
-	type RendererOptions = Omit<BaseRendererOptions, 'container'> & {
-		container?: HTMLDivElement;
-	};
 
 	export let component = 'Modal';
 	export let isDarkTheme: boolean;
@@ -23,8 +19,7 @@
 		theme: themeValue,
 		appearance,
 		color,
-		fieldCount,
-		container: component === 'Modal' ? container : undefined
+		fieldCount
 	});
 
 	let currentProps: RendererOptions = getRendererOptions(theme);
@@ -58,8 +53,7 @@
 			currentProps.theme !== nextProps.theme ||
 			currentProps.appearance !== nextProps.appearance ||
 			currentProps.color !== nextProps.color ||
-			currentProps.fieldCount !== nextProps.fieldCount ||
-			currentProps.container !== nextProps.container;
+			currentProps.fieldCount !== nextProps.fieldCount;
 
 		if (shouldUpdate) {
 			theme = newTheme;
