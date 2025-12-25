@@ -13,33 +13,23 @@ export interface Props {
 	appearance: Appearance;
 	color: string;
 	fieldCount?: number;
-  container?: HTMLDivElement;
+	container?: HTMLDivElement;
 }
 
 const setMainLightThemeColors = (mainColor: string) => {
 	const colorTheme = LIGHT_THEME;
 	switch (mainColor) {
-		case 'yellow':
-			colorTheme.color['Primary/Primary 10'] = '#FEF5D7';
-			colorTheme.color['Primary/Primary 20'] = '#FEF5D7';
-			colorTheme.color['Primary/Primary 30'] = '#FEE7A0';
-			colorTheme.color['Primary/Primary 40'] = '#FDDD77';
-			colorTheme.color['Primary/Primary 50'] = '#FDD14C';
-			colorTheme.color['Primary/Primary 60 Main'] = '#FFC400';
-			colorTheme.color['Primary/Primary 70'] = '#F0B902';
-			colorTheme.color['Primary/Primary 80'] = '#DFAB00';
+		case 'azure':
+			colorTheme.color['Primary/Primary 10'] = '#E5F6FF';
+			colorTheme.color['Primary/Primary 20'] = '#C4EAFF';
+			colorTheme.color['Primary/Primary 30'] = '#82CFFF';
+			colorTheme.color['Primary/Primary 40'] = '#33B1FF';
+			colorTheme.color['Primary/Primary 50'] = '#1192E8';
+			colorTheme.color['Primary/Primary 60 Main'] = '#0072C3';
+			colorTheme.color['Primary/Primary 70'] = '#00539A';
+			colorTheme.color['Primary/Primary 80'] = '#003A6D';
 			break;
-		case 'orange':
-			colorTheme.color['Primary/Primary 10'] = '#FFF1E5';
-			colorTheme.color['Primary/Primary 20'] = '#FFF1E5';
-			colorTheme.color['Primary/Primary 30'] = '#FFDECE';
-			colorTheme.color['Primary/Primary 40'] = '#FFB799';
-			colorTheme.color['Primary/Primary 50'] = '#FF8D64';
-			colorTheme.color['Primary/Primary 60 Main'] = '#FF5C22';
-			colorTheme.color['Primary/Primary 70'] = '#D63F09';
-			colorTheme.color['Primary/Primary 80'] = '#A63208';
-			break;
-		case 'violet':
+		case 'purple':
 			colorTheme.color['Primary/Primary 10'] = '#F6F2FF';
 			colorTheme.color['Primary/Primary 20'] = '#EBE0FF';
 			colorTheme.color['Primary/Primary 30'] = '#D4BBFF';
@@ -48,6 +38,26 @@ const setMainLightThemeColors = (mainColor: string) => {
 			colorTheme.color['Primary/Primary 60 Main'] = '#8A3FFC';
 			colorTheme.color['Primary/Primary 70'] = '#6929C4';
 			colorTheme.color['Primary/Primary 80'] = '#491D8B';
+			break;
+		case 'green':
+			colorTheme.color['Primary/Primary 10'] = '#D9FBFB';
+			colorTheme.color['Primary/Primary 20'] = '#B0F0F0';
+			colorTheme.color['Primary/Primary 30'] = '#3DDBD9';
+			colorTheme.color['Primary/Primary 40'] = '#08BDBA';
+			colorTheme.color['Primary/Primary 50'] = '#009D9A';
+			colorTheme.color['Primary/Primary 60 Main'] = '#007D79';
+			colorTheme.color['Primary/Primary 70'] = '#005D5D';
+			colorTheme.color['Primary/Primary 80'] = '#004144';
+			break;
+		case 'pink':
+			colorTheme.color['Primary/Primary 10'] = '#FFF0F7';
+			colorTheme.color['Primary/Primary 20'] = '#FFDBEB';
+			colorTheme.color['Primary/Primary 30'] = '#FFAFD2';
+			colorTheme.color['Primary/Primary 40'] = '#FF7EB6';
+			colorTheme.color['Primary/Primary 50'] = '#EE5396';
+			colorTheme.color['Primary/Primary 60 Main'] = '#D02670';
+			colorTheme.color['Primary/Primary 70'] = '#9F1853';
+			colorTheme.color['Primary/Primary 80'] = '#740937';
 			break;
 		case 'blue':
 		default:
@@ -67,27 +77,17 @@ const setMainLightThemeColors = (mainColor: string) => {
 const setMainDarkThemeColors = (mainColor: string) => {
 	const colorTheme = DARK_THEME;
 	switch (mainColor) {
-		case 'yellow':
-			colorTheme.color['Primary/Primary 10'] = '#1F2024';
-			colorTheme.color['Primary/Primary 20'] = '#1F2024';
-			colorTheme.color['Primary/Primary 30'] = '#CA9B00';
-			colorTheme.color['Primary/Primary 40'] = '#DFAB00';
-			colorTheme.color['Primary/Primary 50'] = '#F0B902';
-			colorTheme.color['Primary/Primary 60 Main'] = '#FFC400';
-			colorTheme.color['Primary/Primary 70'] = '#FDD14C';
-			colorTheme.color['Primary/Primary 80'] = '#FDDD77';
+		case 'azure':
+			colorTheme.color['Primary/Primary 10'] = '#202021';
+			colorTheme.color['Primary/Primary 20'] = '#002D56';
+			colorTheme.color['Primary/Primary 30'] = '#003A6D';
+			colorTheme.color['Primary/Primary 40'] = '#00539A';
+			colorTheme.color['Primary/Primary 50'] = '#0072C3';
+			colorTheme.color['Primary/Primary 60 Main'] = '#0E8CE1';
+			colorTheme.color['Primary/Primary 70'] = '#28A6F6';
+			colorTheme.color['Primary/Primary 80'] = '#70C7FD';
 			break;
-		case 'orange':
-			colorTheme.color['Primary/Primary 10'] = '#1F2024';
-			colorTheme.color['Primary/Primary 20'] = '#1F2024';
-			colorTheme.color['Primary/Primary 30'] = '#591C04';
-			colorTheme.color['Primary/Primary 40'] = '#902C06';
-			colorTheme.color['Primary/Primary 50'] = '#BC3B0D';
-			colorTheme.color['Primary/Primary 60 Main'] = '#EF5018';
-			colorTheme.color['Primary/Primary 70'] = '#FF662F';
-			colorTheme.color['Primary/Primary 80'] = '#FF8559';
-			break;
-		case 'violet':
+		case 'purple':
 			colorTheme.color['Primary/Primary 10'] = '#1F2024';
 			colorTheme.color['Primary/Primary 20'] = '#391968';
 			colorTheme.color['Primary/Primary 30'] = '#491D8B';
@@ -96,6 +96,26 @@ const setMainDarkThemeColors = (mainColor: string) => {
 			colorTheme.color['Primary/Primary 60 Main'] = '#A065FE';
 			colorTheme.color['Primary/Primary 70'] = '#B587FF';
 			colorTheme.color['Primary/Primary 80'] = '#CEB1FF';
+			break;
+		case 'green':
+			colorTheme.color['Primary/Primary 10'] = '#202021';
+			colorTheme.color['Primary/Primary 20'] = '#023136';
+			colorTheme.color['Primary/Primary 30'] = '#004144';
+			colorTheme.color['Primary/Primary 40'] = '#005D5D';
+			colorTheme.color['Primary/Primary 50'] = '#007D79';
+			colorTheme.color['Primary/Primary 60 Main'] = '#009692';
+			colorTheme.color['Primary/Primary 70'] = '#06B2AF';
+			colorTheme.color['Primary/Primary 80'] = '#2FD2CF';
+			break;
+		case 'pink':
+			colorTheme.color['Primary/Primary 10'] = '#202021';
+			colorTheme.color['Primary/Primary 20'] = '#510224';
+			colorTheme.color['Primary/Primary 30'] = '#740937';
+			colorTheme.color['Primary/Primary 40'] = '#9F1853';
+			colorTheme.color['Primary/Primary 50'] = '#D02670';
+			colorTheme.color['Primary/Primary 60 Main'] = '#D02670';
+			colorTheme.color['Primary/Primary 70'] = '#F970AB';
+			colorTheme.color['Primary/Primary 80'] = '#FEA2CA';
 			break;
 		case 'blue':
 		default:
@@ -122,7 +142,7 @@ export const WrappedReactComponent = ({
 	appearance,
 	color,
 	fieldCount,
-  container,
+	container
 }: Props) => {
 	const colorTheme = setMainThemeColors(theme, color);
 	const getComponent = () => {
@@ -135,7 +155,9 @@ export const WrappedReactComponent = ({
 				return <AdmiralDropdown dimension={appearance} />;
 			case 'Modal':
 			default:
-				return <AdmiralModal dimension={appearance} fieldCount={fieldCount} container={container} />;
+				return (
+					<AdmiralModal dimension={appearance} fieldCount={fieldCount} container={container} />
+				);
 		}
 	};
 
