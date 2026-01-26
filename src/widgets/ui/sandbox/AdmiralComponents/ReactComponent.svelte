@@ -10,6 +10,9 @@
 	export let appearance: Appearance = 'm';
 	export let color: string = 'blue';
 	export let fieldCount = 2;
+	export let tableGroupActions = true;
+	export let tableRowDrag = true;
+	export let tableZebra = true;
 
 	let container: HTMLDivElement | undefined;
 	let root: ReturnType<typeof renderer> | null = null;
@@ -19,7 +22,10 @@
 		theme: themeValue,
 		appearance,
 		color,
-		fieldCount
+		fieldCount,
+		tableGroupActions,
+		tableRowDrag,
+		tableZebra
 	});
 
 	let currentProps: RendererOptions = getRendererOptions(theme);
@@ -53,7 +59,10 @@
 			currentProps.theme !== nextProps.theme ||
 			currentProps.appearance !== nextProps.appearance ||
 			currentProps.color !== nextProps.color ||
-			currentProps.fieldCount !== nextProps.fieldCount;
+			currentProps.fieldCount !== nextProps.fieldCount ||
+			currentProps.tableGroupActions !== nextProps.tableGroupActions ||
+			currentProps.tableRowDrag !== nextProps.tableRowDrag ||
+			currentProps.tableZebra !== nextProps.tableZebra;
 
 		if (shouldUpdate) {
 			theme = newTheme;

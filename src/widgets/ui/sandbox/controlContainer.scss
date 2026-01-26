@@ -54,10 +54,16 @@
 	margin-bottom: 32px;
 }
 
-.divider {
+.divider-vertical {
 	width: 1px;
 	height: 100%;
 	background: #e8ecf5;
+}
+.divider-horizontal {
+	width: 321px;
+	height: 1px;
+	background: #e8ecf5;
+  margin-bottom: 32px;
 }
 
 .button-block-wrapper {

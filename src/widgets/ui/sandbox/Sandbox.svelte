@@ -10,6 +10,9 @@
 		color: ThemeColor;
 		fieldCount: number;
 		isDarkTheme: boolean;
+		tableGroupActions: boolean;
+		tableRowDrag: boolean;
+		tableZebra: boolean;
 	};
 
 	const isMobileStore = useMediaQuery(MOBILE_QUERY);
@@ -42,7 +45,10 @@
 		appearance: 'm',
 		color: 'blue',
 		fieldCount: 3,
-		isDarkTheme: false
+		isDarkTheme: false,
+		tableGroupActions: false,
+		tableRowDrag: false,
+		tableZebra: false
 	});
 
 	function updateConfig(patch: Partial<SandboxConfig>) {
@@ -64,6 +70,18 @@
 	function handleThemeChange(newThemeState: boolean) {
 		updateConfig({ isDarkTheme: newThemeState });
 	}
+
+	function handleTableGroupActionsChange(nextValue: boolean) {
+		updateConfig({ tableGroupActions: nextValue });
+	}
+
+	function handleTableRowDragChange(nextValue: boolean) {
+		updateConfig({ tableRowDrag: nextValue });
+	}
+
+	function handleTableZebraChange(nextValue: boolean) {
+		updateConfig({ tableZebra: nextValue });
+	}
 </script>
 
 <div class="sandbox-container background--Main_White">
@@ -79,13 +97,16 @@
 		</div>
 		<div class="sandbox Sandbox_Gradient">
 			<div class="component-wrapper">
-				{#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}`}
+				{#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}-${config.tableGroupActions}-${config.tableRowDrag}-${config.tableZebra}`}
 					<ReactComponent
 						component={activeComponent ?? 'Modal'}
 						appearance={config.appearance}
 						color={config.color}
 						fieldCount={config.fieldCount}
 						isDarkTheme={config.isDarkTheme}
+						tableGroupActions={config.tableGroupActions}
+						tableRowDrag={config.tableRowDrag}
+						tableZebra={config.tableZebra}
 					/>
 				{/key}
 			</div>
@@ -95,10 +116,16 @@
 				color={config.color}
 				fieldCount={config.fieldCount}
 				isDarkTheme={config.isDarkTheme}
+				tableGroupActions={config.tableGroupActions}
+				tableRowDrag={config.tableRowDrag}
+				tableZebra={config.tableZebra}
 				onChangeAppearance={handleAppearanceChange}
 				onChangeColor={handleColorChange}
 				onChangeFieldCount={handleFieldCountChange}
 				onChangeTheme={handleThemeChange}
+				onChangeTableGroupActions={handleTableGroupActionsChange}
+				onChangeTableRowDrag={handleTableRowDragChange}
+				onChangeTableZebra={handleTableZebraChange}
 			/>
 		</div>
 	</div>

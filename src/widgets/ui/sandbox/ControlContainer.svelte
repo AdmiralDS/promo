@@ -21,6 +21,7 @@
 	import SizeField from './widgets/SizeField.svelte';
 	import SettingsField from './widgets/SettingsField.svelte';
 	import ColorField from './widgets/ColorField.svelte';
+	import TableSettingsField from './widgets/TableSettingsField.svelte';
 
 	export interface ControlContainerProps {
 		/**
@@ -113,6 +114,13 @@
 		 * Callback для переключения темы песочницы.
 		 */
 		onChangeTheme?: (value: boolean) => void;
+
+		tableGroupActions?: boolean;
+		tableRowDrag?: boolean;
+		tableZebra?: boolean;
+		onChangeTableGroupActions?: (value: boolean) => void;
+		onChangeTableRowDrag?: (value: boolean) => void;
+		onChangeTableZebra?: (value: boolean) => void;
 	}
 
 	// Получаем пропсы через $props()
@@ -122,10 +130,16 @@
 		color = 'blue' as ThemeColor,
 		fieldCount = 3,
 		isDarkTheme = false,
+		tableGroupActions = false,
+		tableRowDrag = false,
+		tableZebra = false,
 		onChangeAppearance,
 		onChangeColor,
 		onChangeFieldCount,
-		onChangeTheme
+		onChangeTheme,
+		onChangeTableGroupActions,
+		onChangeTableRowDrag,
+		onChangeTableZebra
 	}: ControlContainerProps = $props();
 
 	const mobileQuery = useMediaQuery(MOBILE_QUERY);
@@ -146,6 +160,7 @@
 	const colorSelected = $derived(toSelectedIndex(SANDBOX_COLOR_OPTIONS, color));
 	const fieldCountSelected = $derived(toSelectedIndex(FIELD_COUNT_OPTIONS, fieldCount ?? 1));
 	const showFieldCount = $derived(activeComponent === 'Modal');
+	const showTableSettings = $derived(activeComponent === 'Table');
 
 	function handleSelection<T>(options: readonly T[], index: number, onChange?: (value: T) => void) {
 		if (!onChange) return;
@@ -168,6 +183,19 @@
 		const target = event.target as HTMLInputElement;
 		onChangeTheme?.(target?.checked);
 	};
+
+	const handleToggleChange = (value: boolean, onChange?: (nextValue: boolean) => void) => {
+		onChange?.(value);
+	};
+
+	const handleTableGroupActionsChange = (value: boolean) =>
+		handleToggleChange(value, onChangeTableGroupActions);
+
+	const handleTableRowDragChange = (value: boolean) =>
+		handleToggleChange(value, onChangeTableRowDrag);
+
+	const handleTableZebraChange = (value: boolean) =>
+		handleToggleChange(value, onChangeTableZebra);
 </script>
 
 <div class="control-container background--Main_White">
@@ -180,6 +208,20 @@
 						slot="dropdown"
 						selected={fieldCountSelected}
 						onSelectedChange={handleFieldCountChange}
+					/>
+				</MenuButton>
+			{:else if showTableSettings}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<TableSettingsField
+						slot="dropdown"
+						variant="dropdown"
+						groupActions={tableGroupActions}
+						rowDrag={tableRowDrag}
+						zebra={tableZebra}
+						onChangeGroupActions={handleTableGroupActionsChange}
+						onChangeRowDrag={handleTableRowDragChange}
+						onChangeZebra={handleTableZebraChange}
 					/>
 				</MenuButton>
 			{/if}
@@ -211,6 +253,20 @@
 						onSelectedChange={handleFieldCountChange}
 					/>
 				</MenuButton>
+			{:else if showTableSettings}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<TableSettingsField
+						slot="dropdown"
+						variant="dropdown"
+						groupActions={tableGroupActions}
+						rowDrag={tableRowDrag}
+						zebra={tableZebra}
+						onChangeGroupActions={handleTableGroupActionsChange}
+						onChangeRowDrag={handleTableRowDragChange}
+						onChangeZebra={handleTableZebraChange}
+					/>
+				</MenuButton>
 			{/if}
 
 			<MenuButton>
@@ -218,7 +274,7 @@
 				<ColorField slot="dropdown" selected={colorSelected} onSelectedChange={handleColorChange} />
 			</MenuButton>
 		</div>
-		<div class="divider"></div>
+		<div class="divider-vertical"></div>
 		<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
 	{:else}
 		<div class="theme-toggle text--Dark_Blue">
@@ -228,8 +284,18 @@
 
 		<SizeField selected={appearanceSelected} onSelectedChange={handleAppearanceChange} />
 		<ColorField selected={colorSelected} onSelectedChange={handleColorChange} />
+    <div class="divider-horizontal"></div>
 		{#if showFieldCount}
 			<SettingsField selected={fieldCountSelected} onSelectedChange={handleFieldCountChange} />
+		{:else if showTableSettings}
+			<TableSettingsField
+				groupActions={tableGroupActions}
+				rowDrag={tableRowDrag}
+				zebra={tableZebra}
+				onChangeGroupActions={handleTableGroupActionsChange}
+				onChangeRowDrag={handleTableRowDragChange}
+				onChangeZebra={handleTableZebraChange}
+			/>
 		{/if}
 	{/if}
 </div>

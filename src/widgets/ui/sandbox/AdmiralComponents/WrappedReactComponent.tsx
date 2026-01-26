@@ -13,6 +13,9 @@ export interface Props {
 	appearance: Appearance;
 	color: string;
 	fieldCount?: number;
+	tableGroupActions?: boolean;
+	tableRowDrag?: boolean;
+	tableZebra?: boolean;
 }
 
 const setMainLightThemeColors = (mainColor: string) => {
@@ -140,13 +143,23 @@ export const WrappedReactComponent = ({
 	theme,
 	appearance,
 	color,
-	fieldCount
+	fieldCount,
+	tableGroupActions,
+	tableRowDrag,
+	tableZebra
 }: Props) => {
 	const colorTheme = setMainThemeColors(theme, color);
 	const getComponent = () => {
 		switch (component) {
 			case 'Table':
-				return <AdmiralTable dimension={appearance} />;
+				return (
+					<AdmiralTable
+						dimension={appearance}
+						tableGroupActions={tableGroupActions}
+						tableRowDrag={tableRowDrag}
+						tableZebra={tableZebra}
+					/>
+				);
 			case 'Accordion':
 				return <AdmiralAccordion dimension={appearance} />;
 			case 'Dropdown':
