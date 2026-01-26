@@ -1,0 +1,37 @@
+@use '$shared/ui/typography' as typo;
+@use '$shared/ui/breakpoints' as breakpoints;
+
+.table-settings {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 321px;
+	height: 144px;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		gap: 12px;
+		width: 352px;
+		height: 90px;
+	}
+}
+
+.table-settings--dropdown {
+	min-width: 260px;
+}
+
+.table-settings-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	font-family: typo.$main-font-family;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 20px;
+	letter-spacing: 0;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		font-size: 16px;
+		line-height: 20px;
+	}
+}
