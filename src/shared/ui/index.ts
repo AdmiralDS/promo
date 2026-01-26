@@ -8,7 +8,7 @@ export {
 	default as CellContainer,
 	type CellContainerProps
 } from './atoms/cellContainer/CellContainer.svelte';
-export { default as Toggle } from './atoms/toggle/Toggle.svelte';
+export { default as ThemeToggle } from './atoms/themeToggle/ThemeToggle.svelte';
 export {
 	default as Color,
 	AVAILABLE_COLORS,

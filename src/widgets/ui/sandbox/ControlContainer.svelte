@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Toggle } from '$shared/ui';
+	import { ThemeToggle } from '$shared/ui';
 	import {
 		APPEARANCE_OPTIONS,
 		FIELD_COUNT_OPTIONS,
@@ -182,7 +182,7 @@
 			</MenuButton>
 		</div>
 		<div class="divider"></div>
-		<Toggle checked={isDarkTheme} onchange={handleThemeChange} />
+		<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
 	{:else if isCompact}
 		<div class="button-block-wrapper">
 			<MenuButton>
@@ -209,11 +209,11 @@
 			</MenuButton>
 		</div>
 		<div class="divider"></div>
-		<Toggle checked={isDarkTheme} onchange={handleThemeChange} />
+		<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
 	{:else}
 		<div class="theme-toggle text--Dark_Blue">
 			Настройки
-			<Toggle checked={isDarkTheme} onchange={handleThemeChange} />
+			<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
 		</div>
 
 		<SizeField selected={appearanceSelected} onSelectedChange={handleAppearanceChange} />

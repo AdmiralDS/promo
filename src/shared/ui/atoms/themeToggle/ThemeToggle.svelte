@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
-	export interface ToggleProps extends HTMLInputAttributes {
+	export interface ThemeToggleProps extends HTMLInputAttributes {
 		checked?: boolean;
 		value?: any;
 		disabled?: boolean;
@@ -15,7 +15,7 @@
 		children,
 		onchange,
 		...restAttributes
-	}: ToggleProps = $props();
+	}: ThemeToggleProps = $props();
 </script>
 
 <label class="toggle-label">

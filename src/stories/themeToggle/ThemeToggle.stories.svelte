@@ -1,10 +1,10 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import Toggle from './Toggle.svelte';
+	import ThemeToggle from './ThemeToggle.svelte';
 
 	const { Story } = defineMeta({
-		title: 'Example/Toggle',
-		component: Toggle,
+		title: 'Example/ThemeToggle',
+		component: ThemeToggle,
 		tags: ['autodocs']
 	});
 </script>

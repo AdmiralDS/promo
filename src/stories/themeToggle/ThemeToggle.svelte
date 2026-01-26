@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Toggle } from '../../shared/ui';
+	import { ThemeToggle } from '../../shared/ui';
 
 	let checked = $state(false);
 </script>
 
-<Toggle bind:checked />
+<ThemeToggle bind:checked />
 <p></p>
 <button
 	onclick={() => {
