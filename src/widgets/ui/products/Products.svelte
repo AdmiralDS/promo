@@ -29,7 +29,7 @@
 		{
 			id: 'autograph',
 			title: 'Госключ автограф',
-			description: `Платформа для работы<br/>с электронными документами и их<br/>подписания в рамках развития<br/>электронного 
+			description: `Платформа для работы<br/>с электронными документами и их<br/>подписания в рамках развития<br/>электронного
 			документооборота<br/>и электронной подписи`,
 			logoComponent: AutographLogo,
 			modalLogoHeight: { desktop: '52px', tablet: '47px', phone: '47px' },
@@ -63,7 +63,7 @@
 	} = $derived(products[productIndex]);
 </script>
 
-<div class="products-container">
+<div class="products-container background--Main_White">
 	<div class="main-container">
 		<div class="text-box">
 			<div class="text text--Dark_Blue">Помогаем командам</div>

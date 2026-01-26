@@ -3,19 +3,13 @@
 	import CellImg1 from './assets/cell_img_1_sm.png';
 	import CellImg1Big from './assets/cell_img_1_big.png';
 	import CellImg2Big from './assets/cell_img_2_big.png';
+	import { useMediaQuery, MOBILE_QUERY } from '$shared/ui/useMediaQuery';
 
+	const isMobileStore = useMediaQuery(MOBILE_QUERY);
 	let isMobile = $state(false);
 
-	$effect.pre(() => {
-		if (typeof window === 'undefined') return;
-
-		const media = window.matchMedia('(max-width: 767px)');
-		const update = () => (isMobile = media.matches);
-
-		update();
-		media.addEventListener('change', update);
-
-		return () => media.removeEventListener('change', update);
+	$effect(() => {
+		isMobile = $isMobileStore;
 	});
 
 	const cells = $state([

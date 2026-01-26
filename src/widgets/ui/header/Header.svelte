@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Button } from '$shared/ui';
-	import Figure2 from './fig2.svg?component';
+	// import Figure2 from './fig2.svg?component';
+	import LeftCloud from './leftCloud.svg?component';
+	import RightCloud from './rightCloud.svg?component';
 	import logo from './assets/logo.png';
 	import leftFigure from './assets/left.png';
 	import rightFigure from './assets/right.png';
@@ -11,9 +13,12 @@
 </script>
 
 <div class="header-container">
-	<div class="elipse1"></div>
-	<div class="figure2">
-		<Figure2 />
+	<!-- <div class="elipse1"></div> -->
+	<div class="cloud">
+		<LeftCloud />
+	</div>
+	<div class="cloud right">
+		<RightCloud />
 	</div>
 
 	<div class="main-container">

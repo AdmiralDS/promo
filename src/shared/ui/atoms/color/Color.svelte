@@ -1,7 +1,7 @@
 <script module lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	const AVAILABLE_COLORS = {
+	export const AVAILABLE_COLORS = {
 		blue: 'Blue',
 		azure: 'Azure',
 		purple: 'Purple',

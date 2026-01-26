@@ -9,13 +9,7 @@ export default defineConfig({
 		devtoolsJson(),
 		svg({
 			svgoOptions: {
-				plugins: [
-					{
-						name: 'preset-default',
-						// by default svgo removes the viewBox which prevents svg icons from scaling
-						params: { overrides: { removeViewBox: false } }
-					}
-				]
+				plugins: [{ name: 'preset-default' }, { name: 'removeViewBox' }, { name: 'removeTitle' }]
 			}
 		})
 	]
