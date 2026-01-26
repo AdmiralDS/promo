@@ -2,15 +2,17 @@ import * as React from 'react';
 
 import { Field, MenuActionsPanel, Option, Select, TextButton } from '@admiral-ds/react-ui';
 import type { ChangeEvent } from 'react';
-import type { Appearance } from '../types';
+import type { Appearance, DropdownMode } from '../types';
 
 const OPTIONS_CITIES = ['Архангельск', 'Барнаул', 'Воронеж', 'Москва', 'Нальчик'];
 
 export interface AdmiralDropdownProps {
 	dimension: Appearance;
+	dropdownMode?: DropdownMode;
 }
 
-export const AdmiralDropdown = ({ dimension }: AdmiralDropdownProps) => {
+export const AdmiralDropdown = ({ dimension, dropdownMode }: AdmiralDropdownProps) => {
+	void dropdownMode;
 	const restrictions: number[] = [];
 	const [selectValues, setSelectValues] = React.useState<string[]>([]);
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars

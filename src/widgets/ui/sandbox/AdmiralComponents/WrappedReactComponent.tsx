@@ -5,7 +5,7 @@ import { AdmiralAccordion } from './AdmiralAccordion';
 import { AdmiralDropdown } from './AdmiralDropdown';
 import { AdmiralModal } from './AdmiralModal';
 import { AdmiralTable } from './AdmiralTable';
-import type { Appearance } from '../types';
+import type { Appearance, DropdownMode } from '../types';
 
 export interface Props {
 	component: string;
@@ -16,6 +16,7 @@ export interface Props {
 	tableGroupActions?: boolean;
 	tableRowDrag?: boolean;
 	tableZebra?: boolean;
+	dropdownMode?: DropdownMode;
 }
 
 const setMainLightThemeColors = (mainColor: string) => {
@@ -146,7 +147,8 @@ export const WrappedReactComponent = ({
 	fieldCount,
 	tableGroupActions,
 	tableRowDrag,
-	tableZebra
+	tableZebra,
+	dropdownMode
 }: Props) => {
 	const colorTheme = setMainThemeColors(theme, color);
 	const getComponent = () => {
@@ -163,7 +165,12 @@ export const WrappedReactComponent = ({
 			case 'Accordion':
 				return <AdmiralAccordion dimension={appearance} />;
 			case 'Dropdown':
-				return <AdmiralDropdown dimension={appearance} />;
+				return (
+					<AdmiralDropdown
+						dimension={appearance}
+						dropdownMode={dropdownMode}
+					/>
+				);
 			case 'Modal':
 			default:
 				return (

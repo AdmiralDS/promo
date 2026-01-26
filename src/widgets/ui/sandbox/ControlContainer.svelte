@@ -6,6 +6,7 @@
 		getCircleFill,
 		SANDBOX_COLOR_OPTIONS,
 		type Appearance,
+		type DropdownMode,
 		type ThemeColor
 	} from './types';
 	import {
@@ -21,6 +22,7 @@
 	import SizeField from './widgets/SizeField.svelte';
 	import SettingsField from './widgets/SettingsField.svelte';
 	import ColorField from './widgets/ColorField.svelte';
+	import DropdownSettingsField from './widgets/DropdownSettingsField.svelte';
 	import TableSettingsField from './widgets/TableSettingsField.svelte';
 
 	export interface ControlContainerProps {
@@ -121,6 +123,8 @@
 		onChangeTableGroupActions?: (value: boolean) => void;
 		onChangeTableRowDrag?: (value: boolean) => void;
 		onChangeTableZebra?: (value: boolean) => void;
+		dropdownMode?: DropdownMode;
+		onChangeDropdownMode?: (value: DropdownMode) => void;
 	}
 
 	// Получаем пропсы через $props()
@@ -133,13 +137,15 @@
 		tableGroupActions = false,
 		tableRowDrag = false,
 		tableZebra = false,
+		dropdownMode = 'multiselect',
 		onChangeAppearance,
 		onChangeColor,
 		onChangeFieldCount,
 		onChangeTheme,
 		onChangeTableGroupActions,
 		onChangeTableRowDrag,
-		onChangeTableZebra
+		onChangeTableZebra,
+		onChangeDropdownMode
 	}: ControlContainerProps = $props();
 
 	const mobileQuery = useMediaQuery(MOBILE_QUERY);
@@ -161,6 +167,7 @@
 	const fieldCountSelected = $derived(toSelectedIndex(FIELD_COUNT_OPTIONS, fieldCount ?? 1));
 	const showFieldCount = $derived(activeComponent === 'Modal');
 	const showTableSettings = $derived(activeComponent === 'Table');
+	const showDropdownSettings = $derived(activeComponent === 'Dropdown');
 
 	function handleSelection<T>(options: readonly T[], index: number, onChange?: (value: T) => void) {
 		if (!onChange) return;
@@ -196,6 +203,9 @@
 
 	const handleTableZebraChange = (value: boolean) =>
 		handleToggleChange(value, onChangeTableZebra);
+
+	const handleDropdownModeChange = (value: DropdownMode) =>
+		onChangeDropdownMode?.(value);
 </script>
 
 <div class="control-container background--Main_White">
@@ -222,6 +232,16 @@
 						onChangeGroupActions={handleTableGroupActionsChange}
 						onChangeRowDrag={handleTableRowDragChange}
 						onChangeZebra={handleTableZebraChange}
+					/>
+				</MenuButton>
+			{:else if showDropdownSettings}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<DropdownSettingsField
+						slot="dropdown"
+						variant="dropdown"
+						selected={dropdownMode}
+						onSelectedChange={handleDropdownModeChange}
 					/>
 				</MenuButton>
 			{/if}
@@ -267,6 +287,16 @@
 						onChangeZebra={handleTableZebraChange}
 					/>
 				</MenuButton>
+			{:else if showDropdownSettings}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<DropdownSettingsField
+						slot="dropdown"
+						variant="dropdown"
+						selected={dropdownMode}
+						onSelectedChange={handleDropdownModeChange}
+					/>
+				</MenuButton>
 			{/if}
 
 			<MenuButton>
@@ -295,6 +325,11 @@
 				onChangeGroupActions={handleTableGroupActionsChange}
 				onChangeRowDrag={handleTableRowDragChange}
 				onChangeZebra={handleTableZebraChange}
+			/>
+		{:else if showDropdownSettings}
+			<DropdownSettingsField
+				selected={dropdownMode}
+				onSelectedChange={handleDropdownModeChange}
 			/>
 		{/if}
 	{/if}

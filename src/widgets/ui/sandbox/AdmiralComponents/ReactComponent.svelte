@@ -2,7 +2,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { renderer } from './Renderer';
 	import type { Props as RendererOptions } from './WrappedReactComponent';
-	import type { Appearance } from '../types';
+	import type { Appearance, DropdownMode } from '../types';
 
 	export let component = 'Modal';
 	export let isDarkTheme: boolean;
@@ -13,6 +13,7 @@
 	export let tableGroupActions = true;
 	export let tableRowDrag = true;
 	export let tableZebra = true;
+	export let dropdownMode: DropdownMode = 'multiselect';
 
 	let container: HTMLDivElement | undefined;
 	let root: ReturnType<typeof renderer> | null = null;
@@ -25,7 +26,8 @@
 		fieldCount,
 		tableGroupActions,
 		tableRowDrag,
-		tableZebra
+		tableZebra,
+		dropdownMode
 	});
 
 	let currentProps: RendererOptions = getRendererOptions(theme);
@@ -62,7 +64,8 @@
 			currentProps.fieldCount !== nextProps.fieldCount ||
 			currentProps.tableGroupActions !== nextProps.tableGroupActions ||
 			currentProps.tableRowDrag !== nextProps.tableRowDrag ||
-			currentProps.tableZebra !== nextProps.tableZebra;
+			currentProps.tableZebra !== nextProps.tableZebra ||
+			currentProps.dropdownMode !== nextProps.dropdownMode;
 
 		if (shouldUpdate) {
 			theme = newTheme;

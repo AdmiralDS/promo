@@ -3,7 +3,7 @@
 	import { MOBILE_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
 	import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
 	import ControlContainer from './ControlContainer.svelte';
-	import { type Appearance, type ThemeColor } from './types';
+import { type Appearance, type DropdownMode, type ThemeColor } from './types';
 
 	type SandboxConfig = {
 		appearance: Appearance;
@@ -13,6 +13,7 @@
 		tableGroupActions: boolean;
 		tableRowDrag: boolean;
 		tableZebra: boolean;
+		dropdownMode: DropdownMode;
 	};
 
 	const isMobileStore = useMediaQuery(MOBILE_QUERY);
@@ -48,7 +49,8 @@
 		isDarkTheme: false,
 		tableGroupActions: false,
 		tableRowDrag: false,
-		tableZebra: false
+		tableZebra: false,
+		dropdownMode: 'multiselect'
 	});
 
 	function updateConfig(patch: Partial<SandboxConfig>) {
@@ -82,6 +84,10 @@
 	function handleTableZebraChange(nextValue: boolean) {
 		updateConfig({ tableZebra: nextValue });
 	}
+
+	function handleDropdownModeChange(nextValue: DropdownMode) {
+		updateConfig({ dropdownMode: nextValue });
+	}
 </script>
 
 <div class="sandbox-container background--Main_White">
@@ -97,7 +103,7 @@
 		</div>
 		<div class="sandbox Sandbox_Gradient">
 			<div class="component-wrapper">
-				{#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}-${config.tableGroupActions}-${config.tableRowDrag}-${config.tableZebra}`}
+				{#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}-${config.tableGroupActions}-${config.tableRowDrag}-${config.tableZebra}-${config.dropdownMode}`}
 					<ReactComponent
 						component={activeComponent ?? 'Modal'}
 						appearance={config.appearance}
@@ -107,6 +113,7 @@
 						tableGroupActions={config.tableGroupActions}
 						tableRowDrag={config.tableRowDrag}
 						tableZebra={config.tableZebra}
+						dropdownMode={config.dropdownMode}
 					/>
 				{/key}
 			</div>
@@ -119,6 +126,7 @@
 				tableGroupActions={config.tableGroupActions}
 				tableRowDrag={config.tableRowDrag}
 				tableZebra={config.tableZebra}
+				dropdownMode={config.dropdownMode}
 				onChangeAppearance={handleAppearanceChange}
 				onChangeColor={handleColorChange}
 				onChangeFieldCount={handleFieldCountChange}
@@ -126,6 +134,7 @@
 				onChangeTableGroupActions={handleTableGroupActionsChange}
 				onChangeTableRowDrag={handleTableRowDragChange}
 				onChangeTableZebra={handleTableZebraChange}
+				onChangeDropdownMode={handleDropdownModeChange}
 			/>
 		</div>
 	</div>
