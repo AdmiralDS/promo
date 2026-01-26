@@ -1,5 +1,6 @@
 @use '$shared/ui/breakpoints' as breakpoints;
 @use '$shared/ui/colors' as colors;
+@use '$shared/ui/shadow' as shadow;
 
 .menu-button {
 	position: relative;
@@ -52,6 +53,10 @@ button {
 	bottom: calc(100% + 4px);
 	left: 0;
 	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	@include shadow.shadow;
 
 	@include breakpoints.respond-until(breakpoints.$tablet) {
 		border-radius: 32px;
