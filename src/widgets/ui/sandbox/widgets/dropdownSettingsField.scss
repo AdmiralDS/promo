@@ -1,5 +1,4 @@
 @use '$shared/ui/typography' as typo;
-@use '$shared/ui/breakpoints' as breakpoints;
 
 .dropdown-settings {
 	display: flex;
@@ -14,19 +13,9 @@
 	min-width: 260px;
 }
 
-.dropdown-settings-row {
+.dropdown-settings-control {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 16px;
-	font-family: typo.$main-font-family;
-	font-weight: 400;
-	font-size: 20px;
-	line-height: 20px;
-	letter-spacing: 0;
-
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		font-size: 16px;
-		line-height: 20px;
-	}
 }

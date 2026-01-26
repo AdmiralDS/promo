@@ -43,18 +43,27 @@
 </script>
 
 <div class={`table-settings ${variant === 'dropdown' ? 'table-settings--dropdown' : ''}`.trim()}>
-	<div class="table-settings-row text--Dark_Blue">
-		<span>Групповые действия</span>
-		<Toggle size={toggleSize} checked={groupActions} onchange={handleGroupActionsChange} />
-	</div>
-	<div class="table-settings-row text--Dark_Blue">
-		<span>Перетаскивание строк</span>
-		<Toggle size={toggleSize} checked={rowDrag} onchange={handleRowDragChange} />
-	</div>
-	<div class="table-settings-row text--Dark_Blue">
-		<span>Зебра</span>
-		<Toggle size={toggleSize} checked={zebra} onchange={handleZebraChange} />
-	</div>
+	<Toggle
+		class="table-settings-control text--Dark_Blue"
+		size={toggleSize}
+		checked={groupActions}
+		label="Групповые действия"
+		onchange={handleGroupActionsChange}
+	/>
+	<Toggle
+		class="table-settings-control text--Dark_Blue"
+		size={toggleSize}
+		checked={rowDrag}
+		label="Перетаскивание строк"
+		onchange={handleRowDragChange}
+	/>
+	<Toggle
+		class="table-settings-control text--Dark_Blue"
+		size={toggleSize}
+		checked={zebra}
+		label="Зебра"
+		onchange={handleZebraChange}
+	/>
 </div>
 
 <style lang="scss">

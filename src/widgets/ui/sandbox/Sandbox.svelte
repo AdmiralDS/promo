@@ -3,7 +3,7 @@
 	import { MOBILE_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
 	import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
 	import ControlContainer from './ControlContainer.svelte';
-import { type Appearance, type DropdownMode, type ThemeColor } from './types';
+	import { type Appearance, type DropdownMode, type ThemeColor } from './types';
 
 	type SandboxConfig = {
 		appearance: Appearance;

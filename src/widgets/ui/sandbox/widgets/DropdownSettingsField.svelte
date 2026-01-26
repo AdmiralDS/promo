@@ -27,24 +27,22 @@
 <fieldset
 	class={`dropdown-settings ${variant === 'dropdown' ? 'dropdown-settings--dropdown' : ''}`.trim()}
 >
-	<div class="dropdown-settings-row text--Dark_Blue">
-		<span>Селект</span>
-		<RadioButton
-			size={radioSize}
-			name="dropdown-mode"
-			checked={selected === 'select'}
-			onchange={() => handleChange('select')}
-		/>
-	</div>
-	<div class="dropdown-settings-row text--Dark_Blue">
-		<span>Мультиселект</span>
-		<RadioButton
-			size={radioSize}
-			name="dropdown-mode"
-			checked={selected === 'multiselect'}
-			onchange={() => handleChange('multiselect')}
-		/>
-	</div>
+	<RadioButton
+		class="dropdown-settings-control text--Dark_Blue"
+		size={radioSize}
+		name="dropdown-mode"
+		label="Селект"
+		checked={selected === 'select'}
+		onchange={() => handleChange('select')}
+	/>
+	<RadioButton
+		class="dropdown-settings-control text--Dark_Blue"
+		size={radioSize}
+		name="dropdown-mode"
+		label="Мультиселект"
+		checked={selected === 'multiselect'}
+		onchange={() => handleChange('multiselect')}
+	/>
 </fieldset>
 
 <style lang="scss">
