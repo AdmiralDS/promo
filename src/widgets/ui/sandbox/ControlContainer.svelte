@@ -24,6 +24,10 @@
 
 	export interface ControlContainerProps {
 		/**
+		 * Название компонента, выбранного в песочнице.
+		 */
+		activeComponent?: string;
+		/**
 		 * Внешний вид компонента, отображаемого в песочнице.
 		 * Определяет размер и стилизацию демонстрируемого компонента.
 		 *
@@ -113,6 +117,7 @@
 
 	// Получаем пропсы через $props()
 	let {
+		activeComponent = 'Modal',
 		appearance = 'm' as Appearance,
 		color = 'blue' as ThemeColor,
 		fieldCount = 3,
@@ -140,6 +145,7 @@
 	const appearanceSelected = $derived(toSelectedIndex(APPEARANCE_OPTIONS, appearance));
 	const colorSelected = $derived(toSelectedIndex(SANDBOX_COLOR_OPTIONS, color));
 	const fieldCountSelected = $derived(toSelectedIndex(FIELD_COUNT_OPTIONS, fieldCount ?? 1));
+	const showFieldCount = $derived(activeComponent === 'Modal');
 
 	function handleSelection<T>(options: readonly T[], index: number, onChange?: (value: T) => void) {
 		if (!onChange) return;
@@ -167,14 +173,16 @@
 <div class="control-container background--Main_White">
 	{#if isMobile}
 		<div class="button-block-wrapper">
-			<MenuButton>
-				<SettingsIcon slot="icon" />
-				<SettingsField
-					slot="dropdown"
-					selected={fieldCountSelected}
-					onSelectedChange={handleFieldCountChange}
-				/>
-			</MenuButton>
+			{#if showFieldCount}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<SettingsField
+						slot="dropdown"
+						selected={fieldCountSelected}
+						onSelectedChange={handleFieldCountChange}
+					/>
+				</MenuButton>
+			{/if}
 
 			<MenuButton>
 				<ColorIcon slot="icon" fill={getCircleFill(color)} />
@@ -194,14 +202,16 @@
 				/>
 			</MenuButton>
 
-			<MenuButton>
-				<SettingsIcon slot="icon" />
-				<SettingsField
-					slot="dropdown"
-					selected={fieldCountSelected}
-					onSelectedChange={handleFieldCountChange}
-				/>
-			</MenuButton>
+			{#if showFieldCount}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<SettingsField
+						slot="dropdown"
+						selected={fieldCountSelected}
+						onSelectedChange={handleFieldCountChange}
+					/>
+				</MenuButton>
+			{/if}
 
 			<MenuButton>
 				<ColorIcon slot="icon" fill={getCircleFill(color)} />
@@ -218,7 +228,9 @@
 
 		<SizeField selected={appearanceSelected} onSelectedChange={handleAppearanceChange} />
 		<ColorField selected={colorSelected} onSelectedChange={handleColorChange} />
-		<SettingsField selected={fieldCountSelected} onSelectedChange={handleFieldCountChange} />
+		{#if showFieldCount}
+			<SettingsField selected={fieldCountSelected} onSelectedChange={handleFieldCountChange} />
+		{/if}
 	{/if}
 </div>
 

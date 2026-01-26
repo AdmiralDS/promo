@@ -90,6 +90,7 @@
 				{/key}
 			</div>
 			<ControlContainer
+				activeComponent={activeComponent ?? 'Modal'}
 				appearance={config.appearance}
 				color={config.color}
 				fieldCount={config.fieldCount}
