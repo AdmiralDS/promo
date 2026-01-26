@@ -54,6 +54,7 @@
   "dependencies": {
     "@admiral-ds/fonts": "^2.0.0",
     "@admiral-ds/react-ui": "^8.55.0",
+    "@lottiefiles/dotlottie-svelte": "^0.8.13",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   }
