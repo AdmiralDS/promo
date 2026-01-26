@@ -1,10 +1,33 @@
 @use '$shared/ui/colors' as colors;
+@use '$shared/ui/breakpoints' as breakpoints;
+@use '$shared/ui/typography' as typo;
 
 .toggle-label {
 	position: relative;
 	display: inline-flex;
 	align-items: center;
 	cursor: pointer;
+	gap: 16px;
+}
+
+.toggle-label-text {
+	font-family: typo.$main-font-family;
+	font-weight: 400;
+	color: inherit;
+	flex: 1;
+	font-size: 20px;
+	line-height: 20px;
+	order: 1;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		font-size: 16px;
+		line-height: 20px;
+	}
+}
+
+.toggle--with-text {
+	width: 100%;
+	justify-content: space-between;
 }
 
 .toggle-input {
@@ -17,6 +40,7 @@
 	overflow: hidden;
 	clip: rect(0 0 0 0);
 	white-space: nowrap;
+	order: 0;
 }
 
 .toggle-track {
@@ -26,6 +50,7 @@
 	border-radius: 128px;
 	position: relative;
 	transition: all 0.2s ease;
+	order: 2;
 }
 
 .toggle-thumb {

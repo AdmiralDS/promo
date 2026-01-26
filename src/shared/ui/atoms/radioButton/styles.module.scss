@@ -1,4 +1,6 @@
 @use '$shared/ui/colors' as colors;
+@use '$shared/ui/breakpoints' as breakpoints;
+@use '$shared/ui/typography' as typo;
 
 .radio-label {
 	position: relative;
@@ -6,6 +8,7 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+	gap: 16px;
 }
 
 .radio-input {
@@ -40,6 +43,25 @@
 .radio-input:disabled + .radio-visual {
 	opacity: 0.6;
 	cursor: not-allowed;
+}
+
+.radio-label-text {
+	font-family: typo.$main-font-family;
+	font-weight: 400;
+	color: inherit;
+	flex: 1;
+	font-size: 20px;
+	line-height: 20px;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		font-size: 16px;
+		line-height: 20px;
+	}
+}
+
+.radio--with-text {
+	width: 100%;
+	justify-content: space-between;
 }
 
 .radio--sm .radio-visual {

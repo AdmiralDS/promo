@@ -6,36 +6,48 @@
 		value?: any;
 		disabled?: boolean;
 		size?: 'md' | 'sm';
+		label?: string;
 	}
 </script>
 
 <script lang="ts">
 	let {
-		checked = $bindable(),
+		checked = false,
 		disabled = false,
 		size = 'md',
+		label,
 		class: className = '',
-		children,
 		onchange,
 		...restAttributes
 	}: ToggleProps = $props();
 
-	const labelClass = $derived(`toggle-label toggle--${size} ${className}`.trim());
+	const hasText = $derived(Boolean(label));
+	const labelClass = $derived(
+		`toggle-label toggle--${size} ${hasText ? 'toggle--with-text' : ''} ${className}`.trim()
+	);
+
+	const handleChange = (event: Event) => {
+		onchange?.(event as Event & { currentTarget: HTMLInputElement });
+	};
 </script>
 
 <label class={labelClass}>
 	<input
 		{...restAttributes}
 		type="checkbox"
-		bind:checked
+		{checked}
 		{disabled}
 		class="toggle-input"
-		onchange={onchange}
+		onchange={handleChange}
 	/>
 	<span class="toggle-track">
 		<span class="toggle-thumb"></span>
 	</span>
-	{@render children?.()}
+	{#if label}
+		<span class="toggle-label-text">
+			{label}
+		</span>
+	{/if}
 </label>
 
 <style lang="scss">
