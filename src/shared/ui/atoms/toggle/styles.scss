@@ -1,0 +1,67 @@
+@use '$shared/ui/colors' as colors;
+
+.toggle-label {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.toggle-input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+.toggle-track {
+	width: 58px;
+	height: 32px;
+	background: var(--color-Snow_Gray);
+	border-radius: 128px;
+	position: relative;
+	transition: all 0.2s ease;
+}
+
+.toggle-thumb {
+	width: 26px;
+	height: 26px;
+	background: var(--color-Main_White);
+	border-radius: 32px;
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	transition: transform 0.2s ease;
+}
+
+.toggle-input:checked + .toggle-track .toggle-thumb {
+	transform: translateX(26px);
+}
+
+.toggle--sm .toggle-track {
+	width: 40px;
+	height: 22px;
+	border-radius: 90px;
+}
+
+.toggle--sm .toggle-thumb {
+	width: 18px;
+	height: 18px;
+	border-radius: 22px;
+	top: 2px;
+	left: 2px;
+}
+
+.toggle--sm .toggle-input:checked + .toggle-track .toggle-thumb {
+	transform: translateX(18px);
+}
+
+.toggle-input:disabled + .toggle-track {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
