@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import {
-  Button,
+	Button,
 	GroupActionsPane,
 	PaginationOne,
 	PaneSeparator,
@@ -40,28 +40,28 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-  padding: 0 20px;
+	padding: 0 20px;
 	background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
 `;
 
 const SettingsMenu = styled.div`
-  width: 320px;
-  padding: 20px;
-  ${typography['Body/Body 2 Long']}
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+	width: 320px;
+	padding: 20px;
+	${typography['Body/Body 2 Long']}
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 `;
 
 const ButtonWrapper = styled.div`
-  display: flex;
-  margin-top: 28px;
-  & > button:first-child {
-    margin-right: 8px;
-  }
+	display: flex;
+	margin-top: 28px;
+	& > button:first-child {
+		margin-right: 8px;
+	}
 `;
 
-type RowData = TableRow & {
+type Data = {
 	transfer_type: string;
 	transfer_date: string;
 	transfer_amount: React.ReactNode;
@@ -70,9 +70,8 @@ type RowData = TableRow & {
 
 const numberFormatter = new Intl.NumberFormat();
 
-const rowList: RowData[] = [
+const dataList: Data[] = [
 	{
-		id: '0001',
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
 		transfer_amount: (
@@ -83,7 +82,6 @@ const rowList: RowData[] = [
 		transfer_status: 'Выполнено'
 	},
 	{
-		id: '0002',
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
 		transfer_amount: (
@@ -94,7 +92,6 @@ const rowList: RowData[] = [
 		transfer_status: 'В ожиданиии'
 	},
 	{
-		id: '0003',
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
 		transfer_amount: (
@@ -105,7 +102,6 @@ const rowList: RowData[] = [
 		transfer_status: 'Выполнено'
 	},
 	{
-		id: '0004',
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
 		transfer_amount: (
@@ -116,7 +112,6 @@ const rowList: RowData[] = [
 		transfer_status: 'Выполнено'
 	},
 	{
-		id: '0005',
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
 		transfer_amount: (
@@ -127,7 +122,6 @@ const rowList: RowData[] = [
 		transfer_status: 'Выполнено'
 	},
 	{
-		id: '0006',
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
 		transfer_amount: (
@@ -138,7 +132,6 @@ const rowList: RowData[] = [
 		transfer_status: 'Выполнено'
 	},
 	{
-		id: '0007',
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
 		transfer_amount: (
@@ -149,7 +142,6 @@ const rowList: RowData[] = [
 		transfer_status: 'В ожиданиии'
 	},
 	{
-		id: '0008',
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
 		transfer_amount: (
@@ -160,7 +152,6 @@ const rowList: RowData[] = [
 		transfer_status: 'Выполнено'
 	},
 	{
-		id: '0009',
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
 		transfer_amount: (
@@ -171,6 +162,18 @@ const rowList: RowData[] = [
 		transfer_status: 'В ожиданиии'
 	}
 ];
+
+type RowData = TableRow & Data;
+
+const array = new Array(256).fill({});
+
+const getRndInteger = (min: number, max: number) => {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+const rowList: RowData[] = array.map((_, index) => {
+	return { id: String(index).padStart(4, '0'), ...dataList[getRndInteger(0, 8)] };
+});
 
 const columnList: Column[] = [
 	{
@@ -196,15 +199,20 @@ const columnList: Column[] = [
 ];
 
 const columns: PaneColumn[] = [
-  { id: 'transfer_type', title: 'Тип сделки', visible: true },
-  { id: 'transfer_date', title: 'Дата сделки', visible: true },
-  { id: 'transfer_amount', title: 'Сумма', visible: true },
-  { id: 'transfer_status', title: 'Статус', visible: true },
+	{ id: 'transfer_type', title: 'Тип сделки', visible: true },
+	{ id: 'transfer_date', title: 'Дата сделки', visible: true },
+	{ id: 'transfer_amount', title: 'Сумма', visible: true },
+	{ id: 'transfer_status', title: 'Статус', visible: true }
 ];
 
 export const AdmiralTable = ({ dimension }: AdmiralTableProps) => {
+	const [pageSize, setPageSize] = React.useState(8);
+	const [page, setPage] = React.useState(1);
 	const [cols, setCols] = React.useState(columnList);
-	const [rows, setRows] = React.useState(rowList);
+	const [rows, setRows] = React.useState(rowList.slice(0, pageSize));
+
+	const pageSizes = [8, 20, 50, 100, 200];
+	const totalElements = 256;
 
 	const handleResize = ({ name, width }: { name: string; width: string }) => {
 		const newCols = cols.map((col) => (col.name === name ? { ...col, width } : col));
@@ -231,47 +239,41 @@ export const AdmiralTable = ({ dimension }: AdmiralTableProps) => {
 
 	const handleRowDragEnd = (rowId: string) => {
 		const newIndex = rows.findIndex((row) => row.id === rowId);
-		// eslint-disable-next-line no-console
+
 		console.log('After drag&drop row with id ' + rowId + ' has index ' + newIndex + ' in rowList');
 	};
-	const [pageSize, setPageSize] = React.useState(8);
-	const [page, setPage] = React.useState(1);
-	const pageSizes = [8, 20, 50, 100, 200];
-	const totalElements = 100;
 
 	const leftButtonProps = { 'data-testid': 'pagination-left-button' };
 	const rightButtonProps = { 'data-testid': 'pagination-right-button' };
 
-  const [columnsVisibility, setColumnsVisibility] = useState(columns);
-  const [searchValue, setSearchValue] = useState<string>('');
+	const [columnsVisibility, setColumnsVisibility] = useState(columns);
+	const [searchValue, setSearchValue] = useState<string>('');
 
-  const handleChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  };
+	const handleChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchValue(e.target.value);
+	};
 
-  const handleSearchEnter = () => {
-    // eslint-disable-next-line no-console
-    console.log('Search input opened');
-  };
+	const handleSearchEnter = () => {
+		console.log('Search input opened');
+	};
 
-  const handleSearchLeave = () => {
-    // eslint-disable-next-line no-console
-    console.log('Search input left');
-  };
+	const handleSearchLeave = () => {
+		console.log('Search input left');
+	};
 
-  const renderSettingsMenu = ({ closeMenu }: PaneMenuProps) => (
-    <SettingsMenu>
-      Здесь могут быть опции с настройками и кнопки для применения/сбрасывания настроек
-      <ButtonWrapper>
-        <Button dimension="s" onClick={closeMenu}>
-          Сохранить
-        </Button>
-        <Button dimension="s" onClick={closeMenu}>
-          Очистить
-        </Button>
-      </ButtonWrapper>
-    </SettingsMenu>
-  );
+	const renderSettingsMenu = ({ closeMenu }: PaneMenuProps) => (
+		<SettingsMenu>
+			Здесь могут быть опции с настройками и кнопки для применения/сбрасывания настроек
+			<ButtonWrapper>
+				<Button dimension="s" onClick={closeMenu}>
+					Сохранить
+				</Button>
+				<Button dimension="s" onClick={closeMenu}>
+					Очистить
+				</Button>
+			</ButtonWrapper>
+		</SettingsMenu>
+	);
 
 	return (
 		<Wrapper>
@@ -296,6 +298,7 @@ export const AdmiralTable = ({ dimension }: AdmiralTableProps) => {
 				<TextButton text={'Отменить (2)'} />
 			</GroupActionsPane>
 			<Table
+				style={{ height: '360px' }}
 				dimension={dimension}
 				rowList={rows}
 				columnList={cols}
@@ -308,6 +311,9 @@ export const AdmiralTable = ({ dimension }: AdmiralTableProps) => {
 			/>
 			<StyledPaginationOne
 				onChange={({ page, pageSize }) => {
+					const currentCountRow = (page - 1) * pageSize;
+					setRows(rowList.slice(currentCountRow, currentCountRow + pageSize));
+
 					setPage(page);
 					setPageSize(pageSize);
 				}}
