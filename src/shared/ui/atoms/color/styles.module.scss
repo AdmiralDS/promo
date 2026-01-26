@@ -17,6 +17,8 @@
 	border-radius: 50%;
 	width: 48px;
 	height: 48px;
+	outline: 2px solid transparent;
+	outline-offset: 2px;
 
 	@include breakpoints.respond-between(breakpoints.$phone, breakpoints.$tablet) {
 		width: 32px;
@@ -28,9 +30,17 @@
 	}
 
 	&:focus,
-	&:active {
+	&[aria-selected='true'] {
 		opacity: 1;
 		transition: all 0.2s ease;
+	}
+
+	&:hover {
+		outline-color: var(--color-Light_Blue, colors.color('Light_Grey_Hover'));
+	}
+
+	&[aria-selected='true'] {
+		outline-color: var(--color-Primary_Blue, colors.color('Primary_Blue'));
 	}
 }
 
