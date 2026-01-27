@@ -1,10 +1,8 @@
 <script module lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
-	export interface ToggleProps extends Omit<HTMLInputAttributes, 'size'> {
+	export interface RadioButtonProps extends Omit<HTMLInputAttributes, 'size'> {
 		checked?: boolean;
-		value?: any;
-		disabled?: boolean;
 		size?: 'md' | 'sm';
 		label?: string;
 	}
@@ -19,12 +17,13 @@
 		class: className = '',
 		onchange,
 		...restAttributes
-	}: ToggleProps = $props();
+	}: RadioButtonProps = $props();
 
 	const hasText = $derived(Boolean(label));
 	const labelClass = $derived(
-		`toggle-label toggle--${size} ${hasText ? 'toggle--with-text' : ''} ${className}`.trim()
+		`radio-label radio--${size} ${hasText ? 'radio--with-text' : ''} ${className}`.trim()
 	);
+	const radioClasses = $derived('radio-input');
 
 	const handleChange = (event: Event) => {
 		onchange?.(event as Event & { currentTarget: HTMLInputElement });
@@ -32,24 +31,22 @@
 </script>
 
 <label class={labelClass}>
-	<input
-		{...restAttributes}
-		type="checkbox"
-		{checked}
-		{disabled}
-		class="toggle-input"
-		onchange={handleChange}
-	/>
-	<span class="toggle-track">
-		<span class="toggle-thumb"></span>
-	</span>
 	{#if label}
-		<span class="toggle-label-text">
+		<span class="radio-label-text">
 			{label}
 		</span>
 	{/if}
+	<input
+		class={radioClasses}
+		type="radio"
+		{checked}
+		{disabled}
+		onchange={handleChange}
+		{...restAttributes}
+	/>
+	<span class="radio-visual"></span>
 </label>
 
 <style lang="scss">
-	@use 'styles';
+	@use 'styles.module';
 </style>

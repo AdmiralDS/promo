@@ -22,6 +22,9 @@ import { useState } from 'react';
 
 export interface AdmiralTableProps {
 	dimension: Appearance;
+	tableGroupActions?: boolean;
+	tableRowDrag?: boolean;
+	tableZebra?: boolean;
 }
 
 type AdmiralTheme = DefaultTheme & { color: Record<string, string> };
@@ -205,7 +208,15 @@ const columns: PaneColumn[] = [
 	{ id: 'transfer_status', title: 'Статус', visible: true }
 ];
 
-export const AdmiralTable = ({ dimension }: AdmiralTableProps) => {
+export const AdmiralTable = ({
+	dimension,
+	tableGroupActions,
+	tableRowDrag,
+	tableZebra
+}: AdmiralTableProps) => {
+	void tableGroupActions;
+	void tableRowDrag;
+	void tableZebra;
 	const [pageSize, setPageSize] = React.useState(8);
 	const [page, setPage] = React.useState(1);
 	const [cols, setCols] = React.useState(columnList);

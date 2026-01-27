@@ -2,7 +2,12 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { renderer } from './Renderer';
 	import type { Props as RendererOptions } from './WrappedReactComponent';
-	import type { Appearance } from '../types';
+	import type {
+		AccordionArrowPosition,
+		AccordionLineCount,
+		Appearance,
+		DropdownMode
+	} from '../types';
 
 	export let component = 'Modal';
 	export let isDarkTheme: boolean;
@@ -10,6 +15,12 @@
 	export let appearance: Appearance = 'm';
 	export let color: string = 'blue';
 	export let fieldCount = 2;
+	export let tableGroupActions = true;
+	export let tableRowDrag = true;
+	export let tableZebra = true;
+	export let dropdownMode: DropdownMode = 'multiselect';
+	export let accordionArrowPosition: AccordionArrowPosition = 'left';
+	export let accordionLineCount: AccordionLineCount = 4;
 
 	let container: HTMLDivElement | undefined;
 	let root: ReturnType<typeof renderer> | null = null;
@@ -19,7 +30,13 @@
 		theme: themeValue,
 		appearance,
 		color,
-		fieldCount
+		fieldCount,
+		tableGroupActions,
+		tableRowDrag,
+		tableZebra,
+		dropdownMode,
+		accordionArrowPosition,
+		accordionLineCount
 	});
 
 	let currentProps: RendererOptions = getRendererOptions(theme);
@@ -53,7 +70,13 @@
 			currentProps.theme !== nextProps.theme ||
 			currentProps.appearance !== nextProps.appearance ||
 			currentProps.color !== nextProps.color ||
-			currentProps.fieldCount !== nextProps.fieldCount;
+			currentProps.fieldCount !== nextProps.fieldCount ||
+			currentProps.tableGroupActions !== nextProps.tableGroupActions ||
+			currentProps.tableRowDrag !== nextProps.tableRowDrag ||
+			currentProps.tableZebra !== nextProps.tableZebra ||
+			currentProps.dropdownMode !== nextProps.dropdownMode ||
+			currentProps.accordionArrowPosition !== nextProps.accordionArrowPosition ||
+			currentProps.accordionLineCount !== nextProps.accordionLineCount;
 
 		if (shouldUpdate) {
 			theme = newTheme;

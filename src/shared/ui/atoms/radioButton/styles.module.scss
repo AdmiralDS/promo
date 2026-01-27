@@ -1,0 +1,76 @@
+@use '$shared/ui/colors' as colors;
+@use '$shared/ui/breakpoints' as breakpoints;
+@use '$shared/ui/typography' as typo;
+
+.radio-label {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	gap: 16px;
+}
+
+.radio-input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+.radio-visual {
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 128px;
+	border: 3px solid var(--color-Primary_Blue, colors.color('Primary_Blue'));
+	background: transparent;
+	transition: border-width 0.2s ease;
+}
+
+.radio-input:checked + .radio-visual {
+	border-width: 10px;
+}
+
+.radio-input:disabled + .radio-visual {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.radio-label-text {
+	font-family: typo.$main-font-family;
+	font-weight: 400;
+	color: inherit;
+	flex: 1;
+	font-size: 20px;
+	line-height: 20px;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		font-size: 16px;
+		line-height: 20px;
+	}
+}
+
+.radio--with-text {
+	width: 100%;
+	justify-content: space-between;
+}
+
+.radio--sm .radio-visual {
+	width: 22px;
+	height: 22px;
+	border-radius: 88px;
+	border-width: 2px;
+}
+
+.radio--sm .radio-input:checked + .radio-visual {
+	border-width: 6px;
+}

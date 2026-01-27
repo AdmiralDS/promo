@@ -1,0 +1,22 @@
+@use '$shared/ui/typography' as typo;
+
+.dropdown-settings {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.dropdown-settings--dropdown {
+	min-width: 260px;
+  width: 100%;
+}
+
+.dropdown-settings-control {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}

@@ -2,6 +2,9 @@ import { AVAILABLE_COLORS } from '$shared/ui';
 
 export const APPEARANCE_OPTIONS = ['s', 'm', 'xl'] as const;
 export const FIELD_COUNT_OPTIONS = [1, 2, 3] as const;
+export const DROPDOWN_MODE_OPTIONS = ['select', 'multiselect'] as const;
+export const ACCORDION_ARROW_POSITION_OPTIONS = ['left', 'right'] as const;
+export const ACCORDION_LINE_COUNT_OPTIONS = [1, 2, 3, 4] as const;
 
 /**
  * Внешний вид компонента в песочнице.
@@ -12,6 +15,9 @@ export const FIELD_COUNT_OPTIONS = [1, 2, 3] as const;
  * - 'xl' — большой размер
  */
 export type Appearance = (typeof APPEARANCE_OPTIONS)[number];
+export type DropdownMode = (typeof DROPDOWN_MODE_OPTIONS)[number];
+export type AccordionArrowPosition = (typeof ACCORDION_ARROW_POSITION_OPTIONS)[number];
+export type AccordionLineCount = (typeof ACCORDION_LINE_COUNT_OPTIONS)[number];
 
 export type ThemeColor = keyof typeof AVAILABLE_COLORS;
 

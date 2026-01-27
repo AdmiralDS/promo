@@ -1,11 +1,16 @@
 <script lang="ts">
-	import { Toggle } from '$shared/ui';
+	import { ThemeToggle } from '$shared/ui';
 	import {
+		ACCORDION_ARROW_POSITION_OPTIONS,
+		ACCORDION_LINE_COUNT_OPTIONS,
 		APPEARANCE_OPTIONS,
 		FIELD_COUNT_OPTIONS,
 		getCircleFill,
 		SANDBOX_COLOR_OPTIONS,
+		type AccordionArrowPosition,
+		type AccordionLineCount,
 		type Appearance,
+		type DropdownMode,
 		type ThemeColor
 	} from './types';
 	import {
@@ -18,11 +23,20 @@
 	import SizeIcon from './Size.svelte';
 	import SettingsIcon from './Settings.svelte';
 	import ColorIcon from './Color.svelte';
+	import LineCountIcon from './LineCountIcon.svelte';
 	import SizeField from './widgets/SizeField.svelte';
 	import SettingsField from './widgets/SettingsField.svelte';
 	import ColorField from './widgets/ColorField.svelte';
+	import DropdownSettingsField from './widgets/DropdownSettingsField.svelte';
+	import TableSettingsField from './widgets/TableSettingsField.svelte';
+	import AccordionArrowSettingsField from './widgets/AccordionArrowSettingsField.svelte';
+	import AccordionLineCountSettingsField from './widgets/AccordionLineCountSettingsField.svelte';
 
 	export interface ControlContainerProps {
+		/**
+		 * Название компонента, выбранного в песочнице.
+		 */
+		activeComponent?: string;
 		/**
 		 * Внешний вид компонента, отображаемого в песочнице.
 		 * Определяет размер и стилизацию демонстрируемого компонента.
@@ -109,18 +123,44 @@
 		 * Callback для переключения темы песочницы.
 		 */
 		onChangeTheme?: (value: boolean) => void;
+
+		tableGroupActions?: boolean;
+		tableRowDrag?: boolean;
+		tableZebra?: boolean;
+		onChangeTableGroupActions?: (value: boolean) => void;
+		onChangeTableRowDrag?: (value: boolean) => void;
+		onChangeTableZebra?: (value: boolean) => void;
+		dropdownMode?: DropdownMode;
+		onChangeDropdownMode?: (value: DropdownMode) => void;
+		accordionArrowPosition?: AccordionArrowPosition;
+		accordionLineCount?: AccordionLineCount;
+		onChangeAccordionArrowPosition?: (value: AccordionArrowPosition) => void;
+		onChangeAccordionLineCount?: (value: AccordionLineCount) => void;
 	}
 
 	// Получаем пропсы через $props()
 	let {
+		activeComponent = 'Modal',
 		appearance = 'm' as Appearance,
 		color = 'blue' as ThemeColor,
 		fieldCount = 3,
 		isDarkTheme = false,
+		tableGroupActions = false,
+		tableRowDrag = false,
+		tableZebra = false,
+		dropdownMode = 'multiselect',
+		accordionArrowPosition = 'left',
+		accordionLineCount = 4,
 		onChangeAppearance,
 		onChangeColor,
 		onChangeFieldCount,
-		onChangeTheme
+		onChangeTheme,
+		onChangeTableGroupActions,
+		onChangeTableRowDrag,
+		onChangeTableZebra,
+		onChangeDropdownMode,
+		onChangeAccordionArrowPosition,
+		onChangeAccordionLineCount
 	}: ControlContainerProps = $props();
 
 	const mobileQuery = useMediaQuery(MOBILE_QUERY);
@@ -140,6 +180,16 @@
 	const appearanceSelected = $derived(toSelectedIndex(APPEARANCE_OPTIONS, appearance));
 	const colorSelected = $derived(toSelectedIndex(SANDBOX_COLOR_OPTIONS, color));
 	const fieldCountSelected = $derived(toSelectedIndex(FIELD_COUNT_OPTIONS, fieldCount ?? 1));
+	const accordionArrowPositionSelected = $derived(
+		toSelectedIndex(ACCORDION_ARROW_POSITION_OPTIONS, accordionArrowPosition)
+	);
+	const accordionLineCountSelected = $derived(
+		toSelectedIndex(ACCORDION_LINE_COUNT_OPTIONS, accordionLineCount)
+	);
+	const showFieldCount = $derived(activeComponent === 'Modal');
+	const showTableSettings = $derived(activeComponent === 'Table');
+	const showDropdownSettings = $derived(activeComponent === 'Dropdown');
+	const showAccordionSettings = $derived(activeComponent === 'Accordion');
 
 	function handleSelection<T>(options: readonly T[], index: number, onChange?: (value: T) => void) {
 		if (!onChange) return;
@@ -162,27 +212,97 @@
 		const target = event.target as HTMLInputElement;
 		onChangeTheme?.(target?.checked);
 	};
+
+	const handleToggleChange = (value: boolean, onChange?: (nextValue: boolean) => void) => {
+		onChange?.(value);
+	};
+
+	const handleTableGroupActionsChange = (value: boolean) =>
+		handleToggleChange(value, onChangeTableGroupActions);
+
+	const handleTableRowDragChange = (value: boolean) =>
+		handleToggleChange(value, onChangeTableRowDrag);
+
+	const handleTableZebraChange = (value: boolean) => handleToggleChange(value, onChangeTableZebra);
+
+	const handleDropdownModeChange = (value: DropdownMode) => onChangeDropdownMode?.(value);
+
+	const handleAccordionArrowPositionChange = (newIndex: number) =>
+		handleSelection(ACCORDION_ARROW_POSITION_OPTIONS, newIndex, onChangeAccordionArrowPosition);
+
+	const handleAccordionLineCountChange = (newIndex: number) =>
+		handleSelection(ACCORDION_LINE_COUNT_OPTIONS, newIndex, onChangeAccordionLineCount);
 </script>
 
 <div class="control-container background--Main_White">
 	{#if isMobile}
 		<div class="button-block-wrapper">
-			<MenuButton>
-				<SettingsIcon slot="icon" />
-				<SettingsField
-					slot="dropdown"
-					selected={fieldCountSelected}
-					onSelectedChange={handleFieldCountChange}
-				/>
-			</MenuButton>
+			{#if showFieldCount}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<SettingsField
+						slot="dropdown"
+						selected={fieldCountSelected}
+						onSelectedChange={handleFieldCountChange}
+					/>
+				</MenuButton>
+			{:else if showTableSettings}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<TableSettingsField
+						slot="dropdown"
+						variant="dropdown"
+						groupActions={tableGroupActions}
+						rowDrag={tableRowDrag}
+						zebra={tableZebra}
+						onChangeGroupActions={handleTableGroupActionsChange}
+						onChangeRowDrag={handleTableRowDragChange}
+						onChangeZebra={handleTableZebraChange}
+					/>
+				</MenuButton>
+			{:else if showDropdownSettings}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<DropdownSettingsField
+						slot="dropdown"
+						variant="dropdown"
+						selected={dropdownMode}
+						onSelectedChange={handleDropdownModeChange}
+					/>
+				</MenuButton>
+			{:else if showAccordionSettings}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<AccordionArrowSettingsField
+						slot="dropdown"
+						selected={accordionArrowPositionSelected}
+						onSelectedChange={handleAccordionArrowPositionChange}
+					/>
+				</MenuButton>
+			{/if}
 
-			<MenuButton>
-				<ColorIcon slot="icon" fill={getCircleFill(color)} />
-				<ColorField slot="dropdown" selected={colorSelected} onSelectedChange={handleColorChange} />
-			</MenuButton>
+			{#if showAccordionSettings}
+				<MenuButton>
+					<LineCountIcon slot="icon" />
+					<AccordionLineCountSettingsField
+						slot="dropdown"
+						selected={accordionLineCountSelected}
+						onSelectedChange={handleAccordionLineCountChange}
+					/>
+				</MenuButton>
+			{:else}
+				<MenuButton>
+					<ColorIcon slot="icon" fill={getCircleFill(color)} />
+					<ColorField
+						slot="dropdown"
+						selected={colorSelected}
+						onSelectedChange={handleColorChange}
+					/>
+				</MenuButton>
+			{/if}
 		</div>
-		<div class="divider"></div>
-		<Toggle checked={isDarkTheme} onchange={handleThemeChange} />
+		<div class="divider-vertical"></div>
+		<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
 	{:else if isCompact}
 		<div class="button-block-wrapper">
 			<MenuButton>
@@ -194,31 +314,71 @@
 				/>
 			</MenuButton>
 
-			<MenuButton>
-				<SettingsIcon slot="icon" />
-				<SettingsField
-					slot="dropdown"
-					selected={fieldCountSelected}
-					onSelectedChange={handleFieldCountChange}
-				/>
-			</MenuButton>
+			{#if showFieldCount}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<SettingsField
+						slot="dropdown"
+						selected={fieldCountSelected}
+						onSelectedChange={handleFieldCountChange}
+					/>
+				</MenuButton>
+			{:else if showTableSettings}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<TableSettingsField
+						slot="dropdown"
+						variant="dropdown"
+						groupActions={tableGroupActions}
+						rowDrag={tableRowDrag}
+						zebra={tableZebra}
+						onChangeGroupActions={handleTableGroupActionsChange}
+						onChangeRowDrag={handleTableRowDragChange}
+						onChangeZebra={handleTableZebraChange}
+					/>
+				</MenuButton>
+			{:else if showDropdownSettings}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<DropdownSettingsField
+						slot="dropdown"
+						variant="dropdown"
+						selected={dropdownMode}
+						onSelectedChange={handleDropdownModeChange}
+					/>
+				</MenuButton>
+			{/if}
 
 			<MenuButton>
 				<ColorIcon slot="icon" fill={getCircleFill(color)} />
 				<ColorField slot="dropdown" selected={colorSelected} onSelectedChange={handleColorChange} />
 			</MenuButton>
 		</div>
-		<div class="divider"></div>
-		<Toggle checked={isDarkTheme} onchange={handleThemeChange} />
+		<div class="divider-vertical"></div>
+		<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
 	{:else}
 		<div class="theme-toggle text--Dark_Blue">
 			Настройки
-			<Toggle checked={isDarkTheme} onchange={handleThemeChange} />
+			<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
 		</div>
 
 		<SizeField selected={appearanceSelected} onSelectedChange={handleAppearanceChange} />
 		<ColorField selected={colorSelected} onSelectedChange={handleColorChange} />
-		<SettingsField selected={fieldCountSelected} onSelectedChange={handleFieldCountChange} />
+		<div class="divider-horizontal"></div>
+		{#if showFieldCount}
+			<SettingsField selected={fieldCountSelected} onSelectedChange={handleFieldCountChange} />
+		{:else if showTableSettings}
+			<TableSettingsField
+				groupActions={tableGroupActions}
+				rowDrag={tableRowDrag}
+				zebra={tableZebra}
+				onChangeGroupActions={handleTableGroupActionsChange}
+				onChangeRowDrag={handleTableRowDragChange}
+				onChangeZebra={handleTableZebraChange}
+			/>
+		{:else if showDropdownSettings}
+			<DropdownSettingsField selected={dropdownMode} onSelectedChange={handleDropdownModeChange} />
+		{/if}
 	{/if}
 </div>
 

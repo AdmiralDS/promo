@@ -3,13 +3,25 @@
 	import { MOBILE_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
 	import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
 	import ControlContainer from './ControlContainer.svelte';
-	import { type Appearance, type ThemeColor } from './types';
+	import {
+		type AccordionArrowPosition,
+		type AccordionLineCount,
+		type Appearance,
+		type DropdownMode,
+		type ThemeColor
+	} from './types';
 
 	type SandboxConfig = {
 		appearance: Appearance;
 		color: ThemeColor;
 		fieldCount: number;
 		isDarkTheme: boolean;
+		tableGroupActions: boolean;
+		tableRowDrag: boolean;
+		tableZebra: boolean;
+		dropdownMode: DropdownMode;
+		accordionArrowPosition: AccordionArrowPosition;
+		accordionLineCount: AccordionLineCount;
 	};
 
 	const isMobileStore = useMediaQuery(MOBILE_QUERY);
@@ -42,7 +54,13 @@
 		appearance: 'm',
 		color: 'blue',
 		fieldCount: 3,
-		isDarkTheme: false
+		isDarkTheme: false,
+		tableGroupActions: false,
+		tableRowDrag: false,
+		tableZebra: false,
+		dropdownMode: 'multiselect',
+		accordionArrowPosition: 'left',
+		accordionLineCount: 4
 	});
 
 	function updateConfig(patch: Partial<SandboxConfig>) {
@@ -64,6 +82,30 @@
 	function handleThemeChange(newThemeState: boolean) {
 		updateConfig({ isDarkTheme: newThemeState });
 	}
+
+	function handleTableGroupActionsChange(nextValue: boolean) {
+		updateConfig({ tableGroupActions: nextValue });
+	}
+
+	function handleTableRowDragChange(nextValue: boolean) {
+		updateConfig({ tableRowDrag: nextValue });
+	}
+
+	function handleTableZebraChange(nextValue: boolean) {
+		updateConfig({ tableZebra: nextValue });
+	}
+
+	function handleDropdownModeChange(nextValue: DropdownMode) {
+		updateConfig({ dropdownMode: nextValue });
+	}
+
+	function handleAccordionArrowPositionChange(nextValue: AccordionArrowPosition) {
+		updateConfig({ accordionArrowPosition: nextValue });
+	}
+
+	function handleAccordionLineCountChange(nextValue: AccordionLineCount) {
+		updateConfig({ accordionLineCount: nextValue });
+	}
 </script>
 
 <div class="sandbox-container background--Main_White">
@@ -79,25 +121,44 @@
 		</div>
 		<div class="sandbox Sandbox_Gradient">
 			<div class="component-wrapper">
-				{#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}`}
+				{#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}-${config.tableGroupActions}-${config.tableRowDrag}-${config.tableZebra}-${config.dropdownMode}-${config.accordionArrowPosition}-${config.accordionLineCount}`}
 					<ReactComponent
 						component={activeComponent ?? 'Modal'}
 						appearance={config.appearance}
 						color={config.color}
 						fieldCount={config.fieldCount}
 						isDarkTheme={config.isDarkTheme}
+						tableGroupActions={config.tableGroupActions}
+						tableRowDrag={config.tableRowDrag}
+						tableZebra={config.tableZebra}
+						dropdownMode={config.dropdownMode}
+						accordionArrowPosition={config.accordionArrowPosition}
+						accordionLineCount={config.accordionLineCount}
 					/>
 				{/key}
 			</div>
 			<ControlContainer
+				activeComponent={activeComponent ?? 'Modal'}
 				appearance={config.appearance}
 				color={config.color}
 				fieldCount={config.fieldCount}
 				isDarkTheme={config.isDarkTheme}
+				tableGroupActions={config.tableGroupActions}
+				tableRowDrag={config.tableRowDrag}
+				tableZebra={config.tableZebra}
+				dropdownMode={config.dropdownMode}
+				accordionArrowPosition={config.accordionArrowPosition}
+				accordionLineCount={config.accordionLineCount}
 				onChangeAppearance={handleAppearanceChange}
 				onChangeColor={handleColorChange}
 				onChangeFieldCount={handleFieldCountChange}
 				onChangeTheme={handleThemeChange}
+				onChangeTableGroupActions={handleTableGroupActionsChange}
+				onChangeTableRowDrag={handleTableRowDragChange}
+				onChangeTableZebra={handleTableZebraChange}
+				onChangeDropdownMode={handleDropdownModeChange}
+				onChangeAccordionArrowPosition={handleAccordionArrowPositionChange}
+				onChangeAccordionLineCount={handleAccordionLineCountChange}
 			/>
 		</div>
 	</div>

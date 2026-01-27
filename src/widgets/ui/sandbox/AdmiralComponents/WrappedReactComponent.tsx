@@ -5,7 +5,12 @@ import { AdmiralAccordion } from './AdmiralAccordion';
 import { AdmiralDropdown } from './AdmiralDropdown';
 import { AdmiralModal } from './AdmiralModal';
 import { AdmiralTable } from './AdmiralTable';
-import type { Appearance } from '../types';
+import type {
+	AccordionArrowPosition,
+	AccordionLineCount,
+	Appearance,
+	DropdownMode
+} from '../types';
 
 export interface Props {
 	component: string;
@@ -13,6 +18,12 @@ export interface Props {
 	appearance: Appearance;
 	color: string;
 	fieldCount?: number;
+	tableGroupActions?: boolean;
+	tableRowDrag?: boolean;
+	tableZebra?: boolean;
+	dropdownMode?: DropdownMode;
+	accordionArrowPosition?: AccordionArrowPosition;
+	accordionLineCount?: AccordionLineCount;
 }
 
 const setMainLightThemeColors = (mainColor: string) => {
@@ -140,17 +151,40 @@ export const WrappedReactComponent = ({
 	theme,
 	appearance,
 	color,
-	fieldCount
+	fieldCount,
+	tableGroupActions,
+	tableRowDrag,
+	tableZebra,
+	dropdownMode,
+	accordionArrowPosition,
+	accordionLineCount
 }: Props) => {
 	const colorTheme = setMainThemeColors(theme, color);
 	const getComponent = () => {
 		switch (component) {
 			case 'Table':
-				return <AdmiralTable dimension={appearance} />;
+				return (
+					<AdmiralTable
+						dimension={appearance}
+						tableGroupActions={tableGroupActions}
+						tableRowDrag={tableRowDrag}
+						tableZebra={tableZebra}
+					/>
+				);
 			case 'Accordion':
-				return <AdmiralAccordion dimension={appearance} />;
+				return (
+					<AdmiralAccordion
+						accordionArrowPosition={accordionArrowPosition}
+						accordionLineCount={accordionLineCount}
+					/>
+				);
 			case 'Dropdown':
-				return <AdmiralDropdown dimension={appearance} />;
+				return (
+					<AdmiralDropdown
+						dimension={appearance}
+						dropdownMode={dropdownMode}
+					/>
+				);
 			case 'Modal':
 			default:
 				return (
