@@ -45,9 +45,10 @@ button {
 }
 
 .dropdown-wrapper {
+  box-sizing: border-box;
 	border-radius: 32px;
 	width: 392px;
-	height: 112px;
+  padding: 20px;
 	background: var(--color-Main_White, colors.color('Main_White'));
 	position: absolute;
 	bottom: calc(100% + 4px);
@@ -66,6 +67,7 @@ button {
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
+		height: 112px;
 		border-radius: 24px;
 		left: 0;
 		right: auto;
