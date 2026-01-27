@@ -3,7 +3,13 @@
 	import { MOBILE_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
 	import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
 	import ControlContainer from './ControlContainer.svelte';
-	import { type Appearance, type DropdownMode, type ThemeColor } from './types';
+	import {
+		type AccordionArrowPosition,
+		type AccordionLineCount,
+		type Appearance,
+		type DropdownMode,
+		type ThemeColor
+	} from './types';
 
 	type SandboxConfig = {
 		appearance: Appearance;
@@ -14,6 +20,8 @@
 		tableRowDrag: boolean;
 		tableZebra: boolean;
 		dropdownMode: DropdownMode;
+		accordionArrowPosition: AccordionArrowPosition;
+		accordionLineCount: AccordionLineCount;
 	};
 
 	const isMobileStore = useMediaQuery(MOBILE_QUERY);
@@ -50,7 +58,9 @@
 		tableGroupActions: false,
 		tableRowDrag: false,
 		tableZebra: false,
-		dropdownMode: 'multiselect'
+		dropdownMode: 'multiselect',
+		accordionArrowPosition: 'left',
+		accordionLineCount: 4
 	});
 
 	function updateConfig(patch: Partial<SandboxConfig>) {
@@ -88,6 +98,14 @@
 	function handleDropdownModeChange(nextValue: DropdownMode) {
 		updateConfig({ dropdownMode: nextValue });
 	}
+
+	function handleAccordionArrowPositionChange(nextValue: AccordionArrowPosition) {
+		updateConfig({ accordionArrowPosition: nextValue });
+	}
+
+	function handleAccordionLineCountChange(nextValue: AccordionLineCount) {
+		updateConfig({ accordionLineCount: nextValue });
+	}
 </script>
 
 <div class="sandbox-container background--Main_White">
@@ -103,7 +121,7 @@
 		</div>
 		<div class="sandbox Sandbox_Gradient">
 			<div class="component-wrapper">
-				{#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}-${config.tableGroupActions}-${config.tableRowDrag}-${config.tableZebra}-${config.dropdownMode}`}
+				{#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}-${config.tableGroupActions}-${config.tableRowDrag}-${config.tableZebra}-${config.dropdownMode}-${config.accordionArrowPosition}-${config.accordionLineCount}`}
 					<ReactComponent
 						component={activeComponent ?? 'Modal'}
 						appearance={config.appearance}
@@ -114,6 +132,8 @@
 						tableRowDrag={config.tableRowDrag}
 						tableZebra={config.tableZebra}
 						dropdownMode={config.dropdownMode}
+						accordionArrowPosition={config.accordionArrowPosition}
+						accordionLineCount={config.accordionLineCount}
 					/>
 				{/key}
 			</div>
@@ -127,6 +147,8 @@
 				tableRowDrag={config.tableRowDrag}
 				tableZebra={config.tableZebra}
 				dropdownMode={config.dropdownMode}
+				accordionArrowPosition={config.accordionArrowPosition}
+				accordionLineCount={config.accordionLineCount}
 				onChangeAppearance={handleAppearanceChange}
 				onChangeColor={handleColorChange}
 				onChangeFieldCount={handleFieldCountChange}
@@ -135,6 +157,8 @@
 				onChangeTableRowDrag={handleTableRowDragChange}
 				onChangeTableZebra={handleTableZebraChange}
 				onChangeDropdownMode={handleDropdownModeChange}
+				onChangeAccordionArrowPosition={handleAccordionArrowPositionChange}
+				onChangeAccordionLineCount={handleAccordionLineCountChange}
 			/>
 		</div>
 	</div>

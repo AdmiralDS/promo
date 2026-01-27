@@ -2,7 +2,12 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { renderer } from './Renderer';
 	import type { Props as RendererOptions } from './WrappedReactComponent';
-	import type { Appearance, DropdownMode } from '../types';
+	import type {
+		AccordionArrowPosition,
+		AccordionLineCount,
+		Appearance,
+		DropdownMode
+	} from '../types';
 
 	export let component = 'Modal';
 	export let isDarkTheme: boolean;
@@ -14,6 +19,8 @@
 	export let tableRowDrag = true;
 	export let tableZebra = true;
 	export let dropdownMode: DropdownMode = 'multiselect';
+	export let accordionArrowPosition: AccordionArrowPosition = 'left';
+	export let accordionLineCount: AccordionLineCount = 4;
 
 	let container: HTMLDivElement | undefined;
 	let root: ReturnType<typeof renderer> | null = null;
@@ -27,7 +34,9 @@
 		tableGroupActions,
 		tableRowDrag,
 		tableZebra,
-		dropdownMode
+		dropdownMode,
+		accordionArrowPosition,
+		accordionLineCount
 	});
 
 	let currentProps: RendererOptions = getRendererOptions(theme);
@@ -65,7 +74,9 @@
 			currentProps.tableGroupActions !== nextProps.tableGroupActions ||
 			currentProps.tableRowDrag !== nextProps.tableRowDrag ||
 			currentProps.tableZebra !== nextProps.tableZebra ||
-			currentProps.dropdownMode !== nextProps.dropdownMode;
+			currentProps.dropdownMode !== nextProps.dropdownMode ||
+			currentProps.accordionArrowPosition !== nextProps.accordionArrowPosition ||
+			currentProps.accordionLineCount !== nextProps.accordionLineCount;
 
 		if (shouldUpdate) {
 			theme = newTheme;
