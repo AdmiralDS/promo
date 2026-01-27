@@ -251,7 +251,7 @@
 				<ColorField slot="dropdown" selected={colorSelected} onSelectedChange={handleColorChange} />
 			</MenuButton>
 		</div>
-		<div class="divider"></div>
+		<div class="divider-vertical"></div>
 		<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
 	{:else if isCompact}
 		<div class="button-block-wrapper">
