@@ -1,4 +1,6 @@
 import * as React from 'react';
+import styled from 'styled-components';
+import type { DefaultTheme } from 'styled-components';
 
 import { Accordion, AccordionItem } from '@admiral-ds/react-ui';
 import type { AccordionArrowPosition, AccordionLineCount } from '../types';
@@ -22,6 +24,16 @@ const items = [
 	}
 ];
 
+type AdmiralTheme = DefaultTheme & { color: Record<string, string> };
+
+const StyledAccordion = styled(Accordion)`
+	padding: 12px;
+	background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
+	width: 316px;
+	border-radius: 16px;
+	overflow: hidden;
+`;
+
 export interface AdmiralAccordionProps {
 	accordionArrowPosition: AccordionArrowPosition;
 	accordionLineCount: AccordionLineCount;
@@ -32,14 +44,23 @@ export const AdmiralAccordion = ({
 	accordionLineCount
 }: AdmiralAccordionProps) => {
 	return (
-		<Accordion iconPosition={accordionArrowPosition}>
+		<StyledAccordion
+			dimension="m"
+			hideTopDivider
+			hideBottomDivider
+			iconPosition={accordionArrowPosition}
+		>
 			{items.map(({ title, content }, i) => {
 				return i < accordionLineCount ? (
-					<AccordionItem defaultExpanded={i === 0 ? true : undefined} title={title}>
+					<AccordionItem
+						key={`accordionItem${i}`}
+						defaultExpanded={i === 0 ? true : undefined}
+						title={title}
+					>
 						{content}
 					</AccordionItem>
 				) : null;
 			})}
-		</Accordion>
+		</StyledAccordion>
 	);
 };
