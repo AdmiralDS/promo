@@ -50,17 +50,15 @@ export const AdmiralAccordion = ({
 			hideBottomDivider
 			iconPosition={accordionArrowPosition}
 		>
-			{items.map(({ title, content }, i) => {
-				return i < accordionLineCount ? (
-					<AccordionItem
-						key={`accordionItem${i}`}
-						defaultExpanded={i === 0 ? true : undefined}
-						title={title}
-					>
-						{content}
-					</AccordionItem>
-				) : null;
-			})}
+			{items.slice(0, accordionLineCount).map(({ title, content }, i) => (
+				<AccordionItem
+					key={`accordionItem${i}`}
+					defaultExpanded={i === 0}
+					title={title}
+				>
+					{content}
+				</AccordionItem>
+			))}
 		</StyledAccordion>
 	);
 };
