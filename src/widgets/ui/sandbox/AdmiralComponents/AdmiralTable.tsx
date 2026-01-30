@@ -1,24 +1,8 @@
-import * as React from 'react';
-
-import {
-	Button,
-	GroupActionsPane,
-	PaginationOne,
-	PaneSeparator,
-	T,
-	Table,
-	TextButton,
-	typography,
-	type Column,
-	type PaneColumn,
-	type PaneMenuProps,
-	type TableRow
-} from '@admiral-ds/react-ui';
-import { SystemDeleteOutline, SystemEditOutline } from '@admiral-ds/icons';
+import { PaginationOne, T, Table, type Column, type TableRow } from '@admiral-ds/react-ui';
 import styled from 'styled-components';
 import type { DefaultTheme } from 'styled-components';
 import type { Appearance } from '../types';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 export interface AdmiralTableProps {
 	dimension: Appearance;
@@ -30,6 +14,7 @@ export interface AdmiralTableProps {
 type AdmiralTheme = DefaultTheme & { color: Record<string, string> };
 
 const StyledPaginationOne = styled(PaginationOne)`
+	margin-top: 16px;
 	background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
 `;
 
@@ -43,25 +28,9 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	padding: 0 20px;
+	padding: 16px;
 	background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
-`;
-
-const SettingsMenu = styled.div`
-	width: 320px;
-	padding: 20px;
-	${typography['Body/Body 2 Long']}
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-`;
-
-const ButtonWrapper = styled.div`
-	display: flex;
-	margin-top: 28px;
-	& > button:first-child {
-		margin-right: 8px;
-	}
+	border-radius: 16px;
 `;
 
 type Data = {
@@ -192,6 +161,7 @@ const columnList: Column[] = [
 	{
 		name: 'transfer_amount',
 		title: 'Сумма',
+		cellAlign: 'right',
 		width: 160
 	},
 	{
@@ -201,12 +171,17 @@ const columnList: Column[] = [
 	}
 ];
 
-const columns: PaneColumn[] = [
-	{ id: 'transfer_type', title: 'Тип сделки', visible: true },
-	{ id: 'transfer_date', title: 'Дата сделки', visible: true },
-	{ id: 'transfer_amount', title: 'Сумма', visible: true },
-	{ id: 'transfer_status', title: 'Статус', visible: true }
-];
+const firstSize = (dimension: AdmiralTableProps['dimension']) => {
+	switch (dimension) {
+		case 's':
+			return 10;
+		case 'xl':
+			return 6;
+		case 'm':
+		default:
+			return 8;
+	}
+};
 
 export const AdmiralTable = ({
 	dimension,
@@ -217,12 +192,12 @@ export const AdmiralTable = ({
 	void tableGroupActions;
 	void tableRowDrag;
 	void tableZebra;
-	const [pageSize, setPageSize] = React.useState(8);
-	const [page, setPage] = React.useState(1);
-	const [cols, setCols] = React.useState(columnList);
-	const [rows, setRows] = React.useState(rowList.slice(0, pageSize));
+	const [pageSize, setPageSize] = useState(firstSize(dimension));
+	const [page, setPage] = useState(1);
+	const [cols, setCols] = useState(columnList);
+	const [rows, setRows] = useState(rowList.slice(0, pageSize));
 
-	const pageSizes = [8, 20, 50, 100, 200];
+	const pageSizes = [firstSize(dimension), 20, 50, 100, 200];
 	const totalElements = 256;
 
 	const handleResize = ({ name, width }: { name: string; width: string }) => {
@@ -257,68 +232,34 @@ export const AdmiralTable = ({
 	const leftButtonProps = { 'data-testid': 'pagination-left-button' };
 	const rightButtonProps = { 'data-testid': 'pagination-right-button' };
 
-	const [columnsVisibility, setColumnsVisibility] = useState(columns);
-	const [searchValue, setSearchValue] = useState<string>('');
-
-	const handleChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setSearchValue(e.target.value);
-	};
-
-	const handleSearchEnter = () => {
-		console.log('Search input opened');
-	};
-
-	const handleSearchLeave = () => {
-		console.log('Search input left');
-	};
-
-	const renderSettingsMenu = ({ closeMenu }: PaneMenuProps) => (
-		<SettingsMenu>
-			Здесь могут быть опции с настройками и кнопки для применения/сбрасывания настроек
-			<ButtonWrapper>
-				<Button dimension="s" onClick={closeMenu}>
-					Сохранить
-				</Button>
-				<Button dimension="s" onClick={closeMenu}>
-					Очистить
-				</Button>
-			</ButtonWrapper>
-		</SettingsMenu>
-	);
+	const tableHeight = useMemo(() => {
+		switch (dimension) {
+			case 's':
+				return 11 * 32;
+			case 'xl':
+				return 7 * 56;
+			case 'm':
+			default:
+				return 9 * 40;
+		}
+	}, [dimension]);
 
 	return (
 		<Wrapper>
-			<GroupActionsPane
-				searchValue={searchValue}
-				onChangeSearchValue={handleChangeSearchValue}
-				columns={columnsVisibility}
-				onColumnsChange={setColumnsVisibility}
-				onSearchEnter={handleSearchEnter}
-				onSearchLeave={handleSearchLeave}
-				columnsButtonDropContainerStyle={{
-					dropContainerClassName: 'columnsButtonDropContainerClass'
-				}}
-				settingsButtonDropContainerStyle={{
-					dropContainerClassName: 'settingsButtonDropContainerClass'
-				}}
-				renderSettingsMenu={renderSettingsMenu}
-			>
-				<TextButton text={'Редактировать'} iconStart={<SystemEditOutline />} />
-				<TextButton text={'Удалить'} iconStart={<SystemDeleteOutline />} />
-				<PaneSeparator />
-				<TextButton text={'Отменить (2)'} />
-			</GroupActionsPane>
 			<Table
-				style={{ height: '360px' }}
+				style={{ height: `${tableHeight + 1}px` }}
 				dimension={dimension}
 				rowList={rows}
 				columnList={cols}
 				onColumnResize={handleResize}
-				rowsDraggable
+				rowsDraggable={tableRowDrag}
 				onRowDrag={handleRowDrag}
 				onRowDragEnd={handleRowDragEnd}
-				displayRowSelectionColumn
+				displayRowSelectionColumn={tableGroupActions}
 				onRowSelectionChange={handleSelectionChange}
+				greyHeader={tableZebra}
+				greyZebraRows={tableZebra}
+				showBorders
 			/>
 			<StyledPaginationOne
 				onChange={({ page, pageSize }) => {
