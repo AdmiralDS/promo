@@ -37,7 +37,8 @@ type Data = {
 	transfer_type: string;
 	transfer_date: string;
 	transfer_amount: React.ReactNode;
-	transfer_status?: string;
+	currency: string;
+	rate: string;
 };
 
 const numberFormatter = new Intl.NumberFormat();
@@ -51,7 +52,8 @@ const dataList: Data[] = [
 				<T font="Body/Body 2 Short">{numberFormatter.format(18_000_000)}</T>
 			</AmountCell>
 		),
-		transfer_status: 'Выполнено'
+		currency: 'RUB',
+		rate: '1%'
 	},
 	{
 		transfer_type: 'МНО',
@@ -61,7 +63,8 @@ const dataList: Data[] = [
 				<T font="Body/Body 2 Short">{numberFormatter.format(32_500_000_000)}</T>
 			</AmountCell>
 		),
-		transfer_status: 'В ожиданиии'
+		currency: 'RUB',
+		rate: '2%'
 	},
 	{
 		transfer_type: 'МНО',
@@ -71,7 +74,8 @@ const dataList: Data[] = [
 				<T font="Body/Body 2 Short">{numberFormatter.format(12_000_000)}</T>
 			</AmountCell>
 		),
-		transfer_status: 'Выполнено'
+		currency: 'RUB',
+		rate: '3%'
 	},
 	{
 		transfer_type: 'МНО',
@@ -81,7 +85,8 @@ const dataList: Data[] = [
 				<T font="Body/Body 2 Short">{numberFormatter.format(55_500_000_000)}</T>
 			</AmountCell>
 		),
-		transfer_status: 'Выполнено'
+		currency: 'RUB',
+		rate: '4%'
 	},
 	{
 		transfer_type: 'МНО',
@@ -91,7 +96,8 @@ const dataList: Data[] = [
 				<T font="Body/Body 2 Short">{numberFormatter.format(180_000)}</T>
 			</AmountCell>
 		),
-		transfer_status: 'Выполнено'
+		currency: 'RUB',
+		rate: '5%'
 	},
 	{
 		transfer_type: 'МНО',
@@ -101,7 +107,8 @@ const dataList: Data[] = [
 				<T font="Body/Body 2 Short">{numberFormatter.format(500_000_000)}</T>
 			</AmountCell>
 		),
-		transfer_status: 'Выполнено'
+		currency: 'RUB',
+		rate: '6%'
 	},
 	{
 		transfer_type: 'МНО',
@@ -111,7 +118,8 @@ const dataList: Data[] = [
 				<T font="Body/Body 2 Short">{numberFormatter.format(189_000_000)}</T>
 			</AmountCell>
 		),
-		transfer_status: 'В ожиданиии'
+		currency: 'RUB',
+		rate: '7%'
 	},
 	{
 		transfer_type: 'МНО',
@@ -121,7 +129,8 @@ const dataList: Data[] = [
 				<T font="Body/Body 2 Short">{numberFormatter.format(6_000)}</T>
 			</AmountCell>
 		),
-		transfer_status: 'Выполнено'
+		currency: 'RUB',
+		rate: '8%'
 	},
 	{
 		transfer_type: 'МНО',
@@ -131,7 +140,8 @@ const dataList: Data[] = [
 				<T font="Body/Body 2 Short">{numberFormatter.format(10_000)}</T>
 			</AmountCell>
 		),
-		transfer_status: 'В ожиданиии'
+		currency: 'RUB',
+		rate: '9%'
 	}
 ];
 
@@ -156,7 +166,7 @@ const columnList: Column[] = [
 	{
 		name: 'transfer_date',
 		title: 'Дата сделки',
-		width: 140
+		width: 150
 	},
 	{
 		name: 'transfer_amount',
@@ -165,9 +175,13 @@ const columnList: Column[] = [
 		width: 160
 	},
 	{
-		name: 'transfer_status',
-		title: 'Статус',
-		width: 160
+		name: 'currency',
+		title: 'Валюта',
+		width: 100
+	},
+	{
+		name: 'rate',
+		title: 'Ставка'
 	}
 ];
 
@@ -189,9 +203,6 @@ export const AdmiralTable = ({
 	tableRowDrag,
 	tableZebra
 }: AdmiralTableProps) => {
-	void tableGroupActions;
-	void tableRowDrag;
-	void tableZebra;
 	const [pageSize, setPageSize] = useState(firstSize(dimension));
 	const [page, setPage] = useState(1);
 	const [cols, setCols] = useState(columnList);
