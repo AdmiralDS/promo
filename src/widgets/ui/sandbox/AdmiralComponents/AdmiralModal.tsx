@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import {
 	Button,
 	CheckboxField,
@@ -23,26 +21,14 @@ type AdmiralTheme = DefaultTheme & {
 
 const getAdmiralTheme = (theme: DefaultTheme): AdmiralTheme => theme as AdmiralTheme;
 
-const Separator = styled.div`
-	height: 20px;
-`;
+const width = css<{ $mobile?: boolean }>`
+	// 16px on left and right side
+	width: calc(100% - 32px);
 
-const width = css<{ $dimension: Dimension; $mobile?: boolean }>`
-	width: ${({ $dimension, $mobile }) => {
-		// 16px on left and right side
-		if ($mobile) return 'calc(100% - 32px)';
-		switch ($dimension) {
-			case 's':
-				return '384px';
-			case 'm':
-				return '488px';
-			case 'xl':
-				return '800px';
-			case 'l':
-			default:
-				return '592px';
-		}
-	}};
+	/* width: ${({ $mobile }) => ($mobile ? 'calc(100% - 32px)' : '592px')}; */
+	@media (min-width: 700px) {
+		width: 592px;
+	}
 `;
 
 const parseShadow = (token: string) => {
@@ -63,7 +49,6 @@ const ModalComponent = styled.div<{ $dimension: Dimension; $mobile?: boolean }>`
 	overflow: hidden;
 	padding: 20px 0 24px;
 	${width};
-	max-height: ${({ $mobile }) => ($mobile ? '84vh' : '90vh')};
 	background-color: var(
 		--admiral-color-Special_ElevatedBG,
 		${({ theme }) => getAdmiralTheme(theme).color['Special/Elevated BG']}
@@ -76,50 +61,80 @@ const ModalComponent = styled.div<{ $dimension: Dimension; $mobile?: boolean }>`
 		--admiral-border-radius-Large,
 		${({ theme }) => largeGroupBorderRadius(getAdmiralTheme(theme).shape)}
 	);
-	${({ $mobile }) => ($mobile ? typography['Body/Body 2 Long'] : typography['Body/Body 1 Long'])}
 	color: var(
 		--admiral-color-Neutral_Neutral90,
 		${({ theme }) => getAdmiralTheme(theme).color['Neutral/Neutral 90']}
 	);
 	outline: none;
+
+	${typography['Body/Body 2 Long']}
+	/* ${({ $mobile }) =>
+		$mobile ? typography['Body/Body 2 Long'] : typography['Body/Body 1 Long']} */
+
+		max-height: '84vh';
+	/* max-height: ${({ $mobile }) => ($mobile ? '84vh' : '90vh')}; */
+	@media (min-width: 700px) {
+		${typography['Body/Body 1 Long']}
+		max-height: '90vh';
+	}
+`;
+
+const StyledInputField = styled(InputField)<{ $mobile?: boolean }>`
+	/* ${({ $mobile }) => !$mobile && 'width: 364px'}; */
+
+	@media (min-width: 700px) {
+		width: 364px;
+	}
+`;
+
+const InputBox = styled.div`
+	margin-top: 28px;
+	margin-bottom: 28px;
+
+	> :not(:first-child) {
+		margin-top: 20px;
+	}
 `;
 
 export interface AdmiralModalProps {
 	dimension?: Appearance;
 	fieldCount?: number;
+	isMobile: boolean;
 }
 
-export const AdmiralModal = ({
-	dimension = 'm',
-	fieldCount = 3,
-}: AdmiralModalProps) => {
+export const AdmiralModal = ({ dimension = 'm', fieldCount = 2 }: AdmiralModalProps) => {
 	return (
 		<ModalComponent $dimension={dimension as Dimension}>
 			<ModalTitle id="modal-title">Получение доступа</ModalTitle>
 			<ModalContent>
 				Заполните данные, чтобы мы могли открыть для вас доступ
-				<Separator />
-				{fieldCount >= 1 && (
-					<>
-						<InputField label="Ваше имя" />
-						<Separator />
-					</>
-				)}
-				{fieldCount >= 2 && (
-					<>
-						<InputField label="Ваша фамилия" />
-						<Separator />
-					</>
-				)}
-				{fieldCount >= 3 && <InputField label="Отчество" />}
-				<Separator />
+				<InputBox>
+					{fieldCount >= 1 && (
+						<>
+							<StyledInputField dimension={dimension === 'xl' ? 'm' : dimension} label="Ваше имя" />
+						</>
+					)}
+					{fieldCount >= 2 && (
+						<>
+							<StyledInputField
+								dimension={dimension === 'xl' ? 'm' : dimension}
+								label="Ваша фамилия"
+							/>
+						</>
+					)}
+					{fieldCount >= 3 && (
+						<>
+							<StyledInputField dimension={dimension === 'xl' ? 'm' : dimension} label="Отчество" />
+						</>
+					)}
+				</InputBox>
 				<CheckboxField>Разрешить использование личных данных</CheckboxField>
 			</ModalContent>
 			<ModalButtonPanel>
-				<Button appearance="primary" dimension="m">
+				<Button appearance="primary" dimension={dimension}>
 					Отправить
 				</Button>
-				<Button appearance="secondary" dimension="m">
+				<Button appearance="secondary" dimension={dimension}>
 					Отменить
 				</Button>
 			</ModalButtonPanel>
