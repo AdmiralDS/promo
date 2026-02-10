@@ -110,6 +110,7 @@
 	top: 100px;
 	right: 50%;
 	transform: translateX(50%);
+	z-index: 2;
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
 		top: 80px;
 		right: calc(50% + 40px);
@@ -126,9 +127,15 @@
 	position: absolute;
 	top: 494px;
 	right: calc(50% + 316px);
+	z-index: 2;
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
 		top: 440px;
 		right: calc(50% + 144px);
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		top: 440px;
+		right: calc(50% + 120px);
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
@@ -140,6 +147,7 @@
 	position: absolute;
 	top: 295px;
 	left: calc(50% + 371px);
+	z-index: 2;
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
 		top: 96px;
 		left: calc(50% + 128px);
@@ -154,6 +162,7 @@
 	position: absolute;
 	top: 540px;
 	left: calc(50% + 140px);
+	z-index: 2;
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
 		top: 480px;
 		left: calc(50% + 136px);
