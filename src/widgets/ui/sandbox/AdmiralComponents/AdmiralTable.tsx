@@ -47,99 +47,63 @@ const dataList: Data[] = [
 	{
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
-		transfer_amount: (
-			<AmountCell>
-				<T font="Body/Body 2 Short">{numberFormatter.format(18_000_000)}</T>
-			</AmountCell>
-		),
+		transfer_amount: <AmountCell>{numberFormatter.format(18_000_000)}</AmountCell>,
 		currency: 'RUB',
 		rate: '1%'
 	},
 	{
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
-		transfer_amount: (
-			<AmountCell>
-				<T font="Body/Body 2 Short">{numberFormatter.format(32_500_000_000)}</T>
-			</AmountCell>
-		),
+		transfer_amount: <AmountCell>{numberFormatter.format(32_500_000_000)}</AmountCell>,
 		currency: 'RUB',
 		rate: '2%'
 	},
 	{
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
-		transfer_amount: (
-			<AmountCell>
-				<T font="Body/Body 2 Short">{numberFormatter.format(12_000_000)}</T>
-			</AmountCell>
-		),
+		transfer_amount: <AmountCell>{numberFormatter.format(12_000_000)}</AmountCell>,
 		currency: 'RUB',
 		rate: '3%'
 	},
 	{
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
-		transfer_amount: (
-			<AmountCell>
-				<T font="Body/Body 2 Short">{numberFormatter.format(55_500_000_000)}</T>
-			</AmountCell>
-		),
+		transfer_amount: <AmountCell>{numberFormatter.format(55_500_000_000)}</AmountCell>,
 		currency: 'RUB',
 		rate: '4%'
 	},
 	{
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
-		transfer_amount: (
-			<AmountCell>
-				<T font="Body/Body 2 Short">{numberFormatter.format(180_000)}</T>
-			</AmountCell>
-		),
+		transfer_amount: <AmountCell>{numberFormatter.format(180_000)}</AmountCell>,
 		currency: 'RUB',
 		rate: '5%'
 	},
 	{
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
-		transfer_amount: (
-			<AmountCell>
-				<T font="Body/Body 2 Short">{numberFormatter.format(500_000_000)}</T>
-			</AmountCell>
-		),
+		transfer_amount: <AmountCell>{numberFormatter.format(500_000_000)}</AmountCell>,
 		currency: 'RUB',
 		rate: '6%'
 	},
 	{
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
-		transfer_amount: (
-			<AmountCell>
-				<T font="Body/Body 2 Short">{numberFormatter.format(189_000_000)}</T>
-			</AmountCell>
-		),
+		transfer_amount: <AmountCell>{numberFormatter.format(189_000_000)}</AmountCell>,
 		currency: 'RUB',
 		rate: '7%'
 	},
 	{
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
-		transfer_amount: (
-			<AmountCell>
-				<T font="Body/Body 2 Short">{numberFormatter.format(6_000)}</T>
-			</AmountCell>
-		),
+		transfer_amount: <AmountCell>{numberFormatter.format(6_000)}</AmountCell>,
 		currency: 'RUB',
 		rate: '8%'
 	},
 	{
 		transfer_type: 'МНО',
 		transfer_date: new Date('2020-08-06').toLocaleDateString(),
-		transfer_amount: (
-			<AmountCell>
-				<T font="Body/Body 2 Short">{numberFormatter.format(10_000)}</T>
-			</AmountCell>
-		),
+		transfer_amount: <AmountCell>{numberFormatter.format(10_000)}</AmountCell>,
 		currency: 'RUB',
 		rate: '9%'
 	}
@@ -258,7 +222,7 @@ export const AdmiralTable = ({
 	return (
 		<Wrapper>
 			<Table
-				style={{ height: `${tableHeight + 1}px` }}
+				style={{ maxHeight: `${tableHeight + 1}px` }}
 				dimension={dimension}
 				rowList={rows}
 				columnList={cols}
