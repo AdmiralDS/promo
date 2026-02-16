@@ -107,70 +107,64 @@
 
 .badge-autograph {
 	position: absolute;
-	top: 100px;
-	right: 50%;
-	transform: translateX(50%);
+	top: calc(50% - 238px - 96px);
+	left: calc(50% - 106px);
 	z-index: 2;
+
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		top: 80px;
-		right: calc(50% + 40px);
-		transform: translateX(0);
+		top: calc(50% - 231px - 96px);
+		left: calc(50% - 39px - 214px);
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
-		top: 56px;
-		right: 50%;
-		transform: translateX(0);
+		top: calc(50% - 164px - 64px);
+		left: calc(50% - 128px);
 	}
 }
 .badge-start {
 	position: absolute;
-	top: 494px;
-	right: calc(50% + 316px);
+	top: calc(50% + 60px);
+	left: calc(50% - 316px - 214px);
 	z-index: 2;
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		top: 440px;
-		right: calc(50% + 144px);
-	}
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		top: 440px;
-		right: calc(50% + 120px);
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		top: calc(50% + 30px);
+		left: calc(50% - 112px - 214px);
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
-		top: 270px;
-		right: calc(50% + 20px);
+		top: calc(50% - 13px);
+		left: calc(50% - 20px - 108px);
 	}
 }
 .badge-vtbCloud {
 	position: absolute;
-	top: 295px;
+	top: calc(50% - 43px - 96px);
 	left: calc(50% + 371px);
 	z-index: 2;
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		top: 96px;
+		top: calc(50% - 215px - 96px);
 		left: calc(50% + 128px);
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
-		top: 67px;
-		left: calc(50% + 82px);
+		top: calc(50% - 153px - 64px);
+		left: calc(50% + 83px);
 	}
 }
 .badge-sfera {
 	position: absolute;
-	top: 540px;
+	top: calc(50% + 106px);
 	left: calc(50% + 140px);
 	z-index: 2;
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		top: 480px;
+		top: calc(50% + 73px);
 		left: calc(50% + 136px);
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
-		top: 250px;
-		left: calc(50% + 62px);
+		top: calc(50% - 34px);
+		left: calc(50% + 63px);
 	}
 }
 
