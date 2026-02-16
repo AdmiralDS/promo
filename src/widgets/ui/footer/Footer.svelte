@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Button } from '$shared/ui';
-	import Bubble from './Bubble/Bubble.svelte';
+	import Analyst from './assets/analyst.svg?component';
+	import Designer from './assets/designer.svg?component';
+	import Developer from './assets/developer.svg?component';
 
 	const handleClickEmail = () => window.open('mailto:Admiral@inno.tech');
 </script>
@@ -17,20 +19,20 @@
 				</div>
 			</div>
 			<Button onclick={handleClickEmail}>Связаться с нами</Button>
-			<div class="bubble-analyst">
-				<Bubble appearance="tertiary" arrowPosition="bottom-right">Аналитик</Bubble>
-			</div>
-			<div class="bubble-developer">
-				<Bubble appearance="primary" arrowPosition="top-right">Разработчик</Bubble>
-			</div>
-			<div class="bubble-designer">
-				<Bubble appearance="secondary" arrowPosition="top-left">Дизайнер</Bubble>
-			</div>
 		</div>
 		<div class="copyright-box text--Snow_Gray">
 			<div>© Группа компаний «Иннотех», 2020-2025</div>
 			<div>Адмирал</div>
 		</div>
+	</div>
+	<div class="bubble-analyst">
+		<Analyst />
+	</div>
+	<div class="bubble-developer">
+		<Developer />
+	</div>
+	<div class="bubble-designer">
+		<Designer />
 	</div>
 </div>
 
