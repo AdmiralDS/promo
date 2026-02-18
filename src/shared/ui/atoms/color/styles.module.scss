@@ -35,7 +35,7 @@
 	}
 
 	&:hover {
-		outline-color: var(--color-Light_Blue, colors.color('Light_Grey_Hover'));
+		outline-color: var(--color-Light_Blue, colors.color('Light_Blue'));
 	}
 
 	&[aria-selected='true'] {
