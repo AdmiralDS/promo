@@ -8,6 +8,25 @@
 	align-items: center;
 	cursor: pointer;
 	gap: 16px;
+
+	@media (hover: hover) {
+		&:hover {
+			.toggle-thumb {
+				box-shadow: 0 0 0 16px #0000000d;
+			}
+			&.toggle--sm .toggle-thumb {
+				box-shadow: 0 0 0 10px #0000000d;
+			}
+		}
+		&:active {
+			.toggle-thumb {
+				box-shadow: 0 0 0 16px #0000001f;
+			}
+			&.toggle--sm .toggle-thumb {
+				box-shadow: 0 0 0 10px #0000001f;
+			}
+		}
+	}
 }
 
 .toggle-label-text {
@@ -46,14 +65,22 @@
 .toggle-track {
 	width: 58px;
 	height: 32px;
-	background: var(--color-Snow_Gray);
-	border-radius: 128px;
+	background: transparent;
 	position: relative;
-	transition: all 0.2s ease;
 	order: 2;
 }
 
-.toggle-thumb {
+.toggle-track-visible {
+	width: 100%;
+	height: 100%;
+	background: var(--color-Snow_Gray);
+	border-radius: 128px;
+	position: absolute;
+	transition: transform 0.2s ease;
+}
+
+.toggle-thumb,
+.toggle-thumb-visible {
 	width: 26px;
 	height: 26px;
 	background: var(--color-Main_White);
@@ -64,8 +91,18 @@
 	transition: transform 0.2s ease;
 }
 
-.toggle-input:checked + .toggle-track .toggle-thumb {
-	transform: translateX(26px);
+.toggle-input:checked + .toggle-track {
+	.toggle-thumb {
+		transform: translateX(26px);
+	}
+
+	.toggle-track-visible {
+		background: var(--color-Primary_Blue);
+
+		.toggle-thumb-visible {
+			transform: translateX(26px);
+		}
+	}
 }
 
 .toggle--sm .toggle-track {
@@ -74,7 +111,8 @@
 	border-radius: 90px;
 }
 
-.toggle--sm .toggle-thumb {
+.toggle--sm .toggle-thumb,
+.toggle--sm .toggle-track-visible .toggle-thumb-visible {
 	width: 18px;
 	height: 18px;
 	border-radius: 22px;
@@ -82,8 +120,14 @@
 	left: 2px;
 }
 
-.toggle--sm .toggle-input:checked + .toggle-track .toggle-thumb {
-	transform: translateX(18px);
+.toggle--sm .toggle-input:checked + .toggle-track {
+	.toggle-thumb {
+		transform: translateX(18px);
+	}
+
+	.toggle-track-visible .toggle-thumb-visible {
+		transform: translateX(18px);
+	}
 }
 
 .toggle-input:disabled + .toggle-track {
