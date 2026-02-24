@@ -9,7 +9,18 @@ export default defineConfig({
 		devtoolsJson(),
 		svg({
 			svgoOptions: {
-				plugins: [{ name: 'preset-default' }, { name: 'removeViewBox' }, { name: 'removeTitle' }]
+				plugins: [
+					{
+						name: 'preset-default',
+						params: {
+							overrides: {
+								cleanupIds: false
+							}
+						}
+					},
+					{ name: 'removeViewBox' },
+					{ name: 'removeTitle' }
+				]
 			}
 		})
 	]

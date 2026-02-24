@@ -7,7 +7,7 @@
 	height: 662px;
 	position: relative;
 	overflow: hidden;
-	padding: 100px 0;
+	padding: 100px 0 92px 0;
 	border-top-left-radius: 56px;
 	border-top-right-radius: 56px;
 
@@ -189,16 +189,43 @@
 
 .bubble-analyst {
 	position: absolute;
-	top: -10%;
-	left: 40px;
+	top: calc(50% - 210px - 42px);
+	left: calc(50% - 373px - 153px);
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		top: calc(50% - 163px - 42px);
+		left: calc(50% - 305px - 153px);
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		display: none;
+	}
 }
 .bubble-developer {
 	position: absolute;
-	bottom: -10px;
-	left: 50px;
+	top: calc(50% + 34px);
+	left: calc(50% - 351px - 191px);
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		top: calc(50% + 80px);
+		left: calc(50% - 283px - 191px);
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		display: none;
+	}
 }
 .bubble-designer {
 	position: absolute;
-	bottom: 10%;
-	right: 0px;
+	top: calc(50% + 33px);
+	left: calc(50% + 364px);
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		top: calc(50% - 21px);
+		left: calc(50% + 312px);
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		display: none;
+	}
 }
