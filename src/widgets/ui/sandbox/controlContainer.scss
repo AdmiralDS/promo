@@ -37,8 +37,63 @@
 		bottom: 0;
 		padding: 20px 40px;
 		border-radius: 32px;
-    gap: 32px;
+		gap: 32px;
 		justify-content: center;
+	}
+}
+
+.control-container--dark {
+	--color-Circle_Purple: colors.color('Dark_Circle_Purple');
+	.divider-vertical,
+	.divider-horizontal {
+		opacity: 0.2;
+	}
+
+	color: colors.color('Light_Grey');
+
+	:global(.toggle-group .btn) {
+		color: colors.color('Main_White');
+	}
+
+	:global(.toggle-group .btn[aria-selected='false']:not([class*='btn-Circle_'])) {
+		background: rgba(colors.color('Light_Grey'), 0.2);
+	}
+
+	:global(.toggle-group .btn-Circle_Purple) {
+		background: colors.color('Dark_Circle_Purple');
+	}
+
+	:global(.button-block-wrapper) {
+		color: colors.color('Main_White');
+	}
+
+	:global(.button-block-wrapper .chevron-wrapper) {
+		color: colors.color('Main_White');
+	}
+
+	:global(.menu-button .dropdown-wrapper) {
+		background: colors.color('Dark_Menu');
+		color: colors.color('Light_Grey');
+	}
+
+	:global(.theme-toggle .toggle-label),
+	:global(.theme-toggle-inline .toggle-label) {
+		background: rgba(colors.color('Light_Grey'), 0.2);
+	}
+
+	:global(.theme-toggle .toggle-label svg .mask),
+	:global(.theme-toggle-inline .toggle-label svg .mask) {
+		fill: colors.color('Light_Grey');
+	}
+
+	:global(.theme-toggle .toggle-label svg .mask-inverted),
+	:global(.theme-toggle-inline .toggle-label svg .mask-inverted) {
+		fill: colors.color('Main_White');
+	}
+
+	:global(.toggle-label:hover #togglehover),
+	:global(.toggle-label-inline:hover #togglehover) {
+		fill: rgba(colors.color('Light_Grey'), 0.1);
 	}
 }
 
@@ -69,6 +124,14 @@
 	height: 1px;
 	background: #e8ecf5;
 	margin-bottom: 32px;
+}
+
+.control-container.control-container--dark {
+	.divider-vertical,
+	.divider-horizontal {
+		background: rgba(colors.color('Light_Grey'), 0.2);
+		opacity: 1;
+	}
 }
 
 .button-block-wrapper {

@@ -51,11 +51,7 @@ export const AdmiralAccordion = ({
 			iconPosition={accordionArrowPosition}
 		>
 			{items.slice(0, accordionLineCount).map(({ title, content }, i) => (
-				<AccordionItem
-					key={`accordionItem${i}`}
-					defaultExpanded={i === 0}
-					title={title}
-				>
+				<AccordionItem key={`accordionItem${i}`} defaultExpanded={i === 0} title={title}>
 					{content}
 				</AccordionItem>
 			))}

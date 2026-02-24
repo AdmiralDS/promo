@@ -4,8 +4,8 @@
 
 <ToggleGroup>
 	<Color color="blue"></Color>
-	<Color color="azure"></Color>
+	<Color color="cyan"></Color>
 	<Color color="purple"></Color>
-	<Color color="green"></Color>
-	<Color color="pink"></Color>
+	<Color color="teal"></Color>
+	<Color color="magenta"></Color>
 </ToggleGroup>

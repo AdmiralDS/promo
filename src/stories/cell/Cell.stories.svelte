@@ -6,7 +6,7 @@
 	const { Story } = defineMeta({
 		title: 'Example/Cells',
 		component: Cell,
-		tags: ['autodocs'],
+		tags: ['autodocs']
 	});
 </script>
 

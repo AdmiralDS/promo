@@ -92,5 +92,5 @@
 <div class="react-component-wrapper" bind:this={container}></div>
 
 <style lang="scss">
-  @use 'reactComponent';
+	@use 'reactComponent';
 </style>

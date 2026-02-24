@@ -4,43 +4,43 @@
 /// @param {String} $direction [row] - Направление флекс-контейнера (row|column)
 /// @param {Boolean} $useNegativeMargin [true] - Использовать ли отрицательные margin для компенсации
 @mixin flex-gap($gap, $direction: row, $useNegativeMargin: true) {
-  // Современные браузеры - используем нативный gap
-  @supports (gap: $gap) {
-    gap: $gap;
-  }
+	// Современные браузеры - используем нативный gap
+	@supports (gap: $gap) {
+		gap: $gap;
+	}
 
-  // Фоллбэк для старых браузеров
-  @supports not (gap: $gap) {
-    @if $direction == row {
-      // Для горизонтального направления
-      margin-left: -$gap;
-      
-      > * {
-        margin-left: $gap;
-        
-        @if $useNegativeMargin {
-          margin-top: $gap;
-        }
-      }
-      
-      @if $useNegativeMargin {
-        margin-top: -$gap;
-      }
-    } @else {
-      // Для вертикального направления
-      margin-top: -$gap;
-      
-      > * {
-        margin-top: $gap;
-        
-        @if $useNegativeMargin {
-          margin-left: $gap;
-        }
-      }
-      
-      @if $useNegativeMargin {
-        margin-left: -$gap;
-      }
-    }
-  }
+	// Фоллбэк для старых браузеров
+	@supports not (gap: $gap) {
+		@if $direction == row {
+			// Для горизонтального направления
+			margin-left: -$gap;
+
+			> * {
+				margin-left: $gap;
+
+				@if $useNegativeMargin {
+					margin-top: $gap;
+				}
+			}
+
+			@if $useNegativeMargin {
+				margin-top: -$gap;
+			}
+		} @else {
+			// Для вертикального направления
+			margin-top: -$gap;
+
+			> * {
+				margin-top: $gap;
+
+				@if $useNegativeMargin {
+					margin-left: $gap;
+				}
+			}
+
+			@if $useNegativeMargin {
+				margin-left: -$gap;
+			}
+		}
+	}
 }

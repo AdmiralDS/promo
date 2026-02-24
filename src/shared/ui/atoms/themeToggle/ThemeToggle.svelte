@@ -19,14 +19,7 @@
 </script>
 
 <label class="toggle-label">
-	<input
-		{...restAttributes}
-		type="checkbox"
-		bind:checked
-		{disabled}
-		class="sr-only"
-		onchange={onchange}
-	/>
+	<input {...restAttributes} type="checkbox" bind:checked {disabled} class="sr-only" {onchange} />
 	<svg width="92" height="49" viewBox="0 0 92 49" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<use href="#thumbrect" id="togglehover" x="50" fill="#E4F1FF" />
 		<use href="#thumbrect" id="togglethumb" x="6" fill="#006FFF" />

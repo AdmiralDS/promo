@@ -28,7 +28,7 @@
 	class={`dropdown-settings ${variant === 'dropdown' ? 'dropdown-settings--dropdown' : ''}`.trim()}
 >
 	<RadioButton
-		class="dropdown-settings-control text--Dark_Blue"
+		class="dropdown-settings-control"
 		size={radioSize}
 		name="dropdown-mode"
 		label="Селект"
@@ -36,7 +36,7 @@
 		onchange={() => handleChange('select')}
 	/>
 	<RadioButton
-		class="dropdown-settings-control text--Dark_Blue"
+		class="dropdown-settings-control"
 		size={radioSize}
 		name="dropdown-mode"
 		label="Мультиселект"
