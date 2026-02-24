@@ -1,4 +1,4 @@
-import { PaginationOne, T, Table, type Column, type TableRow } from '@admiral-ds/react-ui';
+import { PaginationOne, Table, type Column, type TableRow } from '@admiral-ds/react-ui';
 import styled from 'styled-components';
 import type { DefaultTheme } from 'styled-components';
 import type { Appearance } from '../types';
@@ -125,27 +125,32 @@ const columnList: Column[] = [
 	{
 		name: 'transfer_type',
 		title: 'Тип сделки',
-		width: 140
+		width: 'calc(100% - 508px - 44px)'
 	},
 	{
 		name: 'transfer_date',
 		title: 'Дата сделки',
-		width: 150
+		width: 145
 	},
 	{
 		name: 'transfer_amount',
 		title: 'Сумма',
 		cellAlign: 'right',
-		width: 160
+		// width: '22.2%'
+		width: 165
 	},
 	{
 		name: 'currency',
 		title: 'Валюта',
-		width: 100
+		// width: '14.9%'
+		width: 111
 	},
 	{
 		name: 'rate',
-		title: 'Ставка'
+		title: 'Ставка',
+		// width: '11.7%',
+		width: 87,
+		cellAlign: 'right'
 	}
 ];
 
@@ -153,7 +158,7 @@ const firstSize = (dimension: AdmiralTableProps['dimension']) => {
 	switch (dimension) {
 		case 's':
 			return 10;
-		case 'xl':
+		case 'l':
 			return 6;
 		case 'm':
 		default:
@@ -166,14 +171,51 @@ export const AdmiralTable = ({
 	tableGroupActions,
 	tableRowDrag,
 	tableZebra
+	// isTablet
 }: AdmiralTableProps) => {
 	const [pageSize, setPageSize] = useState(firstSize(dimension));
 	const [page, setPage] = useState(1);
 	const [cols, setCols] = useState(columnList);
 	const [rows, setRows] = useState(rowList.slice(0, pageSize));
 
-	const pageSizes = [firstSize(dimension), 20, 50, 100, 200];
+	const pageSizes = [firstSize(dimension), 20, 50];
 	const totalElements = 256;
+
+	// const columnListTest: Column[] = useMemo(
+	// 	() => [
+	// 		{
+	// 			name: 'transfer_type',
+	// 			title: 'Тип сделки',
+	// 			width: tableRowDrag ? 'calc(100% - 508px - 44px)' : 'calc(100% - 508px)'
+	// 		},
+	// 		{
+	// 			name: 'transfer_date',
+	// 			title: 'Дата сделки',
+	// 			width: 145
+	// 		},
+	// 		{
+	// 			name: 'transfer_amount',
+	// 			title: 'Сумма',
+	// 			cellAlign: 'right',
+	// 			// width: '22.2%'
+	// 			width: 165
+	// 		},
+	// 		{
+	// 			name: 'currency',
+	// 			title: 'Валюта',
+	// 			// width: '14.9%'
+	// 			width: 111
+	// 		},
+	// 		{
+	// 			name: 'rate',
+	// 			title: 'Ставка',
+	// 			// width: '11.7%',
+	// 			width: 87,
+	// 			cellAlign: 'right'
+	// 		}
+	// 	],
+	// 	[tableRowDrag]
+	// );
 
 	const handleResize = ({ name, width }: { name: string; width: string }) => {
 		const newCols = cols.map((col) => (col.name === name ? { ...col, width } : col));
@@ -211,8 +253,8 @@ export const AdmiralTable = ({
 		switch (dimension) {
 			case 's':
 				return 11 * 32;
-			case 'xl':
-				return 7 * 56;
+			case 'l':
+				return 7 * 48;
 			case 'm':
 			default:
 				return 9 * 40;
@@ -222,10 +264,10 @@ export const AdmiralTable = ({
 	return (
 		<Wrapper>
 			<Table
-				style={{ maxHeight: `${tableHeight + 1}px` }}
+				style={{ maxHeight: `${tableHeight + 1}px`, width: '743px' }}
 				dimension={dimension}
 				rowList={rows}
-				columnList={cols}
+				columnList={columnList}
 				onColumnResize={handleResize}
 				rowsDraggable={tableRowDrag}
 				onRowDrag={handleRowDrag}

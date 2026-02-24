@@ -1,6 +1,6 @@
 import { AVAILABLE_COLORS } from '$shared/ui';
 
-export const APPEARANCE_OPTIONS = ['s', 'm', 'xl'] as const;
+export const APPEARANCE_OPTIONS = ['s', 'm', 'l'] as const;
 export const FIELD_COUNT_OPTIONS = [1, 2, 3] as const;
 export const DROPDOWN_MODE_OPTIONS = ['select', 'multiselect'] as const;
 export const ACCORDION_ARROW_POSITION_OPTIONS = ['left', 'right'] as const;
