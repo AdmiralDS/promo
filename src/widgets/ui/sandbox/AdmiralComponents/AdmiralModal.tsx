@@ -23,7 +23,7 @@ const getAdmiralTheme = (theme: DefaultTheme): AdmiralTheme => theme as AdmiralT
 
 const width = css<{ $mobile?: boolean }>`
 	// 16px on left and right side
-	width: calc(100% - 32px);
+	width: 320px;
 
 	/* width: ${({ $mobile }) => ($mobile ? 'calc(100% - 32px)' : '592px')}; */
 	@media (min-width: 700px) {
@@ -87,57 +87,89 @@ const StyledInputField = styled(InputField)<{ $mobile?: boolean }>`
 	}
 `;
 
-const InputBox = styled.div`
-	margin-top: 28px;
-	margin-bottom: 28px;
+const InputBox = styled.div<{ $mobile?: boolean }>`
+	margin-top: 16px;
+	margin-bottom: 16px;
+
+	@media (min-width: 700px) {
+		margin-top: 28px;
+		margin-bottom: 28px;
+	}
 
 	> :not(:first-child) {
 		margin-top: 20px;
 	}
 `;
 
+const StyledModalTitle = styled(ModalTitle)<{ $mobile?: boolean }>`
+	@media (max-width: 699px) {
+		padding-bottom: 0px;
+		padding-left: 16px;
+	}
+`;
+
+const StyledModalContent = styled(ModalContent)<{ $mobile?: boolean }>`
+	@media (max-width: 699px) {
+		> div:first-child {
+			padding-inline: 16px !important;
+		}
+	}
+`;
+
+const StyledModalButtonPanel = styled(ModalButtonPanel)<{ $mobile?: boolean }>`
+	@media (max-width: 699px) {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		padding: 8px 16px 0;
+
+		> button {
+			margin: 0;
+		}
+	}
+`;
+
 export interface AdmiralModalProps {
 	dimension?: Appearance;
 	fieldCount?: number;
-	isMobile: boolean;
 }
 
 export const AdmiralModal = ({ dimension = 'm', fieldCount = 2 }: AdmiralModalProps) => {
 	return (
 		<ModalComponent $dimension={dimension as Dimension}>
-			<ModalTitle id="modal-title">Получение доступа</ModalTitle>
-			<ModalContent>
+			<StyledModalTitle id="modal-title">Получение доступа</StyledModalTitle>
+			<StyledModalContent>
 				Заполните данные, чтобы мы могли открыть для вас доступ
 				<InputBox>
 					{fieldCount >= 1 && (
 						<>
-							<StyledInputField dimension={dimension === 'xl' ? 'm' : dimension} label="Ваше имя" />
+							<StyledInputField dimension={dimension === 'l' ? 'm' : dimension} label="Ваше имя" />
 						</>
 					)}
 					{fieldCount >= 2 && (
 						<>
 							<StyledInputField
-								dimension={dimension === 'xl' ? 'm' : dimension}
+								dimension={dimension === 'l' ? 'm' : dimension}
 								label="Ваша фамилия"
 							/>
 						</>
 					)}
 					{fieldCount >= 3 && (
 						<>
-							<StyledInputField dimension={dimension === 'xl' ? 'm' : dimension} label="Отчество" />
+							<StyledInputField dimension={dimension === 'l' ? 'm' : dimension} label="Отчество" />
 						</>
 					)}
 				</InputBox>
 				<CheckboxField>Разрешить использование личных данных</CheckboxField>
-			</ModalContent>
-			<ModalButtonPanel>
+			</StyledModalContent>
+			<StyledModalButtonPanel>
 				<Button appearance="primary" dimension={dimension}>
 					Отправить
 				</Button>
 				<Button appearance="secondary" dimension={dimension}>
 					Отменить
 				</Button>
-			</ModalButtonPanel>
+			</StyledModalButtonPanel>
 		</ModalComponent>
 	);
 };

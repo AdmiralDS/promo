@@ -53,7 +53,7 @@
 	let config = $state<SandboxConfig>({
 		appearance: 'm',
 		color: 'blue',
-		fieldCount: 3,
+		fieldCount: 2,
 		isDarkTheme: false,
 		tableGroupActions: false,
 		tableRowDrag: false,
