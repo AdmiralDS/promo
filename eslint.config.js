@@ -15,6 +15,10 @@ const SOFT_MIGRATION_RULES = {
   '@typescript-eslint/no-unused-expressions': 'warn',
   '@typescript-eslint/no-non-null-assertion': 'warn',
   '@typescript-eslint/no-dynamic-delete': 'warn',
+  'svelte/require-each-key': 'warn',
+  'svelte/no-useless-mustaches': 'warn',
+  'svelte/no-at-html-tags': 'warn',
+  'svelte/prefer-writable-derived': 'warn',
 };
 
 const SVELTE_OVERRIDES = {
