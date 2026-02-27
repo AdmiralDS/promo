@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ToggleGroup, Tab } from '$shared/ui';
-	import { MOBILE_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
+	import { MOBILE_QUERY, TABLET_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
 	import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
 	import ControlContainer from './ControlContainer.svelte';
 	import {
@@ -24,11 +24,14 @@
 		accordionLineCount: AccordionLineCount;
 	};
 
+	const isTabletStore = useMediaQuery(TABLET_QUERY);
 	const isMobileStore = useMediaQuery(MOBILE_QUERY);
+	let isTablet = $state(false);
 	let isMobile = $state(false);
 
 	$effect(() => {
 		isMobile = $isMobileStore;
+		isTablet = $isTabletStore && !isMobile;
 	});
 
 	const componentsFull: { eng: string; rus: string }[] = [
@@ -134,6 +137,8 @@
 						dropdownMode={config.dropdownMode}
 						accordionArrowPosition={config.accordionArrowPosition}
 						accordionLineCount={config.accordionLineCount}
+						{isMobile}
+						{isTablet}
 					/>
 				{/key}
 			</div>

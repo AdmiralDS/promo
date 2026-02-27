@@ -12,7 +12,6 @@
 	transition: all 0.2s ease;
 	outline: none;
 	border: none;
-	opacity: 0.12;
 
 	border-radius: 50%;
 	width: 48px;
@@ -36,7 +35,7 @@
 	}
 
 	&:hover {
-		outline-color: var(--color-Light_Blue, colors.color('Light_Grey_Hover'));
+		outline-color: var(--color-Light_Blue, colors.color('Light_Blue'));
 	}
 
 	&[aria-selected='true'] {

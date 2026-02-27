@@ -44,7 +44,7 @@
 		onchange={handleChange}
 		{...restAttributes}
 	/>
-	<span class="radio-visual"></span>
+	<span class="radio-visual"><span class="radio-visual-shadow"></span></span>
 </label>
 
 <style lang="scss">

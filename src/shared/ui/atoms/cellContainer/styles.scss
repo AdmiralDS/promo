@@ -1,3 +1,4 @@
+@use '$shared/ui/colors' as colors;
 @use '$shared/ui/shadow' as shadow;
 @use '$shared/ui/breakpoints' as breakpoints;
 
@@ -7,6 +8,7 @@
 	position: relative;
 	width: 386px;
 	height: 418px;
+	background: var(--color-Main_White);
 
 	@include shadow.shadow;
 	border-radius: 32px;
