@@ -11,13 +11,13 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "format": "prettier --write .",
-    "lint": "prettier --check . && eslint src tests .storybook eslint.config.js svelte.config.js vite.config.ts playwright.config.ts",
+    "lint": "prettier --check . && eslint src tests .storybook",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test:e2e": "playwright test",
     "test:e2e-ui": "playwright test --ui",
     "test:e2e-docker": "docker run -it -v ${PWD}:/app --workdir /app -p 9323:9323 --rm mcr.microsoft.com/playwright:v1.57.0-noble npm run test:e2e",
-    "lint:fix": "prettier --write . && eslint src tests .storybook eslint.config.js svelte.config.js vite.config.ts playwright.config.ts --fix"
+    "lint:fix": "prettier --write . && eslint src tests .storybook --fix"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.0",
