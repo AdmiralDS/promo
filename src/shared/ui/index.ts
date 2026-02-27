@@ -1,22 +1,11 @@
 export { default as Button, type ButtonProps } from './atoms/button/Button.svelte';
 export { default as ComponentContainer } from './atoms/componentContainer/ComponentContainer.svelte';
-export {
-	default as CardContainer,
-	type CardContainerProps
-} from './atoms/cardContainer/CardContainer.svelte';
-export {
-	default as CellContainer,
-	type CellContainerProps
-} from './atoms/cellContainer/CellContainer.svelte';
+export { default as CardContainer, type CardContainerProps } from './atoms/cardContainer/CardContainer.svelte';
+export { default as CellContainer, type CellContainerProps } from './atoms/cellContainer/CellContainer.svelte';
 export { default as ThemeToggle } from './atoms/themeToggle/ThemeToggle.svelte';
 export { default as Toggle } from './atoms/toggle/Toggle.svelte';
 export { default as RadioButton } from './atoms/radioButton/RadioButton.svelte';
-export {
-	default as Color,
-	AVAILABLE_COLORS,
-	type ColorProps,
-	type ButtonColor
-} from './atoms/color/Color.svelte';
+export { default as Color, AVAILABLE_COLORS, type ColorProps, type ButtonColor } from './atoms/color/Color.svelte';
 export { default as AutographLogo } from './atoms/icons/Autograph.svelte';
 export { default as StartLogo } from './atoms/icons/Start.svelte';
 export { default as VTBCloudLogo } from './atoms/icons/VTBCloud.svelte';

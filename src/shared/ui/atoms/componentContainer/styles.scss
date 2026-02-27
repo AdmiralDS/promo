@@ -3,78 +3,78 @@
 
 /* Базовые стили */
 .cntr {
-	box-sizing: border-box;
-	position: relative;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-	padding: 40px;
-	border-radius: 32px;
-	border: none;
+  padding: 40px;
+  border-radius: 32px;
+  border: none;
 
-	@include shadow.shadow;
+  @include shadow.shadow;
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		padding: 24px;
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    padding: 24px;
+  }
 }
 
 /* Размеры */
 .cntr-sm {
-	width: 386px;
-	height: 256px;
+  width: 386px;
+  height: 256px;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		width: 293px;
-		height: 202px;
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    width: 293px;
+    height: 202px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		width: 335px;
-		height: 424px;
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    width: 335px;
+    height: 424px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		width: 335px;
-		height: 424px;
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    width: 335px;
+    height: 424px;
+  }
 }
 .cntr-md {
-	width: 386px;
-	height: 456px;
+  width: 386px;
+  height: 456px;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		width: 350px;
-		height: 424px;
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    width: 350px;
+    height: 424px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		width: 335px;
-		height: 424px;
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    width: 335px;
+    height: 424px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		width: 335px;
-		height: 424px;
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    width: 335px;
+    height: 424px;
+  }
 }
 .cntr-lg {
-	width: 793px;
-	height: 180px;
+  width: 793px;
+  height: 180px;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		width: 606px;
-		height: 202px;
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    width: 606px;
+    height: 202px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		width: 606px;
-		height: 424px;
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    width: 606px;
+    height: 424px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		width: 335px;
-		height: 424px;
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    width: 335px;
+    height: 424px;
+  }
 }
