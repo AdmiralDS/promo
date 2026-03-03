@@ -42,6 +42,7 @@
 	/>
 	<span class="toggle-track">
 		<span class="toggle-thumb"></span>
+		<span class="toggle-track-visible"><span class="toggle-thumb-visible"></span></span>
 	</span>
 	{#if label}
 		<span class="toggle-label-text">

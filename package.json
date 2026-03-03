@@ -15,7 +15,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test:e2e": "playwright test",
-    "test:e2e-ui": "playwright test --ui"
+    "test:e2e-ui": "playwright test --ui",
+    "test:e2e-docker": "docker run -it -v ${PWD}:/app --workdir /app -p 9323:9323 --rm mcr.microsoft.com/playwright:v1.57.0-noble npm run test:e2e"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.0",
