@@ -9,6 +9,7 @@ export interface AdmiralTableProps {
 	tableGroupActions?: boolean;
 	tableRowDrag?: boolean;
 	tableZebra?: boolean;
+	isTablet?: boolean;
 }
 
 type AdmiralTheme = DefaultTheme & { color: Record<string, string> };
@@ -121,39 +122,6 @@ const rowList: RowData[] = array.map((_, index) => {
 	return { id: String(index).padStart(4, '0'), ...dataList[getRndInteger(0, 8)] };
 });
 
-const columnList: Column[] = [
-	{
-		name: 'transfer_type',
-		title: 'Тип сделки',
-		width: 'calc(100% - 508px - 44px)'
-	},
-	{
-		name: 'transfer_date',
-		title: 'Дата сделки',
-		width: 145
-	},
-	{
-		name: 'transfer_amount',
-		title: 'Сумма',
-		cellAlign: 'right',
-		// width: '22.2%'
-		width: 165
-	},
-	{
-		name: 'currency',
-		title: 'Валюта',
-		// width: '14.9%'
-		width: 111
-	},
-	{
-		name: 'rate',
-		title: 'Ставка',
-		// width: '11.7%',
-		width: 87,
-		cellAlign: 'right'
-	}
-];
-
 const firstSize = (dimension: AdmiralTableProps['dimension']) => {
 	switch (dimension) {
 		case 's':
@@ -170,57 +138,61 @@ export const AdmiralTable = ({
 	dimension,
 	tableGroupActions,
 	tableRowDrag,
-	tableZebra
-	// isTablet
+	tableZebra,
+	isTablet
 }: AdmiralTableProps) => {
 	const [pageSize, setPageSize] = useState(firstSize(dimension));
 	const [page, setPage] = useState(1);
-	const [cols, setCols] = useState(columnList);
+	const [resize, setResize] = useState<{ name: string; width: string } | null>(null);
 	const [rows, setRows] = useState(rowList.slice(0, pageSize));
 
 	const pageSizes = [firstSize(dimension), 20, 50];
 	const totalElements = 256;
 
-	// const columnListTest: Column[] = useMemo(
-	// 	() => [
-	// 		{
-	// 			name: 'transfer_type',
-	// 			title: 'Тип сделки',
-	// 			width: tableRowDrag ? 'calc(100% - 508px - 44px)' : 'calc(100% - 508px)'
-	// 		},
-	// 		{
-	// 			name: 'transfer_date',
-	// 			title: 'Дата сделки',
-	// 			width: 145
-	// 		},
-	// 		{
-	// 			name: 'transfer_amount',
-	// 			title: 'Сумма',
-	// 			cellAlign: 'right',
-	// 			// width: '22.2%'
-	// 			width: 165
-	// 		},
-	// 		{
-	// 			name: 'currency',
-	// 			title: 'Валюта',
-	// 			// width: '14.9%'
-	// 			width: 111
-	// 		},
-	// 		{
-	// 			name: 'rate',
-	// 			title: 'Ставка',
-	// 			// width: '11.7%',
-	// 			width: 87,
-	// 			cellAlign: 'right'
-	// 		}
-	// 	],
-	// 	[tableRowDrag]
-	// );
+	const columns: Column[] = useMemo(() => {
+		const arrayOfColumn: Column[] = [
+			{
+				name: 'transfer_type',
+				title: 'Тип сделки',
+				width: `calc(100% - ${isTablet ? '310px' : '508px'})`
+			},
+			{
+				name: 'transfer_date',
+				title: 'Дата сделки',
+				width: 145
+			},
+			{
+				name: 'transfer_amount',
+				title: 'Сумма',
+				cellAlign: 'right',
+				width: 165
+			},
+			{
+				name: 'currency',
+				title: 'Валюта',
+				width: 111
+			},
+			{
+				name: 'rate',
+				title: 'Ставка',
+				width: 87,
+				cellAlign: 'right'
+			}
+		];
 
-	const handleResize = ({ name, width }: { name: string; width: string }) => {
-		const newCols = cols.map((col) => (col.name === name ? { ...col, width } : col));
-		setCols(newCols);
-	};
+		return isTablet ? arrayOfColumn.filter((_, index) => index < 3) : arrayOfColumn;
+	}, [tableRowDrag, dimension, isTablet]);
+
+	const columnList: Column[] = useMemo(() => {
+		if (resize) {
+			const index = columns.findIndex((col) => col.name === resize.name);
+
+			columns.splice(index, 1, { ...columns[index], width: resize.width });
+			setResize(null);
+		}
+
+		return columns;
+	}, [columns, resize]);
 
 	const handleSelectionChange = (ids: Record<string, boolean>): void => {
 		const updRows = rows.map((row) => ({ ...row, selected: ids[row.id] }));
@@ -264,11 +236,11 @@ export const AdmiralTable = ({
 	return (
 		<Wrapper>
 			<Table
-				style={{ maxHeight: `${tableHeight + 1}px`, width: '743px' }}
+				style={{ maxHeight: `${tableHeight + 1}px`, width: isTablet ? '543px' : '743px' }}
 				dimension={dimension}
 				rowList={rows}
 				columnList={columnList}
-				onColumnResize={handleResize}
+				onColumnResize={setResize}
 				rowsDraggable={tableRowDrag}
 				onRowDrag={handleRowDrag}
 				onRowDragEnd={handleRowDragEnd}
@@ -281,8 +253,8 @@ export const AdmiralTable = ({
 			<StyledPaginationOne
 				onChange={({ page, pageSize }) => {
 					const currentCountRow = (page - 1) * pageSize;
-					setRows(rowList.slice(currentCountRow, currentCountRow + pageSize));
 
+					setRows(rowList.slice(currentCountRow, currentCountRow + pageSize));
 					setPage(page);
 					setPageSize(pageSize);
 				}}
@@ -297,6 +269,7 @@ export const AdmiralTable = ({
 				pageNumberDropContainerStyle={{ dropContainerClassName: 'pageNumberDropContainerClass' }}
 				leftButtonPropsConfig={() => leftButtonProps}
 				rightButtonPropsConfig={() => rightButtonProps}
+				simple={isTablet}
 			/>
 		</Wrapper>
 	);
