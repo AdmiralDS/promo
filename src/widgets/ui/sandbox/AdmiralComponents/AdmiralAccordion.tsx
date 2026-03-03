@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'styled-components';
 import type { DefaultTheme } from 'styled-components';
 
@@ -27,6 +26,7 @@ const items = [
 type AdmiralTheme = DefaultTheme & { color: Record<string, string> };
 
 const StyledAccordion = styled(Accordion)`
+  box-sizing: border-box;
 	padding: 12px;
 	background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
 	width: 316px;
