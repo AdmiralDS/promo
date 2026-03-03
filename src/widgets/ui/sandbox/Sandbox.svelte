@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ToggleGroup, Tab } from '$shared/ui';
 	import { MOBILE_QUERY, TABLET_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
+	import { untrack } from 'svelte';
 	import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
 	import ControlContainer from './ControlContainer.svelte';
 	import {
@@ -26,12 +27,23 @@
 
 	const isTabletStore = useMediaQuery(TABLET_QUERY);
 	const isMobileStore = useMediaQuery(MOBILE_QUERY);
-	let isTablet = $state(false);
-	let isMobile = $state(false);
+	let isTablet = $state($isTabletStore);
+	let isMobile = $state($isMobileStore);
+	let previousIsMobile = $state($isMobileStore);
 
 	$effect(() => {
 		isMobile = $isMobileStore;
 		isTablet = $isTabletStore && !isMobile;
+
+		untrack(() => {
+			if (isMobile !== previousIsMobile) {
+				previousIsMobile = isMobile;
+				if (isMobile) {
+					updateConfig({ fieldCount: 2 });
+					updateConfig({ appearance: 'm' });
+				}
+			}
+		});
 	});
 
 	const componentsFull: { eng: string; rus: string }[] = [

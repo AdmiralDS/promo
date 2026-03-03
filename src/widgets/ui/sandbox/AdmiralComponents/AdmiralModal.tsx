@@ -1,6 +1,7 @@
 import {
 	Button,
 	CheckboxField,
+	CloseIconPlacementButton,
 	InputField,
 	largeGroupBorderRadius,
 	ModalButtonPanel,
@@ -21,14 +22,9 @@ type AdmiralTheme = DefaultTheme & {
 
 const getAdmiralTheme = (theme: DefaultTheme): AdmiralTheme => theme as AdmiralTheme;
 
-const width = css<{ $mobile?: boolean }>`
+const width = css<{ $mobile: boolean }>`
 	// 16px on left and right side
-	width: 320px;
-
-	/* width: ${({ $mobile }) => ($mobile ? 'calc(100% - 32px)' : '592px')}; */
-	@media (min-width: 700px) {
-		width: 592px;
-	}
+	width: ${({ $mobile }) => ($mobile ? '320px' : '592px')};
 `;
 
 const parseShadow = (token: string) => {
@@ -38,12 +34,9 @@ const parseShadow = (token: string) => {
 	return result;
 };
 
-const ModalComponent = styled.div<{ $dimension: Dimension; $mobile?: boolean }>`
-	position: absolute;
+const ModalComponent = styled.div<{ $dimension: Dimension; $mobile: boolean }>`
+	position: relative;
 	box-sizing: border-box;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
@@ -67,57 +60,48 @@ const ModalComponent = styled.div<{ $dimension: Dimension; $mobile?: boolean }>`
 	);
 	outline: none;
 
-	${typography['Body/Body 2 Long']}
-	/* ${({ $mobile }) =>
-		$mobile ? typography['Body/Body 2 Long'] : typography['Body/Body 1 Long']} */
-
-		max-height: '84vh';
-	/* max-height: ${({ $mobile }) => ($mobile ? '84vh' : '90vh')}; */
-	@media (min-width: 700px) {
-		${typography['Body/Body 1 Long']}
-		max-height: '90vh';
-	}
+	${typography['Body/Body 1 Long']}
+	max-height: ${({ $mobile }) => ($mobile ? '84vh' : '90vh')};
 `;
 
 const StyledInputField = styled(InputField)<{ $mobile?: boolean }>`
-	/* ${({ $mobile }) => !$mobile && 'width: 364px'}; */
-
-	@media (min-width: 700px) {
-		width: 364px;
-	}
+	${({ $mobile }) => !$mobile && 'width: 364px'};
 `;
 
-const InputBox = styled.div<{ $mobile?: boolean }>`
-	margin-top: 16px;
-	margin-bottom: 16px;
+const InputBox = styled.div<{ $mobile: boolean }>`
+	margin-top: 28px;
+	margin-bottom: 28px;
 
-	@media (min-width: 700px) {
-		margin-top: 28px;
-		margin-bottom: 28px;
-	}
+	${({ $mobile }) =>
+		$mobile &&
+		`margin-top: 16px;
+	margin-bottom: 16px;`}
 
 	> :not(:first-child) {
 		margin-top: 20px;
 	}
 `;
 
-const StyledModalTitle = styled(ModalTitle)<{ $mobile?: boolean }>`
-	@media (max-width: 699px) {
-		padding-bottom: 0px;
+const StyledModalTitle = styled(ModalTitle)<{ $mobile: boolean }>`
+	${({ $mobile }) =>
+		$mobile &&
+		`padding-bottom: 0px;
 		padding-left: 16px;
-	}
+		${typography['Header/H6']}`}
 `;
 
-const StyledModalContent = styled(ModalContent)<{ $mobile?: boolean }>`
-	@media (max-width: 699px) {
-		> div:first-child {
+const StyledModalContent = styled(ModalContent)<{ $mobile: boolean }>`
+	${({ $mobile }) =>
+		$mobile &&
+		`> div:first-child {
 			padding-inline: 16px !important;
-		}
-	}
+		}`}
 `;
 
-const StyledModalButtonPanel = styled(ModalButtonPanel)<{ $mobile?: boolean }>`
-	@media (max-width: 699px) {
+const StyledModalButtonPanel = styled(ModalButtonPanel)<{ $mobile: boolean }>`
+	${({ $mobile }) =>
+		$mobile &&
+		`
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
@@ -126,50 +110,74 @@ const StyledModalButtonPanel = styled(ModalButtonPanel)<{ $mobile?: boolean }>`
 		> button {
 			margin: 0;
 		}
+	`}
+`;
+
+const CloseButton = styled(CloseIconPlacementButton)<{ $mobile: boolean }>`
+	position: absolute;
+	top: ${({ $mobile }) => ($mobile ? 18 : 14)}px;
+	right: ${({ $mobile }) => ($mobile ? 10 : 18)}px;
+
+	@media (hover: none) {
+		&:hover {
+			> div:first-child {
+				background-color: transparent !important;
+			}
+		}
 	}
 `;
 
 export interface AdmiralModalProps {
 	dimension?: Appearance;
 	fieldCount?: number;
+	isMobile: boolean;
 }
 
-export const AdmiralModal = ({ dimension = 'm', fieldCount = 2 }: AdmiralModalProps) => {
-	return (
-		<ModalComponent $dimension={dimension as Dimension}>
-			<StyledModalTitle id="modal-title">Получение доступа</StyledModalTitle>
-			<StyledModalContent>
-				Заполните данные, чтобы мы могли открыть для вас доступ
-				<InputBox>
-					{fieldCount >= 1 && (
-						<>
-							<StyledInputField dimension={dimension === 'l' ? 'm' : dimension} label="Ваше имя" />
-						</>
-					)}
-					{fieldCount >= 2 && (
-						<>
-							<StyledInputField
-								dimension={dimension === 'l' ? 'm' : dimension}
-								label="Ваша фамилия"
-							/>
-						</>
-					)}
-					{fieldCount >= 3 && (
-						<>
-							<StyledInputField dimension={dimension === 'l' ? 'm' : dimension} label="Отчество" />
-						</>
-					)}
-				</InputBox>
-				<CheckboxField>Разрешить использование личных данных</CheckboxField>
-			</StyledModalContent>
-			<StyledModalButtonPanel>
-				<Button appearance="primary" dimension={dimension}>
-					Отправить
-				</Button>
-				<Button appearance="secondary" dimension={dimension}>
-					Отменить
-				</Button>
-			</StyledModalButtonPanel>
-		</ModalComponent>
-	);
-};
+export const AdmiralModal = ({ dimension = 'm', fieldCount = 2, isMobile }: AdmiralModalProps) => (
+	<ModalComponent $mobile={isMobile} $dimension={dimension as Dimension}>
+		<StyledModalTitle $mobile={isMobile} id="modal-title">
+			Получение доступа
+		</StyledModalTitle>
+		<StyledModalContent $mobile={isMobile}>
+			Заполните данные, чтобы мы могли открыть для вас доступ
+			<InputBox $mobile={isMobile}>
+				{fieldCount >= 1 && (
+					<>
+						<StyledInputField
+							$mobile={isMobile}
+							dimension={isMobile ? 's' : dimension === 'l' ? 'm' : dimension}
+							label="Ваше имя"
+						/>
+					</>
+				)}
+				{fieldCount >= 2 && (
+					<>
+						<StyledInputField
+							$mobile={isMobile}
+							dimension={isMobile ? 's' : dimension === 'l' ? 'm' : dimension}
+							label="Ваша фамилия"
+						/>
+					</>
+				)}
+				{!isMobile && fieldCount >= 3 && (
+					<>
+						<StyledInputField dimension={dimension === 'l' ? 'm' : dimension} label="Отчество" />
+					</>
+				)}
+			</InputBox>
+			{/*По умолчанию display: inline-flex добавляет 4px */}
+			<CheckboxField style={{ display: 'flex', width: 'fit-content' }}>
+				Разрешить использование личных данных
+			</CheckboxField>
+		</StyledModalContent>
+		<StyledModalButtonPanel $mobile={isMobile}>
+			<Button appearance="primary" dimension={dimension}>
+				Отправить
+			</Button>
+			<Button appearance="secondary" dimension={dimension}>
+				Отменить
+			</Button>
+		</StyledModalButtonPanel>
+		<CloseButton $mobile={isMobile} onClick={(e) => e.currentTarget.blur()} />
+	</ModalComponent>
+);
