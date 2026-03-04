@@ -9,7 +9,7 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		gap: 12px;
+		gap: 24px;
 	}
 
 	@include breakpoints.respond-until(breakpoints.$phone) {

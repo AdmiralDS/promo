@@ -130,7 +130,7 @@
 			<div class="text second-row text--Text_Blue">попробуйте сами</div>
 			<ToggleGroup onSelectedChange={handleComponentChange}>
 				{#each components as componentOption}
-					<Tab>{componentOption.rus}</Tab>
+					<Tab class="component-sandbox">{componentOption.rus}</Tab>
 				{/each}
 			</ToggleGroup>
 		</div>
