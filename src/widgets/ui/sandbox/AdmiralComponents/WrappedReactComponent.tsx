@@ -173,6 +173,7 @@ export const WrappedReactComponent = ({
 						tableGroupActions={tableGroupActions}
 						tableRowDrag={tableRowDrag}
 						tableZebra={tableZebra}
+						isTablet={isTablet}
 					/>
 				);
 			case 'Accordion':
