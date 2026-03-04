@@ -21,6 +21,8 @@
 	export let dropdownMode: DropdownMode = 'multiselect';
 	export let accordionArrowPosition: AccordionArrowPosition = 'left';
 	export let accordionLineCount: AccordionLineCount = 4;
+	export let isTablet: boolean = false;
+	export let isMobile: boolean = false;
 
 	let container: HTMLDivElement | undefined;
 	let root: ReturnType<typeof renderer> | null = null;
@@ -36,7 +38,9 @@
 		tableZebra,
 		dropdownMode,
 		accordionArrowPosition,
-		accordionLineCount
+		accordionLineCount,
+		isTablet,
+		isMobile
 	});
 
 	let currentProps: RendererOptions = getRendererOptions(theme);
@@ -76,7 +80,9 @@
 			currentProps.tableZebra !== nextProps.tableZebra ||
 			currentProps.dropdownMode !== nextProps.dropdownMode ||
 			currentProps.accordionArrowPosition !== nextProps.accordionArrowPosition ||
-			currentProps.accordionLineCount !== nextProps.accordionLineCount;
+			currentProps.accordionLineCount !== nextProps.accordionLineCount ||
+			currentProps.isTablet !== isTablet ||
+			currentProps.isMobile !== isMobile;
 
 		if (shouldUpdate) {
 			theme = newTheme;

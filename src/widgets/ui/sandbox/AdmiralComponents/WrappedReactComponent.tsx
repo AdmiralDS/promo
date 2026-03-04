@@ -24,6 +24,8 @@ export interface Props {
 	dropdownMode?: DropdownMode;
 	accordionArrowPosition?: AccordionArrowPosition;
 	accordionLineCount?: AccordionLineCount;
+	isTablet?: boolean;
+	isMobile?: boolean;
 }
 
 const setMainLightThemeColors = (mainColor: string) => {
@@ -157,7 +159,9 @@ export const WrappedReactComponent = ({
 	tableZebra,
 	dropdownMode,
 	accordionArrowPosition,
-	accordionLineCount
+	accordionLineCount,
+	isTablet,
+	isMobile
 }: Props) => {
 	const colorTheme = setMainThemeColors(theme, color);
 	const getComponent = () => {
