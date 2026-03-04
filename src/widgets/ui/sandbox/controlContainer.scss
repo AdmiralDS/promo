@@ -63,11 +63,7 @@
 		background: colors.color('Dark_Circle_Purple');
 	}
 
-	:global(.button-block-wrapper) {
-		color: colors.color('Main_White');
-	}
-
-	:global(.button-block-wrapper .chevron-wrapper) {
+	:global(.button-block-wrapper .menu-button > button) {
 		color: colors.color('Main_White');
 	}
 
@@ -137,9 +133,9 @@
 }
 
 .divider-vertical {
-	width: 1px;
+	width: 0;
 	height: 88px;
-	background: #e8ecf5;
+	border-left: 1px solid #e8ecf5;
 	align-self: stretch;
 	height: calc(100% + 40px);
 	margin-top: -20px;
@@ -155,12 +151,18 @@
 .control-container.control-container--dark {
 	.divider-vertical,
 	.divider-horizontal {
+		border-left-color: rgba(colors.color('Light_Grey'), 0.2);
 		background: rgba(colors.color('Light_Grey'), 0.2);
-		opacity: 1;
 	}
 }
 
 .button-block-wrapper {
 	display: flex;
 	gap: 8px;
+}
+
+.control-container:not(.control-container--dark) {
+	.button-block-wrapper :global(.menu-button > button) {
+		color: colors.color('Snow_Gray');
+	}
 }
