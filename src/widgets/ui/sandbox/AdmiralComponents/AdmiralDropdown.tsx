@@ -58,7 +58,8 @@ export const AdmiralDropdown = ({ dimension, dropdownMode }: AdmiralDropdownProp
 		}
 	};
 
-	const controlDimension = dimension === undefined || dimension === 'xl' ? 'l' : dimension;
+	const controlDimension = dimension === undefined ? 'l' : dimension;
+	const selectDimension = dimension === undefined || dimension === 'l' ? 'xl' : dimension;
 
 	const selectMode = isMultiselect ? 'searchSelect' : 'select';
 
@@ -67,7 +68,7 @@ export const AdmiralDropdown = ({ dimension, dropdownMode }: AdmiralDropdownProp
 	return (
 		<Field label="Выберите города" id="propsId">
 			<StyledDropdown
-				dimension={dimension}
+				dimension={selectDimension}
 				id="propsId"
 				placeholder="Города"
 				value={value}
