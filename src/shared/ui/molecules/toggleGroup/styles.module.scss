@@ -10,7 +10,7 @@
 	overflow-y: hidden;
 	padding: 4px;
 	margin: -4px;
-	gap: 8px;
+	gap: 12px;
 
 	-ms-overflow-style: none;
 	scrollbar-width: none;
@@ -18,8 +18,14 @@
 		display: none;
 	}
 
-	@include breakpoints.respond-from(breakpoints.$phone) {
-		gap: 12px;
+	@include breakpoints.respond-from(breakpoints.$desktopS) {
+		&:has(:global([class*='btn-Circle_'])) {
+			gap: 20px;
+		}
+	}
+
+	&:has(:global([class*='component-sandbox'])) {
+		gap: 8px;
 	}
 }
 
