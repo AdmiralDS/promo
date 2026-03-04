@@ -7,14 +7,14 @@
 
   const isMobile = $derived($mobileQuery);
 
-	const options = ['Одно', 'Два', 'Три'];
-	const optionsMobile = ['Одно', 'Два'];
+  const options = ['Одно', 'Два', 'Три'];
+  const optionsMobile = ['Одно', 'Два'];
 
   let { selected = 0, onSelectedChange }: FieldProps = $props();
 </script>
 
 <SandboxField fieldTitle={'Полей'} {selected} {onSelectedChange}>
-	{#each isMobile ? optionsMobile : options as optionLabel}
-		<Button variant="secondary" size="small">{optionLabel}</Button>
-	{/each}
+  {#each isMobile ? optionsMobile : options as optionLabel}
+    <Button variant="secondary" size="small">{optionLabel}</Button>
+  {/each}
 </SandboxField>

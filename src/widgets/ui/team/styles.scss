@@ -2,11 +2,11 @@
 @use '$shared/ui/breakpoints' as breakpoints;
 
 .team-container {
-	box-sizing: border-box;
-	width: 100%;
-	height: fit-content;
-	position: relative;
-	overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  overflow: hidden;
 }
 
 .main-container {

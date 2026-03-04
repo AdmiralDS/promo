@@ -2,16 +2,16 @@
 @use '$shared/ui/breakpoints' as breakpoints;
 
 .products-container {
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	height: 868px;
-	margin: 0 auto;
-	border-radius: 80px;
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		height: 814px;
-		border-radius: 48px;
-	}
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 868px;
+  margin: 0 auto;
+  border-radius: 80px;
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    height: 814px;
+    border-radius: 48px;
+  }
 
   @include breakpoints.respond-until(breakpoints.$phone) {
     height: 567px;

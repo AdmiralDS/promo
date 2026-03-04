@@ -3,22 +3,22 @@
 @use '$shared/ui/colors' as colors;
 
 .sandbox-container {
-	box-sizing: border-box;
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	height: 1116px;
-	margin: 0 auto;
-	padding: 0;
-	border-radius: 80px;
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		height: 1065px;
-		border-radius: 48px;
-	}
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		height: 1065px;
-		padding: 0 24px;
-	}
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 1116px;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 80px;
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    height: 1065px;
+    border-radius: 48px;
+  }
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    height: 1065px;
+    padding: 0 24px;
+  }
 
   @include breakpoints.respond-until(breakpoints.$phone) {
     height: 864px;
@@ -102,9 +102,9 @@
 }
 
 .component-wrapper {
-	align-self: center;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 0 16px 0 8px;
-	transform: translate3d(0, 0, 0);
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 16px 0 8px;
+  transform: translate3d(0, 0, 0);
 }
