@@ -95,6 +95,32 @@
 	:global(.toggle-label-inline:hover #togglehover) {
 		fill: rgba(colors.color('Light_Grey'), 0.1);
 	}
+
+	@media (hover: hover) {
+		:global(.toggle-label:hover .toggle-thumb) {
+			box-shadow: 0 0 0 16px rgba(colors.color('Light_Grey'), 0.1);
+		}
+
+		:global(.toggle-label.toggle--sm:hover .toggle-thumb) {
+			box-shadow: 0 0 0 10px rgba(colors.color('Light_Grey'), 0.1);
+		}
+
+		:global(.radio-label:hover .radio-visual-shadow) {
+			box-shadow: 0 0 0 12px rgba(colors.color('Light_Grey'), 0.1);
+		}
+
+		:global(.radio-label.radio--sm:hover .radio-visual-shadow) {
+			box-shadow: 0 0 0 8px rgba(colors.color('Light_Grey'), 0.1);
+		}
+
+		:global(.toggle-group .btn[aria-selected='false']:not([class*='btn-Circle_']):hover) {
+			background: rgba(colors.color('Light_Grey'), 0.28);
+		}
+
+		:global(.toggle-group .btn[aria-selected='false']:hover) {
+			outline-color: rgba(colors.color('Light_Grey'), 0.1);
+		}
+	}
 }
 
 .theme-toggle {
