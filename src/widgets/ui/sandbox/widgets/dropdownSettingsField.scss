@@ -1,17 +1,22 @@
 @use '$shared/ui/typography' as typo;
+@use '$shared/ui/breakpoints' as breakpoints;
 
 .dropdown-settings {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin: 0;
-  padding: 0;
-  border: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		gap: 12px;
+	}
 }
 
 .dropdown-settings--dropdown {
-  min-width: 260px;
-  width: 100%;
+	min-width: 260px;
+	width: 100%;
 }
 
 .dropdown-settings-control {

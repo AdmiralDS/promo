@@ -2,11 +2,11 @@
 @use '$shared/ui/breakpoints' as breakpoints;
 
 .table-settings {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 321px;
-  height: 144px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	width: 321px;
+	height: 144px;
 
   @include breakpoints.respond-until(breakpoints.$desktopS) {
     gap: 12px;

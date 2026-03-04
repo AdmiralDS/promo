@@ -1,36 +1,22 @@
-import * as React from 'react';
-
-import {
-  Button,
-  GroupActionsPane,
-  PaginationOne,
-  PaneSeparator,
-  T,
-  Table,
-  TextButton,
-  typography,
-  type Column,
-  type PaneColumn,
-  type PaneMenuProps,
-  type TableRow,
-} from '@admiral-ds/react-ui';
-import { SystemDeleteOutline, SystemEditOutline } from '@admiral-ds/icons';
+import { PaginationOne, Table, type Column, type TableRow } from '@admiral-ds/react-ui';
 import styled from 'styled-components';
 import type { DefaultTheme } from 'styled-components';
 import type { Appearance } from '../types';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 export interface AdmiralTableProps {
-  dimension: Appearance;
-  tableGroupActions?: boolean;
-  tableRowDrag?: boolean;
-  tableZebra?: boolean;
+	dimension: Appearance;
+	tableGroupActions?: boolean;
+	tableRowDrag?: boolean;
+	tableZebra?: boolean;
+	isTablet?: boolean;
 }
 
 type AdmiralTheme = DefaultTheme & { color: Record<string, string> };
 
 const StyledPaginationOne = styled(PaginationOne)`
-  background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
+	margin-top: 16px;
+	background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
 `;
 
 const AmountCell = styled.div`
@@ -40,130 +26,88 @@ const AmountCell = styled.div`
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  padding: 0 20px;
-  background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
-`;
-
-const SettingsMenu = styled.div`
-  width: 320px;
-  padding: 20px;
-  ${typography['Body/Body 2 Long']}
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  margin-top: 28px;
-  & > button:first-child {
-    margin-right: 8px;
-  }
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	padding: 16px;
+	background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
+	border-radius: 16px;
 `;
 
 type Data = {
-  transfer_type: string;
-  transfer_date: string;
-  transfer_amount: React.ReactNode;
-  transfer_status?: string;
+	transfer_type: string;
+	transfer_date: string;
+	transfer_amount: React.ReactNode;
+	currency: string;
+	rate: string;
 };
 
 const numberFormatter = new Intl.NumberFormat();
 
 const dataList: Data[] = [
-  {
-    transfer_type: 'МНО',
-    transfer_date: new Date('2020-08-06').toLocaleDateString(),
-    transfer_amount: (
-      <AmountCell>
-        <T font="Body/Body 2 Short">{numberFormatter.format(18_000_000)}</T>
-      </AmountCell>
-    ),
-    transfer_status: 'Выполнено',
-  },
-  {
-    transfer_type: 'МНО',
-    transfer_date: new Date('2020-08-06').toLocaleDateString(),
-    transfer_amount: (
-      <AmountCell>
-        <T font="Body/Body 2 Short">{numberFormatter.format(32_500_000_000)}</T>
-      </AmountCell>
-    ),
-    transfer_status: 'В ожиданиии',
-  },
-  {
-    transfer_type: 'МНО',
-    transfer_date: new Date('2020-08-06').toLocaleDateString(),
-    transfer_amount: (
-      <AmountCell>
-        <T font="Body/Body 2 Short">{numberFormatter.format(12_000_000)}</T>
-      </AmountCell>
-    ),
-    transfer_status: 'Выполнено',
-  },
-  {
-    transfer_type: 'МНО',
-    transfer_date: new Date('2020-08-06').toLocaleDateString(),
-    transfer_amount: (
-      <AmountCell>
-        <T font="Body/Body 2 Short">{numberFormatter.format(55_500_000_000)}</T>
-      </AmountCell>
-    ),
-    transfer_status: 'Выполнено',
-  },
-  {
-    transfer_type: 'МНО',
-    transfer_date: new Date('2020-08-06').toLocaleDateString(),
-    transfer_amount: (
-      <AmountCell>
-        <T font="Body/Body 2 Short">{numberFormatter.format(180_000)}</T>
-      </AmountCell>
-    ),
-    transfer_status: 'Выполнено',
-  },
-  {
-    transfer_type: 'МНО',
-    transfer_date: new Date('2020-08-06').toLocaleDateString(),
-    transfer_amount: (
-      <AmountCell>
-        <T font="Body/Body 2 Short">{numberFormatter.format(500_000_000)}</T>
-      </AmountCell>
-    ),
-    transfer_status: 'Выполнено',
-  },
-  {
-    transfer_type: 'МНО',
-    transfer_date: new Date('2020-08-06').toLocaleDateString(),
-    transfer_amount: (
-      <AmountCell>
-        <T font="Body/Body 2 Short">{numberFormatter.format(189_000_000)}</T>
-      </AmountCell>
-    ),
-    transfer_status: 'В ожиданиии',
-  },
-  {
-    transfer_type: 'МНО',
-    transfer_date: new Date('2020-08-06').toLocaleDateString(),
-    transfer_amount: (
-      <AmountCell>
-        <T font="Body/Body 2 Short">{numberFormatter.format(6_000)}</T>
-      </AmountCell>
-    ),
-    transfer_status: 'Выполнено',
-  },
-  {
-    transfer_type: 'МНО',
-    transfer_date: new Date('2020-08-06').toLocaleDateString(),
-    transfer_amount: (
-      <AmountCell>
-        <T font="Body/Body 2 Short">{numberFormatter.format(10_000)}</T>
-      </AmountCell>
-    ),
-    transfer_status: 'В ожиданиии',
-  },
+	{
+		transfer_type: 'МНО',
+		transfer_date: new Date('2020-08-06').toLocaleDateString(),
+		transfer_amount: <AmountCell>{numberFormatter.format(18_000_000)}</AmountCell>,
+		currency: 'RUB',
+		rate: '1%'
+	},
+	{
+		transfer_type: 'МНО',
+		transfer_date: new Date('2020-08-06').toLocaleDateString(),
+		transfer_amount: <AmountCell>{numberFormatter.format(32_500_000_000)}</AmountCell>,
+		currency: 'RUB',
+		rate: '2%'
+	},
+	{
+		transfer_type: 'МНО',
+		transfer_date: new Date('2020-08-06').toLocaleDateString(),
+		transfer_amount: <AmountCell>{numberFormatter.format(12_000_000)}</AmountCell>,
+		currency: 'RUB',
+		rate: '3%'
+	},
+	{
+		transfer_type: 'МНО',
+		transfer_date: new Date('2020-08-06').toLocaleDateString(),
+		transfer_amount: <AmountCell>{numberFormatter.format(55_500_000_000)}</AmountCell>,
+		currency: 'RUB',
+		rate: '4%'
+	},
+	{
+		transfer_type: 'МНО',
+		transfer_date: new Date('2020-08-06').toLocaleDateString(),
+		transfer_amount: <AmountCell>{numberFormatter.format(180_000)}</AmountCell>,
+		currency: 'RUB',
+		rate: '5%'
+	},
+	{
+		transfer_type: 'МНО',
+		transfer_date: new Date('2020-08-06').toLocaleDateString(),
+		transfer_amount: <AmountCell>{numberFormatter.format(500_000_000)}</AmountCell>,
+		currency: 'RUB',
+		rate: '6%'
+	},
+	{
+		transfer_type: 'МНО',
+		transfer_date: new Date('2020-08-06').toLocaleDateString(),
+		transfer_amount: <AmountCell>{numberFormatter.format(189_000_000)}</AmountCell>,
+		currency: 'RUB',
+		rate: '7%'
+	},
+	{
+		transfer_type: 'МНО',
+		transfer_date: new Date('2020-08-06').toLocaleDateString(),
+		transfer_amount: <AmountCell>{numberFormatter.format(6_000)}</AmountCell>,
+		currency: 'RUB',
+		rate: '8%'
+	},
+	{
+		transfer_type: 'МНО',
+		transfer_date: new Date('2020-08-06').toLocaleDateString(),
+		transfer_amount: <AmountCell>{numberFormatter.format(10_000)}</AmountCell>,
+		currency: 'RUB',
+		rate: '9%'
+	}
 ];
 
 type RowData = TableRow & Data;
@@ -178,52 +122,77 @@ const rowList: RowData[] = array.map((_, index) => {
   return { id: String(index).padStart(4, '0'), ...dataList[getRndInteger(0, 8)] };
 });
 
-const columnList: Column[] = [
-  {
-    name: 'transfer_type',
-    title: 'Тип сделки',
-    width: 140,
-  },
-  {
-    name: 'transfer_date',
-    title: 'Дата сделки',
-    width: 140,
-  },
-  {
-    name: 'transfer_amount',
-    title: 'Сумма',
-    width: 160,
-  },
-  {
-    name: 'transfer_status',
-    title: 'Статус',
-    width: 160,
-  },
-];
+const firstSize = (dimension: AdmiralTableProps['dimension']) => {
+	switch (dimension) {
+		case 's':
+			return 10;
+		case 'l':
+			return 6;
+		case 'm':
+		default:
+			return 8;
+	}
+};
 
-const columns: PaneColumn[] = [
-  { id: 'transfer_type', title: 'Тип сделки', visible: true },
-  { id: 'transfer_date', title: 'Дата сделки', visible: true },
-  { id: 'transfer_amount', title: 'Сумма', visible: true },
-  { id: 'transfer_status', title: 'Статус', visible: true },
-];
+export const AdmiralTable = ({
+	dimension,
+	tableGroupActions,
+	tableRowDrag,
+	tableZebra,
+	isTablet
+}: AdmiralTableProps) => {
+	const [pageSize, setPageSize] = useState(firstSize(dimension));
+	const [page, setPage] = useState(1);
+	const [resize, setResize] = useState<{ name: string; width: string } | null>(null);
+	const [rows, setRows] = useState(rowList.slice(0, pageSize));
 
-export const AdmiralTable = ({ dimension, tableGroupActions, tableRowDrag, tableZebra }: AdmiralTableProps) => {
-  void tableGroupActions;
-  void tableRowDrag;
-  void tableZebra;
-  const [pageSize, setPageSize] = React.useState(8);
-  const [page, setPage] = React.useState(1);
-  const [cols, setCols] = React.useState(columnList);
-  const [rows, setRows] = React.useState(rowList.slice(0, pageSize));
+	const pageSizes = [firstSize(dimension), 20, 50];
+	const totalElements = 256;
 
-  const pageSizes = [8, 20, 50, 100, 200];
-  const totalElements = 256;
+	const columns: Column[] = useMemo(() => {
+		const arrayOfColumn: Column[] = [
+			{
+				name: 'transfer_type',
+				title: 'Тип сделки',
+				width: `calc(100% - ${isTablet ? '310px' : '508px'})`
+			},
+			{
+				name: 'transfer_date',
+				title: 'Дата сделки',
+				width: 145
+			},
+			{
+				name: 'transfer_amount',
+				title: 'Сумма',
+				cellAlign: 'right',
+				width: 165
+			},
+			{
+				name: 'currency',
+				title: 'Валюта',
+				width: 111
+			},
+			{
+				name: 'rate',
+				title: 'Ставка',
+				width: 87,
+				cellAlign: 'right'
+			}
+		];
 
-  const handleResize = ({ name, width }: { name: string; width: string }) => {
-    const newCols = cols.map((col) => (col.name === name ? { ...col, width } : col));
-    setCols(newCols);
-  };
+		return isTablet ? arrayOfColumn.filter((_, index) => index < 3) : arrayOfColumn;
+	}, [tableRowDrag, dimension, isTablet]);
+
+	const columnList: Column[] = useMemo(() => {
+		if (resize) {
+			const index = columns.findIndex((col) => col.name === resize.name);
+
+			columns.splice(index, 1, { ...columns[index], width: resize.width });
+			setResize(null);
+		}
+
+		return columns;
+	}, [columns, resize]);
 
   const handleSelectionChange = (ids: Record<string, boolean>): void => {
     const updRows = rows.map((row) => ({ ...row, selected: ids[row.id] }));
@@ -250,89 +219,56 @@ export const AdmiralTable = ({ dimension, tableGroupActions, tableRowDrag, table
   const leftButtonProps = { 'data-testid': 'pagination-left-button' };
   const rightButtonProps = { 'data-testid': 'pagination-right-button' };
 
-  const [columnsVisibility, setColumnsVisibility] = useState(columns);
-  const [searchValue, setSearchValue] = useState<string>('');
+	const tableHeight = useMemo(() => {
+		switch (dimension) {
+			case 's':
+				return 11 * 32;
+			case 'l':
+				return 7 * 48;
+			case 'm':
+			default:
+				return 9 * 40;
+		}
+	}, [dimension]);
 
-  const handleChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  };
+	return (
+		<Wrapper>
+			<Table
+				style={{ maxHeight: `${tableHeight + 1}px`, width: isTablet ? '543px' : '743px' }}
+				dimension={dimension}
+				rowList={rows}
+				columnList={columnList}
+				onColumnResize={setResize}
+				rowsDraggable={tableRowDrag}
+				onRowDrag={handleRowDrag}
+				onRowDragEnd={handleRowDragEnd}
+				displayRowSelectionColumn={tableGroupActions}
+				onRowSelectionChange={handleSelectionChange}
+				greyHeader={tableZebra}
+				greyZebraRows={tableZebra}
+				showBorders
+			/>
+			<StyledPaginationOne
+				onChange={({ page, pageSize }) => {
+					const currentCountRow = (page - 1) * pageSize;
 
-  const handleSearchEnter = () => {
-    console.log('Search input opened');
-  };
-
-  const handleSearchLeave = () => {
-    console.log('Search input left');
-  };
-
-  const renderSettingsMenu = ({ closeMenu }: PaneMenuProps) => (
-    <SettingsMenu>
-      Здесь могут быть опции с настройками и кнопки для применения/сбрасывания настроек
-      <ButtonWrapper>
-        <Button dimension="s" onClick={closeMenu}>
-          Сохранить
-        </Button>
-        <Button dimension="s" onClick={closeMenu}>
-          Очистить
-        </Button>
-      </ButtonWrapper>
-    </SettingsMenu>
-  );
-
-  return (
-    <Wrapper>
-      <GroupActionsPane
-        searchValue={searchValue}
-        onChangeSearchValue={handleChangeSearchValue}
-        columns={columnsVisibility}
-        onColumnsChange={setColumnsVisibility}
-        onSearchEnter={handleSearchEnter}
-        onSearchLeave={handleSearchLeave}
-        columnsButtonDropContainerStyle={{
-          dropContainerClassName: 'columnsButtonDropContainerClass',
-        }}
-        settingsButtonDropContainerStyle={{
-          dropContainerClassName: 'settingsButtonDropContainerClass',
-        }}
-        renderSettingsMenu={renderSettingsMenu}
-      >
-        <TextButton text={'Редактировать'} iconStart={<SystemEditOutline />} />
-        <TextButton text={'Удалить'} iconStart={<SystemDeleteOutline />} />
-        <PaneSeparator />
-        <TextButton text={'Отменить (2)'} />
-      </GroupActionsPane>
-      <Table
-        style={{ height: '360px' }}
-        dimension={dimension}
-        rowList={rows}
-        columnList={cols}
-        onColumnResize={handleResize}
-        rowsDraggable
-        onRowDrag={handleRowDrag}
-        onRowDragEnd={handleRowDragEnd}
-        displayRowSelectionColumn
-        onRowSelectionChange={handleSelectionChange}
-      />
-      <StyledPaginationOne
-        onChange={({ page, pageSize }) => {
-          const currentCountRow = (page - 1) * pageSize;
-          setRows(rowList.slice(currentCountRow, currentCountRow + pageSize));
-
-          setPage(page);
-          setPageSize(pageSize);
-        }}
-        page={page}
-        pageSize={pageSize}
-        totalItems={totalElements}
-        pageSizes={pageSizes}
-        data-dropdown-container-id="pagination-with-dropdown"
-        data-dropdown-container-test-id="pagination-test-id-with-dropdown"
-        className="pagination-class-name"
-        pageSizeDropContainerStyle={{ dropContainerClassName: 'pageSizeDropContainerClass' }}
-        pageNumberDropContainerStyle={{ dropContainerClassName: 'pageNumberDropContainerClass' }}
-        leftButtonPropsConfig={() => leftButtonProps}
-        rightButtonPropsConfig={() => rightButtonProps}
-      />
-    </Wrapper>
-  );
+					setRows(rowList.slice(currentCountRow, currentCountRow + pageSize));
+					setPage(page);
+					setPageSize(pageSize);
+				}}
+				page={page}
+				pageSize={pageSize}
+				totalItems={totalElements}
+				pageSizes={pageSizes}
+				data-dropdown-container-id="pagination-with-dropdown"
+				data-dropdown-container-test-id="pagination-test-id-with-dropdown"
+				className="pagination-class-name"
+				pageSizeDropContainerStyle={{ dropContainerClassName: 'pageSizeDropContainerClass' }}
+				pageNumberDropContainerStyle={{ dropContainerClassName: 'pageNumberDropContainerClass' }}
+				leftButtonPropsConfig={() => leftButtonProps}
+				rightButtonPropsConfig={() => rightButtonProps}
+				simple={isTablet}
+			/>
+		</Wrapper>
+	);
 };

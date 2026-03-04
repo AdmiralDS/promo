@@ -8,17 +8,19 @@ import { AdmiralTable } from './AdmiralTable';
 import type { AccordionArrowPosition, AccordionLineCount, Appearance, DropdownMode } from '../types';
 
 export interface Props {
-  component: string;
-  theme: 'light' | 'dark';
-  appearance: Appearance;
-  color: string;
-  fieldCount?: number;
-  tableGroupActions?: boolean;
-  tableRowDrag?: boolean;
-  tableZebra?: boolean;
-  dropdownMode?: DropdownMode;
-  accordionArrowPosition?: AccordionArrowPosition;
-  accordionLineCount?: AccordionLineCount;
+	component: string;
+	theme: 'light' | 'dark';
+	appearance: Appearance;
+	color: string;
+	fieldCount?: number;
+	tableGroupActions?: boolean;
+	tableRowDrag?: boolean;
+	tableZebra?: boolean;
+	dropdownMode?: DropdownMode;
+	accordionArrowPosition?: AccordionArrowPosition;
+	accordionLineCount?: AccordionLineCount;
+	isTablet: boolean;
+	isMobile: boolean;
 }
 
 const setMainLightThemeColors = (mainColor: string) => {
@@ -142,41 +144,47 @@ const setMainThemeColors = (theme: 'light' | 'dark', mainColor: string) => {
 };
 
 export const WrappedReactComponent = ({
-  component,
-  theme,
-  appearance,
-  color,
-  fieldCount,
-  tableGroupActions,
-  tableRowDrag,
-  tableZebra,
-  dropdownMode,
-  accordionArrowPosition,
-  accordionLineCount,
+	component,
+	theme,
+	appearance,
+	color,
+	fieldCount,
+	tableGroupActions,
+	tableRowDrag,
+	tableZebra,
+	dropdownMode,
+	accordionArrowPosition,
+	accordionLineCount,
+	isTablet,
+	isMobile
 }: Props) => {
-  const colorTheme = setMainThemeColors(theme, color);
-  const getComponent = () => {
-    switch (component) {
-      case 'Table':
-        return (
-          <AdmiralTable
-            dimension={appearance}
-            tableGroupActions={tableGroupActions}
-            tableRowDrag={tableRowDrag}
-            tableZebra={tableZebra}
-          />
-        );
-      case 'Accordion':
-        return (
-          <AdmiralAccordion accordionArrowPosition={accordionArrowPosition} accordionLineCount={accordionLineCount} />
-        );
-      case 'Dropdown':
-        return <AdmiralDropdown dimension={appearance} dropdownMode={dropdownMode} />;
-      case 'Modal':
-      default:
-        return <AdmiralModal dimension={appearance} fieldCount={fieldCount} />;
-    }
-  };
+	const colorTheme = setMainThemeColors(theme, color);
+	const getComponent = () => {
+		switch (component) {
+			case 'Table':
+				return (
+					<AdmiralTable
+						dimension={appearance}
+						tableGroupActions={tableGroupActions}
+						tableRowDrag={tableRowDrag}
+						tableZebra={tableZebra}
+						isTablet={isTablet}
+					/>
+				);
+			case 'Accordion':
+				return (
+					<AdmiralAccordion
+						accordionArrowPosition={accordionArrowPosition}
+						accordionLineCount={accordionLineCount}
+					/>
+				);
+			case 'Dropdown':
+				return <AdmiralDropdown dimension={appearance} dropdownMode={dropdownMode} />;
+			case 'Modal':
+			default:
+				return <AdmiralModal isMobile={isMobile} dimension={appearance} fieldCount={fieldCount} />;
+		}
+	};
 
   return (
     <ThemeProvider theme={colorTheme}>

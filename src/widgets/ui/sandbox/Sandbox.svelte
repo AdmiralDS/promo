@@ -1,15 +1,16 @@
 <script lang="ts">
-  import { ToggleGroup, Tab } from '$shared/ui';
-  import { MOBILE_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
-  import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
-  import ControlContainer from './ControlContainer.svelte';
-  import {
-    type AccordionArrowPosition,
-    type AccordionLineCount,
-    type Appearance,
-    type DropdownMode,
-    type ThemeColor,
-  } from './types';
+	import { ToggleGroup, Tab } from '$shared/ui';
+	import { MOBILE_QUERY, TABLET_QUERY, useMediaQuery } from '$shared/ui/useMediaQuery';
+	import { untrack } from 'svelte';
+	import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
+	import ControlContainer from './ControlContainer.svelte';
+	import {
+		type AccordionArrowPosition,
+		type AccordionLineCount,
+		type Appearance,
+		type DropdownMode,
+		type ThemeColor
+	} from './types';
 
   type SandboxConfig = {
     appearance: Appearance;
@@ -24,12 +25,26 @@
     accordionLineCount: AccordionLineCount;
   };
 
-  const isMobileStore = useMediaQuery(MOBILE_QUERY);
-  let isMobile = $state(false);
+	const isTabletStore = useMediaQuery(TABLET_QUERY);
+	const isMobileStore = useMediaQuery(MOBILE_QUERY);
+	let isTablet = $state($isTabletStore);
+	let isMobile = $state($isMobileStore);
+	let previousIsMobile = $state($isMobileStore);
 
-  $effect(() => {
-    isMobile = $isMobileStore;
-  });
+	$effect(() => {
+		isMobile = $isMobileStore;
+		isTablet = $isTabletStore && !isMobile;
+
+		untrack(() => {
+			if (isMobile !== previousIsMobile) {
+				previousIsMobile = isMobile;
+				if (isMobile) {
+					updateConfig({ fieldCount: 2 });
+					updateConfig({ appearance: 'm' });
+				}
+			}
+		});
+	});
 
   const componentsFull: { eng: string; rus: string }[] = [
     { eng: 'Table', rus: 'Таблица' },
@@ -50,18 +65,18 @@
     activeComponentIndex = currentComponentIndex;
   };
 
-  let config = $state<SandboxConfig>({
-    appearance: 'm',
-    color: 'blue',
-    fieldCount: 3,
-    isDarkTheme: false,
-    tableGroupActions: false,
-    tableRowDrag: false,
-    tableZebra: false,
-    dropdownMode: 'multiselect',
-    accordionArrowPosition: 'left',
-    accordionLineCount: 4,
-  });
+	let config = $state<SandboxConfig>({
+		appearance: 'm',
+		color: 'blue',
+		fieldCount: 2,
+		isDarkTheme: false,
+		tableGroupActions: false,
+		tableRowDrag: false,
+		tableZebra: false,
+		dropdownMode: 'multiselect',
+		accordionArrowPosition: 'left',
+		accordionLineCount: 4
+	});
 
   function updateConfig(patch: Partial<SandboxConfig>) {
     config = { ...config, ...patch };
@@ -109,59 +124,61 @@
 </script>
 
 <div class="sandbox-container background--Main_White">
-  <div class="main-container">
-    <div class="header">
-      <div class="text first-row text--Dark_Blue">Просто и доступно</div>
-      <div class="text second-row text--Text_Blue">попробуйте сами</div>
-      <ToggleGroup onSelectedChange={handleComponentChange}>
-        {#each components as componentOption}
-          <Tab>{componentOption.rus}</Tab>
-        {/each}
-      </ToggleGroup>
-    </div>
-    <div class="sandbox Sandbox_Gradient">
-      <div class="component-wrapper">
-        {#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}-${config.tableGroupActions}-${config.tableRowDrag}-${config.tableZebra}-${config.dropdownMode}-${config.accordionArrowPosition}-${config.accordionLineCount}`}
-          <ReactComponent
-            component={activeComponent ?? 'Modal'}
-            appearance={config.appearance}
-            color={config.color}
-            fieldCount={config.fieldCount}
-            isDarkTheme={config.isDarkTheme}
-            tableGroupActions={config.tableGroupActions}
-            tableRowDrag={config.tableRowDrag}
-            tableZebra={config.tableZebra}
-            dropdownMode={config.dropdownMode}
-            accordionArrowPosition={config.accordionArrowPosition}
-            accordionLineCount={config.accordionLineCount}
-          />
-        {/key}
-      </div>
-      <ControlContainer
-        activeComponent={activeComponent ?? 'Modal'}
-        appearance={config.appearance}
-        color={config.color}
-        fieldCount={config.fieldCount}
-        isDarkTheme={config.isDarkTheme}
-        tableGroupActions={config.tableGroupActions}
-        tableRowDrag={config.tableRowDrag}
-        tableZebra={config.tableZebra}
-        dropdownMode={config.dropdownMode}
-        accordionArrowPosition={config.accordionArrowPosition}
-        accordionLineCount={config.accordionLineCount}
-        onChangeAppearance={handleAppearanceChange}
-        onChangeColor={handleColorChange}
-        onChangeFieldCount={handleFieldCountChange}
-        onChangeTheme={handleThemeChange}
-        onChangeTableGroupActions={handleTableGroupActionsChange}
-        onChangeTableRowDrag={handleTableRowDragChange}
-        onChangeTableZebra={handleTableZebraChange}
-        onChangeDropdownMode={handleDropdownModeChange}
-        onChangeAccordionArrowPosition={handleAccordionArrowPositionChange}
-        onChangeAccordionLineCount={handleAccordionLineCountChange}
-      />
-    </div>
-  </div>
+	<div class="main-container">
+		<div class="header">
+			<div class="text first-row text--Dark_Blue">Просто и доступно</div>
+			<div class="text second-row text--Text_Blue">попробуйте сами</div>
+			<ToggleGroup onSelectedChange={handleComponentChange}>
+				{#each components as componentOption}
+					<Tab class="component-sandbox">{componentOption.rus}</Tab>
+				{/each}
+			</ToggleGroup>
+		</div>
+		<div class="sandbox Sandbox_Gradient">
+			<div class="component-wrapper">
+				{#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}-${config.tableGroupActions}-${config.tableRowDrag}-${config.tableZebra}-${config.dropdownMode}-${config.accordionArrowPosition}-${config.accordionLineCount}`}
+					<ReactComponent
+						component={activeComponent ?? 'Modal'}
+						appearance={config.appearance}
+						color={config.color}
+						fieldCount={config.fieldCount}
+						isDarkTheme={config.isDarkTheme}
+						tableGroupActions={config.tableGroupActions}
+						tableRowDrag={config.tableRowDrag}
+						tableZebra={config.tableZebra}
+						dropdownMode={config.dropdownMode}
+						accordionArrowPosition={config.accordionArrowPosition}
+						accordionLineCount={config.accordionLineCount}
+						{isMobile}
+						{isTablet}
+					/>
+				{/key}
+			</div>
+			<ControlContainer
+				activeComponent={activeComponent ?? 'Modal'}
+				appearance={config.appearance}
+				color={config.color}
+				fieldCount={config.fieldCount}
+				isDarkTheme={config.isDarkTheme}
+				tableGroupActions={config.tableGroupActions}
+				tableRowDrag={config.tableRowDrag}
+				tableZebra={config.tableZebra}
+				dropdownMode={config.dropdownMode}
+				accordionArrowPosition={config.accordionArrowPosition}
+				accordionLineCount={config.accordionLineCount}
+				onChangeAppearance={handleAppearanceChange}
+				onChangeColor={handleColorChange}
+				onChangeFieldCount={handleFieldCountChange}
+				onChangeTheme={handleThemeChange}
+				onChangeTableGroupActions={handleTableGroupActionsChange}
+				onChangeTableRowDrag={handleTableRowDragChange}
+				onChangeTableZebra={handleTableZebraChange}
+				onChangeDropdownMode={handleDropdownModeChange}
+				onChangeAccordionArrowPosition={handleAccordionArrowPositionChange}
+				onChangeAccordionLineCount={handleAccordionLineCountChange}
+			/>
+		</div>
+	</div>
 </div>
 
 <style lang="scss">
