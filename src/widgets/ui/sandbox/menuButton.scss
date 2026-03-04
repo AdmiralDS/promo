@@ -45,10 +45,10 @@ button {
 }
 
 .dropdown-wrapper {
-	box-sizing: border-box;
+  box-sizing: border-box;
 	border-radius: 32px;
 	width: 392px;
-	padding: 20px;
+  padding: 20px;
 	background: var(--color-Main_White, colors.color('Main_White'));
 	position: absolute;
 	bottom: calc(100% + 4px);

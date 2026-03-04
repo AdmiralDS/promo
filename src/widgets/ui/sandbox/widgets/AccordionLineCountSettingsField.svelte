@@ -8,7 +8,7 @@
 	let { selected = 0, onSelectedChange }: FieldProps = $props();
 </script>
 
-<SandboxField fieldTitle="Количество строк" {selected} {onSelectedChange}>
+<SandboxField fieldTitle="Количество строк" selected={selected} onSelectedChange={onSelectedChange}>
 	{#each ACCORDION_LINE_COUNT_OPTIONS as lineCount, index}
 		<Button variant="secondary" size="small">{labels[index] ?? lineCount}</Button>
 	{/each}

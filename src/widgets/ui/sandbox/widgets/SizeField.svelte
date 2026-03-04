@@ -8,7 +8,7 @@
 	let { selected = 0, onSelectedChange }: FieldProps = $props();
 </script>
 
-<SandboxField fieldTitle="Размер" {selected} {onSelectedChange}>
+<SandboxField fieldTitle="Размер" selected={selected} onSelectedChange={onSelectedChange}>
 	{#each APPEARANCE_OPTIONS as appearanceOption}
 		<Button variant="secondary" size="small">{labels[appearanceOption]}</Button>
 	{/each}

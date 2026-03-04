@@ -89,7 +89,10 @@ export interface AdmiralModalProps {
 	fieldCount?: number;
 }
 
-export const AdmiralModal = ({ dimension = 'm', fieldCount = 3 }: AdmiralModalProps) => {
+export const AdmiralModal = ({
+	dimension = 'm',
+	fieldCount = 3,
+}: AdmiralModalProps) => {
 	return (
 		<ModalComponent $dimension={dimension as Dimension}>
 			<ModalTitle id="modal-title">Получение доступа</ModalTitle>

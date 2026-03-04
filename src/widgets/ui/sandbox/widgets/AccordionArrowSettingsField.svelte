@@ -11,7 +11,7 @@
 	let { selected = 0, onSelectedChange }: FieldProps = $props();
 </script>
 
-<SandboxField fieldTitle="Стрелка" {selected} {onSelectedChange}>
+<SandboxField fieldTitle="Стрелка" selected={selected} onSelectedChange={onSelectedChange}>
 	{#each ACCORDION_ARROW_POSITION_OPTIONS as position}
 		<Button variant="secondary" size="small">{labels[position]}</Button>
 	{/each}

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import CardContainer from '$shared/ui/atoms/cardContainer/CardContainer.svelte';
-	import type { CardContainerAppearance } from '$shared/ui/types';
+  import type { CardContainerAppearance } from '$shared/ui/types';
 
 	// Получаем пропсы через $props()
 	let {
@@ -17,7 +17,7 @@
 	const textClass = $derived(`card-text card-text-${appearance}`);
 </script>
 
-<CardContainer {...restAttributes} {appearance} class={className}>
+<CardContainer {...restAttributes} appearance={appearance} class={className}>
 	{@render children?.()}
 	<div class={titleClass}>
 		{title}
