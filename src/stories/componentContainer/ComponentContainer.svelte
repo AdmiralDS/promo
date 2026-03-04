@@ -10,5 +10,5 @@
 </script>
 
 <ComponentContainer {...props} {size}>
-	<div style="height: 50px; width: 50px; background-color: blue"></div>
+	<div style='height: 50px; width: 50px; background-color: blue'></div>
 </ComponentContainer>
