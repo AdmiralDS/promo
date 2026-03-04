@@ -24,8 +24,8 @@ export interface Props {
 	dropdownMode?: DropdownMode;
 	accordionArrowPosition?: AccordionArrowPosition;
 	accordionLineCount?: AccordionLineCount;
-	isTablet?: boolean;
-	isMobile?: boolean;
+	isTablet: boolean;
+	isMobile: boolean;
 }
 
 const setMainLightThemeColors = (mainColor: string) => {
@@ -173,6 +173,7 @@ export const WrappedReactComponent = ({
 						tableGroupActions={tableGroupActions}
 						tableRowDrag={tableRowDrag}
 						tableZebra={tableZebra}
+						isTablet={isTablet}
 					/>
 				);
 			case 'Accordion':
@@ -186,7 +187,7 @@ export const WrappedReactComponent = ({
 				return <AdmiralDropdown dimension={appearance} dropdownMode={dropdownMode} />;
 			case 'Modal':
 			default:
-				return <AdmiralModal dimension={appearance} fieldCount={fieldCount} />;
+				return <AdmiralModal isMobile={isMobile} dimension={appearance} fieldCount={fieldCount} />;
 		}
 	};
 
