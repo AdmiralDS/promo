@@ -2,26 +2,26 @@
 @use '$shared/ui/breakpoints' as breakpoints;
 
 .table-settings {
-	display: flex;
-	flex-direction: column;
-	gap: 24px;
-	width: 321px;
-	height: 144px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 321px;
+  height: 144px;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		gap: 12px;
-		width: 352px;
-		height: 90px;
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    gap: 12px;
+    width: 352px;
+    height: 90px;
+  }
 }
 
 .table-settings--dropdown {
-	min-width: 260px;
+  min-width: 260px;
 }
 
 .table-settings-control {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }

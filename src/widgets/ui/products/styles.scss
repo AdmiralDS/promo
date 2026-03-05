@@ -2,174 +2,174 @@
 @use '$shared/ui/breakpoints' as breakpoints;
 
 .products-container {
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	height: 868px;
-	margin: 0 auto;
-	border-radius: 80px;
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		height: 814px;
-		border-radius: 48px;
-	}
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 868px;
+  margin: 0 auto;
+  border-radius: 80px;
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    height: 814px;
+    border-radius: 48px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		height: 567px;
-		border-radius: 32px;
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    height: 567px;
+    border-radius: 32px;
+  }
 }
 
 .main-container {
-	height: 100%;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: flex-end;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .text-box {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .text {
-	transition: all 0.2s ease;
+  transition: all 0.2s ease;
 
-	@include typo.typography('Accent');
+  @include typo.typography('Accent');
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		@include typo.typography('Tablet/Accent');
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    @include typo.typography('Tablet/Accent');
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		@include typo.typography('Mobile/Accent');
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    @include typo.typography('Mobile/Accent');
+  }
 }
 
 .image {
-	position: relative;
-	overflow: visible;
-	z-index: 1;
-	height: 326px;
-	width: 1024px;
-	margin-block-start: 19.59px;
-	background-image: url('./assets/Help_1920-1024.png');
-	background-size: contain;
-	background-repeat: no-repeat;
-	transition: all 0.2s ease;
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+  height: 326px;
+  width: 1024px;
+  margin-block-start: 19.59px;
+  background-image: url('./assets/Help_1920-1024.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: all 0.2s ease;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		height: 326px;
-		width: 1024px;
-		margin-block-start: 61px;
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    height: 326px;
+    width: 1024px;
+    margin-block-start: 61px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		margin-block-start: 17px;
-		height: 370px;
-		width: 700px;
-		background-image: url('./assets/Help_1023-700.png');
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    margin-block-start: 17px;
+    height: 370px;
+    width: 700px;
+    background-image: url('./assets/Help_1023-700.png');
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		height: 234px;
-		width: 360px;
-		margin-block-start: 98px;
-		background-image: url('./assets/Help_699-360.png');
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    height: 234px;
+    width: 360px;
+    margin-block-start: 98px;
+    background-image: url('./assets/Help_699-360.png');
+  }
 }
 
 .products-container > div[class^='badge-'] {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .badge-autograph {
-	position: absolute;
-	top: calc(50% - 238px - 96px);
-	left: calc(50% - 106px);
-	z-index: 2;
+  position: absolute;
+  top: calc(50% - 238px - 96px);
+  left: calc(50% - 106px);
+  z-index: 2;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		top: calc(50% - 231px - 96px);
-		left: calc(50% - 39px - 214px);
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    top: calc(50% - 231px - 96px);
+    left: calc(50% - 39px - 214px);
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		top: calc(50% - 164px - 64px);
-		left: calc(50% - 128px);
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    top: calc(50% - 164px - 64px);
+    left: calc(50% - 128px);
+  }
 }
 .badge-start {
-	position: absolute;
-	top: calc(50% + 60px);
-	left: calc(50% - 316px - 214px);
-	z-index: 2;
+  position: absolute;
+  top: calc(50% + 60px);
+  left: calc(50% - 316px - 214px);
+  z-index: 2;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		top: calc(50% + 30px);
-		left: calc(50% - 112px - 214px);
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    top: calc(50% + 30px);
+    left: calc(50% - 112px - 214px);
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		top: calc(50% - 13px);
-		left: calc(50% - 20px - 108px);
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    top: calc(50% - 13px);
+    left: calc(50% - 20px - 108px);
+  }
 }
 .badge-vtbCloud {
-	position: absolute;
-	top: calc(50% - 43px - 96px);
-	left: calc(50% + 371px);
-	z-index: 2;
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		top: calc(50% - 215px - 96px);
-		left: calc(50% + 128px);
-	}
+  position: absolute;
+  top: calc(50% - 43px - 96px);
+  left: calc(50% + 371px);
+  z-index: 2;
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    top: calc(50% - 215px - 96px);
+    left: calc(50% + 128px);
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		top: calc(50% - 153px - 64px);
-		left: calc(50% + 83px);
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    top: calc(50% - 153px - 64px);
+    left: calc(50% + 83px);
+  }
 }
 .badge-sfera {
-	position: absolute;
-	top: calc(50% + 106px);
-	left: calc(50% + 140px);
-	z-index: 2;
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		top: calc(50% + 73px);
-		left: calc(50% + 136px);
-	}
+  position: absolute;
+  top: calc(50% + 106px);
+  left: calc(50% + 140px);
+  z-index: 2;
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    top: calc(50% + 73px);
+    left: calc(50% + 136px);
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		top: calc(50% - 34px);
-		left: calc(50% + 63px);
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    top: calc(50% - 34px);
+    left: calc(50% + 63px);
+  }
 }
 
 .badge-logo {
-	display: flex;
-	align-items: center;
-	position: relative;
-	box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
 }
 .badge-logo-start {
-	padding: 0 21px;
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		padding: 0;
-	}
+  padding: 0 21px;
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    padding: 0;
+  }
 }
 .badge-logo-vtbCloud {
-	padding: 0 26px;
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		padding: 0;
-	}
+  padding: 0 26px;
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    padding: 0;
+  }
 }
 .badge-logo-sfera {
-	padding: 0 35px;
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		padding: 0;
-	}
+  padding: 0 35px;
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    padding: 0;
+  }
 }

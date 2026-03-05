@@ -3,134 +3,134 @@
 @use '$shared/ui/typography' as typo;
 
 .toggle-label {
-	position: relative;
-	display: inline-flex;
-	align-items: center;
-	cursor: pointer;
-	gap: 16px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 16px;
 
-	@media (hover: hover) {
-		&:hover {
-			.toggle-thumb {
-				box-shadow: 0 0 0 16px #0000000d;
-			}
-			&.toggle--sm .toggle-thumb {
-				box-shadow: 0 0 0 10px #0000000d;
-			}
-		}
-		&:active {
-			.toggle-thumb {
-				box-shadow: 0 0 0 16px #0000001f;
-			}
-			&.toggle--sm .toggle-thumb {
-				box-shadow: 0 0 0 10px #0000001f;
-			}
-		}
-	}
+  @media (hover: hover) {
+    &:hover {
+      .toggle-thumb {
+        box-shadow: 0 0 0 16px #0000000d;
+      }
+      &.toggle--sm .toggle-thumb {
+        box-shadow: 0 0 0 10px #0000000d;
+      }
+    }
+    &:active {
+      .toggle-thumb {
+        box-shadow: 0 0 0 16px #0000001f;
+      }
+      &.toggle--sm .toggle-thumb {
+        box-shadow: 0 0 0 10px #0000001f;
+      }
+    }
+  }
 }
 
 .toggle-label-text {
-	font-family: typo.$main-font-family;
-	font-weight: 400;
-	color: inherit;
-	flex: 1;
-	font-size: 20px;
-	line-height: 20px;
-	order: 1;
+  font-family: typo.$main-font-family;
+  font-weight: 400;
+  color: inherit;
+  flex: 1;
+  font-size: 20px;
+  line-height: 20px;
+  order: 1;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		font-size: 16px;
-		line-height: 20px;
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 
 .toggle--with-text {
-	width: 100%;
-	justify-content: space-between;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .toggle-input {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	margin: -1px;
-	padding: 0;
-	border: 0;
-	overflow: hidden;
-	clip: rect(0 0 0 0);
-	white-space: nowrap;
-	order: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  order: 0;
 }
 
 .toggle-track {
-	width: 58px;
-	height: 32px;
-	background: transparent;
-	position: relative;
-	order: 2;
+  width: 58px;
+  height: 32px;
+  background: transparent;
+  position: relative;
+  order: 2;
 }
 
 .toggle-track-visible {
-	width: 100%;
-	height: 100%;
-	background: var(--color-Snow_Gray);
-	border-radius: 128px;
-	position: absolute;
-	transition: transform 0.2s ease;
+  width: 100%;
+  height: 100%;
+  background: var(--color-Snow_Gray);
+  border-radius: 128px;
+  position: absolute;
+  transition: transform 0.2s ease;
 }
 
 .toggle-thumb,
 .toggle-thumb-visible {
-	width: 26px;
-	height: 26px;
-	background: var(--color-Main_White);
-	border-radius: 32px;
-	position: absolute;
-	top: 3px;
-	left: 3px;
-	transition: transform 0.2s ease;
+  width: 26px;
+  height: 26px;
+  background: var(--color-Main_White);
+  border-radius: 32px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.2s ease;
 }
 
 .toggle-input:checked + .toggle-track {
-	.toggle-thumb {
-		transform: translateX(26px);
-	}
+  .toggle-thumb {
+    transform: translateX(26px);
+  }
 
-	.toggle-track-visible {
-		background: var(--color-Primary_Blue);
+  .toggle-track-visible {
+    background: var(--color-Primary_Blue);
 
-		.toggle-thumb-visible {
-			transform: translateX(26px);
-		}
-	}
+    .toggle-thumb-visible {
+      transform: translateX(26px);
+    }
+  }
 }
 
 .toggle--sm .toggle-track {
-	width: 40px;
-	height: 22px;
-	border-radius: 90px;
+  width: 40px;
+  height: 22px;
+  border-radius: 90px;
 }
 
 .toggle--sm .toggle-thumb,
 .toggle--sm .toggle-track-visible .toggle-thumb-visible {
-	width: 18px;
-	height: 18px;
-	border-radius: 22px;
-	top: 2px;
-	left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 22px;
+  top: 2px;
+  left: 2px;
 }
 
 .toggle--sm .toggle-input:checked + .toggle-track {
-	.toggle-thumb {
-		transform: translateX(18px);
-	}
+  .toggle-thumb {
+    transform: translateX(18px);
+  }
 
-	.toggle-track-visible .toggle-thumb-visible {
-		transform: translateX(18px);
-	}
+  .toggle-track-visible .toggle-thumb-visible {
+    transform: translateX(18px);
+  }
 }
 
 .toggle-input:disabled + .toggle-track {
-	opacity: 0.6;
-	cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
 }

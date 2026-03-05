@@ -14,30 +14,30 @@
     @if $direction == row {
       // Для горизонтального направления
       margin-left: -$gap;
-      
+
       > * {
         margin-left: $gap;
-        
+
         @if $useNegativeMargin {
           margin-top: $gap;
         }
       }
-      
+
       @if $useNegativeMargin {
         margin-top: -$gap;
       }
     } @else {
       // Для вертикального направления
       margin-top: -$gap;
-      
+
       > * {
         margin-top: $gap;
-        
+
         @if $useNegativeMargin {
           margin-left: $gap;
         }
       }
-      
+
       @if $useNegativeMargin {
         margin-left: -$gap;
       }

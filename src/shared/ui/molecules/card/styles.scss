@@ -3,90 +3,90 @@
 @use '$shared/ui/breakpoints' as breakpoints;
 
 .card-title {
-	position: relative;
-	width: fit-content;
-	color: var(--color-Dark_Blue, colors.color('Dark_Blue'));
+  position: relative;
+  width: fit-content;
+  color: var(--color-Dark_Blue, colors.color('Dark_Blue'));
 }
 
 .card-text {
-	position: relative;
-	width: fit-content;
-	color: var(--color-Snow_Gray, colors.color('Snow_Gray'));
+  position: relative;
+  width: fit-content;
+  color: var(--color-Snow_Gray, colors.color('Snow_Gray'));
 }
 
 .card-title-primary {
-	@include typo.typography('Paragraph');
+  @include typo.typography('Paragraph');
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		@include typo.typography('Paragraph');
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    @include typo.typography('Paragraph');
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		@include typo.typography('Mobile/Paragraph');
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    @include typo.typography('Mobile/Paragraph');
+  }
 }
 
 .card-title-secondary {
-	@include typo.typography('H3');
+  @include typo.typography('H3');
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		@include typo.typography('Tablet/H3');
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    @include typo.typography('Tablet/H3');
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		@include typo.typography('Mobile/Paragraph');
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    @include typo.typography('Mobile/Paragraph');
+  }
 }
 
 .card-title-tertiary {
-	@include typo.typography('H3');
-	color: var(--color-Main_White, colors.color('Main_White'));
+  @include typo.typography('H3');
+  color: var(--color-Main_White, colors.color('Main_White'));
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		@include typo.typography('Tablet/H3');
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    @include typo.typography('Tablet/H3');
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		@include typo.typography('Mobile/Paragraph');
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    @include typo.typography('Mobile/Paragraph');
+  }
 }
 
 .card-text-primary {
-	@include typo.typography('Text');
+  @include typo.typography('Text');
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		width: 70%;
-		@include typo.typography('Text');
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    width: 70%;
+    @include typo.typography('Text');
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		@include typo.typography('Mobile/Text');
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    @include typo.typography('Mobile/Text');
+  }
 }
 
 .card-text-secondary {
-	@include typo.typography('Text');
+  @include typo.typography('Text');
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		width: 70%;
-		@include typo.typography('Text');
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    width: 70%;
+    @include typo.typography('Text');
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		@include typo.typography('Mobile/Text');
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    @include typo.typography('Mobile/Text');
+  }
 }
 
 .card-text-tertiary {
-	@include typo.typography('Text');
-	color: var(--color-Main_White, colors.color('Main_White'));
+  @include typo.typography('Text');
+  color: var(--color-Main_White, colors.color('Main_White'));
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		width: 70%;
-		@include typo.typography('Text');
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    width: 70%;
+    @include typo.typography('Text');
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		@include typo.typography('Mobile/Text');
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    @include typo.typography('Mobile/Text');
+  }
 }

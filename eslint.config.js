@@ -1,44 +1,97 @@
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from 'eslint-plugin-storybook';
-
-import prettier from 'eslint-config-prettier';
-import { includeIgnoreFile } from '@eslint/compat';
-import js from '@eslint/js';
+import { configs, parser } from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import importPlugin from 'eslint-plugin-import';
 import svelte from 'eslint-plugin-svelte';
-import globals from 'globals';
-import { fileURLToPath } from 'node:url';
-import ts from 'typescript-eslint';
 import svelteConfig from './svelte.config.js';
 
-const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
+// Временный блок для мягкого перехода.
+// Для новых проектов: все правила из этого блока должны быть выставлены в `error`.
+const SOFT_MIGRATION_RULES = {
+  '@typescript-eslint/no-explicit-any': 'warn',
+  '@typescript-eslint/no-empty-object-type': 'warn',
+  // Note: you must disable the base rule as it can report incorrect errors
+  'no-unused-expressions': 'off',
+  '@typescript-eslint/no-unused-expressions': 'warn',
+  '@typescript-eslint/no-non-null-assertion': 'warn',
+  '@typescript-eslint/no-dynamic-delete': 'warn',
+  'svelte/require-each-key': 'warn',
+  'svelte/no-useless-mustaches': 'warn',
+  'svelte/no-at-html-tags': 'warn',
+  'svelte/prefer-writable-derived': 'warn',
+};
 
-export default ts.config(
-	includeIgnoreFile(gitignorePath),
-	js.configs.recommended,
-	...ts.configs.recommended,
-	...svelte.configs.recommended,
-	prettier,
-	...svelte.configs.prettier,
-	{
-		languageOptions: {
-			globals: { ...globals.browser, ...globals.node }
-		},
-		rules: {
-			// typescript-eslint strongly recommend that you do not use the no-undef lint rule on TypeScript projects.
-			// see: https://typescript-eslint.io/troubleshooting/faqs/eslint/#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
-			'no-undef': 'off'
-		}
-	},
-	{
-		files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
-		languageOptions: {
-			parserOptions: {
-				projectService: true,
-				extraFileExtensions: ['.svelte'],
-				parser: ts.parser,
-				svelteConfig
-			}
-		}
-	},
-	storybook.configs['flat/recommended']
-);
+const SVELTE_OVERRIDES = {
+  files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
+  languageOptions: {
+    parserOptions: {
+      projectService: true,
+      extraFileExtensions: ['.svelte'],
+      parser,
+      svelteConfig,
+    },
+  },
+  rules: {
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-import-type-side-effects': 'off',
+    '@typescript-eslint/consistent-type-imports': 'off',
+  },
+};
+
+export default defineConfig([
+  ...configs.strict,
+  importPlugin.flatConfigs.recommended,
+  ...svelte.configs.recommended,
+  {
+    rules: {
+      'import/no-named-as-default': 'off',
+      '@typescript-eslint/no-explicit-any': 'error',
+      'no-console': 'warn',
+      'prettier/prettier': 'error',
+      'import/no-cycle': ['error', { ignoreExternal: true }],
+      'import/no-duplicates': ['error', { considerQueryString: true }],
+      '@typescript-eslint/no-import-type-side-effects': 'error',
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {
+          prefer: 'type-imports',
+          fixStyle: 'separate-type-imports',
+        },
+      ],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
+      ...SOFT_MIGRATION_RULES,
+    },
+    settings: {
+      'import/ignore': ['.(scss|less|css)$'],
+      'import/parsers': {
+        '@typescript-eslint/parser': ['.ts', '.tsx', '.js', '.jsx'],
+      },
+      'import/resolver': {
+        typescript: {},
+      },
+    },
+    ignores: [
+      'scripts/**',
+      '*.svg',
+      'dist/**',
+      'docs/**',
+      'node_modules/**',
+      '.svelte-kit/**',
+      'playwright-report/**',
+      'test-results/**',
+    ],
+  },
+  SVELTE_OVERRIDES,
+  eslintPluginPrettierRecommended,
+]);

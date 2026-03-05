@@ -2,18 +2,18 @@
 @use 'colors' as colors;
 
 body {
-	margin: 0;
+  margin: 0;
 
-	/* Добавляем паддинг для скроллбара */
-	scrollbar-gutter: stable;
-	/* Блокируем прокрутку при открытом модальном окне */
-	&:has(dialog[open]) {
-		overflow: hidden;
-	}
+  /* Добавляем паддинг для скроллбара */
+  scrollbar-gutter: stable;
+  /* Блокируем прокрутку при открытом модальном окне */
+  &:has(dialog[open]) {
+    overflow: hidden;
+  }
 }
 
 .even-container {
-	top: -16px;
-	position: relative;
-	box-sizing: border-box;
+  top: -16px;
+  position: relative;
+  box-sizing: border-box;
 }

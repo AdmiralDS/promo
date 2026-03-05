@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from '../../shared/ui';
+  import { Button } from '../../shared/ui';
 </script>
 
 <Button variant="primary" size="small">Две</Button>

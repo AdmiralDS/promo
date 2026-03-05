@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Tab, ToggleGroup } from '../../shared/ui';
+  import { Tab, ToggleGroup } from '../../shared/ui';
 </script>
 
 <ToggleGroup>
-	<Tab>Одно</Tab>
-	<Tab>Два</Tab>
-	<Tab>Три</Tab>
+  <Tab>Одно</Tab>
+  <Tab>Два</Tab>
+  <Tab>Три</Tab>
 </ToggleGroup>

@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { Tab, ToggleGroup } from '../../shared/ui';
+  import { Tab, ToggleGroup } from '../../shared/ui';
 </script>
 
 <div style="border: 2px solid #d9d9d9; width: 45%; padding: 8px 16px;">
-	<ToggleGroup>
-		<Tab>Таблица1</Tab>
-		<Tab>Модальное окно1</Tab>
-		<Tab>Дропдаун1</Tab>
-		<Tab>Таблица2</Tab>
-		<Tab>Модальное окно2</Tab>
-		<Tab>Дропдаун2</Tab>
-		<Tab>Таблица3</Tab>
-		<Tab>Модальное окно3</Tab>
-		<Tab>Дропдаун3</Tab>
-	</ToggleGroup>
+  <ToggleGroup>
+    <Tab>Таблица1</Tab>
+    <Tab>Модальное окно1</Tab>
+    <Tab>Дропдаун1</Tab>
+    <Tab>Таблица2</Tab>
+    <Tab>Модальное окно2</Tab>
+    <Tab>Дропдаун2</Tab>
+    <Tab>Таблица3</Tab>
+    <Tab>Модальное окно3</Tab>
+    <Tab>Дропдаун3</Tab>
+  </ToggleGroup>
 </div>

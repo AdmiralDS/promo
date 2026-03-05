@@ -3,199 +3,199 @@
 @use '$shared/ui/breakpoints' as breakpoints;
 
 .header-container {
-	width: 100%;
-	height: 945px;
-	position: relative;
-	overflow: hidden;
-	// padding-bottom: 100px;
+  width: 100%;
+  height: 945px;
+  position: relative;
+  overflow: hidden;
+  // padding-bottom: 100px;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		height: 945px;
-		// padding-bottom: 80px;
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    height: 945px;
+    // padding-bottom: 80px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		height: 863px;
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    height: 863px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		height: 576px;
-		// padding-bottom: 56px;
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    height: 576px;
+    // padding-bottom: 56px;
+  }
 }
 
 .cloud {
-	position: absolute;
+  position: absolute;
 
-	&.right {
-		right: 0;
-		top: 150px;
+  &.right {
+    right: 0;
+    top: 150px;
 
-		@media (max-width: 1440px) {
-			right: -400px;
-			top: 200px;
-		}
-		@include breakpoints.respond-until(breakpoints.$desktopS) {
-			top: 200px;
-			left: 650px;
-		}
-		@include breakpoints.respond-until(breakpoints.$tablet) {
-			top: 50px;
-			left: 300px;
-		}
-		@include breakpoints.respond-until(breakpoints.$phone) {
-			left: -150px;
-			top: 250px;
-		}
-	}
+    @media (max-width: 1440px) {
+      right: -400px;
+      top: 200px;
+    }
+    @include breakpoints.respond-until(breakpoints.$desktopS) {
+      top: 200px;
+      left: 650px;
+    }
+    @include breakpoints.respond-until(breakpoints.$tablet) {
+      top: 50px;
+      left: 300px;
+    }
+    @include breakpoints.respond-until(breakpoints.$phone) {
+      left: -150px;
+      top: 250px;
+    }
+  }
 
-	&.left {
-		@media (max-width: 1440px) {
-			left: -300px;
-		}
-		@include breakpoints.respond-until(breakpoints.$desktopS) {
-			left: -500px;
-		}
-		@include breakpoints.respond-until(breakpoints.$tablet) {
-			left: -600px;
-		}
-		@include breakpoints.respond-until(breakpoints.$phone) {
-			top: -50px;
-		}
-	}
+  &.left {
+    @media (max-width: 1440px) {
+      left: -300px;
+    }
+    @include breakpoints.respond-until(breakpoints.$desktopS) {
+      left: -500px;
+    }
+    @include breakpoints.respond-until(breakpoints.$tablet) {
+      left: -600px;
+    }
+    @include breakpoints.respond-until(breakpoints.$phone) {
+      top: -50px;
+    }
+  }
 }
 
 .main-container {
-	z-index: 1;
-	width: 1200px;
-	height: 100%;
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
+  z-index: 1;
+  width: 1200px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		width: min(100%, 1024px);
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    width: min(100%, 1024px);
+  }
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		width: min(100%, 768px);
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    width: min(100%, 768px);
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		width: 375px;
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    width: 375px;
+  }
 }
 
 .hero {
-	bottom: 0;
-	pointer-events: none;
+  bottom: 0;
+  pointer-events: none;
 }
 
 .hero img {
-	display: block;
-	height: 330px;
-	transition: all 0.2s ease;
+  display: block;
+  height: 330px;
+  transition: all 0.2s ease;
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		width: 700px;
-		height: 250px;
-	}
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		width: 360px;
-		height: 170px;
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    width: 700px;
+    height: 250px;
+  }
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    width: 360px;
+    height: 170px;
+  }
 }
 
 .text-box {
-	padding-top: 160px;
-	padding-bottom: 71px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
+  padding-top: 160px;
+  padding-bottom: 71px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		padding-top: 166.49px;
-		padding-bottom: 80px;
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    padding-top: 166.49px;
+    padding-bottom: 80px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		padding-top: 166.59px;
-		padding-bottom: 80px;
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    padding-top: 166.59px;
+    padding-bottom: 80px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		padding-top: 134.41px;
-		padding-bottom: 48px;
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    padding-top: 134.41px;
+    padding-bottom: 48px;
+  }
 }
 
 .text {
-	transition: all 0.2s ease;
+  transition: all 0.2s ease;
 
-	@include typo.typography('H1 Accent');
-	position: relative;
-	width: fit-content;
+  @include typo.typography('H1 Accent');
+  position: relative;
+  width: fit-content;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		@include typo.typography('Tablet/H1');
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    @include typo.typography('Tablet/H1');
+  }
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		@include typo.typography('Tablet/H1');
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    @include typo.typography('Tablet/H1');
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		@include typo.typography('Mobile/H1 Accent');
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    @include typo.typography('Mobile/H1 Accent');
+  }
 }
 
 .first-row {
-	margin-bottom: 12px;
+  margin-bottom: 12px;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		margin-bottom: 8.12px;
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    margin-bottom: 8.12px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		margin-bottom: 8px;
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    margin-bottom: 8px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		margin-bottom: 12px;
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    margin-bottom: 12px;
+  }
 }
 
 .second-row {
-	margin-bottom: 12px;
+  margin-bottom: 12px;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		margin-bottom: 8.12px;
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    margin-bottom: 8.12px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		margin-bottom: 8px;
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    margin-bottom: 8px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		margin-bottom: 12px;
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    margin-bottom: 12px;
+  }
 }
 
 .logo {
-	top: 40px;
-	height: 40px;
+  top: 40px;
+  height: 40px;
 
-	transition: all 0.2s ease;
+  transition: all 0.2s ease;
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		top: 64.66px;
-		height: 30px;
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    top: 64.66px;
+    height: 30px;
+  }
 }
 
 :global(.centered) {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }

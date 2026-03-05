@@ -4,97 +4,97 @@
 
 /* Базовые стили */
 .btn {
-	box-sizing: border-box;
-	position: relative;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-	cursor: pointer;
-	transition: all 0.2s ease;
-	font-weight: 500;
-	outline: none;
-	border: none;
-	white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  white-space: nowrap;
 
-	transition: background-color 100ms linear;
+  transition: background-color 100ms linear;
 
-	&:disabled {
-		opacity: 0.6;
-		cursor: not-allowed;
-	}
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 /* Варианты */
 .btn-primary {
-	background: var(--color-Primary_Blue, colors.color('Primary_Blue'));
-	color: var(--color-Main_White, colors.color('Main_White'));
+  background: var(--color-Primary_Blue, colors.color('Primary_Blue'));
+  color: var(--color-Main_White, colors.color('Main_White'));
 
-	&:hover {
-		background: var(--color-Blue_Hover, colors.color('Blue_Hover'));
-	}
+  &:hover {
+    background: var(--color-Blue_Hover, colors.color('Blue_Hover'));
+  }
 
-	&:active {
-		background: var(--color-Blue_Press, colors.color('Blue_Press'));
-	}
+  &:active {
+    background: var(--color-Blue_Press, colors.color('Blue_Press'));
+  }
 }
 
 .btn-secondary {
-	background: var(--color-Light_Grey, colors.color('Light_Grey'));
-	color: var(--color-Snow_Gray, colors.color('Snow_Gray'));
+  background: var(--color-Light_Grey, colors.color('Light_Grey'));
+  color: var(--color-Snow_Gray, colors.color('Snow_Gray'));
 
-	&:hover {
-		background: var(--color-Light_Grey_Hover, colors.color('Light_Grey_Hover'));
-	}
+  &:hover {
+    background: var(--color-Light_Grey_Hover, colors.color('Light_Grey_Hover'));
+  }
 
-	&:active {
-		background: var(--color-Primary_Blue, colors.color('Primary_Blue'));
-		color: var(--color-White, colors.color('Main_White'));
-	}
+  &:active {
+    background: var(--color-Primary_Blue, colors.color('Primary_Blue'));
+    color: var(--color-White, colors.color('Main_White'));
+  }
 }
 
 /* Размеры */
 .btn-small {
-	padding: 10px 12px;
-	border-radius: 16px;
+  padding: 10px 12px;
+  border-radius: 16px;
 
-	font-family: typography.$main-font-family;
-	font-weight: 400;
-	font-size: 20px;
-	line-height: 20px;
-	letter-spacing: 0;
+  font-family: typography.$main-font-family;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 0;
 
-	width: 80px;
-	height: 56px;
+  width: 80px;
+  height: 56px;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		padding: 10px;
-		border-radius: 12px;
-		width: 72px;
-		height: 40px;
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    padding: 10px;
+    border-radius: 12px;
+    width: 72px;
+    height: 40px;
 
-		font-size: 16px;
-		letter-spacing: -0.89px;
-	}
+    font-size: 16px;
+    letter-spacing: -0.89px;
+  }
 }
 
 .btn-large {
-	padding: 16px 24px;
-	border-radius: 24px;
+  padding: 16px 24px;
+  border-radius: 24px;
 
-	font-family: typography.$main-font-family;
-	font-weight: 500;
-	font-size: 24px;
-	line-height: 32px;
-	letter-spacing: 0;
+  font-family: typography.$main-font-family;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0;
 
-	width: 280px;
-	height: 80px;
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		border-radius: 16px;
-		height: 56px;
-		padding: 12px;
+  width: 280px;
+  height: 80px;
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    border-radius: 16px;
+    height: 56px;
+    padding: 12px;
 
-		font-size: 16px;
-	}
+    font-size: 16px;
+  }
 }

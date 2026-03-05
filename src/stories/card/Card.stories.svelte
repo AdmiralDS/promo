@@ -1,19 +1,19 @@
 <script module>
-	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import Card from './Card.svelte';
+  import { defineMeta } from '@storybook/addon-svelte-csf';
+  import Card from './Card.svelte';
 
-	// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
-	const { Story } = defineMeta({
-		title: 'Example/Cards',
-		component: Card,
-		tags: ['autodocs'],
-		argTypes: {
-			appearance: {
-				control: { type: 'select' },
-				options: ['first', 'second']
-			}
-		}
-	});
+  // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
+  const { Story } = defineMeta({
+    title: 'Example/Cards',
+    component: Card,
+    tags: ['autodocs'],
+    argTypes: {
+      appearance: {
+        control: { type: 'select' },
+        options: ['first', 'second'],
+      },
+    },
+  });
 </script>
 
 <!-- More on writing stories with args: https://storybook.js.org/docs/writing-stories/args -->
