@@ -1,31 +1,62 @@
 <script lang="ts">
 	import { Card } from '$shared/ui';
-	import CardImg1 from './assets/card_img_1.png';
-	import CardImg2 from './assets/card_img_2.png';
-	import CardImg3 from './assets/card_img_3.png';
+	import {
+		useMediaQuery,
+		MOBILE_QUERY,
+		TABLET_QUERY,
+		DESKTOP_S_QUERY
+	} from '$shared/ui/useMediaQuery';
 
-	const cards = $state([
+	// Speed (CardImg1)
+	import Speed_699 from './assets/Speed_699-360.png';
+	import Speed_1023 from './assets/Speed_1023-700.png';
+	import Speed_1239 from './assets/Speed_1239-1024.png';
+	import Speed_1920 from './assets/Speed_1920-1240.png';
+	// Style (CardImg2)
+	import Style_699 from './assets/Style_699-360.png';
+	import Style_1023 from './assets/Style_1023-700.png';
+	import Style_1239 from './assets/Style_1239-1024.png';
+	import Style_1920 from './assets/Style_1920-1240.png';
+	// Space (CardImg3)
+	import Space_699 from './assets/Space_699-360.png';
+	import Space_1023 from './assets/Space_1023-700.png';
+	import Space_1239 from './assets/Space_1239-1024.png';
+	import Space_1920 from './assets/Space_1920-1240.png';
+
+	const speedImages = [Speed_699, Speed_1023, Speed_1239, Speed_1920];
+	const styleImages = [Style_699, Style_1023, Style_1239, Style_1920];
+	const spaceImages = [Space_699, Space_1023, Space_1239, Space_1920];
+
+	const isMobile = useMediaQuery(MOBILE_QUERY);
+	const isTabletOrSmaller = useMediaQuery(TABLET_QUERY);
+	const isDesktopSOrSmaller = useMediaQuery(DESKTOP_S_QUERY);
+
+	// 0: ≤699px, 1: 700–1023px, 2: 1024–1239px, 3: ≥1240px
+	const breakpointIndex = $derived(
+		$isMobile ? 0 : $isTabletOrSmaller ? 1 : $isDesktopSOrSmaller ? 2 : 3
+	);
+
+	const cards = $derived([
 		{
 			id: 1,
 			title: 'Ускоряем создание продуктов',
 			text: 'Помогаем бизнесу быстро тестировать гипотезы и выводить решения на рынок',
-			img: CardImg1
+			img: speedImages[breakpointIndex]
 		},
 		{
 			id: 2,
 			title: 'Формируем единый визуальный стиль',
 			text: 'Строим экосистему визуальных решений, которая повышает доверие пользователей',
-			img: CardImg2
+			img: styleImages[breakpointIndex]
 		},
 		{
 			id: 3,
 			title: 'Создаем комфортное пространство',
 			text: 'Помогаем командам говорить на одном языке и улучшать процесс доставки решений',
-			img: CardImg3
+			img: spaceImages[breakpointIndex]
 		}
 	]);
 </script>
-
 
 <div class="carebenefits-container even-container">
 	<div class="main-container">
