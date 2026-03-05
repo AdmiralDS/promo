@@ -1,46 +1,46 @@
 @use '$shared/ui/breakpoints' as breakpoints;
 
 .toggle-group {
-	box-sizing: border-box;
-	display: flex;
-	flex-wrap: nowrap;
-	// width: 100%;
-	// max-width: 100%;
-	overflow-x: auto;
-	overflow-y: hidden;
-	padding: 4px;
-	margin: -4px;
-	gap: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: nowrap;
+  // width: 100%;
+  // max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px;
+  margin: -4px;
+  gap: 12px;
 
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-	&::-webkit-scrollbar {
-		display: none;
-	}
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-	@include breakpoints.respond-from(breakpoints.$desktopS) {
-		&:has(:global([class*='btn-Circle_'])) {
-			gap: 20px;
-		}
-	}
+  @include breakpoints.respond-from(breakpoints.$desktopS) {
+    &:has(:global([class*='btn-Circle_'])) {
+      gap: 20px;
+    }
+  }
 
-	&:has(:global([class*='component-sandbox'])) {
-		gap: 8px;
-	}
+  &:has(:global([class*='component-sandbox'])) {
+    gap: 8px;
+  }
 }
 
 .toggle-group :global(.btn) {
-	flex: 0 0 auto;
+  flex: 0 0 auto;
 }
 
 // Стили для выбранных элементов (исключая компонент Color)
 .toggle-group :global(.btn[aria-selected='true']:not([class*='btn-Circle_'])) {
-	background: var(--color-Primary_Blue);
-	color: var(--color-Main_White);
+  background: var(--color-Primary_Blue);
+  color: var(--color-Main_White);
 }
 
 // Специальные стили для компонента Color при выборе
 .toggle-group :global([class*='btn-Circle_'][aria-selected='true']) {
-	opacity: 1;
-	transition: all 0.2s ease;
+  opacity: 1;
+  transition: all 0.2s ease;
 }

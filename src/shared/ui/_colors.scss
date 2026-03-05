@@ -1,92 +1,92 @@
 @use 'sass:map';
 
 $colors: (
-	Main_White: #ffffff,
-	Main_Black: #000000,
-	Primary_Blue: #006fff,
-	Blue_Hover: #0052be,
-	Dark_Blue: #01042e,
-	BG: #f7f8fa,
-	Lime_Green: #89ed55,
-	Snow_Gray: #456b8d,
-	Light_Blue: #ccddfb,
-	Light_Grey: #f2f9ff,
-	Light_Grey_Hover: #e4f1ff,
-	Blue_Press: #003a87,
-	Text_Blue: #3091e5,
-	Circle_Blue: #3984ff,
-	Circle_Cyan: #0e8ce1,
-	Circle_Purple: #8a3ffc,
-	Dark_Circle_Purple: #a065fe,
-	Circle_Teal: #009692,
-	Circle_Magenta: #d02670,
-	Badge_Grey: #a5c4ed,
-	Dark_Menu: #11212e
+  Main_White: #ffffff,
+  Main_Black: #000000,
+  Primary_Blue: #006fff,
+  Blue_Hover: #0052be,
+  Dark_Blue: #01042e,
+  BG: #f7f8fa,
+  Lime_Green: #89ed55,
+  Snow_Gray: #456b8d,
+  Light_Blue: #ccddfb,
+  Light_Grey: #f2f9ff,
+  Light_Grey_Hover: #e4f1ff,
+  Blue_Press: #003a87,
+  Text_Blue: #3091e5,
+  Circle_Blue: #3984ff,
+  Circle_Cyan: #0e8ce1,
+  Circle_Purple: #8a3ffc,
+  Dark_Circle_Purple: #a065fe,
+  Circle_Teal: #009692,
+  Circle_Magenta: #d02670,
+  Badge_Grey: #a5c4ed,
+  Dark_Menu: #11212e,
 );
 
 @mixin Text_Gradient {
-	background: linear-gradient(#3091e5, #086cf5);
+  background: linear-gradient(#3091e5, #086cf5);
 }
 
 @mixin generate-color-classes($property: 'color') {
-	@each $name, $hex in $colors {
-		&--#{'' + $name} {
-			#{$property}: $hex;
-		}
-	}
+  @each $name, $hex in $colors {
+    &--#{'' + $name} {
+      #{$property}: $hex;
+    }
+  }
 }
 
 @function color($name) {
-	$value: map.get($colors, $name);
-	@if $value {
-		@return $value;
-	} @else {
-		@warn 'Не найдено значение для цвета #{$name}';
-	}
+  $value: map.get($colors, $name);
+  @if $value {
+    @return $value;
+  } @else {
+    @warn 'Не найдено значение для цвета #{$name}';
+  }
 }
 
 $gradients: (
-	Card_Gradient: linear-gradient(180deg, #2991ff 0%, #91c0fc 100%),
-	Text_Gradient: linear-gradient(90deg, #3091e5 0%, #086cf5 100%),
-	Sandbox_Gradient: linear-gradient(180deg, #d8ebff 0%, #73b1ff 100%),
-	Dark_Sandbox_Gradient: linear-gradient(180deg, #051c63 0%, #0b0c0d 100%)
+  Card_Gradient: linear-gradient(180deg, #2991ff 0%, #91c0fc 100%),
+  Text_Gradient: linear-gradient(90deg, #3091e5 0%, #086cf5 100%),
+  Sandbox_Gradient: linear-gradient(180deg, #d8ebff 0%, #73b1ff 100%),
+  Dark_Sandbox_Gradient: linear-gradient(180deg, #051c63 0%, #0b0c0d 100%),
 );
 
 @function gradient($name) {
-	$value: map.get($gradients, $name);
-	@if $value {
-		@return $value;
-	} @else {
-		@warn 'Не найдено значение для градиента #{$name}';
-	}
+  $value: map.get($gradients, $name);
+  @if $value {
+    @return $value;
+  } @else {
+    @warn 'Не найдено значение для градиента #{$name}';
+  }
 }
 
 @mixin generate-gradient-classes() {
-	@each $name, $value in $gradients {
-		.#{$name} {
-			background: $value;
-		}
-	}
+  @each $name, $value in $gradients {
+    .#{$name} {
+      background: $value;
+    }
+  }
 }
 
 :global {
-	// Generates .text--primary, .text--secondary, etc.
-	.text {
-		@include generate-color-classes();
-	}
+  // Generates .text--primary, .text--secondary, etc.
+  .text {
+    @include generate-color-classes();
+  }
 
-	// Generates .background--primary, .background--secondary, etc.
-	.background {
-		@include generate-color-classes('background-color');
-	}
+  // Generates .background--primary, .background--secondary, etc.
+  .background {
+    @include generate-color-classes('background-color');
+  }
 
-	// Generates gradients, etc.
-	@include generate-gradient-classes;
+  // Generates gradients, etc.
+  @include generate-gradient-classes;
 }
 
 /// Генерация CSS-переменных для цветов
 :root {
-	@each $color, $value in $colors {
-		--color-#{'' + $color}: #{$value};
-	}
+  @each $color, $value in $colors {
+    --color-#{'' + $color}: #{$value};
+  }
 }

@@ -21,21 +21,16 @@ export type AccordionLineCount = (typeof ACCORDION_LINE_COUNT_OPTIONS)[number];
 
 export type ThemeColor = keyof typeof AVAILABLE_COLORS;
 
-export const SANDBOX_COLOR_OPTIONS: ThemeColor[] = [
-	'blue',
-	'cyan',
-	'purple',
-	'teal',
-	'magenta'
-].filter((color): color is ThemeColor => color in AVAILABLE_COLORS);
+export const SANDBOX_COLOR_OPTIONS: ThemeColor[] = ['blue', 'cyan', 'purple', 'teal', 'magenta'].filter(
+  (color): color is ThemeColor => color in AVAILABLE_COLORS,
+);
 
 const CIRCLE_COLOR_MAP: Record<ThemeColor, `#${string}`> = {
-	blue: '#3984ff',
-	cyan: '#0e8ce1',
-	purple: '#8a3ffc',
-	teal: '#009692',
-	magenta: '#d02670'
+  blue: '#3984ff',
+  cyan: '#0e8ce1',
+  purple: '#8a3ffc',
+  teal: '#009692',
+  magenta: '#d02670',
 };
 
-export const getCircleFill = (color: ThemeColor): `#${string}` =>
-	CIRCLE_COLOR_MAP[color] ?? CIRCLE_COLOR_MAP.blue;
+export const getCircleFill = (color: ThemeColor): `#${string}` => CIRCLE_COLOR_MAP[color] ?? CIRCLE_COLOR_MAP.blue;

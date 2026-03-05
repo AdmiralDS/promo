@@ -3,74 +3,74 @@
 @use '$shared/ui/shadow' as shadow;
 
 .menu-button {
-	position: relative;
-	display: inline-flex;
+  position: relative;
+  display: inline-flex;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		position: static;
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    position: static;
+  }
 }
 
 button {
-	all: unset;
-	box-sizing: border-box;
-	display: flex;
-	align-items: center;
-	gap: 4px;
-	width: 68px;
-	height: 48px;
-	padding: 8px;
-	cursor: pointer;
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 68px;
+  height: 48px;
+  padding: 8px;
+  cursor: pointer;
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		width: 58px;
-		height: 52px;
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    width: 58px;
+    height: 52px;
+  }
 }
 
 .icon-wrapper {
-	width: 32px;
-	height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 .chevron-wrapper {
-	width: 16px;
-	height: 16px;
-	transform: rotate(0deg);
-	transition: transform 0.15s ease-in-out;
+  width: 16px;
+  height: 16px;
+  transform: rotate(0deg);
+  transition: transform 0.15s ease-in-out;
 }
 
 .chevron-wrapper.open {
-	transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .dropdown-wrapper {
   box-sizing: border-box;
-	border-radius: 32px;
-	width: 392px;
+  border-radius: 32px;
+  width: 392px;
   padding: 20px;
-	background: var(--color-Main_White, colors.color('Main_White'));
-	position: absolute;
-	bottom: calc(100% + 4px);
-	left: 0;
-	z-index: 10;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	@include shadow.shadow;
+  background: var(--color-Main_White, colors.color('Main_White'));
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include shadow.shadow;
 
-	@include breakpoints.respond-until(breakpoints.$tablet) {
-		border-radius: 32px;
-		left: 0;
-		right: auto;
-		width: 392px;
-	}
+  @include breakpoints.respond-until(breakpoints.$tablet) {
+    border-radius: 32px;
+    left: 0;
+    right: auto;
+    width: 392px;
+  }
 
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		height: 112px;
-		border-radius: 24px;
-		left: 0;
-		right: auto;
-		width: 100vi;
-	}
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    height: 112px;
+    border-radius: 24px;
+    left: 0;
+    right: auto;
+    width: 100vi;
+  }
 }

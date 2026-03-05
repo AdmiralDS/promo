@@ -11,51 +11,51 @@ import { AdmiralContentSwitcher } from './AdmiralContentSwitcher';
 import { AdmiralCheckboxGroup } from './AdmiralCheckboxGroup';
 
 export interface Props {
-	component: string;
-	theme: 'light' | 'dark';
+  component: string;
+  theme: 'light' | 'dark';
 }
 
 const setMainLightThemeColors = () => {
-	const colorTheme = LIGHT_THEME;
-	return colorTheme;
+  const colorTheme = LIGHT_THEME;
+  return colorTheme;
 };
 
 const setMainDarkThemeColors = () => {
-	const colorTheme = DARK_THEME;
-	return colorTheme;
+  const colorTheme = DARK_THEME;
+  return colorTheme;
 };
 
 const setMainThemeColors = (theme: 'light' | 'dark') => {
-	return theme === 'light' ? setMainLightThemeColors() : setMainDarkThemeColors();
+  return theme === 'light' ? setMainLightThemeColors() : setMainDarkThemeColors();
 };
 
 export const WrappedReactComponent = ({ component, theme }: Props) => {
-	const colorTheme = setMainThemeColors(theme);
-	const getComponent = () => {
-		switch (component) {
-			case 'Pagination':
-				return <AdmiralPagination />;
-			case 'ProgressPage':
-				return <AdmiralProgressPage />;
-			case 'Buttons':
-				return <AdmiralButtons />;
-			case 'SliderRange':
-				return <AdmiralSliderRange />;
-			case 'Stepper':
-				return <AdmiralStepper />;
-			case 'ContentSwitcher':
-				return <AdmiralContentSwitcher />;
-			case 'CheckboxGroup':
-				return <AdmiralCheckboxGroup />;
-			case 'Calendar':
-			default:
-				return <AdmiralCalendar />;
-		}
-	};
+  const colorTheme = setMainThemeColors(theme);
+  const getComponent = () => {
+    switch (component) {
+      case 'Pagination':
+        return <AdmiralPagination />;
+      case 'ProgressPage':
+        return <AdmiralProgressPage />;
+      case 'Buttons':
+        return <AdmiralButtons />;
+      case 'SliderRange':
+        return <AdmiralSliderRange />;
+      case 'Stepper':
+        return <AdmiralStepper />;
+      case 'ContentSwitcher':
+        return <AdmiralContentSwitcher />;
+      case 'CheckboxGroup':
+        return <AdmiralCheckboxGroup />;
+      case 'Calendar':
+      default:
+        return <AdmiralCalendar />;
+    }
+  };
 
-	return (
-		<ThemeProvider theme={colorTheme}>
-			<DropdownProvider>{getComponent()}</DropdownProvider>
-		</ThemeProvider>
-	);
+  return (
+    <ThemeProvider theme={colorTheme}>
+      <DropdownProvider>{getComponent()}</DropdownProvider>
+    </ThemeProvider>
+  );
 };

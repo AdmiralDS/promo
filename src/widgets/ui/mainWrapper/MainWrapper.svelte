@@ -1,7 +1,7 @@
 <div class="wrapper-main">
-	<slot />
+  <slot />
 </div>
 
 <style lang="scss">
-	@use 'styles';
+  @use 'styles';
 </style>
