@@ -108,3 +108,9 @@
   padding: 0 16px 0 8px;
   transform: translate3d(0, 0, 0);
 }
+
+.component-wrapper--dropdown {
+	// 108px - 25px = 83px
+	margin-top: 83px;
+	align-self: flex-start;
+}

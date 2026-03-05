@@ -1,25 +1,27 @@
 @use 'sass:map';
 
 $colors: (
-  Main_White: #ffffff,
-  Main_Black: #000000,
-  Primary_Blue: #006fff,
-  Blue_Hover: #0052be,
-  Dark_Blue: #01042e,
-  BG: #f7f8fa,
-  Lime_Green: #89ed55,
-  Snow_Gray: #456b8d,
-  Light_Blue: #ccddfb,
-  Light_Grey: #f2f9ff,
-  Light_Grey_Hover: #e4f1ff,
-  Blue_Press: #003a87,
-  Text_Blue: #3091e5,
-  Circle_Blue: #0062ff,
-  Circle_Azure: #0072c3,
-  Circle_Purple: #a065fe,
-  Circle_Green: #009692,
-  Circle_Pink: #e84a8e,
-  Badge_Grey: #a5c4ed,
+	Main_White: #ffffff,
+	Main_Black: #000000,
+	Primary_Blue: #006fff,
+	Blue_Hover: #0052be,
+	Dark_Blue: #01042e,
+	BG: #f7f8fa,
+	Lime_Green: #89ed55,
+	Snow_Gray: #456b8d,
+	Light_Blue: #ccddfb,
+	Light_Grey: #f2f9ff,
+	Light_Grey_Hover: #e4f1ff,
+	Blue_Press: #003a87,
+	Text_Blue: #3091e5,
+	Circle_Blue: #3984ff,
+	Circle_Cyan: #0e8ce1,
+	Circle_Purple: #8a3ffc,
+	Dark_Circle_Purple: #a065fe,
+	Circle_Teal: #009692,
+	Circle_Magenta: #d02670,
+	Badge_Grey: #a5c4ed,
+	Dark_Menu: #11212e
 );
 
 @mixin Text_Gradient {
@@ -44,9 +46,10 @@ $colors: (
 }
 
 $gradients: (
-  Card_Gradient: linear-gradient(180deg, #2991ff 0%, #91c0fc 100%),
-  Text_Gradient: linear-gradient(90deg, #3091e5 0%, #086cf5 100%),
-  Sandbox_Gradient: linear-gradient(180deg, #d8ebff 0%, #73b1ff 100%),
+	Card_Gradient: linear-gradient(180deg, #2991ff 0%, #91c0fc 100%),
+	Text_Gradient: linear-gradient(90deg, #3091e5 0%, #086cf5 100%),
+	Sandbox_Gradient: linear-gradient(180deg, #d8ebff 0%, #73b1ff 100%),
+	Dark_Sandbox_Gradient: linear-gradient(180deg, #051c63 0%, #0b0c0d 100%)
 );
 
 @function gradient($name) {

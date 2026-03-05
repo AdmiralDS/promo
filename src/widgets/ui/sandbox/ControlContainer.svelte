@@ -53,16 +53,16 @@
      */
     onChangeAppearance: (value: Appearance) => void;
 
-    /**
-     * Цветовая схема компонента, отображаемого в песочнице.
-     * Определяет основной цвет демонстрируемого компонента.
-     *
-     * @default 'blue'
-     * @example
-     * // В песочнице будет показан компонент с зеленой цветовой схемой
-     * <ControlContainer color="green" />
-     */
-    color: ThemeColor;
+		/**
+		 * Цветовая схема компонента, отображаемого в песочнице.
+		 * Определяет основной цвет демонстрируемого компонента.
+		 *
+		 * @default 'blue'
+		 * @example
+		 * // В песочнице будет показан компонент с зеленой цветовой схемой
+		 * <ControlContainer color="teal" />
+		 */
+		color: ThemeColor;
 
     /**
      * Callback-функция, вызываемая при изменении цвета компонента в песочнице.
@@ -224,9 +224,94 @@
     handleSelection(ACCORDION_LINE_COUNT_OPTIONS, newIndex, onChangeAccordionLineCount);
 </script>
 
-<div class="control-container background--Main_White">
-  {#if isMobile}
-    <div class="button-block-wrapper">
+<div
+	class={`control-container ${
+		isDarkTheme
+			? 'control-container--dark background--Dark_Menu text--Light_Grey'
+			: 'background--Main_White text--Dark_Blue'
+	}`}
+>
+	{#if isMobile}
+		<div class="button-block-wrapper">
+			{#if showFieldCount}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<SettingsField
+						slot="dropdown"
+						selected={fieldCountSelected}
+						onSelectedChange={handleFieldCountChange}
+					/>
+				</MenuButton>
+			{:else if showTableSettings}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<TableSettingsField
+						slot="dropdown"
+						variant="dropdown"
+						groupActions={tableGroupActions}
+						rowDrag={tableRowDrag}
+						zebra={tableZebra}
+						onChangeGroupActions={handleTableGroupActionsChange}
+						onChangeRowDrag={handleTableRowDragChange}
+						onChangeZebra={handleTableZebraChange}
+					/>
+				</MenuButton>
+			{:else if showDropdownSettings}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<DropdownSettingsField
+						slot="dropdown"
+						variant="dropdown"
+						selected={dropdownMode}
+						onSelectedChange={handleDropdownModeChange}
+					/>
+				</MenuButton>
+			{:else if showAccordionSettings}
+				<MenuButton>
+					<SettingsIcon slot="icon" />
+					<AccordionArrowSettingsField
+						slot="dropdown"
+						selected={accordionArrowPositionSelected}
+						onSelectedChange={handleAccordionArrowPositionChange}
+					/>
+				</MenuButton>
+			{/if}
+
+			{#if showAccordionSettings}
+				<MenuButton>
+					<LineCountIcon slot="icon" />
+					<AccordionLineCountSettingsField
+						slot="dropdown"
+						selected={accordionLineCountSelected}
+						onSelectedChange={handleAccordionLineCountChange}
+					/>
+				</MenuButton>
+			{:else}
+				<MenuButton>
+					<ColorIcon slot="icon" fill={getCircleFill(color)} />
+					<ColorField
+						slot="dropdown"
+						selected={colorSelected}
+						onSelectedChange={handleColorChange}
+					/>
+				</MenuButton>
+			{/if}
+		</div>
+		<div class="divider-vertical"></div>
+		<div class="theme-toggle-inline">
+			<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
+		</div>
+	{:else if isCompact}
+		<div class="button-block-wrapper">
+			<MenuButton>
+				<SizeIcon slot="icon" />
+				<SizeField
+					slot="dropdown"
+					selected={appearanceSelected}
+					onSelectedChange={handleAppearanceChange}
+				/>
+			</MenuButton>
+
       {#if showFieldCount}
         <MenuButton>
           <SettingsIcon slot="icon" />
@@ -256,85 +341,22 @@
             onSelectedChange={handleDropdownModeChange}
           />
         </MenuButton>
-      {:else if showAccordionSettings}
-        <MenuButton>
-          <SettingsIcon slot="icon" />
-          <AccordionArrowSettingsField
-            slot="dropdown"
-            selected={accordionArrowPositionSelected}
-            onSelectedChange={handleAccordionArrowPositionChange}
-          />
-        </MenuButton>
       {/if}
 
-      {#if showAccordionSettings}
-        <MenuButton>
-          <LineCountIcon slot="icon" />
-          <AccordionLineCountSettingsField
-            slot="dropdown"
-            selected={accordionLineCountSelected}
-            onSelectedChange={handleAccordionLineCountChange}
-          />
-        </MenuButton>
-      {:else}
-        <MenuButton>
-          <ColorIcon slot="icon" fill={getCircleFill(color)} />
-          <ColorField slot="dropdown" selected={colorSelected} onSelectedChange={handleColorChange} />
-        </MenuButton>
-      {/if}
-    </div>
-    <div class="divider-vertical"></div>
-    <ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
-  {:else if isCompact}
-    <div class="button-block-wrapper">
-      <MenuButton>
-        <SizeIcon slot="icon" />
-        <SizeField slot="dropdown" selected={appearanceSelected} onSelectedChange={handleAppearanceChange} />
-      </MenuButton>
-
-      {#if showFieldCount}
-        <MenuButton>
-          <SettingsIcon slot="icon" />
-          <SettingsField slot="dropdown" selected={fieldCountSelected} onSelectedChange={handleFieldCountChange} />
-        </MenuButton>
-      {:else if showTableSettings}
-        <MenuButton>
-          <SettingsIcon slot="icon" />
-          <TableSettingsField
-            slot="dropdown"
-            variant="dropdown"
-            groupActions={tableGroupActions}
-            rowDrag={tableRowDrag}
-            zebra={tableZebra}
-            onChangeGroupActions={handleTableGroupActionsChange}
-            onChangeRowDrag={handleTableRowDragChange}
-            onChangeZebra={handleTableZebraChange}
-          />
-        </MenuButton>
-      {:else if showDropdownSettings}
-        <MenuButton>
-          <SettingsIcon slot="icon" />
-          <DropdownSettingsField
-            slot="dropdown"
-            variant="dropdown"
-            selected={dropdownMode}
-            onSelectedChange={handleDropdownModeChange}
-          />
-        </MenuButton>
-      {/if}
-
-      <MenuButton>
-        <ColorIcon slot="icon" fill={getCircleFill(color)} />
-        <ColorField slot="dropdown" selected={colorSelected} onSelectedChange={handleColorChange} />
-      </MenuButton>
-    </div>
-    <div class="divider-vertical"></div>
-    <ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
-  {:else}
-    <div class="theme-toggle text--Dark_Blue">
-      Настройки
-      <ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
-    </div>
+			<MenuButton>
+				<ColorIcon slot="icon" fill={getCircleFill(color)} />
+				<ColorField slot="dropdown" selected={colorSelected} onSelectedChange={handleColorChange} />
+			</MenuButton>
+		</div>
+		<div class="divider-vertical"></div>
+		<div class="theme-toggle-inline">
+			<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
+		</div>
+	{:else}
+		<div class="theme-toggle">
+			Настройки
+			<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
+		</div>
 
     <SizeField selected={appearanceSelected} onSelectedChange={handleAppearanceChange} />
     <ColorField selected={colorSelected} onSelectedChange={handleColorChange} />
