@@ -11,6 +11,7 @@ const sections: SectionConfig[] = [
   { name: 'care benefits', selector: '.carebenefits-container' },
   { name: 'products', selector: '.products-container' },
   { name: 'beyond ui', selector: '.beyondui-container' },
+  { name: 'sandbox', selector: '.sandbox-container' },
   { name: 'team', selector: '.team-container' },
   { name: 'footer', selector: '.footer-container' },
 ];
