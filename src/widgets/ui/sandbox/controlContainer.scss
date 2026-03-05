@@ -25,98 +25,98 @@
   display: flex;
   flex-direction: column;
 
-	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		@include compact-layout;
-		bottom: -56px;
-		@include shadow.shadow;
-	}
-	@include breakpoints.respond-until(breakpoints.$phone) {
-		position: absolute;
-		width: 100%;
-		height: 92px;
-		bottom: 0;
-		padding: 20px 40px;
-		border-radius: 32px;
-		gap: 32px;
-		justify-content: center;
-	}
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    @include compact-layout;
+    bottom: -56px;
+    @include shadow.shadow;
+  }
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    position: absolute;
+    width: 100%;
+    height: 92px;
+    bottom: 0;
+    padding: 20px 40px;
+    border-radius: 32px;
+    gap: 32px;
+    justify-content: center;
+  }
 }
 
 .control-container--dark {
-	--color-Circle_Purple: colors.color('Dark_Circle_Purple');
-	.divider-vertical,
-	.divider-horizontal {
-		opacity: 0.2;
-	}
+  --color-Circle_Purple: colors.color('Dark_Circle_Purple');
+  .divider-vertical,
+  .divider-horizontal {
+    opacity: 0.2;
+  }
 
-	color: colors.color('Light_Grey');
+  color: colors.color('Light_Grey');
 
-	:global(.toggle-group .btn) {
-		color: colors.color('Main_White');
-	}
+  :global(.toggle-group .btn) {
+    color: colors.color('Main_White');
+  }
 
-	:global(.toggle-group .btn[aria-selected='false']:not([class*='btn-Circle_'])) {
-		background: rgba(colors.color('Light_Grey'), 0.2);
-	}
+  :global(.toggle-group .btn[aria-selected='false']:not([class*='btn-Circle_'])) {
+    background: rgba(colors.color('Light_Grey'), 0.2);
+  }
 
-	:global(.toggle-group .btn-Circle_Purple) {
-		background: colors.color('Dark_Circle_Purple');
-	}
+  :global(.toggle-group .btn-Circle_Purple) {
+    background: colors.color('Dark_Circle_Purple');
+  }
 
-	:global(.button-block-wrapper .menu-button > button) {
-		color: colors.color('Main_White');
-	}
+  :global(.button-block-wrapper .menu-button > button) {
+    color: colors.color('Main_White');
+  }
 
-	:global(.menu-button .dropdown-wrapper) {
-		background: colors.color('Dark_Menu');
-		color: colors.color('Light_Grey');
-	}
+  :global(.menu-button .dropdown-wrapper) {
+    background: colors.color('Dark_Menu');
+    color: colors.color('Light_Grey');
+  }
 
-	:global(.theme-toggle .toggle-label),
-	:global(.theme-toggle-inline .toggle-label) {
-		background: rgba(colors.color('Light_Grey'), 0.2);
-	}
+  :global(.theme-toggle .toggle-label),
+  :global(.theme-toggle-inline .toggle-label) {
+    background: rgba(colors.color('Light_Grey'), 0.2);
+  }
 
-	:global(.theme-toggle .toggle-label svg .mask),
-	:global(.theme-toggle-inline .toggle-label svg .mask) {
-		fill: colors.color('Light_Grey');
-	}
+  :global(.theme-toggle .toggle-label svg .mask),
+  :global(.theme-toggle-inline .toggle-label svg .mask) {
+    fill: colors.color('Light_Grey');
+  }
 
-	:global(.theme-toggle .toggle-label svg .mask-inverted),
-	:global(.theme-toggle-inline .toggle-label svg .mask-inverted) {
-		fill: colors.color('Main_White');
-	}
+  :global(.theme-toggle .toggle-label svg .mask-inverted),
+  :global(.theme-toggle-inline .toggle-label svg .mask-inverted) {
+    fill: colors.color('Main_White');
+  }
 
-	:global(.toggle-label:hover #togglehover),
-	:global(.toggle-label-inline:hover #togglehover) {
-		fill: rgba(colors.color('Light_Grey'), 0.1);
-	}
+  :global(.toggle-label:hover #togglehover),
+  :global(.toggle-label-inline:hover #togglehover) {
+    fill: rgba(colors.color('Light_Grey'), 0.1);
+  }
 
-	@media (hover: hover) {
-		:global(.toggle-label:hover .toggle-thumb) {
-			box-shadow: 0 0 0 16px rgba(colors.color('Light_Grey'), 0.1);
-		}
+  @media (hover: hover) {
+    :global(.toggle-label:hover .toggle-thumb) {
+      box-shadow: 0 0 0 16px rgba(colors.color('Light_Grey'), 0.1);
+    }
 
-		:global(.toggle-label.toggle--sm:hover .toggle-thumb) {
-			box-shadow: 0 0 0 10px rgba(colors.color('Light_Grey'), 0.1);
-		}
+    :global(.toggle-label.toggle--sm:hover .toggle-thumb) {
+      box-shadow: 0 0 0 10px rgba(colors.color('Light_Grey'), 0.1);
+    }
 
-		:global(.radio-label:hover .radio-visual-shadow) {
-			box-shadow: 0 0 0 12px rgba(colors.color('Light_Grey'), 0.1);
-		}
+    :global(.radio-label:hover .radio-visual-shadow) {
+      box-shadow: 0 0 0 12px rgba(colors.color('Light_Grey'), 0.1);
+    }
 
-		:global(.radio-label.radio--sm:hover .radio-visual-shadow) {
-			box-shadow: 0 0 0 8px rgba(colors.color('Light_Grey'), 0.1);
-		}
+    :global(.radio-label.radio--sm:hover .radio-visual-shadow) {
+      box-shadow: 0 0 0 8px rgba(colors.color('Light_Grey'), 0.1);
+    }
 
-		:global(.toggle-group .btn[aria-selected='false']:not([class*='btn-Circle_']):hover) {
-			background: rgba(colors.color('Light_Grey'), 0.28);
-		}
+    :global(.toggle-group .btn[aria-selected='false']:not([class*='btn-Circle_']):hover) {
+      background: rgba(colors.color('Light_Grey'), 0.28);
+    }
 
-		:global(.toggle-group .btn[aria-selected='false']:hover) {
-			outline-color: rgba(colors.color('Light_Grey'), 0.1);
-		}
-	}
+    :global(.toggle-group .btn[aria-selected='false']:hover) {
+      outline-color: rgba(colors.color('Light_Grey'), 0.1);
+    }
+  }
 }
 
 .theme-toggle {
@@ -133,13 +133,13 @@
 }
 
 .divider-vertical {
-	width: 1px;
-	background: #e8ecf5;
-	flex: 0 0 1px;
-	min-width: 1px;
-	align-self: stretch;
-	margin-top: -20px;
-	margin-bottom: -20px;
+  width: 1px;
+  background: #e8ecf5;
+  flex: 0 0 1px;
+  min-width: 1px;
+  align-self: stretch;
+  margin-top: -20px;
+  margin-bottom: -20px;
 }
 .divider-horizontal {
   width: 321px;
@@ -154,7 +154,7 @@
 }
 
 .control-container:not(.control-container--dark) {
-	.button-block-wrapper :global(.menu-button > button) {
-		color: colors.color('Snow_Gray');
-	}
+  .button-block-wrapper :global(.menu-button > button) {
+    color: colors.color('Snow_Gray');
+  }
 }

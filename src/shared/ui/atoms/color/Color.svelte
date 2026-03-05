@@ -1,36 +1,36 @@
 <script module lang="ts">
   import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	export const AVAILABLE_COLORS = {
-		blue: 'Blue',
-		cyan: 'Cyan',
-		purple: 'Purple',
-		teal: 'Teal',
-		magenta: 'Magenta'
-	} as const;
+  export const AVAILABLE_COLORS = {
+    blue: 'Blue',
+    cyan: 'Cyan',
+    purple: 'Purple',
+    teal: 'Teal',
+    magenta: 'Magenta',
+  } as const;
 
   // Тип автоматически выводится из ключей объекта
   export type ButtonColor = keyof typeof AVAILABLE_COLORS;
 
-	export interface ColorProps extends HTMLButtonAttributes {
-		/**
-		 * Цвет кнопки, определяющий ее стиль.
-		 *
-		 * Варианты:
-		 *
-		 * - `blue`
-		 * - `cyan`
-		 * - `purple`
-		 * - `teal`
-		 * - `magenta`
-		 *
-		 * @default 'blue'
-		 * @example
-		 * <Color color="blue"></Color>
-		 * <Color color="purple"></Color>
-		 */
-		color?: ButtonColor;
-	}
+  export interface ColorProps extends HTMLButtonAttributes {
+    /**
+     * Цвет кнопки, определяющий ее стиль.
+     *
+     * Варианты:
+     *
+     * - `blue`
+     * - `cyan`
+     * - `purple`
+     * - `teal`
+     * - `magenta`
+     *
+     * @default 'blue'
+     * @example
+     * <Color color="blue"></Color>
+     * <Color color="purple"></Color>
+     */
+    color?: ButtonColor;
+  }
 </script>
 
 <script lang="ts">
