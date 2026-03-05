@@ -85,9 +85,11 @@
 
 .text-paragraph {
 	@include typo.typography('Paragraph');
+	max-width: 339px;
 
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
 		@include typo.typography('Text');
+		max-width: 239px;
 	}
 
 	@include breakpoints.respond-until(breakpoints.$tablet) {
@@ -96,11 +98,12 @@
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
 		@include typo.typography('Mobile/Text');
+		max-width: 224px;
 	}
 }
 
 .cells-box {
-	margin-top: 64px;
+	margin-top: 80px;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, 1fr);
@@ -108,6 +111,7 @@
 	gap: 20px;
 
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		margin-top: 64px;
 		width: 100%;
 	}
 
@@ -130,19 +134,23 @@
 }
 
 .cells-box-intro {
-	text-align: center;
+	text-align: start;
 	box-sizing: border-box;
 	padding: 7px 0;
 	display: flex;
 	flex-direction: column;
-	gap: 4px;
+	gap: 10px;
 	justify-content: center;
-	align-items: center;
+	align-items: start;
+	padding: 24px;
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
 		width: 335px;
 		height: 155px;
 		align-self: center;
+		align-items: center;
+		text-align: center;
+		gap: 4px;
 	}
 }
 
