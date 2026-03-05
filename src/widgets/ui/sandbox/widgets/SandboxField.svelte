@@ -15,7 +15,7 @@
 </script>
 
 <div class="sandbox-field-wrapper">
-	<div class="sandbox-field-title text--Dark_Blue">{fieldTitle}</div>
+	<div class="sandbox-field-title">{fieldTitle}</div>
 	<ToggleGroup {selected} {onSelectedChange}>
 		{@render children?.()}
 	</ToggleGroup>

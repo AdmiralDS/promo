@@ -134,8 +134,12 @@
 				{/each}
 			</ToggleGroup>
 		</div>
-		<div class="sandbox Sandbox_Gradient">
-			<div class="component-wrapper">
+		<div class={`sandbox ${config.isDarkTheme ? 'Dark_Sandbox_Gradient' : 'Sandbox_Gradient'}`}>
+			<div
+				class={`component-wrapper ${
+					activeComponent === 'Dropdown' ? 'component-wrapper--dropdown' : ''
+				}`}
+			>
 				{#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}-${config.tableGroupActions}-${config.tableRowDrag}-${config.tableZebra}-${config.dropdownMode}-${config.accordionArrowPosition}-${config.accordionLineCount}`}
 					<ReactComponent
 						component={activeComponent ?? 'Modal'}

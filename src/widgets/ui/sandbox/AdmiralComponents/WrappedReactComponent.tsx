@@ -31,7 +31,7 @@ export interface Props {
 const setMainLightThemeColors = (mainColor: string) => {
 	const colorTheme = LIGHT_THEME;
 	switch (mainColor) {
-		case 'azure':
+		case 'cyan':
 			colorTheme.color['Primary/Primary 10'] = '#E5F6FF';
 			colorTheme.color['Primary/Primary 20'] = '#C4EAFF';
 			colorTheme.color['Primary/Primary 30'] = '#82CFFF';
@@ -51,7 +51,7 @@ const setMainLightThemeColors = (mainColor: string) => {
 			colorTheme.color['Primary/Primary 70'] = '#6929C4';
 			colorTheme.color['Primary/Primary 80'] = '#491D8B';
 			break;
-		case 'green':
+		case 'teal':
 			colorTheme.color['Primary/Primary 10'] = '#D9FBFB';
 			colorTheme.color['Primary/Primary 20'] = '#B0F0F0';
 			colorTheme.color['Primary/Primary 30'] = '#3DDBD9';
@@ -61,7 +61,7 @@ const setMainLightThemeColors = (mainColor: string) => {
 			colorTheme.color['Primary/Primary 70'] = '#005D5D';
 			colorTheme.color['Primary/Primary 80'] = '#004144';
 			break;
-		case 'pink':
+		case 'magenta':
 			colorTheme.color['Primary/Primary 10'] = '#FFF0F7';
 			colorTheme.color['Primary/Primary 20'] = '#FFDBEB';
 			colorTheme.color['Primary/Primary 30'] = '#FFAFD2';
@@ -89,7 +89,7 @@ const setMainLightThemeColors = (mainColor: string) => {
 const setMainDarkThemeColors = (mainColor: string) => {
 	const colorTheme = DARK_THEME;
 	switch (mainColor) {
-		case 'azure':
+		case 'cyan':
 			colorTheme.color['Primary/Primary 10'] = '#202021';
 			colorTheme.color['Primary/Primary 20'] = '#002D56';
 			colorTheme.color['Primary/Primary 30'] = '#003A6D';
@@ -109,7 +109,7 @@ const setMainDarkThemeColors = (mainColor: string) => {
 			colorTheme.color['Primary/Primary 70'] = '#B587FF';
 			colorTheme.color['Primary/Primary 80'] = '#CEB1FF';
 			break;
-		case 'green':
+		case 'teal':
 			colorTheme.color['Primary/Primary 10'] = '#202021';
 			colorTheme.color['Primary/Primary 20'] = '#023136';
 			colorTheme.color['Primary/Primary 30'] = '#004144';
@@ -119,7 +119,7 @@ const setMainDarkThemeColors = (mainColor: string) => {
 			colorTheme.color['Primary/Primary 70'] = '#06B2AF';
 			colorTheme.color['Primary/Primary 80'] = '#2FD2CF';
 			break;
-		case 'pink':
+		case 'magenta':
 			colorTheme.color['Primary/Primary 10'] = '#202021';
 			colorTheme.color['Primary/Primary 20'] = '#510224';
 			colorTheme.color['Primary/Primary 30'] = '#740937';

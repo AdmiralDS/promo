@@ -3,10 +3,10 @@
 
 	export const AVAILABLE_COLORS = {
 		blue: 'Blue',
-		azure: 'Azure',
+		cyan: 'Cyan',
 		purple: 'Purple',
-		green: 'Green',
-		pink: 'Pink'
+		teal: 'Teal',
+		magenta: 'Magenta'
 	} as const;
 
 	// Тип автоматически выводится из ключей объекта
@@ -19,10 +19,10 @@
 		 * Варианты:
 		 *
 		 * - `blue`
-		 * - `azure`
+		 * - `cyan`
 		 * - `purple`
-		 * - `green`
-		 * - `pink`
+		 * - `teal`
+		 * - `magenta`
 		 *
 		 * @default 'blue'
 		 * @example

@@ -65,7 +65,7 @@
 		 * @default 'blue'
 		 * @example
 		 * // В песочнице будет показан компонент с зеленой цветовой схемой
-		 * <ControlContainer color="green" />
+		 * <ControlContainer color="teal" />
 		 */
 		color: ThemeColor;
 
@@ -234,7 +234,13 @@
 		handleSelection(ACCORDION_LINE_COUNT_OPTIONS, newIndex, onChangeAccordionLineCount);
 </script>
 
-<div class="control-container background--Main_White">
+<div
+	class={`control-container ${
+		isDarkTheme
+			? 'control-container--dark background--Dark_Menu text--Light_Grey'
+			: 'background--Main_White text--Dark_Blue'
+	}`}
+>
 	{#if isMobile}
 		<div class="button-block-wrapper">
 			{#if showFieldCount}
@@ -302,7 +308,9 @@
 			{/if}
 		</div>
 		<div class="divider-vertical"></div>
-		<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
+		<div class="theme-toggle-inline">
+			<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
+		</div>
 	{:else if isCompact}
 		<div class="button-block-wrapper">
 			<MenuButton>
@@ -355,9 +363,11 @@
 			</MenuButton>
 		</div>
 		<div class="divider-vertical"></div>
-		<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
+		<div class="theme-toggle-inline">
+			<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
+		</div>
 	{:else}
-		<div class="theme-toggle text--Dark_Blue">
+		<div class="theme-toggle">
 			Настройки
 			<ThemeToggle checked={isDarkTheme} onchange={handleThemeChange} />
 		</div>
