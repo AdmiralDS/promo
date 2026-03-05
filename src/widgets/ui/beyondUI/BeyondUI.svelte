@@ -2,27 +2,26 @@
   import { Card } from '$shared/ui';
   import { useMediaQuery, MOBILE_QUERY, TABLET_QUERY, DESKTOP_S_QUERY } from '$shared/ui/useMediaQuery';
 
-  // Document (CardImg1)
   import Document_699 from './assets/Document_699-360.png';
   import Document_1023 from './assets/Document_1023-700.png';
   import Document_1239 from './assets/Document_1239-1024.png';
   import Document_1920 from './assets/Document_1920-1240.png';
-  // Theme (CardImg2)
+
   import Theme_699 from './assets/Theme_699-360.png';
   import Theme_1023 from './assets/Theme_1023-700.png';
   import Theme_1239 from './assets/Theme_1239-1024.png';
   import Theme_1920 from './assets/Theme_1920-1240.png';
-  // Support (CardImg3)
+
   import Support_699 from './assets/Support_699-360.png';
   import Support_1023 from './assets/Support_1023-700.png';
   import Support_1239 from './assets/Support_1239-1024.png';
   import Support_1920 from './assets/Support_1920-1240.png';
-  // Custom (CardImg4)
+
   import Custom_699 from './assets/Custom_699-360.png';
   import Custom_1023 from './assets/Custom_1023-700.png';
   import Custom_1239 from './assets/Custom_1239-1024.png';
   import Custom_1920 from './assets/Custom_1920-1240.png';
-  // Icons (CardImg5)
+
   import Icons_699 from './assets/Icons_699-360.png';
   import Icons_1023 from './assets/Icons_1023-700.png';
   import Icons_1239 from './assets/Icons_1239-1024.png';
@@ -38,7 +37,6 @@
   const isTabletOrSmaller = useMediaQuery(TABLET_QUERY);
   const isDesktopSOrSmaller = useMediaQuery(DESKTOP_S_QUERY);
 
-  // 0: ≤699px, 1: 700–1023px, 2: 1024–1239px, 3: ≥1240px
   const breakpointIndex = $derived($isMobile ? 0 : $isTabletOrSmaller ? 1 : $isDesktopSOrSmaller ? 2 : 3);
 
   const cards = $derived([

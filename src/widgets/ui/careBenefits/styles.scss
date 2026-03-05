@@ -11,11 +11,11 @@
 
   @include breakpoints.respond-until(breakpoints.$desktopS) {
     height: 896px;
-    padding: 80px 24px;
+    padding: 80px 0;
   }
 
   @include breakpoints.respond-until(breakpoints.$tablet) {
-    height: 896px;
+    padding: 80px 24px;
   }
   @include breakpoints.respond-until(breakpoints.$phone) {
     height: fit-content;
@@ -33,12 +33,13 @@
   position: relative;
 
   @include breakpoints.respond-until(breakpoints.$desktopS) {
-    width: 1024px;
+    width: 976px;
     height: 100%;
   }
 
   @include breakpoints.respond-until(breakpoints.$tablet) {
     width: 100%;
+    height: 100%;
   }
 
   @include breakpoints.respond-until(breakpoints.$phone) {
@@ -63,6 +64,12 @@
 
   @include breakpoints.respond-until(breakpoints.$phone) {
     @include typo.typography('Mobile/H2');
+
+    &-box {
+      max-width: 335px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
 

@@ -16,7 +16,7 @@
 
 <div class="header-container">
   <!-- <div class="elipse1"></div> -->
-  <div class="cloud left">
+  <div class="cloud">
     <LeftCloud />
   </div>
   <div class="cloud right">
@@ -26,8 +26,8 @@
   <div class="main-container">
     <img src={logo} alt={'logo'} class="logo centered" />
     <div class="text-box">
-      <div class="text first-row text--Dark_Blue">Создавайте</div>
-      <div class="text second-row text--Dark_Blue">IT-продукты</div>
+      <div class="text first-two-row text--Dark_Blue">Создавайте</div>
+      <div class="text first-two-row text--Dark_Blue">IT-продукты</div>
       <div class="text text--Text_Blue">с Адмиралом</div>
     </div>
     <div class="centered">
