@@ -110,6 +110,7 @@
 }
 
 .component-wrapper--dropdown {
-	margin-top: 108px - 25px;
+	// 108px - 25px = 83px
+	margin-top: 83px;
 	align-self: flex-start;
 }
