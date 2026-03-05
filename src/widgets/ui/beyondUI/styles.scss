@@ -74,22 +74,61 @@
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
 		gap: 8px;
+		margin-top: 40px;
 	}
-}
 
-:global(.cell-first) {
-	grid-row: span 2;
-}
-:global(.cell-forth) {
-	@media (min-width: 1240px) {
-		grid-column: 2;
-		grid-row: 3;
+	:global(.card-title) {
+		max-width: 494px;
+		white-space: normal;
+		overflow-wrap: anywhere;
 	}
-}
-:global(.cell-fifth) {
-	@media (min-width: 1240px) {
-		grid-column: 1;
-		grid-row: 3;
+
+	:global(.card-text) {
+		max-width: 400px;
+		white-space: normal;
+		overflow-wrap: anywhere;
+	}
+
+	@include breakpoints.respond-until(breakpoints.$desktopS) {
+		:global(.card-title) {
+			max-width: 398px;
+		}
+
+		:global(.card-text) {
+			max-width: 440px;
+		}
+	}
+
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		:global(.card-title) {
+			max-width: 398px;
+		}
+
+		:global(.card-text) {
+			max-width: 440px;
+		}
+	}
+
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		:global(.card-text) {
+			max-width: 271px;
+		}
+	}
+
+	:global(.cell-first) {
+		grid-row: span 2;
+	}
+	:global(.cell-forth) {
+		@include breakpoints.respond-from(breakpoints.$desktopS) {
+			grid-column: 2;
+			grid-row: 3;
+		}
+	}
+	:global(.cell-fifth) {
+		@include breakpoints.respond-from(breakpoints.$desktopS) {
+			grid-column: 1;
+			grid-row: 3;
+		}
 	}
 }
 
@@ -97,19 +136,22 @@
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	display: none;
+	height: 210px;
 
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
-		display: block;
+		height: 206px;
+	}
+	@include breakpoints.respond-until(breakpoints.$tablet) {
+		height: 190px;
+	}
+	@include breakpoints.respond-until(breakpoints.$phone) {
+		height: 174px;
 	}
 }
-.cards-box-img-big {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	display: none;
 
-	@media (min-width: 1240px) {
-		display: block;
+@include breakpoints.respond-from(breakpoints.$desktopS) {
+	:global(.cell-first) .cards-box-img {
+		height: 490px;
+		width: auto;
 	}
 }

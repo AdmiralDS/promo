@@ -1,51 +1,83 @@
 <script lang="ts">
 	import { Card } from '$shared/ui';
-	import CardImg1 from './assets/card_img_1_sm.png';
-	import CardImg1Big from './assets/card_img_1_big.png';
-	import CardImg2 from './assets/card_img_2_sm.png';
-	import CardImg2Big from './assets/card_img_2_big.png';
-	import CardImg3 from './assets/card_img_3_sm.png';
-	import CardImg3Big from './assets/card_img_3_big.png';
-	import CardImg4 from './assets/card_img_4_sm.png';
-	import CardImg4Big from './assets/card_img_4_big.png';
-	import CardImg5 from './assets/card_img_5_sm.png';
-	import CardImg5Big from './assets/card_img_5_big.png';
+	import {
+		useMediaQuery,
+		MOBILE_QUERY,
+		TABLET_QUERY,
+		DESKTOP_S_QUERY
+	} from '$shared/ui/useMediaQuery';
 
-	const cards = $state([
+	// Document (CardImg1)
+	import Document_699 from './assets/Document_699-360.png';
+	import Document_1023 from './assets/Document_1023-700.png';
+	import Document_1239 from './assets/Document_1239-1024.png';
+	import Document_1920 from './assets/Document_1920-1240.png';
+	// Theme (CardImg2)
+	import Theme_699 from './assets/Theme_699-360.png';
+	import Theme_1023 from './assets/Theme_1023-700.png';
+	import Theme_1239 from './assets/Theme_1239-1024.png';
+	import Theme_1920 from './assets/Theme_1920-1240.png';
+	// Support (CardImg3)
+	import Support_699 from './assets/Support_699-360.png';
+	import Support_1023 from './assets/Support_1023-700.png';
+	import Support_1239 from './assets/Support_1239-1024.png';
+	import Support_1920 from './assets/Support_1920-1240.png';
+	// Custom (CardImg4)
+	import Custom_699 from './assets/Custom_699-360.png';
+	import Custom_1023 from './assets/Custom_1023-700.png';
+	import Custom_1239 from './assets/Custom_1239-1024.png';
+	import Custom_1920 from './assets/Custom_1920-1240.png';
+	// Icons (CardImg5)
+	import Icons_699 from './assets/Icons_699-360.png';
+	import Icons_1023 from './assets/Icons_1023-700.png';
+	import Icons_1239 from './assets/Icons_1239-1024.png';
+	import Icons_1920 from './assets/Icons_1920-1240.png';
+
+	const documentImages = [Document_699, Document_1023, Document_1239, Document_1920];
+	const themeImages = [Theme_699, Theme_1023, Theme_1239, Theme_1920];
+	const supportImages = [Support_699, Support_1023, Support_1239, Support_1920];
+	const customImages = [Custom_699, Custom_1023, Custom_1239, Custom_1920];
+	const iconsImages = [Icons_699, Icons_1023, Icons_1239, Icons_1920];
+
+	const isMobile = useMediaQuery(MOBILE_QUERY);
+	const isTabletOrSmaller = useMediaQuery(TABLET_QUERY);
+	const isDesktopSOrSmaller = useMediaQuery(DESKTOP_S_QUERY);
+
+	// 0: ≤699px, 1: 700–1023px, 2: 1024–1239px, 3: ≥1240px
+	const breakpointIndex = $derived(
+		$isMobile ? 0 : $isTabletOrSmaller ? 1 : $isDesktopSOrSmaller ? 2 : 3
+	);
+
+	const cards = $derived([
 		{
 			id: 1,
 			title: 'Документация',
 			text: 'Обширная информация для разработчиков и дизайнеров',
-			img: CardImg1,
-			imgBig: CardImg1Big
+			img: documentImages[breakpointIndex]
 		},
 		{
 			id: 2,
 			title: 'Легкая темизация',
 			text: 'Быстрая настройка своей цветовой схемы для проекта',
-			img: CardImg2,
-			imgBig: CardImg2Big
+			img: themeImages[breakpointIndex]
 		},
 		{
 			id: 3,
 			title: 'Каналы поддержки',
 			text: 'Оперативно решаем вопросы и рассказываем об обновлениях',
-			img: CardImg3,
-			imgBig: CardImg3Big
+			img: supportImages[breakpointIndex]
 		},
 		{
 			id: 4,
 			title: 'Кастомизация',
 			text: 'Функциональная проработка компонентов под проекты любой сложности',
-			img: CardImg4,
-			imgBig: CardImg4Big
+			img: customImages[breakpointIndex]
 		},
 		{
 			id: 5,
 			title: 'Библиотека иконок',
 			text: 'Большой набор графики в нескольких вариациях',
-			img: CardImg5,
-			imgBig: CardImg5Big
+			img: iconsImages[breakpointIndex]
 		}
 	]);
 </script>
@@ -70,9 +102,6 @@
 					text={card.text}
 					appearance={index === 0 ? 'tertiary' : 'secondary'}
 				>
-					{#if !!card.imgBig}
-						<img class="cards-box-img-big" src={card.imgBig} alt="CellImg" />
-					{/if}
 					<img class="cards-box-img" src={card.img} alt="CellImg" />
 				</Card>
 			{/each}
