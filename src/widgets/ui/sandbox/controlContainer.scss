@@ -133,11 +133,11 @@
 }
 
 .divider-vertical {
-	width: 0;
-	height: 88px;
-	border-left: 1px solid #e8ecf5;
+	width: 1px;
+	background: #e8ecf5;
+	flex: 0 0 1px;
+	min-width: 1px;
 	align-self: stretch;
-	height: calc(100% + 40px);
 	margin-top: -20px;
 	margin-bottom: -20px;
 }
@@ -146,14 +146,6 @@
 	height: 1px;
 	background: #e8ecf5;
 	margin-bottom: 32px;
-}
-
-.control-container.control-container--dark {
-	.divider-vertical,
-	.divider-horizontal {
-		border-left-color: rgba(colors.color('Light_Grey'), 0.2);
-		background: rgba(colors.color('Light_Grey'), 0.2);
-	}
 }
 
 .button-block-wrapper {
