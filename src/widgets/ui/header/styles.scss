@@ -7,11 +7,11 @@
 	height: 945px;
 	position: relative;
 	overflow: hidden;
-	padding-bottom: 100px;
+	// padding-bottom: 100px;
 
 	@include breakpoints.respond-until(breakpoints.$desktopS) {
 		height: 945px;
-		padding-bottom: 80px;
+		// padding-bottom: 80px;
 	}
 
 	@include breakpoints.respond-until(breakpoints.$tablet) {
@@ -20,7 +20,7 @@
 
 	@include breakpoints.respond-until(breakpoints.$phone) {
 		height: 576px;
-		padding-bottom: 56px;
+		// padding-bottom: 56px;
 	}
 }
 
