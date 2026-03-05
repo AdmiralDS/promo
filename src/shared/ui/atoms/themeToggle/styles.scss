@@ -35,25 +35,27 @@
 #togglethumb,
 #togglehover,
 #togglethumbmask > use {
-  transition: x 0.3s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.3s ease;
 }
 
 input:checked + svg {
   #togglethumb,
   #togglethumbmask > use {
-    x: 50;
+    transform: translateX(44px);
   }
 
   #togglehover {
-    x: 6;
+    transform: translateX(-44px);
   }
 }
 
 .mask {
   mask: url(#togglethumbmask);
+  -webkit-mask: url(#togglethumbmask);
 }
 
-.mask-inverted {
-  mask: url(#togglethumbmask), linear-gradient(#000 0 0);
-  mask-composite: exclude;
+.icon-base {
+  fill: var(--color-Snow_Gray, colors.color('Snow_Gray'));
 }

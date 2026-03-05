@@ -18,7 +18,7 @@
   }: ThemeToggleProps = $props();
 </script>
 
-<label class="toggle-label">
+<label class={`toggle-label ${className}`.trim()}>
   <input {...restAttributes} type="checkbox" bind:checked {disabled} class="sr-only" {onchange} />
   <svg width="92" height="49" viewBox="0 0 92 49" fill="none" xmlns="http://www.w3.org/2000/svg">
     <use href="#thumbrect" id="togglehover" x="50" fill="#E4F1FF" />
@@ -26,8 +26,8 @@
     <mask id="togglethumbmask">
       <use href="#thumbrect" x="6" fill="white" />
     </mask>
+    <use href="#sunmoon" class="icon-base" />
     <use href="#sunmoon" class="mask" fill="white" />
-    <use href="#sunmoon" class="mask-inverted" fill="#456B8D" />
 
     <defs>
       <!-- Форма для ползунка, ховера и маски -->
