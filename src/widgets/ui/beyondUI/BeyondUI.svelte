@@ -77,7 +77,7 @@
   <div class="main-container">
     <div class="text-box">
       <div class="text first-row text--Dark_Blue">Дизайн-система — гораздо больше,</div>
-      <div class="text second-row text--Text_Blue">чем элементы интерфейса</div>
+      <div class="text second-row text--Text_Blue">чем&nbsp;элементы интерфейса</div>
     </div>
     <div class="cards-box">
       {#each cards as card, index}

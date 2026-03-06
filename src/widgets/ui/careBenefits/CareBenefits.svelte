@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Card } from '$shared/ui';
   import { useMediaQuery, MOBILE_QUERY, TABLET_QUERY, DESKTOP_S_QUERY } from '$shared/ui/useMediaQuery';
+  import { ruNbsp } from '$shared/ui/ruNbsp';
 
   import Speed_699 from './assets/Speed_699-360.png';
   import Speed_1023 from './assets/Speed_1023-700.png';
@@ -32,40 +33,40 @@
       ? [
           {
             id: 2,
-            title: 'Формируем единый визуальный стиль',
-            text: 'Строим экосистему визуальных решений, которая повышает доверие пользователей',
+            title: ruNbsp('Формируем единый визуальный стиль'),
+            text: ruNbsp('Строим экосистему визуальных решений, которая повышает доверие пользователей'),
             img: styleImages[breakpointIndex],
           },
           {
             id: 1,
-            title: 'Ускоряем создание продуктов',
-            text: 'Помогаем бизнесу быстро тестировать гипотезы и выводить решения на рынок',
+            title: ruNbsp('Ускоряем создание продуктов'),
+            text: ruNbsp('Помогаем бизнесу быстро тестировать гипотезы и выводить решения на рынок'),
             img: speedImages[breakpointIndex],
           },
           {
             id: 3,
-            title: 'Создаем комфортное пространство',
-            text: 'Помогаем командам говорить на одном языке и улучшать процесс доставки решений',
+            title: ruNbsp('Создаем комфортное пространство'),
+            text: ruNbsp('Помогаем командам говорить на одном языке и улучшать процесс доставки решений'),
             img: spaceImages[breakpointIndex],
           },
         ]
       : [
           {
             id: 1,
-            title: 'Ускоряем создание продуктов',
-            text: 'Помогаем бизнесу быстро тестировать гипотезы и выводить решения на рынок',
+            title: ruNbsp('Ускоряем создание продуктов'),
+            text: ruNbsp('Помогаем бизнесу быстро тестировать гипотезы и выводить решения на рынок'),
             img: speedImages[breakpointIndex],
           },
           {
             id: 2,
-            title: 'Формируем единый визуальный стиль',
-            text: 'Строим экосистему визуальных решений, которая повышает доверие пользователей',
+            title: ruNbsp('Формируем единый визуальный стиль'),
+            text: ruNbsp('Строим экосистему визуальных решений, которая повышает доверие пользователей'),
             img: styleImages[breakpointIndex],
           },
           {
             id: 3,
-            title: 'Создаем комфортное пространство',
-            text: 'Помогаем командам говорить на одном языке и улучшать процесс доставки решений',
+            title: ruNbsp('Создаем комфортное пространство'),
+            text: ruNbsp('Помогаем командам говорить на одном языке и улучшать процесс доставки решений'),
             img: spaceImages[breakpointIndex],
           },
         ],
@@ -75,8 +76,8 @@
 <div class="carebenefits-container even-container">
   <div class="main-container">
     <div class="text-box">
-      <div class="text first-row text--Dark_Blue">Заботимся не только о качестве,</div>
-      <div class="text second-row text--Text_Blue">но и о вашем времени</div>
+      <div class="text first-row text--Dark_Blue">Заботимся не только о&nbsp;качестве,</div>
+      <div class="text second-row text--Text_Blue">но&nbsp;и о&nbsp;вашем времени</div>
     </div>
     <div class="cards-box">
       {#each cards as card}

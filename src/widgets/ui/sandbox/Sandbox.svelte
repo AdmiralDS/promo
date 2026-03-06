@@ -126,7 +126,7 @@
 <div class="sandbox-container background--Main_White">
   <div class="main-container">
     <div class="header">
-      <div class="text first-row text--Dark_Blue">Просто и доступно</div>
+      <div class="text first-row text--Dark_Blue">Просто и&nbsp;доступно</div>
       <div class="text second-row text--Text_Blue">попробуйте сами</div>
       <ToggleGroup onSelectedChange={handleComponentChange}>
         {#each components as componentOption}
