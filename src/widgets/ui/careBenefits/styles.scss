@@ -100,10 +100,6 @@
     :global(.card-text) {
       max-width: 495px;
     }
-
-    &-item {
-      height: 176px;
-    }
   }
 
   @include breakpoints.respond-until(breakpoints.$phone) {
@@ -115,10 +111,6 @@
     }
     :global(.card-title) {
       max-width: 358px;
-    }
-
-    &-item {
-      height: 320px;
     }
   }
 }
