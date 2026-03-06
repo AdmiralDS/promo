@@ -15,10 +15,11 @@
   }
 
   @include breakpoints.respond-until(breakpoints.$tablet) {
+    height: 896px;
     padding: 80px 24px;
   }
   @include breakpoints.respond-until(breakpoints.$phone) {
-    height: fit-content;
+    height: 1218px;
     padding: 56px 20px;
   }
 }
