@@ -73,6 +73,14 @@
   }
 }
 
+.mobile-break-after {
+  display: inline;
+
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    display: block;
+  }
+}
+
 .cards-box {
   display: flex;
   gap: 20px;

@@ -75,7 +75,10 @@
       <!-- Текст как полноценная ячейка -->
       <div class="cells-box-item cells-box-intro">
         <div class="text-accent text--Text_Blue">12+</div>
-        <div class="text-paragraph text--Snow_Gray">участников уже работают над&nbsp;развитием дизайн-системы</div>
+        <div class="text-paragraph text--Snow_Gray">
+          участников уже<br class="team-break-over-desktop-s" /> работают<br class="team-break-until-desktop-s" />
+          над развитием<br class="team-break-not-mobile" /> дизайн-системы
+        </div>
       </div>
 
       {#if isMobile}

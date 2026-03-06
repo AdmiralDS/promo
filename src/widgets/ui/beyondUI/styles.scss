@@ -72,7 +72,7 @@
   }
 }
 
-@include breakpoints.respond-until(breakpoints.$tablet) {
+@include breakpoints.respond-between(breakpoints.$phone, breakpoints.$tablet) {
   .text-box {
     text-align: center;
   }
@@ -80,6 +80,28 @@
   .text.first-row,
   .text.second-row {
     display: inline;
+  }
+}
+
+.tablet-only-break {
+  display: none;
+
+  @include breakpoints.respond-between(breakpoints.$phone, breakpoints.$tablet) {
+    display: block;
+  }
+
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    display: none;
+  }
+}
+
+.mobile-break-after-dash {
+  display: none;
+}
+
+@include breakpoints.respond-until(breakpoints.$phone) {
+  .mobile-break-after-dash {
+    display: block;
   }
 }
 

@@ -102,6 +102,30 @@
   }
 }
 
+.team-break-over-desktop-s,
+.team-break-until-desktop-s,
+.team-break-not-mobile {
+  display: none;
+}
+
+.team-break-over-desktop-s {
+  @include breakpoints.respond-from(breakpoints.$desktopS) {
+    display: block;
+  }
+}
+
+.team-break-until-desktop-s {
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
+    display: block;
+  }
+}
+
+.team-break-not-mobile {
+  @include breakpoints.respond-from(breakpoints.$phone) {
+    display: block;
+  }
+}
+
 .cells-box {
   margin-top: 80px;
   display: grid;

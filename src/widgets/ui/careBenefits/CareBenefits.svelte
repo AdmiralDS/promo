@@ -76,8 +76,10 @@
 <div class="carebenefits-container even-container">
   <div class="main-container">
     <div class="text-box">
-      <div class="text first-row text--Dark_Blue">Заботимся не только о&nbsp;качестве,</div>
-      <div class="text second-row text--Text_Blue">но&nbsp;и о&nbsp;вашем времени</div>
+      <div class="text first-row text--Dark_Blue">
+        <span class="mobile-break-after">Заботимся</span> не только о качестве,
+      </div>
+      <div class="text second-row text--Text_Blue">но и о вашем времени</div>
     </div>
     <div class="cards-box">
       {#each cards as card}
