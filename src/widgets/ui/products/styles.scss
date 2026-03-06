@@ -53,56 +53,35 @@
   position: relative;
   overflow: visible;
   z-index: 1;
-  height: 327px;
-  width: 996px;
+  height: 326px;
+  width: 1024px;
   margin-block-start: 20px;
-  background-image: url('./assets/productDesktopL.png');
+  background-image: url('./assets/Help_1920-1024.png');
   background-size: contain;
   background-repeat: no-repeat;
   transition: all 0.2s ease;
 
   @include breakpoints.respond-until(breakpoints.$desktopS) {
-    height: 366px;
-    width: 976px;
-    margin-block-start: 19.75px;
-    background-image: url('./assets/productDesktopS.png');
+    margin-block-start: 61px;
   }
 
   @include breakpoints.respond-until(breakpoints.$tablet) {
     margin-block-start: 17px;
+    height: 370px;
+    width: 700px;
+    background-image: url('./assets/Help_1023-700.png');
   }
 
   @include breakpoints.respond-until(breakpoints.$phone) {
-    height: 240px;
-    width: 375px;
-    margin-block-start: 92px;
-    background-image: url('./assets/productPhone.png');
+    height: 234px;
+    width: 360px;
+    margin-block-start: 98px;
+    background-image: url('./assets/Help_699-360.png');
   }
 }
 
-.image-shadow {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  z-index: 0;
-
-  width: 1160px;
-  height: 230px;
-  margin-block-end: -20px;
-  @include breakpoints.respond-until(breakpoints.$desktopS) {
-    margin-block-end: -8px;
-  }
-
-  @include breakpoints.respond-until(breakpoints.$tablet) {
-    margin-block-end: -5px;
-  }
-
-  @include breakpoints.respond-until(breakpoints.$phone) {
-    width: 934px;
-    height: 187px;
-    margin-block-end: 0;
-  }
+.products-container > div[class^='badge-'] {
+  cursor: pointer;
 }
 
 .badge-autograph {

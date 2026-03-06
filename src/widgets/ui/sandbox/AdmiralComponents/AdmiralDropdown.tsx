@@ -28,7 +28,7 @@ export interface AdmiralDropdownProps {
 
 export const AdmiralDropdown = ({ dimension, dropdownMode }: AdmiralDropdownProps) => {
   const restrictions: number[] = [];
-  const [value, setValue] = React.useState<string | string[]>('');
+  const [value, setValue] = React.useState<string | string[]>(dropdownMode === 'multiselect' ? [] : '');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_searchValue, setSearchValue] = React.useState<string>('');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

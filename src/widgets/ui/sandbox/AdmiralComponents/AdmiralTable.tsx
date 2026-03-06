@@ -2,7 +2,7 @@ import { PaginationOne, Table, type Column, type TableRow } from '@admiral-ds/re
 import styled from 'styled-components';
 import type { DefaultTheme } from 'styled-components';
 import type { Appearance } from '../types';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 export interface AdmiralTableProps {
   dimension: Appearance;
@@ -14,21 +14,16 @@ export interface AdmiralTableProps {
 
 type AdmiralTheme = DefaultTheme & { color: Record<string, string> };
 
-const StyledPaginationOne = styled(PaginationOne)`
-  margin-top: 16px;
-  background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
-`;
-
 const AmountCell = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
-  text-align: right;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 16px;
   padding: 16px;
   background: ${({ theme }) => (theme as AdmiralTheme).color['Neutral/Neutral 00']};
   border-radius: 16px;
@@ -146,7 +141,7 @@ export const AdmiralTable = ({
   const [resize, setResize] = useState<{ name: string; width: string } | null>(null);
   const [rows, setRows] = useState(rowList.slice(0, pageSize));
 
-  const pageSizes = [firstSize(dimension), 20, 50];
+  const pageSizes = useMemo(() => [firstSize(dimension), 20, 50], [dimension]);
   const totalElements = 256;
 
   const columns: Column[] = useMemo(() => {
@@ -181,7 +176,7 @@ export const AdmiralTable = ({
     ];
 
     return isTablet ? arrayOfColumn.filter((_, index) => index < 3) : arrayOfColumn;
-  }, [tableRowDrag, dimension, isTablet]);
+  }, [isTablet]);
 
   const columnList: Column[] = useMemo(() => {
     if (resize) {
@@ -210,15 +205,6 @@ export const AdmiralTable = ({
     setRows(tableRows);
   };
 
-  const handleRowDragEnd = (rowId: string) => {
-    const newIndex = rows.findIndex((row) => row.id === rowId);
-
-    console.log('After drag&drop row with id ' + rowId + ' has index ' + newIndex + ' in rowList');
-  };
-
-  const leftButtonProps = { 'data-testid': 'pagination-left-button' };
-  const rightButtonProps = { 'data-testid': 'pagination-right-button' };
-
   const tableHeight = useMemo(() => {
     switch (dimension) {
       case 's':
@@ -231,6 +217,14 @@ export const AdmiralTable = ({
     }
   }, [dimension]);
 
+  const handlePaginationChange = useCallback(({ page, pageSize }: { page: number; pageSize: number }) => {
+    const currentCountRow = (page - 1) * pageSize;
+
+    setRows(rowList.slice(currentCountRow, currentCountRow + pageSize));
+    setPage(page);
+    setPageSize(pageSize);
+  }, []);
+
   return (
     <Wrapper>
       <Table
@@ -241,32 +235,18 @@ export const AdmiralTable = ({
         onColumnResize={setResize}
         rowsDraggable={tableRowDrag}
         onRowDrag={handleRowDrag}
-        onRowDragEnd={handleRowDragEnd}
         displayRowSelectionColumn={tableGroupActions}
         onRowSelectionChange={handleSelectionChange}
         greyHeader={tableZebra}
         greyZebraRows={tableZebra}
         showBorders
       />
-      <StyledPaginationOne
-        onChange={({ page, pageSize }) => {
-          const currentCountRow = (page - 1) * pageSize;
-
-          setRows(rowList.slice(currentCountRow, currentCountRow + pageSize));
-          setPage(page);
-          setPageSize(pageSize);
-        }}
+      <PaginationOne
+        onChange={handlePaginationChange}
         page={page}
         pageSize={pageSize}
         totalItems={totalElements}
         pageSizes={pageSizes}
-        data-dropdown-container-id="pagination-with-dropdown"
-        data-dropdown-container-test-id="pagination-test-id-with-dropdown"
-        className="pagination-class-name"
-        pageSizeDropContainerStyle={{ dropContainerClassName: 'pageSizeDropContainerClass' }}
-        pageNumberDropContainerStyle={{ dropContainerClassName: 'pageNumberDropContainerClass' }}
-        leftButtonPropsConfig={() => leftButtonProps}
-        rightButtonPropsConfig={() => rightButtonProps}
         simple={isTablet}
       />
     </Wrapper>

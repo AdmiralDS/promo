@@ -1,6 +1,5 @@
 <script lang="ts">
   import { SferaLogo, StartLogo, VTBCloudLogo, AutographLogo, Badge, Modal } from '$shared/ui';
-  import shadow from './assets/Shadow.png';
 
   /** Размеры иконок округлены до целых значений */
   const products = [
@@ -70,9 +69,7 @@
       <div class="text text--Text_Blue">создавать лучшие</div>
       <div class="text text--Text_Blue">продукты на рынке</div>
     </div>
-    <div class="image">
-      <img src={shadow} alt="" aria-hidden="true" class="image-shadow" />
-    </div>
+    <div class="image"></div>
   </div>
 
   {#each products as { id, title, logoComponent: Logo, badgeLogoHeight, badgeLogoWidth }, index}
