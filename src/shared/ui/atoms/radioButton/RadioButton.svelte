@@ -9,8 +9,6 @@
 </script>
 
 <script lang="ts">
-  import { ruNbsp } from '../../ruNbsp';
-
   let {
     checked = false,
     disabled = false,
@@ -33,7 +31,7 @@
 <label class={labelClass}>
   {#if label}
     <span class="radio-label-text">
-      {ruNbsp(label)}
+      {label}
     </span>
   {/if}
   <input class={radioClasses} type="radio" {checked} {disabled} onchange={handleChange} {...restAttributes} />

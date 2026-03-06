@@ -2,7 +2,6 @@
   import { ComponentContainer } from '$shared/ui';
   import type { ContainerSize } from '$shared/ui/types';
   import ReactComponent from './AdmiralComponents/ReactComponent.svelte';
-  import { ruNbsp } from '$shared/ui/ruNbsp';
 
   const components = $state([
     {
@@ -62,7 +61,7 @@
       <div class="text first-row text--Dark_Blue">Дизайн-система</div>
       <div class="text second-row text--Text_Blue">понятная каждому</div>
       <div class="text third-row text--Snow_Gray">
-        {ruNbsp('Собрали в одну систему правила, компоненты и инструменты, чтобы упростить процесс создания решений')}
+        Собрали в одну систему правила, компоненты и инструменты, чтобы упростить процесс создания решений
       </div>
     </div>
     <div class="components-box">

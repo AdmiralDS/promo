@@ -1,7 +1,6 @@
 <script lang="ts">
   import CardContainer from '$shared/ui/atoms/cardContainer/CardContainer.svelte';
   import type { CardContainerAppearance } from '$shared/ui/types';
-  import { ruNbsp } from '../../ruNbsp';
 
   // Получаем пропсы через $props()
   let {
@@ -21,10 +20,10 @@
 <CardContainer {...restAttributes} {appearance} class={className}>
   {@render children?.()}
   <div class={titleClass}>
-    {ruNbsp(title)}
+    {title}
   </div>
   <div class={textClass}>
-    {ruNbsp(text)}
+    {text}
   </div>
 </CardContainer>
 

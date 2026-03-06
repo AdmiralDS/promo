@@ -11,8 +11,6 @@
 </script>
 
 <script lang="ts">
-  import { ruNbsp } from '../../ruNbsp';
-
   let {
     checked = false,
     disabled = false,
@@ -39,7 +37,7 @@
   </span>
   {#if label}
     <span class="toggle-label-text">
-      {ruNbsp(label)}
+      {label}
     </span>
   {/if}
 </label>

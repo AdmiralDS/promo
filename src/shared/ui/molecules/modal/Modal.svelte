@@ -2,7 +2,6 @@
   import type { MouseEventHandler, KeyboardEventHandler, HTMLAttributes } from 'svelte/elements';
   import type { Snippet } from 'svelte';
   import { trapFocus } from './trapFocus.svelte';
-  import { ruNbsp } from '../../ruNbsp';
 
   interface ModalProps extends HTMLAttributes<HTMLDialogElement> {
     /** Состояние модального окна: открыто/закрыто */
@@ -52,7 +51,7 @@
     <div class="modal-logo">
       {@render logo?.()}
     </div>
-    <div class="modal-title">{ruNbsp(title)}</div>
+    <div class="modal-title">{title}</div>
     {@render children?.()}
 
     <!-- svelte-ignore a11y_autofocus -->
