@@ -136,23 +136,21 @@
     </div>
     <div class={`sandbox ${config.isDarkTheme ? 'Dark_Sandbox_Gradient' : 'Sandbox_Gradient'}`}>
       <div class={`component-wrapper ${activeComponent === 'Dropdown' ? 'component-wrapper--dropdown' : ''}`}>
-        {#key `${activeComponent}-${config.appearance}-${config.color}-${config.fieldCount}-${config.isDarkTheme}-${config.tableGroupActions}-${config.tableRowDrag}-${config.tableZebra}-${config.dropdownMode}-${config.accordionArrowPosition}-${config.accordionLineCount}`}
-          <ReactComponent
-            component={activeComponent ?? 'Modal'}
-            appearance={config.appearance}
-            color={config.color}
-            fieldCount={config.fieldCount}
-            isDarkTheme={config.isDarkTheme}
-            tableGroupActions={config.tableGroupActions}
-            tableRowDrag={config.tableRowDrag}
-            tableZebra={config.tableZebra}
-            dropdownMode={config.dropdownMode}
-            accordionArrowPosition={config.accordionArrowPosition}
-            accordionLineCount={config.accordionLineCount}
-            {isMobile}
-            {isTablet}
-          />
-        {/key}
+        <ReactComponent
+          component={activeComponent ?? 'Modal'}
+          appearance={config.appearance}
+          color={config.color}
+          fieldCount={config.fieldCount}
+          isDarkTheme={config.isDarkTheme}
+          tableGroupActions={config.tableGroupActions}
+          tableRowDrag={config.tableRowDrag}
+          tableZebra={config.tableZebra}
+          dropdownMode={config.dropdownMode}
+          accordionArrowPosition={config.accordionArrowPosition}
+          accordionLineCount={config.accordionLineCount}
+          {isMobile}
+          {isTablet}
+        />
       </div>
       <ControlContainer
         activeComponent={activeComponent ?? 'Modal'}

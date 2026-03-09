@@ -1,97 +1,88 @@
 <script lang="ts">
-  import { onDestroy, onMount } from 'svelte';
+  import { onMount } from 'svelte';
   import { renderer } from './Renderer';
   import type { Props as RendererOptions } from './WrappedReactComponent';
-  import type { AccordionArrowPosition, AccordionLineCount, Appearance, DropdownMode } from '../types';
 
-  export let component = 'Modal';
-  export let isDarkTheme: boolean;
-  let theme: 'dark' | 'light' = isDarkTheme ? 'dark' : 'light';
-  export let appearance: Appearance = 'm';
-  export let color: string = 'blue';
-  export let fieldCount = 2;
-  export let tableGroupActions = true;
-  export let tableRowDrag = true;
-  export let tableZebra = true;
-  export let dropdownMode: DropdownMode = 'multiselect';
-  export let accordionArrowPosition: AccordionArrowPosition = 'left';
-  export let accordionLineCount: AccordionLineCount = 4;
-  export let isTablet: boolean = false;
-  export let isMobile: boolean = false;
+  interface Props extends Omit<RendererOptions, 'theme'> {
+    isDarkTheme: boolean;
+  }
 
-  let container: HTMLDivElement | undefined;
-  let root: ReturnType<typeof renderer> | null = null;
+  // Пропсы с использованием runes
+  let {
+    component = 'Modal',
+    appearance = 'm',
+    color = 'blue',
+    fieldCount = 2,
+    isDarkTheme = false,
+    tableGroupActions = false,
+    tableRowDrag = false,
+    tableZebra = false,
+    dropdownMode = 'multiselect',
+    accordionArrowPosition = 'left',
+    accordionLineCount = 4,
+    isMobile = false,
+    isTablet = false,
+  }: Props = $props();
 
-  const getRendererOptions = (themeValue: 'light' | 'dark'): RendererOptions => ({
-    component,
-    theme: themeValue,
-    appearance,
-    color,
-    fieldCount,
-    tableGroupActions,
-    tableRowDrag,
-    tableZebra,
-    dropdownMode,
-    accordionArrowPosition,
-    accordionLineCount,
-    isTablet,
-    isMobile,
-  });
+  let container: HTMLDivElement;
+  let root: {
+    updateProps: (options: RendererOptions) => void;
+    unmount: () => void;
+  } | null = null;
 
-  let currentProps: RendererOptions = getRendererOptions(theme);
-
-  const mountReactComponent = () => {
+  // Монтируем React-компонент
+  onMount(() => {
     if (!container) return;
 
-    root = renderer(container, getRendererOptions(theme));
-  };
+    const options: RendererOptions = {
+      component,
+      theme: isDarkTheme ? 'dark' : 'light',
+      appearance,
+      color,
+      fieldCount,
+      tableGroupActions,
+      tableRowDrag,
+      tableZebra,
+      dropdownMode,
+      accordionArrowPosition,
+      accordionLineCount,
+      isMobile,
+      isTablet,
+    };
 
-  const unmountReactComponent = () => {
-    try {
+    root = renderer(container, options);
+
+    return () => {
       if (root) {
         root.unmount();
         root = null;
       }
-    } catch (err) {
-      console.warn(`react-adapter failed to unmount.`, { err });
-    }
-  };
+    };
+  });
 
-  onMount(mountReactComponent);
+  $effect(() => {
+    if (!root) return;
 
-  onDestroy(unmountReactComponent);
+    // Просто обращаемся ко всем пропсам, чтобы $effect отслеживал их
+    const currentOptions: RendererOptions = {
+      component,
+      theme: isDarkTheme ? 'dark' : 'light',
+      appearance,
+      color,
+      fieldCount,
+      tableGroupActions,
+      tableRowDrag,
+      tableZebra,
+      dropdownMode,
+      accordionArrowPosition,
+      accordionLineCount,
+      isMobile,
+      isTablet,
+    };
 
-  $: {
-    const newTheme = isDarkTheme ? 'dark' : 'light';
-    const nextProps = getRendererOptions(newTheme);
-    const shouldUpdate =
-      currentProps.component !== nextProps.component ||
-      currentProps.theme !== nextProps.theme ||
-      currentProps.appearance !== nextProps.appearance ||
-      currentProps.color !== nextProps.color ||
-      currentProps.fieldCount !== nextProps.fieldCount ||
-      currentProps.tableGroupActions !== nextProps.tableGroupActions ||
-      currentProps.tableRowDrag !== nextProps.tableRowDrag ||
-      currentProps.tableZebra !== nextProps.tableZebra ||
-      currentProps.dropdownMode !== nextProps.dropdownMode ||
-      currentProps.accordionArrowPosition !== nextProps.accordionArrowPosition ||
-      currentProps.accordionLineCount !== nextProps.accordionLineCount ||
-      currentProps.isTablet !== isTablet ||
-      currentProps.isMobile !== isMobile;
-
-    if (shouldUpdate) {
-      theme = newTheme;
-      currentProps = nextProps;
-      if (root) {
-        unmountReactComponent();
-        mountReactComponent();
-      }
-    }
-  }
+    // Обновляем пропсы через renderer
+    root.updateProps(currentOptions);
+  });
 </script>
 
-<div class="react-component-wrapper" bind:this={container}></div>
-
-<style lang="scss">
-  @use 'reactComponent';
-</style>
+<div bind:this={container} class="react-component-container"></div>
