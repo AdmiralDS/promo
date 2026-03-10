@@ -38,6 +38,15 @@ export const AdmiralDropdown = ({ dimension, dropdownMode }: AdmiralDropdownProp
 
   const isMultiselect = dropdownMode === 'multiselect';
 
+  React.useEffect(() => {
+    if(dropdownMode === 'select') {
+      setValue('');
+    } else {
+      setValue([]);
+    }
+  }, [dropdownMode]);
+
+
   const renderOptions = () => {
     return OPTIONS_CITIES.map((option, ind) => (
       <Option key={option} value={option} disabled={restrictions.includes(ind)}>
