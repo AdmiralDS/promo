@@ -3,7 +3,22 @@ import { WrappedReactComponent, type Props as Options } from './WrappedReactComp
 
 export const renderer = (container: HTMLDivElement, options: Options) => {
   const root = createRoot(container);
-  root.render(<WrappedReactComponent {...options} />);
 
-  return root;
+  // Функция для рендера с опциями
+  const render = (newOptions: Options) => {
+    root.render(<WrappedReactComponent {...newOptions} />);
+  };
+
+  // Начальный рендер
+  render(options);
+
+  // Возвращаем объект с методом updateProps
+  return {
+    updateProps: (newOptions: Options) => {
+      render(newOptions);
+    },
+    unmount: () => {
+      root.unmount();
+    },
+  };
 };
