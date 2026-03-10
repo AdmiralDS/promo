@@ -81,6 +81,30 @@
   margin-bottom: 24px;
 }
 
+.toggle-group-scroll {
+  box-sizing: border-box;
+  align-self: center;
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  :global(.sandbox-toggle-group.toggle-group) {
+    width: max-content;
+    max-width: none;
+    margin: 0;
+    overflow: visible;
+  }
+}
+
 .sandbox {
   position: relative;
   box-sizing: border-box;
