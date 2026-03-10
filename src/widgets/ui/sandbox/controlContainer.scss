@@ -82,8 +82,8 @@
     fill: colors.color('Light_Grey');
   }
 
-  :global(.theme-toggle .toggle-label svg .mask-inverted),
-  :global(.theme-toggle-inline .toggle-label svg .mask-inverted) {
+  :global(.theme-toggle .toggle-label svg .icon-base),
+  :global(.theme-toggle-inline .toggle-label svg .icon-base) {
     fill: colors.color('Main_White');
   }
 
