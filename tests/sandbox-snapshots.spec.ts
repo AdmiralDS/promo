@@ -254,6 +254,17 @@ async function disableAnimations(page: Page) {
   });
 }
 
+async function seedMathRandom(page: Page) {
+  await page.addInitScript(() => {
+    let seed = 12345;
+
+    Math.random = () => {
+      seed = (seed * 16807) % 2147483647;
+      return (seed - 1) / 2147483646;
+    };
+  });
+}
+
 async function openMenuDropdown(control: Locator, index: number) {
   const menu = control.locator('.menu-button').nth(index);
   const button = menu.locator('button').first();
@@ -442,6 +453,7 @@ test.describe('Sandbox visual snapshots', () => {
       for (const component of resolution.components) {
         for (const theme of ['light', 'dark'] as const) {
           test(`${component.key} ${theme}`, async ({ page }) => {
+            await seedMathRandom(page);
             await page.goto('/');
             await disableAnimations(page);
 
