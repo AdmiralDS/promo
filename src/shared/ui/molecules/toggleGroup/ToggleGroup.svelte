@@ -138,7 +138,7 @@
       buttonContext = button.previousElementSibling || button;
     }
     if (!buttonContext) return;
-    buttonContext.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    buttonContext.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
 
     setSelectedIndex(newIndex);
   }
@@ -194,7 +194,7 @@
     if (newIndex === selectedIndex) return;
 
     if (!buttonContext) return;
-    buttonContext.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    buttonContext.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
 
     // Устанавливаем новый выбранный индекс
     setSelectedIndex(newIndex);
