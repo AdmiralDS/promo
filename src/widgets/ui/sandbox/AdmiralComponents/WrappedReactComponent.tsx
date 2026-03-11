@@ -23,8 +23,13 @@ export interface Props {
   isMobile: boolean;
 }
 
+const cloneTheme = (theme: typeof LIGHT_THEME) => ({
+  ...theme,
+  color: { ...theme.color },
+});
+
 const setMainLightThemeColors = (mainColor: string) => {
-  const colorTheme = LIGHT_THEME;
+  const colorTheme = cloneTheme(LIGHT_THEME);
   switch (mainColor) {
     case 'cyan':
       colorTheme.color['Primary/Primary 10'] = '#E5F6FF';
@@ -82,7 +87,7 @@ const setMainLightThemeColors = (mainColor: string) => {
 };
 
 const setMainDarkThemeColors = (mainColor: string) => {
-  const colorTheme = DARK_THEME;
+  const colorTheme = cloneTheme(DARK_THEME);
   switch (mainColor) {
     case 'cyan':
       colorTheme.color['Primary/Primary 10'] = '#202021';

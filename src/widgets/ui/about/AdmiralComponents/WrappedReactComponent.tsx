@@ -15,13 +15,18 @@ export interface Props {
   theme: 'light' | 'dark';
 }
 
+const cloneTheme = (theme: typeof LIGHT_THEME) => ({
+  ...theme,
+  color: { ...theme.color },
+});
+
 const setMainLightThemeColors = () => {
-  const colorTheme = LIGHT_THEME;
+  const colorTheme = cloneTheme(LIGHT_THEME);
   return colorTheme;
 };
 
 const setMainDarkThemeColors = () => {
-  const colorTheme = DARK_THEME;
+  const colorTheme = cloneTheme(DARK_THEME);
   return colorTheme;
 };
 
