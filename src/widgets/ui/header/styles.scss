@@ -22,19 +22,11 @@
 }
 
 .lottie-hero {
-	position: absolute;
-	top: 0;
-	left: 50%;
-	width: 1440px;
-	height: 900px;
-	transform: translateX(-50%);
-	z-index: 0;
-	pointer-events: none;
-	display: none;
-
-	@media (min-width: 1440px) {
-		display: block;
-	}
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 .main-container {

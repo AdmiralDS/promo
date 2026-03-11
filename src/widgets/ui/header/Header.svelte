@@ -17,6 +17,7 @@
   const isDesktopSOrSmaller = useMediaQuery(DESKTOP_S_QUERY);
   const breakpointIndex = $derived($isMobile ? 0 : $isTabletOrSmaller ? 1 : $isDesktopSOrSmaller ? 2 : 3);
   const animationSrc = $derived(animationSources[breakpointIndex]);
+  const renderConfig = { devicePixelRatio: 1 };
 
   const handleButtonClick = () => {
     window.open('https://admiralds.github.io/react-ui/', '_blank');
@@ -41,7 +42,9 @@
     </picture>
   </div>
   <div class="lottie-hero" aria-hidden="true">
-    <DotLottieSvelte src={animationSrc} autoplay loop />
+    {#key animationSrc}
+      <DotLottieSvelte src={animationSrc} autoplay loop {renderConfig} />
+    {/key}
   </div>
 </div>
 
