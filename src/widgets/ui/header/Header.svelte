@@ -13,7 +13,7 @@
 
 <div class="header-container">
   <div class="main-container">
-    <img src={logo} alt={'logo'} class="logo centered" />
+    <img src={logo} alt="T1 logo" class="logo centered" />
     <div class="text-box">
       <div class="text first-two-row text--Dark_Blue">Создавайте</div>
       <div class="text first-two-row text--Dark_Blue">IT-продукты</div>
