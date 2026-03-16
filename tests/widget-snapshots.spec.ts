@@ -69,6 +69,50 @@ test.describe('UI widgets visual regression', () => {
       },
       { isoString: SNAPSHOT_DATE_ISO },
     );
+
+    await page.addInitScript(() => {
+      const freezeVideo = (video: HTMLVideoElement) => {
+        const stop = () => {
+          try {
+            video.pause();
+            video.currentTime = 0;
+          } catch {
+            // Ignore media timing errors in tests.
+          }
+        };
+
+        video.autoplay = false;
+        video.loop = false;
+        video.muted = true;
+        video.defaultMuted = true;
+        video.removeAttribute('autoplay');
+
+        video.addEventListener('play', stop);
+        video.addEventListener('loadeddata', stop);
+        video.addEventListener('canplay', stop);
+
+        stop();
+      };
+
+      const originalPlay = HTMLMediaElement.prototype.play;
+
+      HTMLMediaElement.prototype.play = function () {
+        if (this instanceof HTMLVideoElement) {
+          freezeVideo(this);
+          return Promise.resolve();
+        }
+
+        return originalPlay.call(this);
+      };
+
+      const observer = new MutationObserver(() => {
+        document.querySelectorAll('video').forEach((video) => freezeVideo(video as HTMLVideoElement));
+      });
+
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+
+      document.querySelectorAll('video').forEach((video) => freezeVideo(video as HTMLVideoElement));
+    });
   });
 
   for (const viewport of viewports) {
@@ -90,6 +134,19 @@ test.describe('UI widgets visual regression', () => {
 								animation-iteration-count: 1 !important;
 							}
 						`,
+          });
+
+          await page.locator('video').evaluateAll((videos) => {
+            videos.forEach((video) => {
+              if (!(video instanceof HTMLVideoElement)) return;
+
+              try {
+                video.pause();
+                video.currentTime = 0;
+              } catch {
+                // Ignore media timing errors in tests.
+              }
+            });
           });
 
           const locator = page.locator(section.selector).first();
