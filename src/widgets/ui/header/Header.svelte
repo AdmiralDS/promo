@@ -4,13 +4,7 @@
   import heroDesktop from './assets/Hero_1920-1024.png';
   import heroTablet from './assets/Hero_1023-700.png';
   import heroMobile from './assets/Hero_699-360.png';
-  import animation1920Video from './assets/animation/1920.webm';
-  import { useMediaQuery, MOBILE_QUERY, TABLET_QUERY, DESKTOP_S_QUERY } from '$shared/ui/useMediaQuery';
-
-  const isMobile = useMediaQuery(MOBILE_QUERY);
-  const isTabletOrSmaller = useMediaQuery(TABLET_QUERY);
-  const isDesktopSOrSmaller = useMediaQuery(DESKTOP_S_QUERY);
-  const useVideoAnimation = $derived(!$isMobile && !$isTabletOrSmaller && !$isDesktopSOrSmaller);
+  import { MOBILE_QUERY, TABLET_QUERY } from '$shared/ui/useMediaQuery';
 
   const handleButtonClick = () => {
     window.open('https://admiralds.github.io/react-ui/', '_blank');
@@ -34,13 +28,6 @@
       <img src={heroDesktop} alt="Hero" loading="lazy" />
     </picture>
   </div>
-  {#if useVideoAnimation}
-    <div class="animation-hero" aria-hidden="true">
-      <video class="hero-video" autoplay muted loop playsinline preload="auto">
-        <source src={animation1920Video} type="video/webm" />
-      </video>
-    </div>
-  {/if}
 </div>
 
 <style lang="scss">
