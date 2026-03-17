@@ -21,6 +21,7 @@
     try {
       if (root) root.unmount();
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.warn(`react-adapter failed to unmount.`, { err });
     }
   };

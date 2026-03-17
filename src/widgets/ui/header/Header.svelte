@@ -1,8 +1,5 @@
 <script lang="ts">
   import { Button } from '$shared/ui';
-  // import Figure2 from './fig2.svg?component';
-  import LeftCloud from './leftCloud.svg?component';
-  import RightCloud from './rightCloud.svg?component';
   import logo from './assets/logo.png';
   import heroDesktop from './assets/Hero_1920-1024.png';
   import heroTablet from './assets/Hero_1023-700.png';
@@ -15,16 +12,8 @@
 </script>
 
 <div class="header-container">
-  <!-- <div class="elipse1"></div> -->
-  <div class="cloud">
-    <LeftCloud />
-  </div>
-  <div class="cloud right">
-    <RightCloud />
-  </div>
-
   <div class="main-container">
-    <img src={logo} alt={'logo'} class="logo centered" />
+    <img src={logo} alt="T1 logo" class="logo centered" />
     <div class="text-box">
       <div class="text first-two-row text--Dark_Blue">Создавайте</div>
       <div class="text first-two-row text--Dark_Blue">IT-продукты</div>

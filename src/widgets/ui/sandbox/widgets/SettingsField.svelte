@@ -13,7 +13,7 @@
   let { selected = 0, onSelectedChange }: FieldProps = $props();
 </script>
 
-<SandboxField fieldTitle={'Полей'} {selected} {onSelectedChange}>
+<SandboxField fieldTitle="Полей" {selected} {onSelectedChange}>
   {#each isMobile ? optionsMobile : options as optionLabel}
     <Button variant="secondary" size="small">{optionLabel}</Button>
   {/each}
