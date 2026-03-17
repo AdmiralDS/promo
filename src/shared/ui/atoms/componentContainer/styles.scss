@@ -1,6 +1,16 @@
 @use '$shared/ui/shadow' as shadow;
 @use '$shared/ui/breakpoints' as breakpoints;
 
+:global(*) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  :global(.cntr) {
+    background: initial;
+  }
+}
+
 /* Базовые стили */
 .cntr {
   box-sizing: border-box;
@@ -12,6 +22,8 @@
   padding: 40px;
   border-radius: 32px;
   border: none;
+
+  touch-action: pan-y;
 
   @include shadow.shadow;
 
