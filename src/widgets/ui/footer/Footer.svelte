@@ -4,6 +4,7 @@
   import Designer from './assets/designer.svg?component';
   import Developer from './assets/developer.svg?component';
 
+  const currentYear = new Date().getFullYear();
   const handleClickEmail = () => window.open('mailto:Admiral@inno.tech');
 </script>
 
@@ -19,7 +20,7 @@
       <Button onclick={handleClickEmail}>Связаться с нами</Button>
     </div>
     <div class="copyright-box text--Snow_Gray">
-      <div>© Группа компаний «Иннотех», 2020-2025</div>
+      <div>© Группа компаний «Иннотех», 2020-{currentYear}</div>
       <div>Адмирал</div>
     </div>
   </div>

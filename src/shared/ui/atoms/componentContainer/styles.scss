@@ -29,6 +29,7 @@
 
   @include breakpoints.respond-until(breakpoints.$tablet) {
     padding: 24px;
+    touch-action: auto;
   }
 }
 
