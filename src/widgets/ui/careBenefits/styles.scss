@@ -107,11 +107,10 @@
     gap: 8px;
     margin-top: 40px;
 
-    :global(.card-text) {
-      max-width: 440px;
-    }
+    :global(.card-text),
     :global(.card-title) {
-      max-width: 358px;
+      max-width: 271px;
+      width: 100%;
     }
   }
 }
