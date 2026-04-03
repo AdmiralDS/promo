@@ -11,7 +11,7 @@
 </script>
 
 <div class="animation-layer" aria-hidden="true">
-  <video class="hero-video" autoplay muted loop playsinline preload="auto">
+  <video class="block-video" autoplay muted loop playsinline preload="auto">
     <source src={animationMobileVideo} media={MOBILE_QUERY} type="video/webm" />
     <source src={animationMobileVideoMp4} media={MOBILE_QUERY} type="video/mp4" />
 
@@ -50,7 +50,7 @@
     }
   }
 
-  .hero-video {
+  .block-video {
     display: block;
     height: 100%;
     object-fit: cover;
