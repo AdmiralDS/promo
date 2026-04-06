@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import HeaderAnimation from '$widgets/ui/header/HeaderAnimation.svelte';
-  import CareBenefitsAnimation from '$widgets/ui/careBenefits/CareBenefitsAnimation.svelte';
-  import BeyondUIAnimation from '$widgets/ui/beyondUI/BeyondUIAnimation.svelte';
-  import TeamAnimation from '$widgets/ui/team/TeamAnimation.svelte';
+  import HeaderAnimation from './animations/HeaderAnimation.svelte';
+  import CareBenefitsAnimation from './animations/CareBenefitsAnimation.svelte';
+  import BeyondUIAnimation from './animations/BeyondUIAnimation.svelte';
+  import TeamAnimation from './animations/TeamAnimation.svelte';
 
   let pageBackground: HTMLDivElement | undefined;
 
