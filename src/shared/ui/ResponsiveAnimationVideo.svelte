@@ -1,10 +1,7 @@
 <script lang="ts">
   import { MOBILE_QUERY, TABLET_QUERY, DESKTOP_S_QUERY } from '$shared/ui/useMediaQuery';
 
-  type SourcePair = {
-    webm: string;
-    mp4: string;
-  };
+  type VideoSource = string;
 
   let {
     className = '',
@@ -18,10 +15,10 @@
     className?: string;
     align?: 'top' | 'center';
     top?: number;
-    desktop: SourcePair;
-    desktopS: SourcePair;
-    tablet: SourcePair;
-    mobile: SourcePair;
+    desktop: VideoSource;
+    desktopS: VideoSource;
+    tablet: VideoSource;
+    mobile: VideoSource;
   } = $props();
 </script>
 
@@ -31,17 +28,13 @@
   aria-hidden="true"
 >
   <video class="block-video" autoplay muted loop playsinline preload="auto">
-    <source src={mobile.webm} media={MOBILE_QUERY} type="video/webm" />
-    <source src={mobile.mp4} media={MOBILE_QUERY} type="video/mp4" />
+    <source src={mobile} media={MOBILE_QUERY} type="video/mp4" />
 
-    <source src={tablet.webm} media={TABLET_QUERY} type="video/webm" />
-    <source src={tablet.mp4} media={TABLET_QUERY} type="video/mp4" />
+    <source src={tablet} media={TABLET_QUERY} type="video/mp4" />
 
-    <source src={desktopS.webm} media={DESKTOP_S_QUERY} type="video/webm" />
-    <source src={desktopS.mp4} media={DESKTOP_S_QUERY} type="video/mp4" />
+    <source src={desktopS} media={DESKTOP_S_QUERY} type="video/mp4" />
 
-    <source src={desktop.webm} type="video/webm" />
-    <source src={desktop.mp4} type="video/mp4" />
+    <source src={desktop} type="video/mp4" />
   </video>
 </div>
 
