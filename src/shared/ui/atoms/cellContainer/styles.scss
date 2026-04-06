@@ -21,7 +21,7 @@
 
   @include breakpoints.respond-until(breakpoints.$desktopS) {
     width: 312px;
-    height: 356px;
+    height: 388px;
   }
 
   @include breakpoints.respond-until(breakpoints.$tablet) {
