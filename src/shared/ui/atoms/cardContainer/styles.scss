@@ -19,6 +19,7 @@
 
 /* Appearance */
 .card-primary {
+  background: var(--color-Main_White);
   width: 387px;
   height: 380px;
   padding: 40px;
@@ -42,6 +43,7 @@
   }
 }
 .card-secondary {
+  background: var(--color-Main_White);
   width: 590px;
   height: 340px;
   padding: 48px;
