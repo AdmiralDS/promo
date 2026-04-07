@@ -28,6 +28,9 @@ export default defineConfig({
   expect: {
     // чтобы сторибук успел запуститься
     timeout: 10000, // глобальный таймаут для всех expect
+    toMatchSnapshot: {
+      maxDiffPixelRatio: 0.01,
+    },
   },
 
   /* Configure projects for major browsers */

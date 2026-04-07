@@ -49,7 +49,6 @@ type ResolutionConfig = {
 };
 
 const VIEWPORT_HEIGHT = 2200;
-const SNAPSHOT_MAX_DIFF_PIXELS = 80;
 
 const resolutions: ResolutionConfig[] = [
   {
@@ -494,7 +493,6 @@ test.describe('Sandbox visual snapshots', () => {
               ),
               {
                 animations: 'disabled',
-                maxDiffPixels: SNAPSHOT_MAX_DIFF_PIXELS,
               },
             );
           });

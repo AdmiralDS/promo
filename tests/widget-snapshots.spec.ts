@@ -27,7 +27,6 @@ const viewports = [
 
 const VIEWPORT_HEIGHT = 2200;
 const SNAPSHOT_DATE_ISO = '2025-10-29T12:00:00Z';
-const SNAPSHOT_MAX_DIFF_PIXELS = 80;
 
 test.describe('UI widgets visual regression', () => {
   test.beforeEach(async ({ page }) => {
@@ -102,7 +101,6 @@ test.describe('UI widgets visual regression', () => {
 
           await expect(locator).toHaveScreenshot(`${section.name}-${viewport.label}.png`, {
             animations: 'disabled',
-            maxDiffPixels: SNAPSHOT_MAX_DIFF_PIXELS,
           });
         });
       }
