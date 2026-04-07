@@ -1,8 +1,16 @@
 <script lang="ts">
   import { Cell } from '$shared/ui';
-  import CellImg1 from './assets/cell_img_1_sm.png';
-  import CellImg1Big from './assets/cell_img_1_big.png';
-  import CellImg2Big from './assets/cell_img_2_big.png';
+  import a_ivanov from './assets/01_a_ivanov.png';
+  import i_ivanov from './assets/02_i_ivanov.png';
+  import d_ivanova from './assets/03_d_ivanova.png';
+  import eldar from './assets/04_eldar.png';
+  import a_staloverov from './assets/05_a_staloverov.png';
+  import a_dyatkov from './assets/06_a_dyatkov.png';
+  import e_kutepova from './assets/07_e_kutepova.png';
+  import l_markova from './assets/08_l_markova.png';
+  import i_almazov from './assets/09_i_almazov.png';
+  import a_babaev from './assets/10_a_babaev.png';
+  import v_pleshakova from './assets/11_v_pleshakova.png';
   import { useMediaQuery, MOBILE_QUERY } from '$shared/ui/useMediaQuery';
 
   const isMobileStore = useMediaQuery(MOBILE_QUERY);
@@ -17,50 +25,67 @@
       id: 1,
       title: 'Андрей Иванов',
       text: 'Лидер стрима',
-      img: CellImg1,
-      imgBig: CellImg1Big,
+      img: a_ivanov,
     },
     {
       id: 2,
       title: 'Игорь Иванов',
       text: 'Руководитель дизайна',
-      img: CellImg1,
-      imgBig: CellImg2Big,
+      img: i_ivanov,
     },
     {
       id: 3,
       title: 'Диана Иванова',
-      text: 'Руководитель дизайна',
-      img: CellImg1,
-      imgBig: CellImg2Big,
+      text: 'Руководитель проекта',
+      img: d_ivanova,
     },
     {
       id: 4,
       title: 'Эльдар Гызыев',
       text: 'Дизайнер ОДС Aдмирал',
-      img: CellImg1,
-      imgBig: CellImg2Big,
+      img: eldar,
     },
     {
       id: 5,
-      title: 'Андрей Литвинов',
+      title: 'Александр Сталоверов',
       text: 'Лидер команды разработки',
-      img: CellImg1,
-      imgBig: CellImg2Big,
+      img: a_staloverov,
     },
     {
       id: 6,
-      title: 'Виктория Шуваева',
-      text: 'Менеджер проекта',
-      img: CellImg1,
-      imgBig: CellImg2Big,
+      title: 'Андрей Дятков',
+      text: 'Лидер мобильной разработки',
+      img: a_dyatkov,
     },
     {
       id: 7,
-      title: 'Никита Маслов',
-      text: 'Менеджер проекта',
-      img: CellImg1,
-      imgBig: CellImg2Big,
+      title: 'Екатерина Кутепова',
+      text: 'Разработчик',
+      img: e_kutepova,
+    },
+    {
+      id: 8,
+      title: 'Лариса Маркова',
+      text: 'Разработчик',
+      img: l_markova,
+    },
+    {
+      id: 9,
+      title: 'Иван Алмазов',
+      text: 'Разработчик',
+      img: i_almazov,
+    },
+    {
+      id: 10,
+      title: 'Адиль Бабаев',
+      text: 'Разработчик',
+      img: a_babaev,
+    },
+    {
+      id: 11,
+      title: 'Вероника Плешакова',
+      text: 'Разработчик',
+      img: v_pleshakova,
     },
   ]);
 </script>
@@ -74,7 +99,7 @@
     <div class="cells-box">
       <!-- Текст как полноценная ячейка -->
       <div class="cells-box-item cells-box-intro">
-        <div class="text-accent text--Text_Blue">12+</div>
+        <div class="text-accent text--Text_Blue">10+</div>
         <div class="text-paragraph text--Snow_Gray">
           участников уже<br class="team-break-over-desktop-s" /> работают<br class="team-break-until-desktop-s" />
           над развитием<br class="team-break-not-mobile" /> дизайн-системы
@@ -86,9 +111,6 @@
         <div class="cells-box-cards-scroll">
           {#each cells as cell (cell.title)}
             <Cell title={cell.title} text={cell.text} class="cells-box-item">
-              {#if !!cell.imgBig}
-                <img class="cells-box-img-big" src={cell.imgBig} alt="CellImg" />
-              {/if}
               <img class="cells-box-img" src={cell.img} alt="CellImg" />
             </Cell>
           {/each}
@@ -97,9 +119,6 @@
         <!-- На десктопе/планшете — Grid -->
         {#each cells as cell (cell.title)}
           <Cell title={cell.title} text={cell.text} class="cells-box-item">
-            {#if !!cell.imgBig}
-              <img class="cells-box-img-big" src={cell.imgBig} alt="CellImg" />
-            {/if}
             <img class="cells-box-img" src={cell.img} alt="CellImg" />
           </Cell>
         {/each}

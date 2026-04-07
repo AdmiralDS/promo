@@ -27,52 +27,32 @@
 
   const breakpointIndex = $derived($isMobile ? 0 : $isTabletOrSmaller ? 1 : $isDesktopSOrSmaller ? 2 : 3);
 
-  const cards = $derived(
-    $isDesktopSOrSmaller
-      ? [
-          {
-            id: 2,
-            title: 'Формируем единый визуальный стиль',
-            text: 'Строим экосистему визуальных решений, которая повышает доверие пользователей',
-            img: styleImages[breakpointIndex],
-          },
-          {
-            id: 1,
-            title: 'Ускоряем создание продуктов',
-            text: 'Помогаем бизнесу быстро тестировать гипотезы и выводить решения на рынок',
-            img: speedImages[breakpointIndex],
-          },
-          {
-            id: 3,
-            title: 'Создаем комфортное пространство',
-            text: 'Помогаем командам говорить на одном языке и улучшать процесс доставки решений',
-            img: spaceImages[breakpointIndex],
-          },
-        ]
-      : [
-          {
-            id: 1,
-            title: 'Ускоряем создание продуктов',
-            text: 'Помогаем бизнесу быстро тестировать гипотезы и выводить решения на рынок',
-            img: speedImages[breakpointIndex],
-          },
-          {
-            id: 2,
-            title: 'Формируем единый визуальный стиль',
-            text: 'Строим экосистему визуальных решений, которая повышает доверие пользователей',
-            img: styleImages[breakpointIndex],
-          },
-          {
-            id: 3,
-            title: 'Создаем комфортное пространство',
-            text: 'Помогаем командам говорить на одном языке и улучшать процесс доставки решений',
-            img: spaceImages[breakpointIndex],
-          },
-        ],
-  );
+  const cards = $derived([
+    {
+      id: 1,
+      title: 'Ускоряем создание продуктов',
+      text: 'Помогаем бизнесу быстро тестировать гипотезы и выводить решения на рынок',
+      img: speedImages[breakpointIndex],
+    },
+    {
+      id: 2,
+      title: 'Формируем единый визуальный стиль',
+      text: 'Строим экосистему визуальных решений, которая повышает доверие пользователей',
+      img: styleImages[breakpointIndex],
+    },
+    {
+      id: 3,
+      title: 'Создаем комфортное пространство',
+      text: 'Помогаем командам говорить на одном языке и улучшать процесс доставки решений',
+      img: spaceImages[breakpointIndex],
+    },
+  ]);
+
+  const cardsOrder = $derived($isDesktopSOrSmaller ? [1, 0, 2] : [0, 1, 2]);
+  const orderedCards = $derived(cardsOrder.map((index) => cards[index]));
 </script>
 
-<div class="carebenefits-container even-container">
+<div class="carebenefits-container">
   <div class="main-container">
     <div class="text-box">
       <div class="text first-row text--Dark_Blue">
@@ -81,7 +61,7 @@
       <div class="text second-row text--Text_Blue">но и о вашем времени</div>
     </div>
     <div class="cards-box">
-      {#each cards as card}
+      {#each orderedCards as card}
         <Card class="cards-box-item" title={card.title} text={card.text} appearance="primary">
           <img class="cards-box-img" src={card.img} alt="CellImg" />
         </Card>

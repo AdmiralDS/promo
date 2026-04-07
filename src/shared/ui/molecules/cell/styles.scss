@@ -32,7 +32,7 @@
   height: 300px;
   overflow: hidden;
 
-  @include breakpoints.respond-until(breakpoints.$tablet) {
+  @include breakpoints.respond-until(breakpoints.$desktopS) {
     height: 242px;
   }
 

@@ -61,7 +61,7 @@
       <div class="text first-row text--Dark_Blue">Дизайн-система</div>
       <div class="text second-row text--Text_Blue">понятная каждому</div>
       <div class="text third-row text--Snow_Gray">
-        Собрали в одну систему правила, компоненты и инструменты, чтобы упростить процесс создания решений
+        Собрали в одну систему правила, компоненты и инструменты, чтобы упростить процесс создания решений
       </div>
     </div>
     <div class="components-box">
