@@ -11,6 +11,7 @@
 <ResponsiveAnimationVideo
   align="center"
   {top}
+  fixedHeights={{ desktop: 2304, desktopS: 2003, tablet: 2662, mobile: 773 }}
   desktop={animationDesktopVideoMp4}
   desktopS={animationDesktopSVideoMp4}
   tablet={animationTabletVideoMp4}
