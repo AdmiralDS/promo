@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 type SectionConfig = {
   name: string;
@@ -27,6 +27,26 @@ const viewports = [
 
 const VIEWPORT_HEIGHT = 2200;
 const SNAPSHOT_DATE_ISO = '2025-10-29T12:00:00Z';
+
+async function disableAnimations(page: Page) {
+  await page.addStyleTag({
+    content: `
+      *,
+      *::before,
+      *::after {
+        transition-delay: 0s !important;
+        transition-duration: 0s !important;
+        animation-delay: 0s !important;
+        animation-duration: 0s !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      video {
+        display: none !important;
+      }
+    `,
+  });
+}
 
 test.describe('UI widgets visual regression', () => {
   test.beforeEach(async ({ page }) => {
@@ -78,23 +98,7 @@ test.describe('UI widgets visual regression', () => {
       for (const section of sections) {
         test(`${section.name} matches snapshot`, async ({ page }) => {
           await page.goto('/');
-          await page.addStyleTag({
-            content: `
-							*,
-							*::before,
-							*::after {
-								transition-delay: 0s !important;
-								transition-duration: 0s !important;
-								animation-delay: 0s !important;
-								animation-duration: 0s !important;
-								animation-iteration-count: 1 !important;
-							}
-
-              .page-background video {
-                display: none !important;
-              }
-						`,
-          });
+          await disableAnimations(page);
           const locator = page.locator(section.selector).first();
           await locator.scrollIntoViewIfNeeded();
           await expect(locator, `${section.name} block should be visible`).toBeVisible();
