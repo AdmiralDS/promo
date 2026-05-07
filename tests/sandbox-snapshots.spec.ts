@@ -282,6 +282,10 @@ async function closeMenu(button: Locator) {
   }
 }
 
+async function scrollIntoView(locator: Locator) {
+  await locator.evaluate((element) => element.scrollIntoView({ block: 'center', inline: 'nearest' }));
+}
+
 async function setTheme(control: Locator, theme: ThemeKey) {
   const themeInput = control.locator('input.sr-only[type="checkbox"]').first();
   const shouldBeDark = theme === 'dark';
@@ -458,7 +462,7 @@ test.describe('Sandbox visual snapshots', () => {
             await disableAnimations(page);
 
             const sandboxContainer = page.locator('.sandbox-container').first();
-            await sandboxContainer.scrollIntoViewIfNeeded();
+            await scrollIntoView(sandboxContainer);
             await expect(sandboxContainer).toBeVisible();
 
             const control = sandboxContainer.locator('.control-container').first();
