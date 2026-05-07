@@ -3,7 +3,6 @@
 
   export interface ThemeToggleProps extends HTMLInputAttributes {
     checked?: boolean;
-    value?: any;
     disabled?: boolean;
   }
 

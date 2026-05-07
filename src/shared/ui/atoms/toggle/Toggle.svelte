@@ -3,7 +3,6 @@
 
   export interface ToggleProps extends Omit<HTMLInputAttributes, 'size'> {
     checked?: boolean;
-    value?: any;
     disabled?: boolean;
     size?: 'md' | 'sm';
     label?: string;
