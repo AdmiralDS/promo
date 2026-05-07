@@ -5,22 +5,6 @@ import importPlugin from 'eslint-plugin-import';
 import svelte from 'eslint-plugin-svelte';
 import svelteConfig from './svelte.config.js';
 
-// Временный блок для мягкого перехода.
-// Для новых проектов: все правила из этого блока должны быть выставлены в `error`.
-const SOFT_MIGRATION_RULES = {
-  '@typescript-eslint/no-explicit-any': 'warn',
-  '@typescript-eslint/no-empty-object-type': 'warn',
-  // Note: you must disable the base rule as it can report incorrect errors
-  'no-unused-expressions': 'off',
-  '@typescript-eslint/no-unused-expressions': 'warn',
-  '@typescript-eslint/no-non-null-assertion': 'warn',
-  '@typescript-eslint/no-dynamic-delete': 'warn',
-  'svelte/require-each-key': 'warn',
-  'svelte/no-useless-mustaches': 'warn',
-  'svelte/no-at-html-tags': 'warn',
-  'svelte/prefer-writable-derived': 'warn',
-};
-
 const SVELTE_OVERRIDES = {
   files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
   languageOptions: {
@@ -70,7 +54,6 @@ export default defineConfig([
           ignoreRestSiblings: true,
         },
       ],
-      ...SOFT_MIGRATION_RULES,
     },
     settings: {
       'import/ignore': ['.(scss|less|css)$'],
