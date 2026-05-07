@@ -84,7 +84,7 @@
       </div>
     </div>
     <div class="cards-box">
-      {#each cards as card, index}
+      {#each cards as card, index (card.id)}
         <Card
           class={index === 0 ? 'cell-first' : index === 3 ? 'cell-forth' : index === 4 ? 'cell-fifth' : ''}
           title={card.title}

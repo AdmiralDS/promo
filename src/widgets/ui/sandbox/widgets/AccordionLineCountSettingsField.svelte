@@ -9,7 +9,7 @@
 </script>
 
 <SandboxField fieldTitle="Количество строк" {selected} {onSelectedChange}>
-  {#each ACCORDION_LINE_COUNT_OPTIONS as lineCount, index}
+  {#each ACCORDION_LINE_COUNT_OPTIONS as lineCount, index (lineCount)}
     <Button variant="secondary" size="small">{labels[index] ?? lineCount}</Button>
   {/each}
 </SandboxField>

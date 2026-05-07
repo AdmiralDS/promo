@@ -9,7 +9,7 @@
 </script>
 
 <SandboxField fieldTitle="Размер" {selected} {onSelectedChange}>
-  {#each APPEARANCE_OPTIONS as appearanceOption}
+  {#each APPEARANCE_OPTIONS as appearanceOption (appearanceOption)}
     <Button variant="secondary" size="small">{labels[appearanceOption]}</Button>
   {/each}
 </SandboxField>

@@ -72,7 +72,7 @@
     <div class="image"></div>
   </div>
 
-  {#each products as { id, title, logoComponent: Logo, badgeLogoHeight, badgeLogoWidth }, index}
+  {#each products as { id, title, logoComponent: Logo, badgeLogoHeight, badgeLogoWidth }, index (id)}
     <div class="badge-{id}">
       <Badge
         aria-label="{title} logo"

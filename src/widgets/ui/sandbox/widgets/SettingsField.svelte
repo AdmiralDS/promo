@@ -14,7 +14,7 @@
 </script>
 
 <SandboxField fieldTitle="Полей" {selected} {onSelectedChange}>
-  {#each isMobile ? optionsMobile : options as optionLabel}
+  {#each isMobile ? optionsMobile : options as optionLabel (optionLabel)}
     <Button variant="secondary" size="small">{optionLabel}</Button>
   {/each}
 </SandboxField>

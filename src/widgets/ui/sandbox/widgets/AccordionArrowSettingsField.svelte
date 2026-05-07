@@ -12,7 +12,7 @@
 </script>
 
 <SandboxField fieldTitle="Стрелка" {selected} {onSelectedChange}>
-  {#each ACCORDION_ARROW_POSITION_OPTIONS as position}
+  {#each ACCORDION_ARROW_POSITION_OPTIONS as position (position)}
     <Button variant="secondary" size="small">{labels[position]}</Button>
   {/each}
 </SandboxField>
