@@ -1,5 +1,6 @@
 <script lang="ts">
   import { ToggleGroup } from '$shared/ui';
+  import type { Snippet } from 'svelte';
 
   export interface FieldProps {
     selected?: number;
@@ -8,7 +9,7 @@
 
   export interface SandboxFieldProps extends FieldProps {
     fieldTitle: string;
-    children?: () => any;
+    children?: Snippet;
   }
 
   let { selected = 0, fieldTitle, onSelectedChange, children }: SandboxFieldProps = $props();

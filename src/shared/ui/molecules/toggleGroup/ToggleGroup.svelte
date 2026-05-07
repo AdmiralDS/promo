@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import type { Snippet } from 'svelte';
 
   export interface ToggleGroupProps {
     /**
@@ -23,7 +24,7 @@
      *   )}
      * </ToggleGroup>
      */
-    children?: () => any;
+    children?: Snippet;
 
     /**
      * Индекс выбранной кнопки-вкладки в контролируемом режиме.
