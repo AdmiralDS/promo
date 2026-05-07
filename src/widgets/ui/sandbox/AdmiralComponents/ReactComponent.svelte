@@ -85,7 +85,11 @@
   });
 </script>
 
-<div class="react-component-wrapper" bind:this={container}></div>
+<div
+  class="react-component-wrapper"
+  class:iosNoZoomFix={component === 'Modal' || component === 'Dropdown'}
+  bind:this={container}
+></div>
 
 <style lang="scss">
   @use 'reactComponent';

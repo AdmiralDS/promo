@@ -4,3 +4,22 @@
   justify-content: center;
   align-content: center;
 }
+
+/*
+  Фикс автозума iOS Safari в интерактивных демо-блоках песочницы:
+  @media (hover: none) and (pointer: coarse) ограничивает правило touch-устройствами;
+  .iosNoZoomFix оставляет workaround локальным для демонстрационных блоков Modal и Dropdown;
+  input, textarea, select перечислены как интерактивные поля, на которых iOS может приблизить страницу при фокусе;
+  font-size: 16px задает минимальный размер, при котором iOS не включает автозум;
+  transform: scale(0.875) визуально возвращает поле к исходному размеру около 14px;
+  transform-origin: left center сохраняет выравнивание по левому краю при уменьшении.
+*/
+@media (hover: none) and (pointer: coarse) {
+  .react-component-wrapper.iosNoZoomFix :global(input),
+  .react-component-wrapper.iosNoZoomFix :global(textarea),
+  .react-component-wrapper.iosNoZoomFix :global(select) {
+    font-size: 16px;
+    transform: scale(0.875);
+    transform-origin: left center;
+  }
+}
