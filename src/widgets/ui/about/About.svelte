@@ -65,7 +65,7 @@
       </div>
     </div>
     <div class="components-box">
-      {#each components as component}
+      {#each components as component (component.id)}
         <ComponentContainer size={component.size as ContainerSize} class={`component ${component.class}`}>
           <ReactComponent component={component.text} isDarkTheme={false}></ReactComponent>
         </ComponentContainer>

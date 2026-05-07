@@ -130,7 +130,7 @@
       <div class="text second-row text--Text_Blue">попробуйте сами</div>
       <div class="toggle-group-scroll">
         <ToggleGroup class="sandbox-toggle-group" onSelectedChange={handleComponentChange}>
-          {#each components as componentOption}
+          {#each components as componentOption (componentOption.eng)}
             <Tab class="component-sandbox">{componentOption.rus}</Tab>
           {/each}
         </ToggleGroup>

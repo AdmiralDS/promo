@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { HTMLAttributes } from 'svelte/elements';
 
-  export interface CellContainerProps extends HTMLAttributes<HTMLDivElement> {}
+  export type CellContainerProps = HTMLAttributes<HTMLDivElement>;
 
   // Получаем пропсы через $props()
   let { class: className = '', children, ...restAttributes }: CellContainerProps = $props();

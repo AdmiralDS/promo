@@ -7,7 +7,7 @@
 </script>
 
 <SandboxField fieldTitle="Цвет" {selected} {onSelectedChange}>
-  {#each SANDBOX_COLOR_OPTIONS as colorOption}
+  {#each SANDBOX_COLOR_OPTIONS as colorOption (colorOption)}
     <Color color={colorOption} />
   {/each}
 </SandboxField>

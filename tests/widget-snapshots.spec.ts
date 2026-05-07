@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 
 type SectionConfig = {
   name: string;
@@ -46,6 +46,10 @@ async function disableAnimations(page: Page) {
       }
     `,
   });
+}
+
+async function scrollIntoView(locator: Locator) {
+  await locator.evaluate((element) => element.scrollIntoView({ block: 'center', inline: 'nearest' }));
 }
 
 test.describe('UI widgets visual regression', () => {
@@ -100,7 +104,7 @@ test.describe('UI widgets visual regression', () => {
           await page.goto('/');
           await disableAnimations(page);
           const locator = page.locator(section.selector).first();
-          await locator.scrollIntoViewIfNeeded();
+          await scrollIntoView(locator);
           await expect(locator, `${section.name} block should be visible`).toBeVisible();
 
           await expect(locator).toHaveScreenshot(`${section.name}-${viewport.label}.png`, {

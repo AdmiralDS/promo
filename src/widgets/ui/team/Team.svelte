@@ -14,11 +14,7 @@
   import { useMediaQuery, MOBILE_QUERY } from '$shared/ui/useMediaQuery';
 
   const isMobileStore = useMediaQuery(MOBILE_QUERY);
-  let isMobile = $state(false);
-
-  $effect(() => {
-    isMobile = $isMobileStore;
-  });
+  const isMobile = $derived($isMobileStore);
 
   const cells = $state([
     {

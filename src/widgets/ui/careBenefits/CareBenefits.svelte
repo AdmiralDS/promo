@@ -61,7 +61,7 @@
       <div class="text second-row text--Text_Blue">но и о вашем времени</div>
     </div>
     <div class="cards-box">
-      {#each orderedCards as card}
+      {#each orderedCards as card (card.id)}
         <Card class="cards-box-item" title={card.title} text={card.text} appearance="primary">
           <img class="cards-box-img" src={card.img} alt="CellImg" />
         </Card>
