@@ -6,8 +6,8 @@
   export let isDarkTheme: boolean;
   let theme: 'dark' | 'light' = isDarkTheme ? 'dark' : 'light';
 
-  let container;
-  let root;
+  let container: HTMLDivElement;
+  let root: ReturnType<typeof renderer> | null = null;
 
   const mountReactComponent = () => {
     if (container)
@@ -20,6 +20,7 @@
   const unmountReactComponent = () => {
     try {
       if (root) root.unmount();
+      root = null;
     } catch (err) {
       // eslint-disable-next-line no-console
       console.warn(`react-adapter failed to unmount.`, { err });
