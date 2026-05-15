@@ -11,7 +11,7 @@
 <ResponsiveAnimationVideo
   className="header-animation-layer"
   {top}
-  fixedHeights={{ desktop: 1019, desktopS: 991, tablet: 897, mobile: 600 }}
+  fixedHeights={{ desktop: 1019, desktopS: 991, tablet: 897, mobile: 628 }}
   desktop={animationDesktopVideoMp4}
   desktopS={animationDesktopSVideoMp4}
   tablet={animationTabletVideoMp4}
