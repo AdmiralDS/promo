@@ -31,6 +31,10 @@
     padding: 80px 24px;
   }
 
+  @media (min-width: 700px) and (max-width: 748.98px) {
+    height: 2756px;
+  }
+
   @include breakpoints.respond-until(breakpoints.$phone) {
     width: 100%;
     height: 715px;
