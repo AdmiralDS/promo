@@ -29,6 +29,10 @@
     height: 356px;
   }
 
+  @media (min-width: 700px) and (max-width: 748.98px) {
+    height: 388px;
+  }
+
   @include breakpoints.respond-until(breakpoints.$phone) {
     width: 323px;
     height: 352px;

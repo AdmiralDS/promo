@@ -152,6 +152,10 @@
     :global(.card-text) {
       max-width: 440px;
     }
+
+    :global(.cell-forth .card-text) {
+      width: 100%;
+    }
   }
 
   @include breakpoints.respond-until(breakpoints.$phone) {

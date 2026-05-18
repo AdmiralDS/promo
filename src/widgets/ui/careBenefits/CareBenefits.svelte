@@ -31,7 +31,7 @@
     {
       id: 1,
       title: 'Ускоряем создание продуктов',
-      text: 'Помогаем бизнесу быстро тестировать гипотезы и выводить решения на рынок',
+      text: 'Помогаем бизнесу быстро тестировать гипотезы и выводить решения на рынок',
       img: speedImages[breakpointIndex],
     },
     {
@@ -56,9 +56,9 @@
   <div class="main-container">
     <div class="text-box">
       <div class="text first-row text--Dark_Blue">
-        <span class="mobile-break-after">Заботимся</span> не только о качестве,
+        <span class="mobile-break-after">Заботимся</span> не только о качестве,
       </div>
-      <div class="text second-row text--Text_Blue">но и о вашем времени</div>
+      <div class="text second-row text--Text_Blue">но и о вашем времени</div>
     </div>
     <div class="cards-box">
       {#each orderedCards as card (card.id)}
