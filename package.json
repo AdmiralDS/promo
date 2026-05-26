@@ -5,19 +5,22 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
+    "test:e2e-docker": "docker run -it -v ${PWD}:/app --workdir /app -p 9323:9323 --rm mcr.microsoft.com/playwright:v1.57.0-noble sh -lc 'npm i && npm run test:e2e -- \"$@\"' --",
+    "test:e2e-docker-update": "docker run -it -v ${PWD}:/app --workdir /app -p 9323:9323 --rm mcr.microsoft.com/playwright:v1.57.0-noble sh -lc 'npm i && npm run test:e2e -- --update-snapshots \"$@\"' --",
+    "format:check": "prettier --check . && eslint src tests .storybook",
+    "format:fix": "prettier --write . && eslint src tests .storybook --fix",
     "build": "vite build",
     "preview": "vite preview",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "format": "prettier --write .",
-    "lint": "prettier --check . && eslint src tests .storybook",
+    "lint": "npm run format:check",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test:e2e": "playwright test",
     "test:e2e-ui": "playwright test --ui",
-    "test:e2e-docker": "docker run -it -v ${PWD}:/app --workdir /app -p 9323:9323 --rm mcr.microsoft.com/playwright:v1.57.0-noble sh -lc 'npm i && npm run test:e2e -- \"$@\"' --",
-    "lint:fix": "prettier --write . && eslint src tests .storybook --fix"
+    "lint:fix": "npm run format:fix"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.0",
