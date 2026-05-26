@@ -92,14 +92,14 @@
 
     :global(.card-title),
     :global(.card-text) {
-      max-width: 510px;
+      width: 510px;
     }
   }
 
   @include breakpoints.respond-until(breakpoints.$tablet) {
     :global(.card-title),
     :global(.card-text) {
-      max-width: 495px;
+      width: 495px;
     }
   }
 
@@ -109,8 +109,7 @@
 
     :global(.card-text),
     :global(.card-title) {
-      max-width: 271px;
-      width: 100%;
+      width: 271px;
     }
   }
 }
