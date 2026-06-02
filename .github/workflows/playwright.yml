@@ -9,7 +9,7 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/playwright:v1.57.0-noble
+    container: mcr.microsoft.com/playwright:v1.60.0-noble
     steps:
       - uses: actions/checkout@v5
       - name: Install dependencies
