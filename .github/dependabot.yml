@@ -1,10 +1,10 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'daily'
     allow:
-      - dependency-name: "@admiral-ds/react-ui"
-      - dependency-name: "@admiral-ds/icons"
-      - dependency-name: "@admiral-ds/fonts"
+      - dependency-name: '@admiral-ds/react-ui'
+      - dependency-name: '@admiral-ds/icons'
+      - dependency-name: '@admiral-ds/fonts'
