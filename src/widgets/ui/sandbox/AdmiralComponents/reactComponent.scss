@@ -10,12 +10,13 @@
   @media (hover: none) and (pointer: coarse) ограничивает правило touch-устройствами;
   .iosNoZoomFix оставляет workaround локальным для демонстрационных блоков Modal и Dropdown;
   input, textarea, select перечислены как интерактивные поля, на которых iOS может приблизить страницу при фокусе;
+  input[type='checkbox'] исключен, чтобы transform не ломал отрисовку hover у чекбокса;
   font-size: 16px задает минимальный размер, при котором iOS не включает автозум;
   transform: scale(0.875) визуально возвращает поле к исходному размеру около 14px;
   transform-origin: left center сохраняет выравнивание по левому краю при уменьшении.
 */
 @media (hover: none) and (pointer: coarse) {
-  .react-component-wrapper.iosNoZoomFix :global(input),
+  .react-component-wrapper.iosNoZoomFix :global(input:not([type='checkbox'])),
   .react-component-wrapper.iosNoZoomFix :global(textarea),
   .react-component-wrapper.iosNoZoomFix :global(select) {
     font-size: 16px;
