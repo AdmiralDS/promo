@@ -46,7 +46,7 @@
 
   @include breakpoints.respond-until(breakpoints.$phone) {
     width: 100%;
-    padding: 56px 0 0 0;
+    padding: 56px 0 70px 0;
   }
 }
 
@@ -79,6 +79,10 @@
 
 .second-row {
   margin-bottom: 24px;
+
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    margin-bottom: 16px;
+  }
 }
 
 .toggle-group-scroll {
@@ -122,7 +126,9 @@
     height: 602px;
   }
   @include breakpoints.respond-until(breakpoints.$phone) {
-    height: 646px;
+    height: 578px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 

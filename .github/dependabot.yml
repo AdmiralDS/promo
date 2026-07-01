@@ -4,6 +4,7 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
+    versioning-strategy: 'increase'
     allow:
       - dependency-name: '@admiral-ds/react-ui'
       - dependency-name: '@admiral-ds/icons'
