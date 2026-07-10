@@ -1,8 +1,12 @@
 <script lang="ts">
   import { SferaLogo, StartLogo, VTBCloudLogo, AutographLogo, Badge, Modal } from '$shared/ui';
+  import VTBCloudDarkLogo from '$shared/ui/atoms/icons/VTBCloudDark.svelte';
+  import { useMediaQuery } from '$shared/ui/useMediaQuery';
+
+  const isColorsInvertedStore = useMediaQuery('(inverted-colors: inverted)');
 
   /** Размеры иконок округлены до целых значений */
-  const products = [
+  const products = $derived([
     {
       id: 'sfera',
       title: 'Сфера',
@@ -66,13 +70,13 @@
         'Помогает быстрее создавать',
         'и запускать цифровые проекты',
       ],
-      logoComponent: VTBCloudLogo,
+      logoComponent: $isColorsInvertedStore ? VTBCloudDarkLogo : VTBCloudLogo,
       modalLogoHeight: { desktop: '108px', tablet: '80px', phone: '80px' },
       modalLogoWidth: { desktop: '220px', tablet: '164px', phone: '164px' },
       badgeLogoHeight: { desktop: '48', tablet: '48px', phone: '25px' },
       badgeLogoWidth: { desktop: '97px', tablet: '97px', phone: '52px' },
     },
-  ];
+  ]);
 
   let showModal = $state(false);
   let productIndex = $state(0);
