@@ -86,7 +86,8 @@ $gradients: (
 
 /// Генерация CSS-переменных для цветов
 :root {
-  color-scheme: light;
+  // Do not let mobile browsers synthesize a dark theme by recoloring the page.
+  color-scheme: only light;
 
   @each $color, $value in $colors {
     --color-#{'' + $color}: #{$value};
