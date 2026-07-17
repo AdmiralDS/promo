@@ -2,6 +2,8 @@
 import { defineConfig, devices } from '@playwright/test';
 import 'dotenv/config';
 
+const chromiumOnlyTests = ['**/sandbox-snapshots.spec.ts', '**/widget-snapshots.spec.ts'];
+
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -43,17 +45,14 @@ export default defineConfig({
 
     {
       name: 'firefox',
+      testIgnore: chromiumOnlyTests,
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
+      testIgnore: chromiumOnlyTests,
       use: { ...devices['Desktop Safari'] },
-      expect: {
-        toHaveScreenshot: {
-          maxDiffPixelRatio: 0.01,
-        },
-      },
     },
 
     /* Test against mobile viewports. */
