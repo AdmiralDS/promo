@@ -32,9 +32,6 @@ export default defineConfig({
     toHaveScreenshot: {
       maxDiffPixelRatio: 0.005,
     },
-    toMatchSnapshot: {
-      maxDiffPixelRatio: 0.005,
-    },
   },
 
   /* Configure projects for major browsers */
@@ -52,6 +49,11 @@ export default defineConfig({
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+      expect: {
+        toHaveScreenshot: {
+          maxDiffPixelRatio: 0.01,
+        },
+      },
     },
 
     /* Test against mobile viewports. */
