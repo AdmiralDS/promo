@@ -30,10 +30,10 @@ export default defineConfig({
     // чтобы сторибук успел запуститься
     timeout: 10000, // глобальный таймаут для всех expect
     toHaveScreenshot: {
-      maxDiffPixelRatio: 0.01,
+      maxDiffPixelRatio: 0.005,
     },
     toMatchSnapshot: {
-      maxDiffPixelRatio: 0.01,
+      maxDiffPixelRatio: 0.005,
     },
   },
 
