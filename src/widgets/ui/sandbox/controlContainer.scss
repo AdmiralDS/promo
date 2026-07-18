@@ -31,11 +31,12 @@
     @include shadow.shadow;
   }
   @include breakpoints.respond-until(breakpoints.$phone) {
-    position: absolute;
-    width: 100%;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
     height: 92px;
-    bottom: -70px;
-    padding: 20px 40px;
+    padding: 20px 32px;
     border-radius: 24px;
     gap: 32px;
     justify-content: center;
@@ -151,6 +152,10 @@
 .button-block-wrapper {
   display: flex;
   gap: 8px;
+
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    gap: 16px;
+  }
 }
 
 .control-container:not(.control-container--dark) {

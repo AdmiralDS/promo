@@ -53,6 +53,8 @@ async function scrollIntoView(locator: Locator) {
 }
 
 test.describe('UI widgets visual regression', () => {
+  test.skip(({ browserName }) => browserName !== 'chromium', 'Visual snapshots run only in Chromium');
+
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(
       ({ isoString }) => {

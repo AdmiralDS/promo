@@ -21,7 +21,7 @@
   }
 
   @include breakpoints.respond-until(breakpoints.$phone) {
-    height: 864px;
+    height: 886px;
     border-radius: 32px;
     padding: 0;
   }
@@ -126,9 +126,8 @@
     height: 602px;
   }
   @include breakpoints.respond-until(breakpoints.$phone) {
-    height: 578px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    height: 670px;
+    border-radius: 32px;
   }
 }
 

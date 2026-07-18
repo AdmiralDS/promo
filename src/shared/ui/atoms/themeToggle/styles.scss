@@ -1,4 +1,5 @@
 @use '$shared/ui/colors' as colors;
+@use '$shared/ui/breakpoints' as breakpoints;
 
 .toggle-label {
   display: block;
@@ -12,12 +13,18 @@
   background: var(--color-Light_Grey, colors.color('Light_Grey'));
   cursor: pointer;
 
+  @include breakpoints.respond-until(breakpoints.$phone) {
+    width: 100px;
+    height: 52px;
+  }
+
   #togglehover {
     visibility: hidden;
   }
-
-  &:hover #togglehover {
-    visibility: visible;
+  @media (hover: hover) {
+    &:hover #togglehover {
+      visibility: visible;
+    }
   }
 }
 
@@ -48,6 +55,19 @@ input:checked + svg {
 
   #togglehover {
     transform: translateX(-44px);
+  }
+}
+
+@include breakpoints.respond-until(breakpoints.$phone) {
+  input:checked + svg {
+    #togglethumb,
+    #togglethumbmask > use {
+      transform: translateX(47px);
+    }
+
+    #togglehover {
+      transform: translateX(-47px);
+    }
   }
 }
 

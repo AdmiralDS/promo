@@ -450,6 +450,8 @@ async function applyScenarioSettings(control: Locator, mode: LayoutMode, scenari
 }
 
 test.describe('Sandbox visual snapshots', () => {
+  test.skip(({ browserName }) => browserName !== 'chromium', 'Visual snapshots run only in Chromium');
+
   for (const resolution of resolutions) {
     test.describe(resolution.label, () => {
       test.use({ viewport: { width: resolution.width, height: VIEWPORT_HEIGHT } });

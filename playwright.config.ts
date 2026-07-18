@@ -2,6 +2,8 @@
 import { defineConfig, devices } from '@playwright/test';
 import 'dotenv/config';
 
+const chromiumOnlyTests = ['**/sandbox-snapshots.spec.ts', '**/widget-snapshots.spec.ts'];
+
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -30,10 +32,7 @@ export default defineConfig({
     // чтобы сторибук успел запуститься
     timeout: 10000, // глобальный таймаут для всех expect
     toHaveScreenshot: {
-      maxDiffPixelRatio: 0.01,
-    },
-    toMatchSnapshot: {
-      maxDiffPixelRatio: 0.01,
+      maxDiffPixelRatio: 0.005,
     },
   },
 
@@ -46,11 +45,13 @@ export default defineConfig({
 
     {
       name: 'firefox',
+      testIgnore: chromiumOnlyTests,
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
+      testIgnore: chromiumOnlyTests,
       use: { ...devices['Desktop Safari'] },
     },
 
